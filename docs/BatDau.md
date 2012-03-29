@@ -130,3 +130,6 @@ gõ:
   cách gõ: `processKey`.
 
 * Cho phép người dùng tự định nghĩa cách gõ của riêng mình.
+
+* **BoGoEngine** sử dụng bảng mã *UTF-8*, tất cả các thao tác trên các bảng mã
+  khác được thực hiện qua các hàm chuyển đổi (conversion).
