@@ -29,7 +29,7 @@
 
 * **BoGoEngine** sử dụng
   [functional programming style](https://en.wikipedia.org/wiki/Functional_programming),
-  hạn chế tối đa side effect và state.  Chương trình càng stateless càng tốt.
+  hạn chế tối đa side effect và state.
 
 * Cách đặt tên:
 
@@ -93,7 +93,7 @@ Nhìn chung, việc xử lý tiếng Việt bao gồm có:
   - Ký tự **ˆ** gọi là *circumflex*, *hat*, hoặc *roof*.  **BoGoEngine** sử
     dụng từ *hat*.
 
-  - Ký tự ** ̛** gọi là *horn*.
+  - Ký tự **̛** gọi là *horn*.
 
   - Ký tự **˘** gọi là *breve*.
 

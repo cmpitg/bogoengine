@@ -3,8 +3,7 @@
 ## Giới thiệu
 
 **BoGoEngine** là một thư viện sử dụng cho việc gõ tiếng Việt.  **BoGoEngine**
-được viết bằng ngôn ngữ C++, với paradigm gần functional programming nhất có
-thể.
+được viết bằng ngôn ngữ C++, với functional programming paradigm.
 
 ## Lịch sử
 
@@ -29,7 +28,8 @@ nhiều nhất:
   **x-unikey**, giấy phép GPL.  **ibus-unikey** được sử dụng phổ biến nhất, có
   mặt mặc định trên hầu hết tất cả các bản phân phối GNU/Linux.
   **scim-unikey** phát hành lần cuối cùng vào tháng 08/2009.  **ibus-unikey**
-  vẫn đang được phát triển.
+  phát hành bản 0.6 vào tháng 01/2012 và hiện nay vẫn đang tiếp tục được phát
+  triển.
 
 ## Nguyên nhân ra đời
 
