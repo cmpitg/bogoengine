@@ -133,3 +133,8 @@ gõ:
 
 * **BoGoEngine** sử dụng bảng mã *UTF-8*, tất cả các thao tác trên các bảng mã
   khác được thực hiện qua các hàm chuyển đổi (conversion).
+
+### Các quy ước khác
+
+* Một ký tự được gọi là ký tự kết thúc từ nếu như ký tự đó không thuộc bảng
+  chữ cái và không phải là ký tự xóa lùi (Backspace)

@@ -1,5 +1,8 @@
 add_library (bogoengine
   engine.cpp
-  engine.hpp)
+  engine.hpp
+  utils.cpp
+  utils.hpp
+  )
 
 target_link_libraries (bogoengine ${GTKMM_LIBRARIES})
