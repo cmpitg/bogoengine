@@ -19,10 +19,19 @@ namespace BoGo {
 #define __(x) (ustring ("") + x).c_str ()
 
     bool isVowel (ustring ch) {
-        return true;
+        return PlainVowels.find (toPlainLetter (ch.lowercase ()))
+            != ustring::npos;
     }
 
     bool isVowel (const gchar *ch) {
+        return isVowel (_(ch));
+    }
+
+    bool isVowel (string ch) {
+        return isVowel (_(ch));
+    }
+
+    bool isVowel (guint ch) {
         return isVowel (_(ch));
     }
 
@@ -33,6 +42,14 @@ namespace BoGo {
     }
 
     bool isConsonant (const gchar *ch) {
+        return isConsonant (_(ch));
+    }
+
+    bool isConsonant (string ch) {
+        return isConsonant (_(ch));
+    }
+
+    bool isConsonant (guint ch) {
         return isConsonant (_(ch));
     }
 

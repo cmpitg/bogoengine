@@ -9,8 +9,6 @@ using namespace BoGo;
 #define _(s) (ustring ("") + s)
 #define __(s) (ustring ("") + s).c_str ()
 
-
-
 // TEST (WordHelpers, WordSeparator) {
 //     EXPECT_TRUE (isWordSepEq ({"ng", "oa", "n"},
 //                               analyseWord ("ngoan")));

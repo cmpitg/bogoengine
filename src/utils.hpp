@@ -29,10 +29,14 @@ namespace BoGo {
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
 
     bool isVowel (ustring ch);
+    bool isVowel (string ch);
     bool isVowel (const gchar *ch);
+    bool isVowel (guint ch);
 
     bool isConsonant (ustring ch);
+    bool isConsonant (string ch);
     bool isConsonant (const gchar *ch);
+    bool isConsonant (guint ch);
 
     ustring removeMarksFromChar (ustring ch);
     ustring removeMarksFromChar (const gchar *ch);
