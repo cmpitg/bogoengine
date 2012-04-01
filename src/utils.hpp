@@ -11,12 +11,13 @@ namespace BoGo {
 
     const gchar BACKSPACE_CODE = 8;
 
-    const guint NUMBER_OF_ACCENTS = 5;
+    const guint NUMBER_OF_ACCENTS = 6;
     const guint GRAVE  = 0,
         ACUTE          = 1,
         HOOK           = 2,
         TILDE          = 3,
-        DOT            = 4;
+        DOT            = 4,
+        NO_ACCENT      = 5;
 
     const ustring LowerCaseLetters =
         ustring ("aăâbcdđeêfghijklmnoôơpqrstuưvwxy");
@@ -27,10 +28,8 @@ namespace BoGo {
     const ustring PlainVowels  = ustring ("aaaeeiooouuy");
     const ustring Vowels       = ustring ("aăâeêioôơuưy");
     const ustring VowelsWithAccents =
-        "àáảãạằắẳẵặầấẩẫậ"
-        "èéẻẽẹềếểễệìíỉĩị"
-        "òóỏõọồốổỗộờớởỡợ"
-        "ùúủũụừứửữựỳýỷỹỵ";
+        "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
+        "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
 
     // const ustring VowelsWithAccents[] = {
     //     ustring ("àáảãạ"), ustring ("ằắẳẵặ"), ustring ("ầấẩẫậ"),

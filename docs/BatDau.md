@@ -137,4 +137,5 @@ gõ:
 ### Các quy ước khác
 
 * Một ký tự được gọi là ký tự kết thúc từ nếu như ký tự đó không thuộc bảng
-  chữ cái và không phải là ký tự xóa lùi (Backspace)
+  chữ cái và không phải là ký tự xóa lùi (Backspace).
+

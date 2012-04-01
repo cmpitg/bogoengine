@@ -23,11 +23,8 @@ namespace BoGo {
         _size_t_ posVowel = getVowelPos (ch);
         _size_t_ accent = getAccentFromChar (ch);
 
-        if (posVowel != ustring::npos) {
-            ch = _(PlainVowels[posVowel]);
-            if (accent != ustring::npos)
-                ch = addAccentToChar (ch, accent);
-        }
+        if (posVowel != ustring::npos)
+            ch = addAccentToChar (_(PlainVowels[posVowel]), accent);
         return ch;
     }
 

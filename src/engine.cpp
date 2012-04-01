@@ -15,13 +15,6 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
-    const ustring VowelsWithoutHat  = _("aàáảãạeèéẻẽẹoòóỏõọ");
-    const ustring VowelsWithHat     = _("âầấẩẫậêềếểễệôồốổỗộ");
-
-    const ustring VowelsWithoutHorn  = _("aàáảãạoòóỏõọuùúủũụ");
-    const ustring VowelsWithHorn     = _("ăằắẳãạơờớởỡợưừứửữự");
-
-    // Separate
     ustring replace (ustring str, ustring oldPortion,
                      ustring newPortion, _size_t startFrom = 0) {
         _size_t pos = str.find (oldPortion, startFrom);
