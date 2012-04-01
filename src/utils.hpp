@@ -39,14 +39,19 @@ namespace BoGo {
     // };
 
     ustring addAccentToChar (ustring ch, Accents accent);
+    ustring addAccentToChar (string ch, Accents accent);
     ustring addAccentToChar (const char *ch, Accents accent);
     ustring addAccentToChar (guint ch, Accents accent);
 
     _size_t_ getVowelPos (ustring ch);
+    _size_t_ getVowelPos (string ch);
     _size_t_ getVowelPos (const gchar *ch);
+    _size_t_ getVowelPos (guint ch);
 
     Accents getAccentFromChar (ustring ch);
+    Accents getAccentFromChar (string ch);
     Accents getAccentFromChar (const gchar *ch);
+    Accents getAccentFromChar (guint ch);
 
     ustring toPlainLetter (ustring ch);
     ustring toPlainLetter (string ch);

@@ -44,7 +44,15 @@ namespace BoGo {
         return accent;
     }
 
+    Accents getAccentFromChar (string ch) {
+        return getAccentFromChar (_(ch));
+    }
+
     Accents getAccentFromChar (const gchar *ch) {
+        return getAccentFromChar (_(ch));
+    }
+
+    Accents getAccentFromChar (guint ch) {
         return getAccentFromChar (_(ch));
     }
 
@@ -86,6 +94,10 @@ namespace BoGo {
         return addAccentToChar (_(ch), accent);
     }
 
+    ustring addAccentToChar (string ch, Accents accent) {
+        return addAccentToChar (_(ch), accent);
+    }
+
     _size_t_ getVowelPos (ustring ch) {
         _size_t_ pos = VowelsWithAccents.find (ch.lowercase ());
         if (pos != ustring::npos)
@@ -96,6 +108,14 @@ namespace BoGo {
     }
 
     _size_t_ getVowelPos (const gchar *ch) {
+        return getVowelPos (_(ch));
+    }
+
+    _size_t_ getVowelPos (string ch) {
+        return getVowelPos (_(ch));
+    }
+
+    _size_t_ getVowelPos (guint ch) {
         return getVowelPos (_(ch));
     }
 
