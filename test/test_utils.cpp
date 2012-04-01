@@ -9,6 +9,33 @@ using namespace BoGo;
 #define _(s) (ustring ("") + s)
 #define __(s) (ustring ("") + s).c_str ()
 
+
+
+// TEST (WordHelpers, WordSeparator) {
+//     EXPECT_TRUE (isWordSepEq ({"ng", "oa", "n"},
+//                               analyseWord ("ngoan")));
+//     EXPECT_TRUE (isWordSepEq ({"tr", "ườ", "ng"},
+//                               analyseWord ("trường")));
+//     EXPECT_TRUE (isWordSepEq ({"", "oạ", "ch"},
+//                               analyseWord ("oạch")));
+//     EXPECT_TRUE (isWordSepEq ({"th", "ề", ""},
+//                               analyseWord ("thề")));
+//     EXPECT_TRUE (isWordSepEq ({"", "ui", ""},
+//                               analyseWord ("ui")));
+//     EXPECT_TRUE (isWordSepEq ({"", "oa", ""},
+//                               analyseWord ("oa")));
+// }
+
+TEST (CharacterHelpers, ConsonantsAndVowels) {
+    EXPECT_TRUE (isVowel ("Â"));
+    EXPECT_FALSE (isConsonant ("à"));
+    EXPECT_TRUE (isVowel ("Ă"));
+    EXPECT_TRUE (isConsonant ("C"));
+    EXPECT_TRUE (isConsonant (" "));
+    EXPECT_FALSE (isVowel ("Đ"));
+    EXPECT_TRUE (isVowel ("Ế"));
+}
+
 TEST (CharacterHelpers, CharacterCases) {
     EXPECT_TRUE (isUpperCase ("Â"));
     EXPECT_TRUE (isUpperCase ("À"));

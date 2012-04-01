@@ -28,6 +28,17 @@ namespace BoGo {
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
 
+    bool isVowel (ustring ch);
+    bool isVowel (const gchar *ch);
+
+    bool isConsonant (ustring ch);
+    bool isConsonant (const gchar *ch);
+
+    ustring removeMarksFromChar (ustring ch);
+    ustring removeMarksFromChar (const gchar *ch);
+    ustring removeMarksFromChar (string ch);
+    ustring removeMarksFromChar (guint ch);
+
     ustring addAccentToChar (ustring ch, Accents accent);
     ustring addAccentToChar (string ch, Accents accent);
     ustring addAccentToChar (const char *ch, Accents accent);

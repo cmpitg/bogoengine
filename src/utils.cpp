@@ -18,6 +18,24 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
+    bool isVowel (ustring ch) {
+        return true;
+    }
+
+    bool isVowel (const gchar *ch) {
+        return isVowel (_(ch));
+    }
+
+    bool isConsonant (ustring ch) {
+        // Only vowel is special, so non-alphabet characters are
+        // counted as consonants
+        return !isVowel (ch);
+    }
+
+    bool isConsonant (const gchar *ch) {
+        return isConsonant (_(ch));
+    }
+
     ustring removeMarksFromChar (ustring ch) {
         bool isUp = isUpperCase (ch);
         ch = ch.lowercase ();
@@ -32,6 +50,19 @@ namespace BoGo {
             ch = ch.uppercase ();
         return ch;
     }
+
+    ustring removeMarksFromChar (string ch) {
+        return removeMarksFromChar (_(ch));
+    }
+
+    ustring removeMarksFromChar (const gchar *ch) {
+        return removeMarksFromChar (_(ch));
+    }
+
+    ustring removeMarksFromChar (guint ch) {
+        return removeMarksFromChar (_(ch));
+    }
+
 
     Accents getAccentFromChar (ustring ch) {
         _size_t_ accent = VowelsWithAccents.find (ch.lowercase ());
