@@ -1,7 +1,6 @@
 #include "utils.hpp"
 #include <iostream>
 
-// FIXME uppercase, lowercase
 // FIXME charset
 
 namespace BoGo {

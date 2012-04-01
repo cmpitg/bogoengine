@@ -19,24 +19,14 @@ namespace BoGo {
         DOT            = 4,
         NO_ACCENT      = 5;
 
-    const ustring LowerCaseLetters =
-        ustring ("aăâbcdđeêfghijklmnoôơpqrstuưvwxy");
-    // const ustring LowerCaseAlphabet = ustring ("aăâbcdđeêfghijklmnoôơpqrstuưvwxy");
-    // const ustring UpperCaseAlphabet = ustring ("AĂÂBCDĐEÊFGHIJKLMNOÔƠPQRSTUƯVWXY");
-    const ustring Numbers = ustring ("0123456789");
+    const ustring LowerCaseLetters = "aăâbcdđeêfghijklmnoôơpqrstuưvwxy";
+    const ustring Numbers = "0123456789";
 
-    const ustring PlainVowels  = ustring ("aaaeeiooouuy");
-    const ustring Vowels       = ustring ("aăâeêioôơuưy");
+    const ustring PlainVowels  = "aaaeeiooouuy";
+    const ustring Vowels       = "aăâeêioôơuưy";
     const ustring VowelsWithAccents =
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
-
-    // const ustring VowelsWithAccents[] = {
-    //     ustring ("àáảãạ"), ustring ("ằắẳẵặ"), ustring ("ầấẩẫậ"),
-    //     ustring ("èéẻẽẹ"), ustring ("ềếểễệ"), ustring ("ìíỉĩị"),
-    //     ustring ("òóỏõọ"), ustring ("ồốổỗộ"), ustring ("ờớởỡợ"),
-    //     ustring ("ùúủũụ"), ustring ("ừứửữự"), ustring ("ỳýỷỹỵ")
-    // };
 
     ustring addAccentToChar (ustring ch, Accents accent);
     ustring addAccentToChar (string ch, Accents accent);
