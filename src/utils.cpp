@@ -26,23 +26,16 @@ namespace BoGo {
             { isConsonant, isVowel, isConsonant };
 
         // First part: Consonant 1
-        res[0] = "";
-        // This is safe due to short-circuit logic
-        while (str != _("") && testFuncs[0] (_(str[0]))) {
-            res[0] += _(str[0]);
-            str.replace (0, 1, "");
-        }
-
         // Second part: Vowel
-        while (str != _("") && testFuncs[1] (_(str[0]))) {
-            res[1] += _(str[0]);
-            str.replace (0, 1, "");
-        }
-
         // Third part: Consonant 2
-        while (str != _("") && testFuncs[2] (_(str[0]))) {
-            res[2] += _(str[0]);
-            str.replace (0, 1, "");
+
+        for (int part = 0; part < 3; part++) {
+            res[part] = "";
+            // This is safe due to short-circuit logic
+            while (str != _("") && testFuncs[part] (_(str[0]))) {
+                res[part] += _(str[0]);
+                str.replace (0, 1, "");
+            }
         }
 
         return res;
