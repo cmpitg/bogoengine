@@ -9,6 +9,25 @@ using namespace BoGo;
 #define _(s) (ustring ("") + s)
 #define __(s) (ustring ("") + s).c_str ()
 
+bool isWordSepEq (const gchar *e0, const gchar *e1, const gchar *e2,
+                  ustring expr[]) {
+    if (_(e0) != expr[0])
+        return false;
+    if (_(e1) != expr[1])
+        return false;
+    if (_(e2) != expr[2])
+        return false;
+    return true;
+}
+
+TEST (TestItself, TestHelpers) {
+    ustring s1[] = { "aoeu", "xin chào", "Thế Giới!" };
+
+    EXPECT_TRUE (isWordSepEq ("aoeu", "xin chào", "Thế Giới!", s1));
+    EXPECT_FALSE (isWordSepEq ("aoeU", "xin chào", "Thế Giới!", s1));
+
+}
+
 // TEST (WordHelpers, WordSeparator) {
 //     EXPECT_TRUE (isWordSepEq ({"ng", "oa", "n"},
 //                               analyseWord ("ngoan")));
