@@ -49,7 +49,9 @@ namespace BoGo {
     Accents getAccentFromChar (const gchar *ch);
 
     ustring toPlainLetter (ustring ch);
+    ustring toPlainLetter (string ch);
     ustring toPlainLetter (const gchar *ch);
+    ustring toPlainLetter (guint ch);
 
     bool isLetter (ustring ch);
     bool isLetter (string ch);

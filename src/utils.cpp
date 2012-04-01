@@ -57,6 +57,14 @@ namespace BoGo {
         return toPlainLetter (_(ch));
     }
 
+    ustring toPlainLetter (string ch) {
+        return toPlainLetter (_(ch));
+    }
+
+    ustring toPlainLetter (guint ch) {
+        return toPlainLetter (_(ch));
+    }
+
     ustring addAccentToChar (ustring ch, Accents accent) {
         bool isUp = isUpperCase (ch);
         ch = ch.lowercase ();
