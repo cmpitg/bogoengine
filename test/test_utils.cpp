@@ -85,37 +85,43 @@ TEST (CharacterHelpers, CharacterCases) {
 TEST (CharacterHelpers, AccentsAndTransform) {
     EXPECT_STREQ (__("ô"), removeAccentFromChar ("ố").c_str ());
     EXPECT_STREQ (__("ô"), removeAccentFromChar ("ổ").c_str ());
-    EXPECT_STREQ (__("ô"), removeAccentFromChar ("ỗ").c_str ());
+    EXPECT_STREQ (__("Ô"), removeAccentFromChar ("Ỗ").c_str ());
     EXPECT_STREQ (__("ô"), removeAccentFromChar ("ộ").c_str ());
     EXPECT_STREQ (__("â"), removeAccentFromChar ("ầ").c_str ());
-    EXPECT_STREQ (__("â"), removeAccentFromChar ("ấ").c_str ());
+    EXPECT_STREQ (__("Â"), removeAccentFromChar ("Ấ").c_str ());
     EXPECT_STREQ (__("â"), removeAccentFromChar ("ẩ").c_str ());
-    EXPECT_STREQ (__("â"), removeAccentFromChar ("ẫ").c_str ());
+    EXPECT_STREQ (__("Â"), removeAccentFromChar ("Ẫ").c_str ());
     EXPECT_STREQ (__("â"), removeAccentFromChar ("ậ").c_str ());
 
     EXPECT_STREQ (__("a"), toPlainLetter ("â").c_str ());
     EXPECT_STREQ (__("a"), toPlainLetter ("ắ").c_str ());
-    EXPECT_STREQ (__("n"), toPlainLetter ("n").c_str ());
-    EXPECT_STREQ (__("o"), toPlainLetter ("ộ").c_str ());
-    EXPECT_STREQ (__("e"), toPlainLetter ("ễ").c_str ());
+    EXPECT_STREQ (__("N"), toPlainLetter ("N").c_str ());
+    EXPECT_STREQ (__("O"), toPlainLetter ("Ộ").c_str ());
+    EXPECT_STREQ (__("E"), toPlainLetter ("Ễ").c_str ());
 
     EXPECT_EQ (0, getAccentFromChar ("ồ"));
     EXPECT_EQ (1, getAccentFromChar ("Ứ"));
     EXPECT_EQ (2, getAccentFromChar ("Ể"));
     EXPECT_EQ (3, getAccentFromChar ("ẵ"));
     EXPECT_EQ (4, getAccentFromChar ("ị"));
-    EXPECT_EQ (4294967295, getAccentFromChar ("n"));
+    EXPECT_EQ (5, getAccentFromChar ("n"));
+
+    EXPECT_STREQ (__("á"), addAccentToChar ("a", ACUTE).c_str ());
+    EXPECT_STREQ (__("ặ"), addAccentToChar ("ă", DOT).c_str ());
+    EXPECT_STREQ (__("Ổ"), addAccentToChar ("Ô", HOOK).c_str ());
+    EXPECT_STREQ (__("n"), addAccentToChar ("n", DOT).c_str ());
+    EXPECT_STREQ (__("Ễ"), addAccentToChar ("Ê", TILDE).c_str ());
 }
 
 TEST (CharacterHelpers, PlainCharacters) {
     EXPECT_EQ (true, isLetter ("n"));
     EXPECT_EQ (true, isLetter ("ọ"));
     EXPECT_EQ (true, isLetter ("ổ"));
-    EXPECT_EQ (true, isLetter ("ầ"));
-    EXPECT_EQ (true, isLetter ("ẩ"));
+    EXPECT_EQ (true, isLetter ("Ầ"));
+    EXPECT_EQ (true, isLetter ("Ẩ"));
     EXPECT_EQ (true, isLetter ("á"));
-    EXPECT_EQ (true, isLetter ("ả"));
-    EXPECT_EQ (true, isLetter ("t"));
+    EXPECT_EQ (true, isLetter ("Ả"));
+    EXPECT_EQ (true, isLetter ("T"));
     EXPECT_EQ (true, isLetter ("b"));
     EXPECT_EQ (true, isLetter ("a"));
     EXPECT_EQ (true, isLetter ("g"));

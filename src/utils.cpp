@@ -20,11 +20,17 @@ namespace BoGo {
 #define __(x) (ustring ("") + x).c_str ()
 
     ustring removeMarksFromChar (ustring ch) {
+        bool isUp = isUpperCase (ch);
+        ch = ch.lowercase ();
+
         _size_t_ posVowel = getVowelPos (ch);
         _size_t_ accent = getAccentFromChar (ch);
 
         if (posVowel != ustring::npos)
             ch = addAccentToChar (_(PlainVowels[posVowel]), accent);
+
+        if (isUp)
+            ch = ch.uppercase ();
         return ch;
     }
 
@@ -32,7 +38,9 @@ namespace BoGo {
         _size_t_ accent = VowelsWithAccents.find (ch.lowercase ());
 
         if (accent != ustring::npos)
-            accent %= NUMBER_OF_ACCENTS;        // Number of accents
+            accent %= NUMBER_OF_ACCENTS;
+        else
+            accent = NO_ACCENT;
         return accent;
     }
 
@@ -41,10 +49,7 @@ namespace BoGo {
     }
 
     ustring toPlainLetter (ustring ch) {
-        bool isUp = isUpperCase (ch);
         ch = removeAccentFromChar (removeMarksFromChar (ch));
-        if (isUp)
-            ch = ch.uppercase ();
         return ch;
     }
 
@@ -53,9 +58,15 @@ namespace BoGo {
     }
 
     ustring addAccentToChar (ustring ch, Accents accent) {
+        bool isUp = isUpperCase (ch);
+        ch = ch.lowercase ();
+
         _size_t_ pos = Vowels.find (ch);
         if (pos != ustring::npos)
             ch = _(VowelsWithAccents[pos * NUMBER_OF_ACCENTS + accent]);
+
+        if (isUp)
+            ch = ch.uppercase ();
         return ch;
     }
 
@@ -81,9 +92,15 @@ namespace BoGo {
     }
 
     ustring removeAccentFromChar (ustring ch) {
+        bool isUp = isUpperCase (ch);
+        ch = ch.lowercase ();
+
         _size_t_ posVowel = getVowelPos (ch);
         if (posVowel != ustring::npos)
             ch = _(Vowels[posVowel]);
+
+        if (isUp)
+            ch = ch.uppercase ();
         return ch;
     }
 
