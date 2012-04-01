@@ -19,12 +19,38 @@ namespace BoGo {
 #define __(x) (ustring ("") + x).c_str ()
 
     ustringArrayT analyseWord (ustring str) {
+        ustringArrayT res(3);
+
+        // First part: Consonant 1
+        res[0] = "";
+        // This is safe due to short-circuit logic
+        while (str != _("") && isConsonant (str[0])) {
+            res[0] += _(str[0]);
+            str.replace (0, 1, "");
+        }
+
+        // Second part: Vowel
+        while (str != _("") && isVowel (str[0])) {
+            res[1] += _(str[0]);
+            str.replace (0, 1, "");
+        }
+
+
+        // Third part: Consonant 2
+        while (str != _("") && isConsonant (str[0])) {
+            res[2] += _(str[0]);
+            str.replace (0, 1, "");
+        }
+
+        return res;
     }
 
     ustringArrayT analyseWord (string str) {
+        return analyseWord (_(str));
     }
 
     ustringArrayT analyseWord (const gchar *str) {
+        return analyseWord (_(str));
     }
 
     bool isVowel (ustring ch) {
