@@ -18,6 +18,15 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
+    ustringArrayT analyseWord (ustring str) {
+    }
+
+    ustringArrayT analyseWord (string str) {
+    }
+
+    ustringArrayT analyseWord (const gchar *str) {
+    }
+
     bool isVowel (ustring ch) {
         return PlainVowels.find (toPlainLetter (ch.lowercase ()))
             != ustring::npos;

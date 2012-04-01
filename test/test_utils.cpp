@@ -9,39 +9,35 @@ using namespace BoGo;
 #define _(s) (ustring ("") + s)
 #define __(s) (ustring ("") + s).c_str ()
 
-bool isWordSepEq (const gchar *e0, const gchar *e1, const gchar *e2,
-                  ustring expr[]) {
-    if (_(e0) != expr[0])
-        return false;
-    if (_(e1) != expr[1])
-        return false;
-    if (_(e2) != expr[2])
-        return false;
-    return true;
+vector<ustring> makeustringVec3 (const gchar *e0,
+                                 const gchar *e1,
+                                 const gchar *e2) {
+    vector<ustring> v(3);
+    v[0] = _(e0);
+    v[1] = _(e1);
+    v[2] = _(e2);
+    return v;
 }
 
 TEST (TestItself, TestHelpers) {
-    ustring s1[] = { "aoeu", "xin chào", "Thế Giới!" };
-
-    EXPECT_TRUE (isWordSepEq ("aoeu", "xin chào", "Thế Giới!", s1));
-    EXPECT_FALSE (isWordSepEq ("aoeU", "xin chào", "Thế Giới!", s1));
-
+    vector<ustring> s1 = makeustringVec3("aoeu", "xin chào", "Thế Giới!");
+    EXPECT_TRUE (s1 == s1);
 }
 
-// TEST (WordHelpers, WordSeparator) {
-//     EXPECT_TRUE (isWordSepEq ({"ng", "oa", "n"},
-//                               analyseWord ("ngoan")));
-//     EXPECT_TRUE (isWordSepEq ({"tr", "ườ", "ng"},
-//                               analyseWord ("trường")));
-//     EXPECT_TRUE (isWordSepEq ({"", "oạ", "ch"},
-//                               analyseWord ("oạch")));
-//     EXPECT_TRUE (isWordSepEq ({"th", "ề", ""},
-//                               analyseWord ("thề")));
-//     EXPECT_TRUE (isWordSepEq ({"", "ui", ""},
-//                               analyseWord ("ui")));
-//     EXPECT_TRUE (isWordSepEq ({"", "oa", ""},
-//                               analyseWord ("oa")));
-// }
+TEST (WordHelpers, WordSeparator) {
+    EXPECT_TRUE (makeustringVec3 ("ng", "oa", "n") ==
+                 analyseWord ("ngoan"));
+    EXPECT_TRUE (makeustringVec3 ("tr", "ườ", "ng") ==
+                 analyseWord ("trường"));
+    EXPECT_TRUE (makeustringVec3 ("", "oạ", "ch") ==
+                 analyseWord ("oạch"));
+    EXPECT_TRUE (makeustringVec3 ("th", "ề", "") ==
+                 analyseWord ("thề"));
+    EXPECT_TRUE (makeustringVec3 ("", "ui", "") ==
+                 analyseWord ("ui"));
+    EXPECT_TRUE (makeustringVec3 ("", "oa", "") ==
+                 analyseWord ("oa"));
+}
 
 TEST (CharacterHelpers, ConsonantsAndVowels) {
     EXPECT_TRUE (isVowel ("Â"));

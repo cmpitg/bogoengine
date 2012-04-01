@@ -1,5 +1,6 @@
 #include <glibmm/ustring.h>
 #include <string>
+#include <vector>
 
 namespace BoGo {
 
@@ -7,6 +8,7 @@ namespace BoGo {
     using namespace std;
 
     typedef ustring::size_type _size_t_;
+    typedef vector<ustring> ustringArrayT;
     typedef guint Accents;
 
     const gchar BACKSPACE_CODE = 8;
@@ -27,6 +29,10 @@ namespace BoGo {
     const ustring VowelsWithAccents =
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
+
+    ustringArrayT analyseWord (ustring str);
+    ustringArrayT analyseWord (string str);
+    ustringArrayT analyseWord (const gchar *str);
 
     bool isVowel (ustring ch);
     bool isVowel (string ch);
