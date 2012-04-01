@@ -10,74 +10,74 @@ using namespace BoGo;
 #define __(s) (ustring ("") + s).c_str ()
 
 TEST (CharacterHelpers, CharacterCases) {
-    EXPECT_EQ (true, isUpperCase ("Â"));
-    EXPECT_EQ (true, isUpperCase ("À"));
-    EXPECT_EQ (true, isUpperCase ("Ă"));
-    EXPECT_EQ (true, isUpperCase ("Â"));
-    EXPECT_EQ (true, isUpperCase ("B"));
-    EXPECT_EQ (true, isUpperCase ("C"));
-    EXPECT_EQ (true, isUpperCase ("D"));
-    EXPECT_EQ (true, isUpperCase ("Đ"));
-    EXPECT_EQ (true, isUpperCase ("E"));
-    EXPECT_EQ (true, isUpperCase ("Ế"));
-    EXPECT_EQ (true, isUpperCase ("G"));
-    EXPECT_EQ (true, isUpperCase ("H"));
-    EXPECT_EQ (true, isUpperCase ("I"));
-    EXPECT_EQ (true, isUpperCase ("K"));
-    EXPECT_EQ (true, isUpperCase ("L"));
-    EXPECT_EQ (true, isUpperCase ("M"));
-    EXPECT_EQ (true, isUpperCase ("N"));
-    EXPECT_EQ (true, isUpperCase ("O"));
-    EXPECT_EQ (true, isUpperCase ("Ô"));
-    EXPECT_EQ (true, isUpperCase ("Ơ"));
-    EXPECT_EQ (true, isUpperCase ("P"));
-    EXPECT_EQ (true, isUpperCase ("Q"));
-    EXPECT_EQ (true, isUpperCase ("R"));
-    EXPECT_EQ (true, isUpperCase ("S"));
-    EXPECT_EQ (true, isUpperCase ("T"));
-    EXPECT_EQ (true, isUpperCase ("U"));
-    EXPECT_EQ (true, isUpperCase ("Ư"));
-    EXPECT_EQ (true, isUpperCase ("V"));
-    EXPECT_EQ (true, isUpperCase ("X"));
-    EXPECT_EQ (true, isUpperCase ("Y"));
+    EXPECT_TRUE (isUpperCase ("Â"));
+    EXPECT_TRUE (isUpperCase ("À"));
+    EXPECT_TRUE (isUpperCase ("Ă"));
+    EXPECT_TRUE (isUpperCase ("Â"));
+    EXPECT_TRUE (isUpperCase ("B"));
+    EXPECT_TRUE (isUpperCase ("C"));
+    EXPECT_TRUE (isUpperCase ("D"));
+    EXPECT_TRUE (isUpperCase ("Đ"));
+    EXPECT_TRUE (isUpperCase ("E"));
+    EXPECT_TRUE (isUpperCase ("Ế"));
+    EXPECT_TRUE (isUpperCase ("G"));
+    EXPECT_TRUE (isUpperCase ("H"));
+    EXPECT_TRUE (isUpperCase ("I"));
+    EXPECT_TRUE (isUpperCase ("K"));
+    EXPECT_TRUE (isUpperCase ("L"));
+    EXPECT_TRUE (isUpperCase ("M"));
+    EXPECT_TRUE (isUpperCase ("N"));
+    EXPECT_TRUE (isUpperCase ("O"));
+    EXPECT_TRUE (isUpperCase ("Ô"));
+    EXPECT_TRUE (isUpperCase ("Ơ"));
+    EXPECT_TRUE (isUpperCase ("P"));
+    EXPECT_TRUE (isUpperCase ("Q"));
+    EXPECT_TRUE (isUpperCase ("R"));
+    EXPECT_TRUE (isUpperCase ("S"));
+    EXPECT_TRUE (isUpperCase ("T"));
+    EXPECT_TRUE (isUpperCase ("U"));
+    EXPECT_TRUE (isUpperCase ("Ư"));
+    EXPECT_TRUE (isUpperCase ("V"));
+    EXPECT_TRUE (isUpperCase ("X"));
+    EXPECT_TRUE (isUpperCase ("Y"));
 
-    EXPECT_EQ (false, isUpperCase ("a"));
-    EXPECT_EQ (false, isUpperCase ("ă"));
-    EXPECT_EQ (false, isUpperCase ("ậ"));
-    EXPECT_EQ (false, isUpperCase ("b"));
-    EXPECT_EQ (false, isUpperCase ("c"));
-    EXPECT_EQ (false, isUpperCase ("d"));
-    EXPECT_EQ (false, isUpperCase ("đ"));
-    EXPECT_EQ (false, isUpperCase ("ẻ"));
-    EXPECT_EQ (false, isUpperCase ("ê"));
-    EXPECT_EQ (false, isUpperCase ("g"));
-    EXPECT_EQ (false, isUpperCase ("h"));
-    EXPECT_EQ (false, isUpperCase ("i"));
-    EXPECT_EQ (false, isUpperCase ("k"));
-    EXPECT_EQ (false, isUpperCase ("l"));
-    EXPECT_EQ (false, isUpperCase ("m"));
-    EXPECT_EQ (false, isUpperCase ("n"));
-    EXPECT_EQ (false, isUpperCase ("o"));
-    EXPECT_EQ (false, isUpperCase ("ỗ"));
-    EXPECT_EQ (false, isUpperCase ("ơ"));
-    EXPECT_EQ (false, isUpperCase ("p"));
-    EXPECT_EQ (false, isUpperCase ("q"));
-    EXPECT_EQ (false, isUpperCase ("r"));
-    EXPECT_EQ (false, isUpperCase ("s"));
-    EXPECT_EQ (false, isUpperCase ("t"));
-    EXPECT_EQ (false, isUpperCase ("u"));
-    EXPECT_EQ (false, isUpperCase ("ư"));
-    EXPECT_EQ (false, isUpperCase ("v"));
-    EXPECT_EQ (false, isUpperCase ("x"));
-    EXPECT_EQ (false, isUpperCase ("y"));
+    EXPECT_FALSE (isUpperCase ("a"));
+    EXPECT_FALSE (isUpperCase ("ă"));
+    EXPECT_FALSE (isUpperCase ("ậ"));
+    EXPECT_FALSE (isUpperCase ("b"));
+    EXPECT_FALSE (isUpperCase ("c"));
+    EXPECT_FALSE (isUpperCase ("d"));
+    EXPECT_FALSE (isUpperCase ("đ"));
+    EXPECT_FALSE (isUpperCase ("ẻ"));
+    EXPECT_FALSE (isUpperCase ("ê"));
+    EXPECT_FALSE (isUpperCase ("g"));
+    EXPECT_FALSE (isUpperCase ("h"));
+    EXPECT_FALSE (isUpperCase ("i"));
+    EXPECT_FALSE (isUpperCase ("k"));
+    EXPECT_FALSE (isUpperCase ("l"));
+    EXPECT_FALSE (isUpperCase ("m"));
+    EXPECT_FALSE (isUpperCase ("n"));
+    EXPECT_FALSE (isUpperCase ("o"));
+    EXPECT_FALSE (isUpperCase ("ỗ"));
+    EXPECT_FALSE (isUpperCase ("ơ"));
+    EXPECT_FALSE (isUpperCase ("p"));
+    EXPECT_FALSE (isUpperCase ("q"));
+    EXPECT_FALSE (isUpperCase ("r"));
+    EXPECT_FALSE (isUpperCase ("s"));
+    EXPECT_FALSE (isUpperCase ("t"));
+    EXPECT_FALSE (isUpperCase ("u"));
+    EXPECT_FALSE (isUpperCase ("ư"));
+    EXPECT_FALSE (isUpperCase ("v"));
+    EXPECT_FALSE (isUpperCase ("x"));
+    EXPECT_FALSE (isUpperCase ("y"));
 }
 
 TEST (WordHelpers, Other) {
-    EXPECT_EQ (false, isWordBreak ((gchar) 8));
-    EXPECT_EQ (true, isWordBreak ("1"));
-    EXPECT_EQ (true, isWordBreak ((gchar) 13));
-    EXPECT_EQ (false, isWordBreak ("â"));
-    EXPECT_EQ (false, isWordBreak ("â"));
+    EXPECT_FALSE (isWordBreak ((gchar) 8));
+    EXPECT_TRUE (isWordBreak ("1"));
+    EXPECT_TRUE (isWordBreak ((gchar) 13));
+    EXPECT_FALSE (isWordBreak ("â"));
+    EXPECT_FALSE (isWordBreak ("â"));
 }
 
 TEST (CharacterHelpers, AccentsAndTransform) {
@@ -112,32 +112,32 @@ TEST (CharacterHelpers, AccentsAndTransform) {
 }
 
 TEST (CharacterHelpers, PlainCharacters) {
-    EXPECT_EQ (true, isLetter ("n"));
-    EXPECT_EQ (true, isLetter ("ọ"));
-    EXPECT_EQ (true, isLetter ("ổ"));
-    EXPECT_EQ (true, isLetter ("Ầ"));
-    EXPECT_EQ (true, isLetter ("Ẩ"));
-    EXPECT_EQ (true, isLetter ("á"));
-    EXPECT_EQ (true, isLetter ("Ả"));
-    EXPECT_EQ (true, isLetter ("T"));
-    EXPECT_EQ (true, isLetter ("b"));
-    EXPECT_EQ (true, isLetter ("a"));
-    EXPECT_EQ (true, isLetter ("g"));
-    EXPECT_EQ (true, isLetter ("o"));
-    EXPECT_EQ (true, isLetter ("t"));
-    EXPECT_EQ (true, isLetter ("s"));
-    EXPECT_EQ (true, isLetter ("e"));
-    EXPECT_EQ (false, isLetter ("7"));
-    EXPECT_EQ (false, isLetter ("5"));
-    EXPECT_EQ (false, isLetter ("2"));
-    EXPECT_EQ (false, isLetter ("1"));
-    EXPECT_EQ (false, isLetter ("6"));
-    EXPECT_EQ (true, isLetter ("S"));
-    EXPECT_EQ (true, isLetter ("A"));
-    EXPECT_EQ (true, isLetter ("T"));
-    EXPECT_EQ (true, isLetter ("O"));
-    EXPECT_EQ (false, isLetter ("\\"));
-    EXPECT_EQ (false, isLetter ((gchar) 13)); // Return
+    EXPECT_TRUE (isLetter ("n"));
+    EXPECT_TRUE (isLetter ("ọ"));
+    EXPECT_TRUE (isLetter ("ổ"));
+    EXPECT_TRUE (isLetter ("Ầ"));
+    EXPECT_TRUE (isLetter ("Ẩ"));
+    EXPECT_TRUE (isLetter ("á"));
+    EXPECT_TRUE (isLetter ("Ả"));
+    EXPECT_TRUE (isLetter ("T"));
+    EXPECT_TRUE (isLetter ("b"));
+    EXPECT_TRUE (isLetter ("a"));
+    EXPECT_TRUE (isLetter ("g"));
+    EXPECT_TRUE (isLetter ("o"));
+    EXPECT_TRUE (isLetter ("t"));
+    EXPECT_TRUE (isLetter ("s"));
+    EXPECT_TRUE (isLetter ("e"));
+    EXPECT_FALSE (isLetter ("7"));
+    EXPECT_FALSE (isLetter ("5"));
+    EXPECT_FALSE (isLetter ("2"));
+    EXPECT_FALSE (isLetter ("1"));
+    EXPECT_FALSE (isLetter ("6"));
+    EXPECT_TRUE (isLetter ("S"));
+    EXPECT_TRUE (isLetter ("A"));
+    EXPECT_TRUE (isLetter ("T"));
+    EXPECT_TRUE (isLetter ("O"));
+    EXPECT_FALSE (isLetter ("\\"));
+    EXPECT_FALSE (isLetter ((gchar) 13)); // Return
 }
 
 int main (int argc, char *argv[]) {
