@@ -72,15 +72,13 @@ TEST (CharacterHelpers, CharacterCases) {
     EXPECT_EQ (false, isUpperCase ("y"));
 }
 
-// TEST (WordHelpers, Other) {
-//     EXPECT_EQ (false, isWordBreak ((gchar) 8));
-//     EXPECT_EQ (true, isWordBreak ("1"));
-//     EXPECT_EQ (true, isWordBreak ((gchar) 13));
-//     EXPECT_EQ (false, isWordBreak ("â"));
-//     EXPECT_EQ (true, isWordBreak ("â", "ngoan"));
-// }
-
-// ờớởỡợỳýỷỹỵòóỏõọồốổỗộầấẩẫậằắẳẵặàáảãạàáảãạ
+TEST (WordHelpers, Other) {
+    EXPECT_EQ (false, isWordBreak ((gchar) 8));
+    EXPECT_EQ (true, isWordBreak ("1"));
+    EXPECT_EQ (true, isWordBreak ((gchar) 13));
+    EXPECT_EQ (false, isWordBreak ("â"));
+    EXPECT_EQ (false, isWordBreak ("â"));
+}
 
 TEST (CharacterHelpers, AccentsAndTransform) {
     EXPECT_STREQ (__("ô"), removeAccentFromChar ("ố").c_str ());

@@ -63,10 +63,10 @@ namespace BoGo {
     bool isLowerCase (const gchar *ch);
     bool isLowerCase (guint ch);
 
-    bool isWordBreak (ustring ch, ustring currentWord = "");
-    bool isWordBreak (string ch, string currentWord = "");
-    bool isWordBreak (const gchar *ch, const gchar *currentWord = "");
-    bool isWordBreak (guint ch, const gchar *currentWord = "");
+    bool isWordBreak (ustring ch);
+    bool isWordBreak (string ch);
+    bool isWordBreak (const gchar *ch);
+    bool isWordBreak (guint ch);
 
     ustring removeAccentFromChar (ustring ch);
     ustring removeAccentFromChar (string ch);
