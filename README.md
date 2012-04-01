@@ -5,16 +5,10 @@
 **BoGoEngine** là một thư viện sử dụng cho việc gõ tiếng Việt.  **BoGoEngine**
 được viết bằng ngôn ngữ C++, với functional programming paradigm.
 
-## Lịch sử
+## Lịch sử và nguyên nhân ra đời
 
-Vào khoảng tháng 02 năm 2012, phong trào và văn hóa Phần mềm Tự do Nguồn mở
-(Free and Open Source - FOSS) ở Việt Nam phát triển có nhiều bước phát triển
-rất mạnh mẽ, đánh dấu bằng sự ra đời của *Câu lạc bộ Phần mềm Tự do Nguồn mở
-Việt Nam* (Vietnam Free and Open Source Association - VFOSSA) vào tháng
-01/2012, cùng sự gia tăng số lượng người sử dụng các bản phân phối GNU/Linux.
-Nhu cầu sử dụng tiếng Việt trên GNU/Linux cũng vì vậy mà khắt khe hơn.  Tại
-thời điểm đó, Việt Nam có 3 bộ gõ tiếng Việt trên GNU/Linux được biết đến
-nhiều nhất:
+Tại thời điểm tháng 03 năm 2012, Việt Nam có 04 bộ gõ tiếng Việt trên GNU/Linux
+được biết đến nhiều nhất:
 
 * **x-unikey** của tác giả Phạm Kim Long, lần phát hành cuối cùng là vào năm
   2006, giấy phép GPL.
@@ -31,26 +25,35 @@ nhiều nhất:
   phát hành bản 0.6 vào tháng 01/2012 và hiện nay vẫn đang tiếp tục được phát
   triển.
 
-## Nguyên nhân ra đời
+Tuy nhiên cả 4 bộ gõ này đều có nhiều hạn chế, gây khó khăn cho người sử dụng,
+đặc biệt với người sử dụng phổ thông.
 
-### Yêu cầu của việc gõ tiếng Việt trên GNU/Linux
-
-Bộ gõ tiếng Việt trên GNU/Linux cần đảm bảo các yếu tố sau:
+Thông thường, bộ gõ tiếng Việt trên GNU/Linux cần đảm bảo các yếu tố sau:
 
 * (1) Là FOSS.
 * (2) Sẵn có trên mọi bản phân phối GNU/Linux.
 * (3) Có IM cho các IM platform/framework mặc định phổ biến nhất hiện nay:
   SCIM và IBus.
-* (4) Tài liệu cho **người sử dụng** và **người phát triển** phải rõ ràng, chăm
-  sóc cẩn thận.
-* (5) Mã nguồn trong sáng, có convention, guideline rõ ràng.
+* (4) Tài liệu cho **người sử dụng** và **người phát triển** rõ ràng, chăm sóc
+  cẩn thận.
+* (5) Mã nguồn trong sáng, có convention, guideline.
 * (6) Chạy ổn định, dễ dùng.
 * (7) Hỗ trợ các bảng mã (UTF-8, UTF-16, TCVN 3, VNI, VIQR) và cách gõ phổ
   biến nhât (Telex, Simple Telex, VNI).
+* (8) Khả năng mở rộng, bảo trì, tái sử dụng cao.
 
-FIXME: Which one fails which?
+**x-unikey** chỉ đáp ứng được *(1)* (với người sử dụng) và *(7)* (với người
+phát triển).
 
-## So sánh với Unikey Engine
+**xvnkb** đáp ứng được *(1)* và *(7)*.
+
+**scim-unikey** và **ibus-unikey** đáp ứng được *(1)*, *(2)*, *(7)* nhưng thất
+bại rất lớn ở tất cả các yêu cầu còn lại.
+
+FIXME: Thêm phân tích và dẫn chứng cụ thể với người sử dụng + người phát
+triển.
+
+**BoGoEngine** ra đời nhằm đáp ứng đầy đủ cả 8 yêu cầu này.
 
 ## Yêu cầu
 
@@ -61,6 +64,8 @@ FIXME: Which one fails which?
 * gtkmm 2.4
 
 ### Cho việc sử dụng
+
+FIXME
 
 ## Giấy phép xuất bản (License)
 

@@ -49,11 +49,11 @@
 * Code block được mở đóng ngoặc `{}` theo Java style: mở ngoặc cùng dòng với
   câu lệnh trước, đóng ngoặc dưới câu lệnh cuối cùng 01 dòng, ví dụ:
 
-      void helloWorld (const gchar *names[], guint nNames) {
-          for (guint iName = 0; iName < nNames; i++) {
-              sayHelloTo (names[i]);
-          }
-      }
+    void helloWorld (const gchar *names[], guint nNames) {
+        for (guint iName = 0; iName < nNames; i++) {
+            sayHelloTo (names[i]);
+        }
+    }
 
 * Ngoại trừ hằng string, tất cả các dòng đều không được phép vượt quá 80 ký
   tự.
@@ -106,6 +106,8 @@ Nhìn chung, việc xử lý tiếng Việt bao gồm có:
 * Mở rộng ý trên, 4 hàm biến đổi *từ* tương ứng là: `addHatToWord`,
   `addHornToWord`, `addBreveToWord`, và `addBarToWord`.
 
+* Quy tắc biến đổi từ: FIXME
+
 * Thêm/bỏ dấu cho một chữ cái.  Tên các dấu theo quy ước quốc tế:
 
   - Không dấu (no accent/plain).
@@ -123,6 +125,8 @@ Nhìn chung, việc xử lý tiếng Việt bao gồm có:
   `removeAccentFromWord`, `addGraveToWord`, `addAcuteToWord`, `addHookToWord`,
   `addTildeToWord`, `addDotToWord`.
 
+* Quy tắc thêm dấu cho một từ: FIXME
+
 Ngoài công việc xử lý tiếng Việt, **BoGoEngine** còn làm công việc của một bộ
 gõ:
 
@@ -134,8 +138,11 @@ gõ:
 * **BoGoEngine** sử dụng bảng mã *UTF-8*, tất cả các thao tác trên các bảng mã
   khác được thực hiện qua các hàm chuyển đổi (conversion).
 
+* FIXME: Các kiểu gõ và cách định nghĩa kiểu gõ.
+
+* FIXME: Khôi phục tiếng Anh.
+
 ### Các quy ước khác
 
 * Một ký tự được gọi là ký tự kết thúc từ nếu như ký tự đó không thuộc bảng
   chữ cái và không phải là ký tự xóa lùi (Backspace).
-

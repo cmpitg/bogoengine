@@ -1,3 +1,24 @@
+/*
+
+  This file is a part of BoGoEngine project.
+
+  Copyright (C) 2012 Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
+
+  BoGoEngine is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  BoGoEngine is distributed in the hope that it will be useful, but
+  WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with BoGoEngine.  If not, see <http://www.gnu.org/licenses/>.
+
+*/
+
 #include <iostream>
 #include <glibmm/ustring.h>
 #include "utils.hpp"
@@ -8,24 +29,4 @@ namespace BoGo {
 
     typedef ustring::size_type _size_t;
 
-    ustring addHat (ustring str, _size_t startFrom = 0);
-    ustring addHat (const char *str, _size_t startFrom = 0);
-    ustring addHat (std::string str, _size_t startFrom = 0);
-
-    ustring addHorn (ustring str, _size_t startFrom = 0);
-    ustring addHorn (const char *str, _size_t startFrom = 0);
-    ustring addHorn (std::string str, _size_t startFrom = 0);
-
-    ustring addAccentToChar (ustring str, Accents accent);
-    ustring addAccentToChar (const char *ch, Accents accent);
-    ustring addAccentToChar (std::string str, Accents accent);
-
-    ustring removeHorn (ustring str, int pos = 0);
-    ustring removeHat (ustring str, int pos = 0);
-    ustring removeAccent (ustring str, int pos = 0);
-    ustring toPlainVowel (ustring str, int pos = 0);
-
-    bool isVietnameseAlphanumeric (ustring str);
-    bool isVietnameseAlphanumeric (const char *str);
-    bool isVietnameseAlphanumeric (std::string str);
 }
