@@ -19,25 +19,28 @@ namespace BoGo {
 #define __(x) (ustring ("") + x).c_str ()
 
     ustringArrayT analyseWord (ustring str) {
+        typedef bool (*_TrivialPointerToFunctions_) (ustring);
+
         ustringArrayT res(3);
+        _TrivialPointerToFunctions_ testFuncs[3] =
+            { isConsonant, isVowel, isConsonant };
 
         // First part: Consonant 1
         res[0] = "";
         // This is safe due to short-circuit logic
-        while (str != _("") && isConsonant (str[0])) {
+        while (str != _("") && testFuncs[0] (_(str[0]))) {
             res[0] += _(str[0]);
             str.replace (0, 1, "");
         }
 
         // Second part: Vowel
-        while (str != _("") && isVowel (str[0])) {
+        while (str != _("") && testFuncs[1] (_(str[0]))) {
             res[1] += _(str[0]);
             str.replace (0, 1, "");
         }
 
-
         // Third part: Consonant 2
-        while (str != _("") && isConsonant (str[0])) {
+        while (str != _("") && testFuncs[2] (_(str[0]))) {
             res[2] += _(str[0]);
             str.replace (0, 1, "");
         }
