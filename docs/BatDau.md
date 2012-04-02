@@ -54,7 +54,8 @@
           for (guint iName = 0; iName < nNames; i++) {
               sayHelloTo (names[i]);
           }
-      }```
+      }
+      ```
 
 * Ngoại trừ hằng string, tất cả các dòng đều không được phép vượt quá 80 ký
   tự.
