@@ -58,6 +58,10 @@ TEST (WordHelpers, WordSeparator) {
                  analyseWord ("uI"));
     EXPECT_TRUE (makeustringVec3 ("", "oa", "") ==
                  analyseWord ("oa"));
+    EXPECT_TRUE (makeustringVec3 ("qU", "a", "N") ==
+                 analyseWord ("qUaN"));
+    EXPECT_TRUE (makeustringVec3 ("Gi", "Áo", "") ==
+                 analyseWord ("GiÁo"));
 }
 
 TEST (CharacterHelpers, ConsonantsAndVowels) {

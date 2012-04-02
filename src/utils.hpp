@@ -55,6 +55,10 @@ namespace BoGo {
     ustringArrayT analyseWord (string str);
     ustringArrayT analyseWord (const gchar *str);
 
+    ustring lastChar (ustring s);
+    ustring lastChar (string s);
+    ustring lastChar (const gchar *s);
+
     bool isVowel (ustring ch);
     bool isVowel (string ch);
     bool isVowel (const gchar *ch);

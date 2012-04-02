@@ -38,6 +38,19 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
+    ustring lastChar (ustring s) {
+        _size_t_ length = s.length ();
+        return _(s[length - 1]);
+    }
+
+    ustring lastChar (string s) {
+        return lastChar (_(s));
+    }
+
+    ustring lastChar (const gchar *s) {
+        return lastChar (_(s));
+    }
+
     ustringArrayT analyseWord (ustring str) {
         typedef bool (*_TrivialPointerToFunctions_) (ustring);
 
@@ -55,6 +68,18 @@ namespace BoGo {
             while (str != _("") && testFuncs[part] (_(str[0]))) {
                 res[part] += _(str[0]);
                 str.replace (0, 1, "");
+            }
+        }
+
+        // Special case: "qu" and "gi" are considered consonants
+        if (res[0].length () > 0 && res[1].length () > 0) {
+            if ((lastChar (res[0]).lowercase () == _("q") &&
+                 _(res[1][0]).lowercase () == _("u")) ||
+
+                (lastChar (res[0]).lowercase () == _("g") &&
+                 _(res[1][0]).lowercase () == _("i"))) {
+                res[0] += _(res[1][0]);
+                res[1] = res[1].replace (0, 1, "");
             }
         }
 
