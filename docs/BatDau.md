@@ -80,7 +80,7 @@
 * **Không thao tác trên char**, tất cả các thao tác đều thực hiện trên
   `Glib::ustring`.
 
-## Cách thức xử lý tiếng Việt của chương trình
+## Cách thức xử lý tiếng Việt
 
 **Lưu ý**: khái niệm "*từ*" trong **BoGoEngine** được dùng tương đương với
 khái niệm *âm tiết* hoặc *từ đơn* trong ngôn ngữ học.  Chẳng hạn trong ngôn
