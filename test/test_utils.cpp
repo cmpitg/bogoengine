@@ -50,12 +50,12 @@ TEST (WordHelpers, WordSeparator) {
                  analyseWord ("ngoan"));
     EXPECT_TRUE (makeustringVec3 ("tr", "ườ", "ng") ==
                  analyseWord ("trường"));
-    EXPECT_TRUE (makeustringVec3 ("", "oạ", "ch") ==
-                 analyseWord ("oạch"));
-    EXPECT_TRUE (makeustringVec3 ("th", "ề", "") ==
-                 analyseWord ("thề"));
-    EXPECT_TRUE (makeustringVec3 ("", "ui", "") ==
-                 analyseWord ("ui"));
+    EXPECT_TRUE (makeustringVec3 ("", "Oạ", "cH") ==
+                 analyseWord ("OạcH"));
+    EXPECT_TRUE (makeustringVec3 ("Th", "ề", "") ==
+                 analyseWord ("Thề"));
+    EXPECT_TRUE (makeustringVec3 ("", "uI", "") ==
+                 analyseWord ("uI"));
     EXPECT_TRUE (makeustringVec3 ("", "oa", "") ==
                  analyseWord ("oa"));
 }
