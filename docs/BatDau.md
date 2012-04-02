@@ -6,7 +6,7 @@
 
 * CMake 2.6+
 * gcc 4.2+
-* gtkmm 2.4
+* glibmm 2.4
 * GoogleTest
 
 ## Lưu ý
@@ -49,11 +49,12 @@
 * Code block được mở đóng ngoặc `{}` theo Java style: mở ngoặc cùng dòng với
   câu lệnh trước, đóng ngoặc dưới câu lệnh cuối cùng 01 dòng, ví dụ:
 
-    void helloWorld (const gchar *names[], guint nNames) {
-        for (guint iName = 0; iName < nNames; i++) {
-            sayHelloTo (names[i]);
-        }
-    }
+      ```C++
+      void helloWorld (const gchar *names[], guint nNames) {
+          for (guint iName = 0; iName < nNames; i++) {
+              sayHelloTo (names[i]);
+          }
+      }```
 
 * Ngoại trừ hằng string, tất cả các dòng đều không được phép vượt quá 80 ký
   tự.

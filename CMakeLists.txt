@@ -3,14 +3,14 @@ project (BOGOENGINE)
 
 # Find gtkmm
 find_package (PkgConfig)
-pkg_check_modules (GTKMM gtkmm-2.4)
+pkg_check_modules (GLIBMM glibmm-2.4)
 
 # Include - headers
 include_directories (src)
-include_directories (${GTKMM_INCLUDE_DIRS} src)
+include_directories (${GLIBMM_INCLUDE_DIRS} src)
 
 # Linker - directories
-link_directories (${GTKMM_LIBRARY_DIRS})
+link_directories (${GLIBMM_LIBRARY_DIRS})
 
 # Directories with CMakeLists.txt
 add_subdirectory (src)

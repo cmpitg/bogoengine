@@ -61,7 +61,7 @@ triển.
 
 * CMake 2.6+
 * GoogleTest
-* gtkmm 2.4
+* glibmm 2.4
 
 ### Cho việc sử dụng
 
@@ -72,3 +72,11 @@ FIXME
 Toàn bộ mã nguồn của *BoGoEngine* cùng tất cả các tài nguyên đi kèm đều được
 phát hành dưới các quy định ghi trong Giấy phép Công cộng GNU, phiên bản 3.0
 (GNU General Public License v3.0).  Xem tệp *COPYING* để biết thêm chi tiết.
+
+## Credit
+
+Bản quyền (C) năm 2012 bởi Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
+
+Xin chân thành gửi lời cảm ơn đặc biệt đến:
+
+* Ngô Trung <?>

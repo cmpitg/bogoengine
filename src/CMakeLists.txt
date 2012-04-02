@@ -5,4 +5,4 @@ add_library (bogoengine
   utils.hpp
   )
 
-target_link_libraries (bogoengine ${GTKMM_LIBRARIES})
+target_link_libraries (bogoengine ${GLIBMM_LIBRARIES})
