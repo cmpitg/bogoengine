@@ -156,6 +156,16 @@ TEST (CharacterHelpers, AccentsAndTransform) {
     EXPECT_STREQ (__("Â"), removeAccentFromChar ("Ẫ").c_str ());
     EXPECT_STREQ (__("â"), removeAccentFromChar ("ậ").c_str ());
 
+    EXPECT_STREQ (__("ó"), removeMarkFromChar ("ố").c_str ());
+    EXPECT_STREQ (__("ỏ"), removeMarkFromChar ("ổ").c_str ());
+    EXPECT_STREQ (__("Õ"), removeMarkFromChar ("Ỗ").c_str ());
+    EXPECT_STREQ (__("ọ"), removeMarkFromChar ("ộ").c_str ());
+    EXPECT_STREQ (__("à"), removeMarkFromChar ("ầ").c_str ());
+    EXPECT_STREQ (__("Á"), removeMarkFromChar ("Ấ").c_str ());
+    EXPECT_STREQ (__("ả"), removeMarkFromChar ("ẩ").c_str ());
+    EXPECT_STREQ (__("Ã"), removeMarkFromChar ("Ẫ").c_str ());
+    EXPECT_STREQ (__("ạ"), removeMarkFromChar ("ậ").c_str ());
+
     EXPECT_STREQ (__("a"), toPlainLetter ("â").c_str ());
     EXPECT_STREQ (__("a"), toPlainLetter ("ắ").c_str ());
     EXPECT_STREQ (__("N"), toPlainLetter ("N").c_str ());
@@ -176,12 +186,15 @@ TEST (CharacterHelpers, AccentsAndTransform) {
     EXPECT_STREQ (__("n"), addAccentToChar ("n", DOT).c_str ());
     EXPECT_STREQ (__("Ễ"), addAccentToChar ("Ê", TILDE).c_str ());
 
-    EXPECT_STREQ (__("â"), addHatToChar ("ă").c_str ());
-    EXPECT_STREQ (__("Ự"), addHatToChar ("Ự").c_str ());
-    EXPECT_STREQ (__("N"), addHatToChar ("N").c_str ());
-    EXPECT_STREQ (__("ổ"), addHatToChar ("ỏ").c_str ());
-    EXPECT_STREQ (__(" "), addHatToChar (" ").c_str ());
-    EXPECT_STREQ (__("Ẩ"), addHatToChar ("Ả").c_str ());
+    EXPECT_STREQ (__("â"), addMarkToChar ("ă", HAT).c_str ());
+    EXPECT_STREQ (__("Ự"), addMarkToChar ("Ự", HAT).c_str ());
+    EXPECT_STREQ (__("N"), addMarkToChar ("N", HAT).c_str ());
+    EXPECT_STREQ (__("ổ"), addMarkToChar ("ỏ", HAT).c_str ());
+    EXPECT_STREQ (__(" "), addMarkToChar (" ", HAT).c_str ());
+    EXPECT_STREQ (__("Ẳ"), addMarkToChar ("Ả", BREVE).c_str ());
+    EXPECT_STREQ (__("ử"), addMarkToChar ("ủ", HORN).c_str ());
+    EXPECT_STREQ (__("Đ"), addMarkToChar ("D", BAR).c_str ());
+    EXPECT_STREQ (__("Đ"), addMarkToChar ("Đ", BAR).c_str ());
 }
 
 TEST (CharacterHelpers, PlainCharacters) {

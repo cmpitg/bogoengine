@@ -22,6 +22,7 @@
 #include "utils.hpp"
 
 // FIXME charset
+// FIXME Polish the code
 
 namespace BoGo {
 
@@ -38,30 +39,33 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
-    ustring addHatToChar (ustring ch) {
+    ustring addMarkToChar (ustring ch, guint mark) {
         bool isUp = isUpperCase (ch);
         _size_t_ accent = getAccentFromChar (ch);
 
-        _size_t_ pos = Vowels.find (removeAccentFromChar (ch.lowercase ()));
+        _size_t_ pos = LettersMayChangeMarks.find
+            (removeAccentFromChar (ch).lowercase ());
         if (pos != ustring::npos) {
-            ch = addAccentToChar (VowelsWithHats[pos], accent);
+            ch = addAccentToChar
+                (_(LettersWithMarks
+                   [mark * LettersWithoutMarks.length () + pos]),
+                 accent);
             if (isUp)
                 ch = ch.uppercase ();
         }
-
         return ch;
     }
 
-    ustring addHatToChar (string ch) {
-        return addHatToChar (_(ch));
+    ustring addMarkToChar (string ch, guint mark) {
+        return addMarkToChar (_(ch), mark);
     }
 
-    ustring addHatToChar (const gchar *ch) {
-        return addHatToChar (_(ch));
+    ustring addMarkToChar (const gchar *ch, guint mark) {
+        return addMarkToChar (_(ch), mark);
     }
 
-    ustring addHatToChar (guint ch) {
-        return addHatToChar (_(ch));
+    ustring addMarkToChar (guint ch, guint mark) {
+        return addMarkToChar (_(ch), mark);
     }
 
     ustring lastChar (ustring s) {
@@ -155,15 +159,36 @@ namespace BoGo {
         return isConsonant (_(ch));
     }
 
+    _size_t_ getMarkedCharPos (ustring ch) {
+        _size_t_ mark =
+            LettersWithMarks.find (removeAccentFromChar (ch.lowercase ()));
+
+        if (mark != ustring::npos)
+            mark %= LettersWithoutMarks.length ();
+
+        return mark;
+    }
+
+    _size_t_ getMarkedCharPos (string ch) {
+        return getMarkedCharPos (_(ch));
+    }
+
+    _size_t_ getMarkedCharPos (const gchar *ch) {
+        return getMarkedCharPos (_(ch));
+    }
+
+    _size_t_ getMarkedCharPos (guint ch) {
+        return getMarkedCharPos (_(ch));
+    }
+
     ustring removeMarkFromChar (ustring ch) {
         bool isUp = isUpperCase (ch);
-        ch = ch.lowercase ();
 
-        _size_t_ posVowel = getVowelPos (ch);
+        _size_t_ pos = getMarkedCharPos (ch);
         _size_t_ accent = getAccentFromChar (ch);
 
-        if (posVowel != ustring::npos)
-            ch = addAccentToChar (_(PlainVowels[posVowel]), accent);
+        if (pos != ustring::npos)
+            ch = addAccentToChar (_(LettersWithoutMarks[pos]), accent);
 
         if (isUp)
             ch = ch.uppercase ();

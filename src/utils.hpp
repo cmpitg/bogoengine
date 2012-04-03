@@ -42,20 +42,32 @@ namespace BoGo {
         DOT            = 4,
         NO_ACCENT      = 5;
 
+    const guint NUMBER_OF_MARKS = 5;
+    const guint NO_MARK  = 0,
+        HAT              = 1,
+        HORN             = 2,
+        BREVE            = 3,
+        BAR              = 4;
+
     const ustring LowerCaseLetters = "aăâbcdđeêfghijklmnoôơpqrstuưvwxy";
     const ustring Numbers = "0123456789";
 
     const ustring PlainVowels     = "aaaeeiooouuy";
     const ustring Vowels          = "aăâeêioôơuưy";
-    const ustring VowelsWithHats  = "âââêêiôôôuưy";
     const ustring VowelsWithAccents =
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
 
-    ustring addHatToChar (ustring ch);
-    ustring addHatToChar (string ch);
-    ustring addHatToChar (const gchar *ch);
-    ustring addHatToChar (guint ch);
+    const ustring LettersWithoutMarks    = "aaaddeeooouu";
+    const ustring LettersMayChangeMarks  = "aăâdđeêoôơuư";
+    const ustring LettersWithMarks =
+        "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
+        "ăăădđeêoôơuư" "aăâđđeêoôơuư";
+
+    ustring addMarkToChar (ustring ch, guint mark);
+    ustring addMarkToChar (string ch, guint mark);
+    ustring addMarkToChar (const gchar *ch, guint mark);
+    ustring addMarkToChar (guint ch, guint mark);
 
     ustringArrayT analyseWord (ustring str);
     ustringArrayT analyseWord (string str);
@@ -89,6 +101,11 @@ namespace BoGo {
     _size_t_ getVowelPos (string ch);
     _size_t_ getVowelPos (const gchar *ch);
     _size_t_ getVowelPos (guint ch);
+
+    _size_t_ getMarkedCharPos (ustring ch);
+    _size_t_ getMarkedCharPos (string ch);
+    _size_t_ getMarkedCharPos (const gchar *ch);
+    _size_t_ getMarkedCharPos (guint ch);
 
     Accents getAccentFromChar (ustring ch);
     Accents getAccentFromChar (string ch);
