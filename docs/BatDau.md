@@ -102,14 +102,6 @@ Nhìn chung, việc xử lý tiếng Việt bao gồm có:
   - Ký hiệu gạch ngang của chữ cái **đ** (**Đ**) gọi là *bar* hoặc *stroke*.
   **BoGoEngine** sử dụng *bar*.
 
-  Do đó, 4 hàm biến đổi *chữ cái* tương ứng với 4 trường hợp trên là:
-  `addHatToChar`, `addHornToChar`, `addBreveToChar`, và `addBarToChar`.
-
-* Mở rộng ý trên, 4 hàm biến đổi *từ* tương ứng là: `addHatToWord`,
-  `addHornToWord`, `addBreveToWord`, và `addBarToWord`.
-
-* Quy tắc biến đổi từ: FIXME
-
 * Thêm/bỏ dấu cho một chữ cái.  Tên các dấu theo quy ước quốc tế:
 
   - Không dấu (no accent/plain).
@@ -119,13 +111,14 @@ Nhìn chung, việc xử lý tiếng Việt bao gồm có:
   - Dấu ngã: tilde.
   - Dấu nặng: dot.
 
-  Do đó, 6 hàm thêm dấu tương ứng cho *một chữ cái* là:
-  `removeAccentFromChar`, `addGraveToChar`, `addAcuteToChar`, `addHookToChar`,
-  `addTildeToChar`, `addDotToChar`.
+* 4 ký tự biến đổi chữ cái cộng thêm 5 ký tự mô tả dấu trong tiếng Việt đều
+  được gọi là *diacritical mark*.  Tuy nhiên chỉ có *5 ký tự dấu* mới làm
+  *thay đổi trọng âm* của một âm xác định, vì vậy **BoGoEngine** quy ước:
 
-* Mở rộng ý trên, 6 hàm thêm dấu tương ứng cho *một từ* là:
-  `removeAccentFromWord`, `addGraveToWord`, `addAcuteToWord`, `addHookToWord`,
-  `addTildeToWord`, `addDotToWord`.
+  - Gọi 5 ký tự dấu là *accent*.
+  - Gọi 4 ký tự *hat*, *horn*, *breve*, và *bar* là *mark*.
+
+* Quy tắc biến đổi từ: FIXME
 
 * Quy tắc thêm dấu cho một từ: FIXME
 

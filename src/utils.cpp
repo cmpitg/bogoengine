@@ -155,7 +155,7 @@ namespace BoGo {
         return isConsonant (_(ch));
     }
 
-    ustring removeMarksFromChar (ustring ch) {
+    ustring removeMarkFromChar (ustring ch) {
         bool isUp = isUpperCase (ch);
         ch = ch.lowercase ();
 
@@ -170,16 +170,16 @@ namespace BoGo {
         return ch;
     }
 
-    ustring removeMarksFromChar (string ch) {
-        return removeMarksFromChar (_(ch));
+    ustring removeMarkFromChar (string ch) {
+        return removeMarkFromChar (_(ch));
     }
 
-    ustring removeMarksFromChar (const gchar *ch) {
-        return removeMarksFromChar (_(ch));
+    ustring removeMarkFromChar (const gchar *ch) {
+        return removeMarkFromChar (_(ch));
     }
 
-    ustring removeMarksFromChar (guint ch) {
-        return removeMarksFromChar (_(ch));
+    ustring removeMarkFromChar (guint ch) {
+        return removeMarkFromChar (_(ch));
     }
 
     Accents getAccentFromChar (ustring ch) {
@@ -206,7 +206,7 @@ namespace BoGo {
     }
 
     ustring toPlainLetter (ustring ch) {
-        ch = removeAccentFromChar (removeMarksFromChar (ch));
+        ch = removeAccentFromChar (removeMarkFromChar (ch));
         return ch;
     }
 

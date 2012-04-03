@@ -75,10 +75,10 @@ namespace BoGo {
     bool isConsonant (const gchar *ch);
     bool isConsonant (guint ch);
 
-    ustring removeMarksFromChar (ustring ch);
-    ustring removeMarksFromChar (const gchar *ch);
-    ustring removeMarksFromChar (string ch);
-    ustring removeMarksFromChar (guint ch);
+    ustring removeMarkFromChar (ustring ch);
+    ustring removeMarkFromChar (const gchar *ch);
+    ustring removeMarkFromChar (string ch);
+    ustring removeMarkFromChar (guint ch);
 
     ustring addAccentToChar (ustring ch, Accents accent);
     ustring addAccentToChar (string ch, Accents accent);
