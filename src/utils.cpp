@@ -38,6 +38,32 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
+    ustring addHatToChar (ustring ch) {
+        bool isUp = isUpperCase (ch);
+        _size_t_ accent = getAccentFromChar (ch);
+
+        _size_t_ pos = Vowels.find (removeAccentFromChar (ch.lowercase ()));
+        if (pos != ustring::npos) {
+            ch = addAccentToChar (VowelsWithHats[pos], accent);
+            if (isUp)
+                ch = ch.uppercase ();
+        }
+
+        return ch;
+    }
+
+    ustring addHatToChar (string ch) {
+        return addHatToChar (_(ch));
+    }
+
+    ustring addHatToChar (const gchar *ch) {
+        return addHatToChar (_(ch));
+    }
+
+    ustring addHatToChar (guint ch) {
+        return addHatToChar (_(ch));
+    }
+
     ustring lastChar (ustring s) {
         _size_t_ length = s.length ();
         return _(s[length - 1]);
@@ -163,6 +189,7 @@ namespace BoGo {
             accent %= NUMBER_OF_ACCENTS;
         else
             accent = NO_ACCENT;
+
         return accent;
     }
 

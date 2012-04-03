@@ -45,11 +45,17 @@ namespace BoGo {
     const ustring LowerCaseLetters = "aăâbcdđeêfghijklmnoôơpqrstuưvwxy";
     const ustring Numbers = "0123456789";
 
-    const ustring PlainVowels  = "aaaeeiooouuy";
-    const ustring Vowels       = "aăâeêioôơuưy";
+    const ustring PlainVowels     = "aaaeeiooouuy";
+    const ustring Vowels          = "aăâeêioôơuưy";
+    const ustring VowelsWithHats  = "âââêêiôôôuưy";
     const ustring VowelsWithAccents =
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
+
+    ustring addHatToChar (ustring ch);
+    ustring addHatToChar (string ch);
+    ustring addHatToChar (const gchar *ch);
+    ustring addHatToChar (guint ch);
 
     ustringArrayT analyseWord (ustring str);
     ustringArrayT analyseWord (string str);

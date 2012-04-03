@@ -165,6 +165,7 @@ TEST (CharacterHelpers, AccentsAndTransform) {
     EXPECT_EQ (0, getAccentFromChar ("ồ"));
     EXPECT_EQ (1, getAccentFromChar ("Ứ"));
     EXPECT_EQ (2, getAccentFromChar ("Ể"));
+    EXPECT_EQ (2, getAccentFromChar ("Ả"));
     EXPECT_EQ (3, getAccentFromChar ("ẵ"));
     EXPECT_EQ (4, getAccentFromChar ("ị"));
     EXPECT_EQ (5, getAccentFromChar ("n"));
@@ -174,6 +175,13 @@ TEST (CharacterHelpers, AccentsAndTransform) {
     EXPECT_STREQ (__("Ổ"), addAccentToChar ("Ô", HOOK).c_str ());
     EXPECT_STREQ (__("n"), addAccentToChar ("n", DOT).c_str ());
     EXPECT_STREQ (__("Ễ"), addAccentToChar ("Ê", TILDE).c_str ());
+
+    EXPECT_STREQ (__("â"), addHatToChar ("ă").c_str ());
+    EXPECT_STREQ (__("Ự"), addHatToChar ("Ự").c_str ());
+    EXPECT_STREQ (__("N"), addHatToChar ("N").c_str ());
+    EXPECT_STREQ (__("ổ"), addHatToChar ("ỏ").c_str ());
+    EXPECT_STREQ (__(" "), addHatToChar (" ").c_str ());
+    EXPECT_STREQ (__("Ẩ"), addHatToChar ("Ả").c_str ());
 }
 
 TEST (CharacterHelpers, PlainCharacters) {
