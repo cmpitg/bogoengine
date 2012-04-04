@@ -3,14 +3,13 @@
 ### Dự kiến
 
 * Xây dựng hàm chuyển xâu `str` từ bảng mã `charsetA` sang bảng mã `charsetB`:
-  `convertCharset (Glib::ustring str, CharSet charsetA, CharSet charsetB)`.
+  `Glib::ustring convertCharset (Glib::ustring str, CharSet charsetA, CharSet charsetB)`.
 
   - `CharSet` là alias của `guint`, mỗi bảng mã nhận một số nguyên dương duy
     nhất làm ID.
 
   - Tại hàm `processKey`, xâu và ký tự input (`str` và `ch` tương ứng) sẽ được
     xử lý thông qua trình tự:
-
     + Convert `str` sang UTF-8.
     + Convert ký tự `ch` sang UTF-8.
     + Xử lý `str` và `ch` sau khi đã convert, thu được kết quả.
@@ -30,53 +29,53 @@
 
 ### Dự kiến
 
-* Mỗi kiểu gõ được mô tả trong một file plain text.
+##### Mỗi kiểu gõ được mô tả trong một file plain text.
 
-* Cú pháp:
+##### Cú pháp:
 
-      ```
-      Key1 Transformation1
-      Key2 Transformation2
-      ...
-      ```
+    ```
+    Key1 Transformation1
+    Key2 Transformation2
+    ...
+    ```
 
-  Trong đó `Key` là phím người sử dụng nhấn để có được phép biến đổi
-  `Transformation`.  File mô tả có thể có dòng trắng.  Mỗi cặp `Key` và
-  `Transformation` ngăn cách với nhau ít nhất một dấu cách.
+Trong đó `Key` là phím người sử dụng nhấn để có được phép biến đổi
+`Transformation`.  File mô tả có thể có dòng trắng.  Mỗi cặp `Key` và
+`Transformation` ngăn cách với nhau ít nhất một dấu cách.
 
-  `Key` là ký tự trong bảng chữ cái tiếng Anh, hoặc chữ số, hoặc một trong số
-  các ký tự đặc biệt: ``( ) [ ] { } < > / | \ ! + = ? # . , ; : ~ @ ^ ` & %
-  $``.
+`Key` là ký tự trong bảng chữ cái tiếng Anh, hoặc chữ số, hoặc một trong số
+các ký tự đặc biệt: ``( ) [ ] { } < > / | \ ! + = ? # . , ; : ~ @ ^ ` & %
+$``.
 
-  Phép biến đổi `Transformation` được quy ước là một trong các ký tự sau:
+Phép biến đổi `Transformation` được quy ước là một trong các ký tự sau:
 
-  - Thêm mũ (hat)
-    + `a^`, biến *a* thành *â*, *A* thành *Â*.
-    + `o^`, biến *o* thành *ô*, *O* thành *Ô*.
-    + `e^`, biến *e* thành *ê*, *E* thành *Ê*.
+- Thêm mũ (hat)
+  + `a^`, biến *a* thành *â*, *A* thành *Â*.
+  + `o^`, biến *o* thành *ô*, *O* thành *Ô*.
+  + `e^`, biến *e* thành *ê*, *E* thành *Ê*.
 
-  - Thêm sừng (horn):
-    + `o+`, biến *o* thành *ơ*, *O* thành *Ơ*.
-    + `u+`, biến *u* thành *ư*, *U* thành *Ư*.
+- Thêm sừng (horn):
+  + `o+`, biến *o* thành *ơ*, *O* thành *Ơ*.
+  + `u+`, biến *u* thành *ư*, *U* thành *Ư*.
 
-  - Thêm dấu *ă* (breve): `v`, biến *a* thành *ă*, *A* thành *Ă*.
+- Thêm dấu *ă* (breve): `v`, biến *a* thành *ă*, *A* thành *Ă*.
 
-  - Thêm thanh ngang (bar) cho chữ cái `d` và `D`: `-`, biến *d* thành
-    *đ*, *D* thành *Đ*.
+- Thêm thanh ngang (bar) cho chữ cái `d` và `D`: `-`, biến *d* thành
+  *đ*, *D* thành *Đ*.
 
-  - Thêm dấu huyền (grave): `\\`
+- Thêm dấu huyền (grave): `\\`
 
-  - Thêm dấu sắc (acute): `/`
+- Thêm dấu sắc (acute): `/`
 
-  - Thêm dấu hỏi (hook): `?`
+- Thêm dấu hỏi (hook): `?`
 
-  - Thêm dấu ngã (tilde): `~`
+- Thêm dấu ngã (tilde): `~`
 
-  - Thêm dấu nặng (dot): `.`
+- Thêm dấu nặng (dot): `.`
 
-  - Xóa dấu: `_`
+- Xóa dấu: `_`
 
-  Ví dụ: nội dung của file mô tả kiểu gõ *Simple Telex*:
+Ví dụ: nội dung của file mô tả kiểu gõ *Simple Telex*:
 
     ```
     a a^
@@ -95,5 +94,4 @@
     z _
     ```
 
-* Mặc định, **BoGoEngine** đi kèm với 4 kiểu gõ: *Telex*, *Simple Telex*,
-  *VNI*, và *VIQR*
+##### Mặc định, **BoGoEngine** đi kèm với 4 kiểu gõ: *Telex*, *Simple Telex*, *VNI*, và *VIQR*
