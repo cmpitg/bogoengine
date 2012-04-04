@@ -5,6 +5,10 @@
 **BoGoEngine** là một thư viện sử dụng cho việc gõ tiếng Việt.  **BoGoEngine**
 được viết bằng ngôn ngữ C++, với functional programming paradigm.
 
+Mail group thảo luận các vấn đề liên quan đến việc *phát triển*
+**BoGoEngine**: <bogoengine-dev@googlegroups.com>, subscribe tại giao diện web
+[Google Group](http://groups.google.com/group/bogoengine-dev/).
+
 ## Lịch sử và nguyên nhân ra đời
 
 Tại thời điểm tháng 03 năm 2012, Việt Nam có 04 bộ gõ tiếng Việt trên GNU/Linux
@@ -79,4 +83,4 @@ Bản quyền (C) năm 2012 bởi Dương "Yang" ヤン Nguyễn <cmpitg@gmail.c
 
 Xin chân thành gửi lời cảm ơn đặc biệt đến:
 
-* Ngô Trung <?>
+* Ngô Trung <ndtrung4419@gmail.com>
