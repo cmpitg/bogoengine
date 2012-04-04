@@ -1,3 +1,9 @@
+## `toString` cho `InputMethodT`
+
+## `makeInputMethodT`
+
+## `makeTelex`
+
 ## Thêm phần hỗ trợ các bảng mã
 
 ### Dự kiến
