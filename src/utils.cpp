@@ -69,7 +69,7 @@ namespace BoGo {
     }
 
     ustring lastChar (ustring s) {
-        return (s.length () != 0) ? _(s[s.length () - 1]) : _("");
+        return (s.length () > 0) ? _(s[s.length () - 1]) : _("");
     }
 
     ustring lastChar (string s) {
@@ -81,7 +81,7 @@ namespace BoGo {
     }
 
     ustring firstChar (ustring s) {
-        return (s.length () != 0) ? _(s[0]) : _("");
+        return (s.length () > 0) ? _(s[0]) : _("");
     }
 
     ustring firstChar (string s) {
