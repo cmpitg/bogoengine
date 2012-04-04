@@ -24,7 +24,7 @@
   UTF-8, `Vowels[CHARSET_TCVN3]` là danh sách nguyên âm trong bảng mã TCVN 3,
   ...
 
-  - Các hàm xử lý ký tự cũng nhận thêm tham số ID của bảng mã.
+  - Các hàm xử lý ký tự và từ cũng nhận thêm tham số ID của bảng mã.
 
 ## Thêm phần hỗ trợ định nghĩa các kiểu gõ
 
@@ -34,11 +34,9 @@
 
 ##### Cú pháp:
 
-    ```
     Key1 Transformation1
     Key2 Transformation2
     ...
-    ```
 
 Trong đó `Key` là phím người sử dụng nhấn để có được phép biến đổi
 `Transformation`.  File mô tả có thể có dòng trắng.  Mỗi cặp `Key` và

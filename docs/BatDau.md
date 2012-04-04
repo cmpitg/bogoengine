@@ -141,3 +141,21 @@ gõ:
 
 * Một ký tự được gọi là ký tự kết thúc từ nếu như ký tự đó không thuộc bảng
   chữ cái và không phải là ký tự xóa lùi (Backspace).
+
+* Vì tất cả các ký tự sử dụng để biến đổi chữ cái hoặc thêm dấu đều là ký tự
+  ASCII, một bộ gõ có thể được định nghĩa như sau:
+
+      ```c++
+      struct InputMethodT {
+          KeyTransformationPairT keys;
+      };
+      ```
+
+  Trong đó `KeyTransformationT` là một `map` gồm 2 thành phần: *key* của map
+  lưu ký tự sử dụng để biến đổi, và *value* của map lưu *phép biến đổi* (thêm
+  mark hoặc thêm accent, tác động tới chữ cái nào):
+
+     ```c++
+     typedef pair<guint, gchar> TransformationObjectPairT;
+     typedef map<gchar, TransformationObjectPairT> KeyTransformationPairT;
+     ```

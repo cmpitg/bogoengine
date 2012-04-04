@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (BOGOENGINE)
 
-# Find gtkmm
+# Find glibmm
 find_package (PkgConfig)
 pkg_check_modules (GLIBMM glibmm-2.4)
 

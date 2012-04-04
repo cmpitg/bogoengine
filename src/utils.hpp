@@ -22,6 +22,7 @@
 #include <glibmm/ustring.h>
 #include <string>
 #include <vector>
+#include <map>
 
 namespace BoGo {
 
@@ -31,6 +32,12 @@ namespace BoGo {
     typedef ustring::size_type _size_t_;
     typedef vector<ustring> ustringArrayT;
     typedef guint Accents;
+
+    typedef pair<guint, gchar> TransformationObjectPairT;
+    typedef map<gchar, TransformationObjectPairT> KeyTransformationPairT;
+    struct InputMethodT {
+        KeyTransformationPairT keys;
+    };
 
     const gchar BACKSPACE_CODE = 8;
 
