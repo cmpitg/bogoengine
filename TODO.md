@@ -1,6 +1,30 @@
 ## Thêm phần hỗ trợ các bảng mã
 
-?
+### Dự kiến
+
+* Xây dựng hàm chuyển xâu `str` từ bảng mã `charsetA` sang bảng mã `charsetB`:
+  `convertCharset (Glib::ustring str, CharSet charsetA, CharSet charsetB)`.
+
+  - `CharSet` là alias của `guint`, mỗi bảng mã nhận một số nguyên dương duy
+    nhất làm ID.
+
+  - Tại hàm `processKey`, xâu và ký tự input (`str` và `ch` tương ứng) sẽ được
+    xử lý thông qua trình tự:
+
+    + Convert `str` sang UTF-8.
+    + Convert ký tự `ch` sang UTF-8.
+    + Xử lý `str` và `ch` sau khi đã convert, thu được kết quả.
+    + Convert kết quả sang bảng mã output và trả kết quả về.
+
+* **Nâng cao**: cân nhắc và đo đạc thêm về việc xử lý trực tiếp ký tự trong
+  bảng mã mà người dùng sử dụng, không thông qua bước convert:
+
+  - Khi đó các hằng liên quan đến ký tự sẽ có thêm một chỉ số ID của bảng mã,
+  chẳng hạn: `Vowels[CHARSET_UTF8]` là danh sách nguyên âm trong bảng mã
+  UTF-8, `Vowels[CHARSET_TCVN3]` là danh sách nguyên âm trong bảng mã TCVN 3,
+  ...
+
+  - Các hàm xử lý ký tự cũng nhận thêm tham số ID của bảng mã.
 
 ## Thêm phần hỗ trợ định nghĩa các kiểu gõ
 
@@ -54,22 +78,22 @@
 
   Ví dụ: nội dung của file mô tả kiểu gõ *Simple Telex*:
 
-      ```
-      a a^
-      o o^
-      e e^
-      w o+
-      w u+
-      w v
-      d -
+    ```
+    a a^
+    o o^
+    e e^
+    w o+
+    w u+
+    w v
+    d -
 
-      f \
-      s /
-      r ?
-      x ~
-      j .
-      z _
-      ```
+    f \
+    s /
+    r ?
+    x ~
+    j .
+    z _
+    ```
 
 * Mặc định, **BoGoEngine** đi kèm với 4 kiểu gõ: *Telex*, *Simple Telex*,
   *VNI*, và *VIQR*
