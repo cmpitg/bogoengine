@@ -22,7 +22,7 @@
 #include "utils.hpp"
 
 // FIXME charset
-// FIXME Polish the code
+// FIXME Polish and clean up code
 
 namespace BoGo {
 
@@ -69,8 +69,7 @@ namespace BoGo {
     }
 
     ustring lastChar (ustring s) {
-        _size_t_ length = s.length ();
-        return _(s[length - 1]);
+        return (s.length () != 0) ? _(s[s.length () - 1]) : _("");
     }
 
     ustring lastChar (string s) {
@@ -79,6 +78,29 @@ namespace BoGo {
 
     ustring lastChar (const gchar *s) {
         return lastChar (_(s));
+    }
+
+    ustring firstChar (ustring s) {
+        return (s.length () != 0) ? _(s[0]) : _("");
+    }
+
+    ustring firstChar (string s) {
+        return firstChar (_(s));
+    }
+
+    ustring firstChar (const gchar *s) {
+        return firstChar (_(s));
+    }
+
+    bool analyseWordCheckSpecialConsonants (ustringArrayT word,
+                                            ustring consonant) {
+        return lastChar (word[0]).lowercase () == _(consonant[0]) &&
+            firstChar (word[1]).lowercase () == _(consonant[1]);
+    }
+
+    bool analyseWordCheckSpecialConsonants (ustringArrayT word,
+                                            const gchar *consonant) {
+        return analyseWordCheckSpecialConsonants (word, _(consonant));
     }
 
     ustringArrayT analyseWord (ustring str) {
@@ -95,22 +117,17 @@ namespace BoGo {
         for (int part = 0; part < 3; part++) {
             res[part] = "";
             // This is safe due to short-circuit logic
-            while (str != _("") && testFuncs[part] (_(str[0]))) {
+            while (str.length () > 0 && testFuncs[part] (_(str[0]))) {
                 res[part] += _(str[0]);
                 str.replace (0, 1, "");
             }
         }
 
         // Special case: "qu" and "gi" are considered consonants
-        if (res[0].length () > 0 && res[1].length () > 0) {
-            if ((lastChar (res[0]).lowercase () == _("q") &&
-                 _(res[1][0]).lowercase () == _("u")) ||
-
-                (lastChar (res[0]).lowercase () == _("g") &&
-                 _(res[1][0]).lowercase () == _("i"))) {
-                res[0] += _(res[1][0]);
-                res[1] = res[1].replace (0, 1, "");
-            }
+        if (analyseWordCheckSpecialConsonants (res, "qu") ||
+            analyseWordCheckSpecialConsonants (res, "gi")) {
+            res[0] += _(res[1][0]);
+            res[1] = res[1].replace (0, 1, "");
         }
 
         return res;
