@@ -10,10 +10,11 @@
 
   - Tại hàm `processKey`, xâu và ký tự input (`str` và `ch` tương ứng) sẽ được
     xử lý thông qua trình tự:
-    + Convert `str` sang UTF-8.
-    + Convert ký tự `ch` sang UTF-8.
-    + Xử lý `str` và `ch` sau khi đã convert, thu được kết quả.
-    + Convert kết quả sang bảng mã output và trả kết quả về.
+
+    * Convert `str` sang UTF-8.
+    * Convert ký tự `ch` sang UTF-8.
+    * Xử lý `str` và `ch` sau khi đã convert, thu được kết quả.
+    * Convert kết quả sang bảng mã output và trả kết quả về.
 
 * **Nâng cao**: cân nhắc và đo đạc thêm về việc xử lý trực tiếp ký tự trong
   bảng mã mà người dùng sử dụng, không thông qua bước convert:
@@ -44,8 +45,7 @@ Trong đó `Key` là phím người sử dụng nhấn để có được phép 
 `Transformation` ngăn cách với nhau ít nhất một dấu cách.
 
 `Key` là ký tự trong bảng chữ cái tiếng Anh, hoặc chữ số, hoặc một trong số
-các ký tự đặc biệt: ``( ) [ ] { } < > / | \ ! + = ? # . , ; : ~ @ ^ ` & %
-$``.
+các ký tự đặc biệt: ``( ) [ ] { } < > / | \ ! + = ? # . , ; : ~ @ ^ ` & % $``.
 
 Phép biến đổi `Transformation` được quy ước là một trong các ký tự sau:
 
@@ -77,7 +77,6 @@ Phép biến đổi `Transformation` được quy ước là một trong các k�
 
 Ví dụ: nội dung của file mô tả kiểu gõ *Simple Telex*:
 
-    ```
     a a^
     o o^
     e e^
@@ -92,6 +91,5 @@ Ví dụ: nội dung của file mô tả kiểu gõ *Simple Telex*:
     x ~
     j .
     z _
-    ```
 
 ##### Mặc định, **BoGoEngine** đi kèm với 4 kiểu gõ: *Telex*, *Simple Telex*, *VNI*, và *VIQR*
