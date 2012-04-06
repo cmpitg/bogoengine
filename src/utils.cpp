@@ -39,6 +39,13 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
+    ustring toString (InputMethodT im) {
+        ustring res;
+        for (guint i = 0; i < im.size (); i++)
+            res += _(im[i][0]) + " -> " + _(im[i][1]) + _(im[i][2]) + "\n";
+        return res;
+    }
+
     ustring addMarkToChar (ustring ch, guint mark) {
         bool isUp = isUpperCase (ch);
         _size_t_ accent = getAccentFromChar (ch);

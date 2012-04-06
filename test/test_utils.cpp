@@ -40,6 +40,15 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
+TEST (InputMethod, MakeIM) {
+    InputMethodT im;
+    im.push_back ("aa^");
+    im.push_back ("f*\\");
+    im.push_back ("w*\\");
+    im.push_back ("oo+");
+    EXPECT_STREQ ("a -> a^\nf -> *\\\nw -> *\\\no -> o+\n", __(toString (im)));
+}
+
 TEST (TestItself, TestHelpers) {
     vector<ustring> s1 = makeustringVec3("aoeu", "xin chào", "Thế Giới!");
     EXPECT_TRUE (s1 == s1);

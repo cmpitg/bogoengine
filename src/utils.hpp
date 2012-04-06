@@ -32,12 +32,7 @@ namespace BoGo {
     typedef ustring::size_type _size_t_;
     typedef vector<ustring> ustringArrayT;
     typedef guint Accents;
-
-    typedef pair<guint, gchar> TransformationObjectPairT;
-    typedef map<gchar, TransformationObjectPairT> KeyTransformationPairT;
-    struct InputMethodT {
-        KeyTransformationPairT keys;
-    };
+    typedef ustringArrayT InputMethodT;
 
     const gchar BACKSPACE_CODE = 8;
 
@@ -84,6 +79,8 @@ namespace BoGo {
                                             ustring consonant);
     bool analyseWordCheckSpecialConsonants (ustringArrayT word,
                                             const gchar *consonant);
+
+    ustring toString (InputMethodT im);
 
     ustring lastChar (ustring s);
     ustring lastChar (string s);

@@ -146,16 +146,19 @@ gõ:
   ASCII, một bộ gõ có thể được định nghĩa như sau:
 
       ```c++
-      struct InputMethodT {
-          KeyTransformationPairT keys;
-      };
+      typedef vector<ustring> InputMethodT;
       ```
 
-  Trong đó `KeyTransformationT` là một `map` gồm 2 thành phần: *key* của map
-  lưu ký tự sử dụng để biến đổi, và *value* của map lưu *phép biến đổi* (thêm
-  mark hoặc thêm accent, tác động tới chữ cái nào):
+  Trong đó:
 
-     ```c++
-     typedef pair<guint, gchar> TransformationObjectPairT;
-     typedef map<gchar, TransformationObjectPairT> KeyTransformationPairT;
-     ```
+  - Mỗi một phần tử của `InputMethodT` là một `ustring`, quy ước biến đổi một từ:
+
+    + Ký tự đầu tiên của `ustring` mô tả *ký tự sử dụng* để biến đổi.
+    + Ký tự thứ hai của `ustring` mô tả đối tượng mà phép biến đổi đó tác động,
+    nếu phép biến đổi này có thể tác động lên tất cả các đối tượng thì ký tự
+    này là `*`.
+    + Ký tự thứ ba của `ustring` mô tả phép biến đổi.
+
+    Ví dụ: `"aa+"` mô tả phép biển đổi: nhấn ký tự *'a'* để thêm dấu mũ cho ký
+    tự *'a'*; `"f*\\"` mô tả phép biến đổi: nhấn ký tự _'f'_ để thêm dấu
+    huyền.
