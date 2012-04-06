@@ -35,6 +35,12 @@ namespace BoGo {
     typedef guint Accents;
     typedef ustringArrayT InputMethodT;
 
+    const guint NUMBER_OF_IMS = 4;
+    const guint IM_TELEX = 0,
+        IM_SIMPLETELEX = 1,
+        IM_VNI = 2,
+        IM_VIQR = 3;
+
     const gchar BACKSPACE_CODE = 8;
 
     const guint NUMBER_OF_ACCENTS = 6;

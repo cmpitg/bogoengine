@@ -1,4 +1,4 @@
-## `makeIM (Telex)`
+## `makeIM (SimpleTelex)`
 
 ## Thêm phần hỗ trợ các bảng mã
 
