@@ -40,8 +40,7 @@ namespace BoGo {
         IM_SIMPLETELEX = 1,
         IM_VNI = 2,
         IM_VIQR = 3;
-
-    const gchar BACKSPACE_CODE = 8;
+    const ustring IMs[] = {};
 
     const guint NUMBER_OF_ACCENTS = 6;
     const guint GRAVE  = 0,
@@ -58,6 +57,8 @@ namespace BoGo {
         BREVE            = 3,
         BAR              = 4;
 
+    const gchar BACKSPACE_CODE = 8;
+
     const ustring LowerCaseLetters = "aăâbcdđeêfghijklmnoôơpqrstuưvwxy";
     const ustring Numbers = "0123456789";
 
@@ -72,6 +73,8 @@ namespace BoGo {
     const ustring LettersWithMarks =
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
+
+    InputMethodT makeStandardIM (guint imID);
 
     InputMethodT makeIM (guint count, ...);
 

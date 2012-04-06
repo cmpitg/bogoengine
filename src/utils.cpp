@@ -40,6 +40,12 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
+    InputMethodT makeStandardIM (guint imID) {
+        if (imID < NUMBER_OF_IMS)
+            return makeIMFromString (IMs[imID]);
+        return InputMethodT();
+    }
+
     InputMethodT makeIMFromString (ustring imStr) {
         InputMethodT im;
         _size_t_ eolPos;
