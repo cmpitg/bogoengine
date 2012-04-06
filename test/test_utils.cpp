@@ -48,15 +48,29 @@ TEST (InputMethod, MakeIM) {
     im = addTransformation (im, "oo+");
     EXPECT_STREQ ("a -> a^\nf -> *\\\nw -> *\\\no -> o+\n", __(toString (im)));
 
-    InputMethodT im2;
-    im2 = makeIM (5, "aa^", "f*\\", "w*\\", "oo+", "j*.");
+    im = makeIM (5, "aa^", "f*\\", "w*\\", "oo+", "j*.");
     EXPECT_STREQ ("a -> a^\nf -> *\\\nw -> *\\\no -> o+\nj -> *.\n",
-                  __(toString (im2)));
+                  __(toString (im)));
 
-    InputMethodT im3;
-    im3 = makeIMFromString ("a -> a^\nf -> *\\\no -> o+\nj -> *.\n");
+    im = makeIMFromString ("a -> a^\nf -> *\\\no -> o+\nj -> *.\n");
     EXPECT_STREQ ("a -> a^\nf -> *\\\no -> o+\nj -> *.\n",
-                  __(toString (im3)));
+                  __(toString (im)));
+
+    im = makeStandardIM (IM_SIMPLETELEX);
+    EXPECT_STREQ ("a -> a^\n"
+                  "o -> o^\n"
+                  "e -> e^\n"
+                  "w -> o+\n"
+                  "w -> u+\n"
+                  "w -> *v\n"
+                  "d -> *-\n"
+                  "s -> */\n"
+                  "r -> *?\n"
+                  "x -> *~\n"
+                  "j -> *.\n"
+                  "z -> *_\n"
+                  "f -> *\\"
+                  "\n", __(toString (im)));
 }
 
 TEST (TestItself, TestHelpers) {

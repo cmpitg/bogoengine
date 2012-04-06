@@ -46,19 +46,29 @@ namespace BoGo {
         return InputMethodT();
     }
 
+    InputMethodT standardizeIM (InputMethodT im) {
+        // Add * when necessary
+        for (guint i = 0; i < im.size (); i++)
+            if (im[i].length () < 3)
+                im[i] = _(im[i][0]) + _("*") + _(im[i][1]);
+        return im;
+    }
+
     InputMethodT makeIMFromString (ustring imStr) {
         InputMethodT im;
         _size_t_ eolPos;
         ustring transPortion;
+        ustring specialToken = (imStr.find (" -> ") != ustring::npos) ?
+            _(" -> ") : _(" ");
 
         while (imStr.length () > 1) {
             eolPos = imStr.find ("\n");
             transPortion = imStr.substr (0, eolPos);
             imStr = imStr.replace (0, eolPos + 1, "");
             im = addTransformation
-                (im, transPortion.replace (1, _(" -> ").length (), ""));
+                (im, transPortion.replace (1, specialToken.length (), ""));
         }
-        return im;
+        return standardizeIM (im);
     }
 
     InputMethodT makeIMFromString (const gchar * imStr) {

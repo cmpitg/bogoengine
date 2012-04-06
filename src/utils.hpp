@@ -36,11 +36,25 @@ namespace BoGo {
     typedef ustringArrayT InputMethodT;
 
     const guint NUMBER_OF_IMS = 4;
-    const guint IM_TELEX = 0,
-        IM_SIMPLETELEX = 1,
+    const guint IM_SIMPLETELEX = 0,
+        IM_TELEX = 1,
         IM_VNI = 2,
         IM_VIQR = 3;
-    const ustring IMs[] = {};
+    const ustring IMs[] = {
+        "a a^\n"
+        "o o^\n"
+        "e e^\n"
+        "w o+\n"
+        "w u+\n"
+        "w v\n"
+        "d -\n"
+        "s /\n"
+        "r ?\n"
+        "x ~\n"
+        "j .\n"
+        "z _\n"
+        "f \\\n"
+    };
 
     const guint NUMBER_OF_ACCENTS = 6;
     const guint GRAVE  = 0,
