@@ -66,6 +66,10 @@ namespace BoGo {
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
+    ustring toString (InputMethodT im);
+
+    InputMethodT addTransformation (InputMethodT im, ustring trans);
+
     ustring addMarkToChar (ustring ch, guint mark);
     ustring addMarkToChar (string ch, guint mark);
     ustring addMarkToChar (const gchar *ch, guint mark);
@@ -79,8 +83,6 @@ namespace BoGo {
                                             ustring consonant);
     bool analyseWordCheckSpecialConsonants (ustringArrayT word,
                                             const gchar *consonant);
-
-    ustring toString (InputMethodT im);
 
     ustring lastChar (ustring s);
     ustring lastChar (string s);

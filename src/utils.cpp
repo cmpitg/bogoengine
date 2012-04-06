@@ -39,6 +39,11 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
+    InputMethodT addTransformation (InputMethodT im, ustring trans) {
+        im.push_back (trans);
+        return im;
+    }
+
     ustring toString (InputMethodT im) {
         ustring res;
         for (guint i = 0; i < im.size (); i++)

@@ -42,10 +42,10 @@ vector<ustring> makeustringVec3 (const gchar *e0,
 
 TEST (InputMethod, MakeIM) {
     InputMethodT im;
-    im.push_back ("aa^");
-    im.push_back ("f*\\");
-    im.push_back ("w*\\");
-    im.push_back ("oo+");
+    im = addTransformation (im, "aa^");
+    im = addTransformation (im, "f*\\");
+    im = addTransformation (im, "w*\\");
+    im = addTransformation (im, "oo+");
     EXPECT_STREQ ("a -> a^\nf -> *\\\nw -> *\\\no -> o+\n", __(toString (im)));
 }
 
