@@ -1,8 +1,4 @@
-## `toString` cho `InputMethodT`
-
-## `makeIM`
-
-## `makeIMTelex`
+## `makeIM (Telex)`
 
 ## Thêm phần hỗ trợ các bảng mã
 

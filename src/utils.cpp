@@ -39,9 +39,28 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
+    InputMethodT makeIM (guint count, ...) {
+        const gchar *trans;
+        InputMethodT im;
+        va_list transList;
+        va_start (transList, count);
+
+        for (guint i = 0; i < count; i++) {
+            trans = va_arg (transList, const gchar *);
+            im = addTransformation (im, _(trans));
+        }
+
+        va_end (transList);
+        return im;
+    }
+
     InputMethodT addTransformation (InputMethodT im, ustring trans) {
         im.push_back (trans);
         return im;
+    }
+
+    InputMethodT addTransformation (InputMethodT im, const gchar *trans) {
+        return addTransformation (im, _(trans));
     }
 
     ustring toString (InputMethodT im) {

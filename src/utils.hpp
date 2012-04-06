@@ -23,6 +23,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <cstdarg>
 
 namespace BoGo {
 
@@ -66,9 +67,12 @@ namespace BoGo {
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
+    InputMethodT makeIM (guint count, ...);
+
     ustring toString (InputMethodT im);
 
     InputMethodT addTransformation (InputMethodT im, ustring trans);
+    InputMethodT addTransformation (InputMethodT im, const gchar *trans);
 
     ustring addMarkToChar (ustring ch, guint mark);
     ustring addMarkToChar (string ch, guint mark);
