@@ -75,6 +75,10 @@ namespace BoGo {
 
     InputMethodT makeIM (guint count, ...);
 
+    InputMethodT makeIMFromString (ustring imStr);
+    InputMethodT makeIMFromString (const gchar * imStr);
+    InputMethodT makeIMFromString (string imStr);
+
     ustring toString (InputMethodT im);
 
     InputMethodT addTransformation (InputMethodT im, ustring trans);

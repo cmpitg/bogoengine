@@ -20,6 +20,7 @@
 */
 
 #include "utils.hpp"
+#include <iostream>
 
 // FIXME charset
 // FIXME Polish and clean up code
@@ -38,6 +39,29 @@ namespace BoGo {
 #undef __
 #endif
 #define __(x) (ustring ("") + x).c_str ()
+
+    InputMethodT makeIMFromString (ustring imStr) {
+        InputMethodT im;
+        _size_t_ eolPos;
+        ustring transPortion;
+
+        while (imStr.length () > 1) {
+            eolPos = imStr.find ("\n");
+            transPortion = imStr.substr (0, eolPos);
+            imStr = imStr.replace (0, eolPos + 1, "");
+            im = addTransformation
+                (im, transPortion.replace (1, _(" -> ").length (), ""));
+        }
+        return im;
+    }
+
+    InputMethodT makeIMFromString (const gchar * imStr) {
+        return makeIMFromString (_(imStr));
+    }
+
+    InputMethodT makeIMFromString (string imStr) {
+        return makeIMFromString (_(imStr));
+    }
 
     InputMethodT makeIM (guint count, ...) {
         const gchar *trans;

@@ -52,6 +52,11 @@ TEST (InputMethod, MakeIM) {
     im2 = makeIM (5, "aa^", "f*\\", "w*\\", "oo+", "j*.");
     EXPECT_STREQ ("a -> a^\nf -> *\\\nw -> *\\\no -> o+\nj -> *.\n",
                   __(toString (im2)));
+
+    InputMethodT im3;
+    im3 = makeIMFromString ("a -> a^\nf -> *\\\no -> o+\nj -> *.\n");
+    EXPECT_STREQ ("a -> a^\nf -> *\\\no -> o+\nj -> *.\n",
+                  __(toString (im3)));
 }
 
 TEST (TestItself, TestHelpers) {
