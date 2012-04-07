@@ -6,8 +6,6 @@
 
 ## `ustring addAccentToWord (ustring, Accents)`
 
-## `ustring removeAccentFromWord (ustring)`
-
 ## Thêm phần hỗ trợ các bảng mã
 
 ### Dự kiến
