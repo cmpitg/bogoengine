@@ -1,4 +1,12 @@
-## `makeIM (SimpleTelex)`
+## `ustring addMarkToWord (ustring, Marks)`
+
+## `ustring removeMarkFromWord (ustring, _size_t_)`
+
+## `ustring removeAllMarksFromWord (ustring)`
+
+## `ustring addAccentToWord (ustring, Accents)`
+
+## `ustring removeAccentFromWord (ustring)`
 
 ## Thêm phần hỗ trợ các bảng mã
 

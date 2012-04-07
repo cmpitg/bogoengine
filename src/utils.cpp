@@ -110,7 +110,7 @@ namespace BoGo {
         return res;
     }
 
-    ustring addMarkToChar (ustring ch, guint mark) {
+    ustring addMarkToChar (ustring ch, Marks mark) {
         bool isUp = isUpperCase (ch);
         _size_t_ accent = getAccentFromChar (ch);
 
@@ -127,15 +127,15 @@ namespace BoGo {
         return ch;
     }
 
-    ustring addMarkToChar (string ch, guint mark) {
+    ustring addMarkToChar (string ch, Marks mark) {
         return addMarkToChar (_(ch), mark);
     }
 
-    ustring addMarkToChar (const gchar *ch, guint mark) {
+    ustring addMarkToChar (const gchar *ch, Marks mark) {
         return addMarkToChar (_(ch), mark);
     }
 
-    ustring addMarkToChar (guint ch, guint mark) {
+    ustring addMarkToChar (guint ch, Marks mark) {
         return addMarkToChar (_(ch), mark);
     }
 

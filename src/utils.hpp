@@ -33,6 +33,7 @@ namespace BoGo {
     typedef ustring::size_type _size_t_;
     typedef vector<ustring> ustringArrayT;
     typedef guint Accents;
+    typedef guint Marks;
     typedef ustringArrayT InputMethodT;
 
     const guint NUMBER_OF_IMS = 4;
@@ -101,10 +102,10 @@ namespace BoGo {
     InputMethodT addTransformation (InputMethodT im, ustring trans);
     InputMethodT addTransformation (InputMethodT im, const gchar *trans);
 
-    ustring addMarkToChar (ustring ch, guint mark);
-    ustring addMarkToChar (string ch, guint mark);
-    ustring addMarkToChar (const gchar *ch, guint mark);
-    ustring addMarkToChar (guint ch, guint mark);
+    ustring addMarkToChar (ustring ch, Marks mark);
+    ustring addMarkToChar (string ch, Marks mark);
+    ustring addMarkToChar (const gchar *ch, Marks mark);
+    ustring addMarkToChar (guint ch, Marks mark);
 
     ustringArrayT analyseWord (ustring str);
     ustringArrayT analyseWord (string str);
