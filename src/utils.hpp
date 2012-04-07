@@ -89,6 +89,10 @@ namespace BoGo {
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
+    ustring removeAccentFromWord (ustring word);
+    ustring removeAccentFromWord (string word);
+    ustring removeAccentFromWord (const gchar *word);
+
     InputMethodT makeStandardIM (guint imID);
 
     InputMethodT makeIM (guint count, ...);

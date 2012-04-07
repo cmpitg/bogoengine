@@ -40,6 +40,18 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
+TEST (AccentAndWord, RemoveAccent) {
+    EXPECT_STREQ ("thuơ", removeAccentFromWord ("thuở").c_str ());
+    EXPECT_STREQ ("gIyA", removeAccentFromWord ("gIỵA").c_str ());
+    EXPECT_STREQ ("uyNh", removeAccentFromWord ("uýNh").c_str ());
+    EXPECT_STREQ ("LÔn", removeAccentFromWord ("LỘn").c_str ());
+    EXPECT_STREQ ("xOoNg", removeAccentFromWord ("xOoNg").c_str ());
+    EXPECT_STREQ ("xOOng", removeAccentFromWord ("xOÒng").c_str ());
+    EXPECT_STREQ ("khuC", removeAccentFromWord ("khúC").c_str ());
+    EXPECT_STREQ ("kHuYU", removeAccentFromWord ("kHuỶU").c_str ());
+    EXPECT_STREQ ("HuƠ", removeAccentFromWord ("HuƠ").c_str ());
+}
+
 TEST (InputMethod, MakeIM) {
     InputMethodT im;
     im = addTransformation (im, "aa^");
