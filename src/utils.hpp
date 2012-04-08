@@ -49,7 +49,7 @@ namespace BoGo {
         "w v\n"
         "d -\n"
         "s /\n"
-        "r ?\n"
+		"r ?\n"
         "x ~\n"
         "j .\n"
         "z _\n"
@@ -187,4 +187,11 @@ namespace BoGo {
     ustring removeAccentFromChar (string ch);
     ustring removeAccentFromChar (const gchar *ch);
     ustring removeAccentFromChar (guint ch);
+
+	guint getAccentCode (ustring ch, InputMethodT im);
+	guint getMarkCode (ustring ch, InputMethodT im);
+
+	ustring processKey(ustring ch, ustring str);
+	ustring addMarkToWord (ustring str, guint mark);
+	ustring addAccentToWord (ustring str, guint accent);
 }

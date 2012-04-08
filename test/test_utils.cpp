@@ -259,6 +259,13 @@ TEST (CharacterHelpers, PlainCharacters) {
     EXPECT_FALSE (isLetter ((gchar) 13)); // Return
 }
 
+TEST (ProcessKey, BackspacePressed) {
+	EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov")));
+	EXPECT_STREQ(__("m"), __(processKey (_(BACKSPACE_CODE), "mè")));	
+	EXPECT_STREQ(__(""), __(processKey (_(BACKSPACE_CODE), "m")));
+}
+
+
 int main (int argc, char *argv[]) {
     testing::InitGoogleTest (&argc, argv);
     int dummyVal = RUN_ALL_TESTS ();

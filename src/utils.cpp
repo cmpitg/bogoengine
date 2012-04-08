@@ -474,6 +474,33 @@ namespace BoGo {
         return isLowerCase (_(ch));
     }
 
+	guint getAccentCode (ustring ch, InputMethodT im) {
+		
+		return 0;
+	}
+
+	guint getMarkCode(ustring ch, InputMethodT im) {
+		return 0;
+	}
+
+	ustring processKey (ustring ch, ustring str) {
+		// Default input method is telex  and default charset is UTF8
+		if (ch == _(BACKSPACE_CODE)) {
+			str.erase (str.size() - 1, 1);
+			return str;
+		}
+
+		/* if ch is transform char then:
+		      find the charactor needed to transform
+		      transform it
+		      return the string
+		   else
+		      append ch to str
+		 */
+		
+	}
+
+
 #undef _
 #undef __
 
