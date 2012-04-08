@@ -40,6 +40,8 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
+
+
 TEST (AccentAndWord, RemoveAccent) {
     EXPECT_STREQ ("thuơ", removeAccentFromWord ("thuở").c_str ());
     EXPECT_STREQ ("gIyA", removeAccentFromWord ("gIỵA").c_str ());
@@ -272,9 +274,21 @@ TEST (CharacterHelpers, PlainCharacters) {
 }
 
 TEST (ProcessKey, BackspacePressed) {
-	EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov")));
-	EXPECT_STREQ(__("m"), __(processKey (_(BACKSPACE_CODE), "mè")));	
-	EXPECT_STREQ(__(""), __(processKey (_(BACKSPACE_CODE), "m")));
+	InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
+	EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));
+	EXPECT_STREQ(__("m"), __(processKey (_(BACKSPACE_CODE), "mè", im)));	
+	EXPECT_STREQ(__(""), __(processKey (_(BACKSPACE_CODE), "m", im)));
+}
+
+TEST (FindTransformation, SimpleTelex) {
+	ustringArrayT transfromation_w;
+	transfromation_w.push_back("o+");
+	transfromation_w.push_back("u+");
+	transfromation_w.push_back("v");
+	InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
+	EXPECT_EQ (transfromation_w[0], findTransformation ( "w", im)[0]);
+	EXPECT_EQ (transfromation_w[1], findTransformation ( "w", im)[1]);
+	EXPECT_EQ (transfromation_w[2], findTransformation ( "w", im)[2]);
 }
 
 

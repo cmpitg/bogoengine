@@ -489,22 +489,38 @@ namespace BoGo {
         return isLowerCase (_(ch));
     }
 
-	guint getAccentCode (ustring ch, InputMethodT im) {
-		
-		return 0;
-	}
 
-	guint getMarkCode(ustring ch, InputMethodT im) {
-		return 0;
+	ustring getTransformation (ustring trans) {
+		/* get the tranformation part from the string describing the transformation
+		   ex: "a a+" -> "a+" */
+		trans.erase (0,1);
+		while (_(trans[0]) == " ") {
+			trans.erase(0,1);
+		}
+		return trans;
 	}
-
-	ustring processKey (ustring ch, ustring str) {
+	
+	ustringArrayT  findTransformation (ustring ch, InputMethodT im) {
+		/* Because a key can associate with more than 1 transformation, we need to know what transfrom are possible */
+		ustringArrayT  transforms;
+		for (guint i = 0; i < im.size(); i++) {
+			ustring tr = im[i];
+			if (ch == _(tr[0])) {
+				transforms.push_back (getTransformation (tr));
+			}
+		}
+		return transforms;
+	}
+	
+	ustring processKey (ustring ch, ustring str, InputMethodT im) {
 		// Default input method is telex  and default charset is UTF8
 		if (ch == _(BACKSPACE_CODE)) {
 			str.erase (str.size() - 1, 1);
 			return str;
 		}
 
+		
+		
 		/* if ch is transform char then:
 		      find the charactor needed to transform
 		      transform it

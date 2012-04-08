@@ -105,6 +105,7 @@ namespace BoGo {
 
     InputMethodT addTransformation (InputMethodT im, ustring trans);
     InputMethodT addTransformation (InputMethodT im, const gchar *trans);
+	ustring getTransformation (ustring trans);
 
     ustring addMarkToChar (ustring ch, Marks mark);
     ustring addMarkToChar (string ch, Marks mark);
@@ -193,10 +194,9 @@ namespace BoGo {
     ustring removeAccentFromChar (const gchar *ch);
     ustring removeAccentFromChar (guint ch);
 
-	guint getAccentCode (ustring ch, InputMethodT im);
-	guint getMarkCode (ustring ch, InputMethodT im);
-
-	ustring processKey(ustring ch, ustring str);
+	ustring processKey (ustring ch, ustring str, InputMethodT im);
 	ustring addMarkToWord (ustring str, guint mark);
 	ustring addAccentToWord (ustring str, guint accent);
+	ustring getTransformation (ustring trans);
+	ustringArrayT findTransformation (ustring ch, InputMethodT im);
 }
