@@ -1,4 +1,10 @@
-## `makeIM (SimpleTelex)`
+## `ustring addMarkToWord (ustring, Marks)`
+
+## `ustring removeMarkFromWord (ustring, _size_t_)`
+
+## `ustring removeAllMarksFromWord (ustring)`
+
+## `ustring addAccentToWord (ustring, Accents)`
 
 ## Thêm phần hỗ trợ các bảng mã
 
@@ -93,3 +99,10 @@ Ví dụ: nội dung của file mô tả kiểu gõ *Simple Telex*:
     z _
 
 ##### Mặc định, **BoGoEngine** đi kèm với 4 kiểu gõ: *Telex*, *Simple Telex*, *VNI*, và *VIQR*
+
+## Thảo luận:
+
+### Hỗ trợ việc thêm dấu
+    "[kiểu mới](http://vi.wikipedia.org/wiki/Quy_tắc_đặt_dấu_thanh_trong_tiếng_Việt#Ki.E1.BB.83u_m.E1.BB.9Bi)"?
+
+* **cmpitg**: không hỗ trợ, không ủng hộ.

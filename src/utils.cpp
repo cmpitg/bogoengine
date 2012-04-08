@@ -20,7 +20,7 @@
 */
 
 #include "utils.hpp"
-#include <iostream>
+// #include <iostream>
 
 // FIXME charset
 // FIXME Polish and clean up code
@@ -39,6 +39,21 @@ namespace BoGo {
 #undef __
 #endif
 #define __(x) (ustring ("") + x).c_str ()
+
+    ustring removeAccentFromWord (ustring word) {
+        ustring res;
+        for (_size_t_ i = 0; i < word.length (); i++)
+            res += removeAccentFromChar (word[i]);
+        return res;
+    }
+
+    ustring removeAccentFromWord (string word) {
+        return removeAccentFromWord (_(word));
+    }
+
+    ustring removeAccentFromWord (const gchar *word) {
+        return removeAccentFromWord (_(word));
+    }
 
     InputMethodT makeStandardIM (guint imID) {
         if (imID < NUMBER_OF_IMS)
@@ -110,7 +125,7 @@ namespace BoGo {
         return res;
     }
 
-    ustring addMarkToChar (ustring ch, guint mark) {
+    ustring addMarkToChar (ustring ch, Marks mark) {
         bool isUp = isUpperCase (ch);
         _size_t_ accent = getAccentFromChar (ch);
 
@@ -127,15 +142,15 @@ namespace BoGo {
         return ch;
     }
 
-    ustring addMarkToChar (string ch, guint mark) {
+    ustring addMarkToChar (string ch, Marks mark) {
         return addMarkToChar (_(ch), mark);
     }
 
-    ustring addMarkToChar (const gchar *ch, guint mark) {
+    ustring addMarkToChar (const gchar *ch, Marks mark) {
         return addMarkToChar (_(ch), mark);
     }
 
-    ustring addMarkToChar (guint ch, guint mark) {
+    ustring addMarkToChar (guint ch, Marks mark) {
         return addMarkToChar (_(ch), mark);
     }
 

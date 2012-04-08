@@ -118,9 +118,29 @@ Nhìn chung, việc xử lý tiếng Việt bao gồm có:
   - Gọi 5 ký tự dấu là *accent*.
   - Gọi 4 ký tự *hat*, *horn*, *breve*, và *bar* là *mark*.
 
-* Quy tắc biến đổi từ: FIXME
+* Quy tắc thêm dấu cho một từ:
 
-* Quy tắc thêm dấu cho một từ: FIXME
+  Một từ được phân tích thành 3 thành phần: _[phụ âm 1]_ + _[nguyên âm]_ +
+  _[phụ âm 2]_, trong đó có 2 trường hợp đặc biệt: với các từ bắt đầu bằng
+  _"gi..."_ hoặc _"qu..."_ thì _"gi"_ và _"qu"_ thuộc về _[phụ âm 1]_ chứ
+  không phải _[nguyên âm]_.  Một trong 3 thành phần có thể rỗng.
+
+  Ví dụ:
+  - Với từ _"người"_ thì _[phụ âm 1]_ là "ng", _[nguyên âm]_ là "ười",
+    _[phụ âm 2]_ là "".
+  - Với từ _"trường"_ thì _[phụ âm 1]_ là "tr", _[nguyên âm]_ là "ườ",
+    _[phụ âm 2]_ là "ng".
+  - Với từ _"oạch"_ thì _[phụ âm 1]_ là "", _[nguyên âm]_ là "oạ",
+    _[phụ âm 2]_ là "ch".
+
+  **BoGoEngine** sử dụng quy tắc thêm dấu
+    [kiểu cũ](http://vi.wikipedia.org/wiki/Quy_tắc_đặt_dấu_thanh_trong_tiếng_Việt#Ki.E1.BB.83u_c.C5.A9)
+    cho một từ được phát biểu giản lược như sau:
+  - Nếu _[nguyên âm]_ có chữ cái "ê" hoặc "ơ" thì thêm dấu ở các chữ cái này;
+    ngược lại,
+  - nếu _[phụ âm 2]_ tồn tại => thêm dấu vào nguyên âm cuối cùng; ngược lại,
+  - nếu _[nguyên âm]_ gồm 3 chữ cái => thêm dấu vào chữ cái ở giữa; ngược lại,
+  - thêm dấu vào nguyên âm đầu tiên
 
 Ngoài công việc xử lý tiếng Việt, **BoGoEngine** còn làm công việc của một bộ
 gõ:
