@@ -40,6 +40,8 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
+InputMethodT testIM = makeStandardIM (IM_SIMPLETELEX);
+
 
 
 TEST (AccentAndWord, RemoveAccent) {
@@ -284,13 +286,22 @@ TEST (FindTransformation, SimpleTelex) {
 	ustringArrayT transfromation_w;
 	transfromation_w.push_back("o+");
 	transfromation_w.push_back("u+");
-	transfromation_w.push_back("v");
-	InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
-	EXPECT_EQ (transfromation_w[0], findTransformation ( "w", im)[0]);
-	EXPECT_EQ (transfromation_w[1], findTransformation ( "w", im)[1]);
-	EXPECT_EQ (transfromation_w[2], findTransformation ( "w", im)[2]);
+	transfromation_w.push_back("*v");
+	
+	EXPECT_EQ (transfromation_w[0], findTransformation ( "w", testIM)[0]);
+	EXPECT_EQ (transfromation_w[1], findTransformation ( "w", testIM)[1]);
+	EXPECT_EQ (transfromation_w[2], findTransformation ( "w", testIM)[2]);
 }
 
+
+TEST (WordHelpers, AddAccentToWord) {
+	EXPECT_STREQ ("èo", addAccentToWord ("eo",GRAVE).c_str());
+	EXPECT_STREQ ("mèo", addAccentToWord ("meo",GRAVE).c_str());
+	EXPECT_STREQ ("uối", addAccentToWord ("uôi",ACUTE).c_str());
+	EXPECT_STREQ ("mẸ", addAccentToWord ("mE",DOT).c_str());
+	EXPECT_STREQ ("quYền", addAccentToWord("quYên",GRAVE).c_str());
+	EXPECT_STREQ ("quYền", addAccentToWord("quYến",GRAVE).c_str());
+}
 
 int main (int argc, char *argv[]) {
     testing::InitGoogleTest (&argc, argv);

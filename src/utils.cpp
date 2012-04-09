@@ -489,6 +489,36 @@ namespace BoGo {
         return isLowerCase (_(ch));
     }
 
+	ustring addMarkToWord (ustring str, Marks mark) {
+		
+		return "incompleted";
+	}
+
+	ustring addAccentToWord (ustring str, Accents accent) {
+		str = removeAccentFromWord (str);
+		ustringArrayT component = analyseWord (str);
+		ustring vowel = component[1];
+		_size_t_ pos = vowel.find("ê");
+		if (pos != -1) {
+			vowel.replace (pos, 1, addAccentToChar (vowel[pos], accent));
+		} else {
+			pos = vowel.find("ơ");
+			if (pos != -1) {
+				vowel.replace (pos, 1, addAccentToChar (vowel[pos], accent));
+			} else {
+				if (vowel.size () <= 2) {
+					vowel.replace (0, 1, addAccentToChar (vowel[0], accent));
+				} else {
+					if (vowel.size () ==3) {
+						vowel.replace (1, 1, addAccentToChar (vowel[1], accent));
+					}
+				}
+			}
+		}
+		return _(component[0] + vowel + component[2]);
+	}
+	
+
 
 	ustring getTransformation (ustring trans) {
 		/* get the tranformation part from the string describing the transformation
