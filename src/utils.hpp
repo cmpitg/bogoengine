@@ -89,6 +89,10 @@ namespace BoGo {
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
+    ustring removeMarkFromWord (ustring word, _size_t_ pos);
+    ustring removeMarkFromWord (string word, _size_t_ pos);
+    ustring removeMarkFromWord (const gchar *word, _size_t_ pos);
+
     ustring removeAccentFromWord (ustring word);
     ustring removeAccentFromWord (string word);
     ustring removeAccentFromWord (const gchar *word);

@@ -40,6 +40,17 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
+TEST (MarkAndWord, RemoveMark) {
+    EXPECT_STREQ ("thuỏ", removeMarkFromWord ("thuở", 3).c_str ());
+    EXPECT_STREQ ("gIỵA", removeMarkFromWord ("gIỵA", 2).c_str ());
+    EXPECT_STREQ ("uýNh", removeMarkFromWord ("uýNh", 1).c_str ());
+    EXPECT_STREQ ("LỌn", removeMarkFromWord ("LỘn", 1).c_str ());
+    EXPECT_STREQ ("xOoNg", removeMarkFromWord ("xOoNg", 3).c_str ());
+    EXPECT_STREQ ("xOÒng", removeMarkFromWord ("xOÒng", 2).c_str ());
+    EXPECT_STREQ ("khúC", removeMarkFromWord ("khứC", 2).c_str ());
+    EXPECT_STREQ ("HuO", removeMarkFromWord ("HuƠ", 2).c_str ());
+}
+
 TEST (AccentAndWord, RemoveAccent) {
     EXPECT_STREQ ("thuơ", removeAccentFromWord ("thuở").c_str ());
     EXPECT_STREQ ("gIyA", removeAccentFromWord ("gIỵA").c_str ());

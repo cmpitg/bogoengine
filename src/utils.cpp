@@ -40,6 +40,18 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
+    ustring removeMarkFromWord (ustring word, _size_t_ pos) {
+        return word;
+    }
+
+    ustring removeMarkFromWord (string word, _size_t_ pos) {
+        return removeMarkFromWord (_(word), pos);
+    }
+
+    ustring removeMarkFromWord (const gchar *word, _size_t_ pos) {
+        return removeMarkFromWord (_(word), pos);
+    }
+
     ustring removeAccentFromWord (ustring word) {
         ustring res;
         for (_size_t_ i = 0; i < word.length (); i++)
