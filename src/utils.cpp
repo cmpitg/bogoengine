@@ -20,7 +20,7 @@
 */
 
 #include "utils.hpp"
-// #include <iostream>
+#include <iostream>
 
 // FIXME charset
 // FIXME Polish and clean up code
@@ -39,6 +39,21 @@ namespace BoGo {
 #undef __
 #endif
 #define __(x) (ustring ("") + x).c_str ()
+
+    ustring removeAllMarksFromWord (ustring word) {
+        ustring res = "";
+        for (_size_t_ i = 0; i < word.length (); i++)
+            res += removeMarkFromChar (word[i]);
+        return res;
+    }
+
+    ustring removeAllMarksFromWord (string word) {
+        return removeAllMarksFromWord (_(word));
+    }
+
+    ustring removeAllMarksFromWord (const gchar *word) {
+        return removeAllMarksFromWord (_(word));
+    }
 
     ustring removeMarkFromWord (ustring word, _size_t_ pos) {
         ustring ch = _(word[pos]);

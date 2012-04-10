@@ -84,3 +84,5 @@ Bản quyền (C) năm 2012 bởi Dương "Yang" ヤン Nguyễn <cmpitg@gmail.c
 Xin chân thành gửi lời cảm ơn đặc biệt đến:
 
 * Ngô Trung <ndtrung4419@gmail.com>
+* Hoàng Minh Thắng <hoangminhthang@xaydunghoanglong.com>
+* Đàm Tiến Long <longdt90@gmail.com>
