@@ -41,7 +41,8 @@ namespace BoGo {
 #define __(x) (ustring ("") + x).c_str ()
 
     ustring removeMarkFromWord (ustring word, _size_t_ pos) {
-        return word;
+        ustring ch = _(word[pos]);
+        return word.replace (pos, 1, removeMarkFromChar (ch));
     }
 
     ustring removeMarkFromWord (string word, _size_t_ pos) {
