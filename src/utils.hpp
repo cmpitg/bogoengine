@@ -183,10 +183,10 @@ namespace BoGo {
     bool isLowerCase (const gchar *ch);
     bool isLowerCase (guint ch);
 
-    bool isWordBreak (ustring ch);
-    bool isWordBreak (string ch);
-    bool isWordBreak (const gchar *ch);
-    bool isWordBreak (guint ch);
+    bool isWordBreak (ustring ch, guint BackspaceChar = BACKSPACE_CODE);
+    bool isWordBreak (string ch, guint BackspaceChar = BACKSPACE_CODE);
+    bool isWordBreak (const gchar *ch, guint BackspaceChar = BACKSPACE_CODE);
+    bool isWordBreak (guint ch, guint BackspaceChar = BACKSPACE_CODE);
 
     ustring removeAccentFromChar (ustring ch);
     ustring removeAccentFromChar (string ch);

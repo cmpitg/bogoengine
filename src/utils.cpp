@@ -439,22 +439,22 @@ namespace BoGo {
         return isLetter (_(ch));
     }
 
-    bool isWordBreak (ustring ch) {
+    bool isWordBreak (ustring ch, guint BackspaceChar) {
         // A char is a word-break if and only if tt's a non-letter
         // character and not a Backspace.
-        return !isLetter (ch.lowercase ()) && ch != _(BACKSPACE_CODE);
+        return !isLetter (ch.lowercase ()) && ch != _(BackspaceChar);
     }
 
-    bool isWordBreak (const gchar *ch) {
-        return isWordBreak (_(ch));
+    bool isWordBreak (const gchar *ch, guint BackspaceChar) {
+        return isWordBreak (_(ch), BackspaceChar);
     }
 
-    bool isWordBreak (string ch) {
-        return isWordBreak (_(ch));
+    bool isWordBreak (string ch, guint BackspaceChar) {
+        return isWordBreak (_(ch), BackspaceChar);
     }
 
-    bool isWordBreak (guint ch) {
-        return isWordBreak (_(ch));
+    bool isWordBreak (guint ch, guint BackspaceChar) {
+        return isWordBreak (_(ch), BackspaceChar);
     }
 
     bool isUpperCase (ustring ch) {
