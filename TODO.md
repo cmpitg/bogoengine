@@ -1,7 +1,5 @@
 ## `ustring addMarkToWord (ustring, Marks)`
 
-## `ustring removeAllMarksFromWord (ustring)`
-
 ## `ustring addAccentToWord (ustring, Accents)`
 
 ## Thêm phần hỗ trợ các bảng mã
