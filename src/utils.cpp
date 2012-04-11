@@ -522,28 +522,16 @@ namespace BoGo {
 		return "incompleted";
 	}
 
-	ustring addAccentToWord (ustring str, Accents accent) {
-		str = removeAccentFromWord (str);
-		ustringArrayT component = analyseWord (str);
-		ustring vowel = component[1];
-		_size_t_ pos = vowel.find("ê");
-		if (pos != -1) {
-			vowel.replace (pos, 1, addAccentToChar (vowel[pos], accent));
-		} else {
-			pos = vowel.find("ơ");
-			if (pos != -1) {
-				vowel.replace (pos, 1, addAccentToChar (vowel[pos], accent));
-			} else {
-				if (vowel.size () <= 2) {
-					vowel.replace (0, 1, addAccentToChar (vowel[0], accent));
-				} else {
-					if (vowel.size () ==3) {
-						vowel.replace (1, 1, addAccentToChar (vowel[1], accent));
-					}
-				}
-			}
-		}
-		return _(component[0] + vowel + component[2]);
+	ustring addAccentToVowel (ustring vowel, Accents accent) {
+		ustring rawVowel = removeAccentFromWord (vowel);
+		_size_t_ pos = rawVowel.find ("ê");
+        if (pos == ustring::npos)
+            pos = rawVowel.find ("ơ");
+        if (pos == ustring::npos) {
+            pos = ( rawVowel.size () <= 2) ? 0 : 1;
+        }
+        
+        return rawVowel.replace (pos, 1, addAccentToChar (rawVowel[pos], accent));
 	}
 	
 

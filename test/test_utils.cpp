@@ -317,13 +317,13 @@ TEST (FindTransformation, SimpleTelex) {
 }
 
 
-TEST (WordHelpers, AddAccentToWord) {
-	EXPECT_STREQ ("èo", addAccentToWord ("eo",GRAVE).c_str());
-	EXPECT_STREQ ("mèo", addAccentToWord ("meo",GRAVE).c_str());
-	EXPECT_STREQ ("uối", addAccentToWord ("uôi",ACUTE).c_str());
-	EXPECT_STREQ ("mẸ", addAccentToWord ("mE",DOT).c_str());
-	EXPECT_STREQ ("quYền", addAccentToWord("quYên",GRAVE).c_str());
-	EXPECT_STREQ ("quYền", addAccentToWord("quYến",GRAVE).c_str());
+TEST (WordHelpers, AddAccentToVowel) {
+	EXPECT_STREQ ("èo", addAccentToVowel ("eo",GRAVE).c_str());
+	EXPECT_STREQ ("iều", addAccentToVowel ("iêu",GRAVE).c_str());
+	EXPECT_STREQ ("uối", addAccentToVowel ("uôi",ACUTE).c_str());
+	EXPECT_STREQ ("Ẹ", addAccentToVowel ("E",DOT).c_str());
+	EXPECT_STREQ ("uYề", addAccentToVowel("uYê",GRAVE).c_str());
+	EXPECT_STREQ ("uYề", addAccentToVowel("uYế",GRAVE).c_str());
 }
 
 int main (int argc, char *argv[]) {

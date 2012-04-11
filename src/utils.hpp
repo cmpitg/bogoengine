@@ -202,9 +202,12 @@ namespace BoGo {
     ustring removeAccentFromChar (const gchar *ch);
     ustring removeAccentFromChar (guint ch);
 
-	ustring processKey (ustring ch, ustring str, InputMethodT im);
-	ustring addMarkToWord (ustring str, Marks mark);
-	ustring addAccentToWord (ustring str, Accents accent);
-	ustring getTransformation (ustring trans);
+    ustring getTransformation (ustring trans);
 	ustringArrayT findTransformation (ustring ch, InputMethodT im);
+	ustring processKey (ustring ch, ustring str, InputMethodT im);
+    
+	ustring addMarkToVowel (ustring str, Marks mark);
+	ustring addAccentToVowel (ustring str, Accents accent);
+    ustring addMarkToText (ustring str, Marks mark);
+    ustring addAccentToText( ustring str, Accents accent);
 }
