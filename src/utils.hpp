@@ -82,6 +82,8 @@ namespace BoGo {
     const ustring VowelsWithAccents =
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
+    const ustring AllVowels = "a e e i o u y ao oa eo oe ie eu oo uo ua ye uye ieu yeu";
+    const ustring ValidFinalConsonants = "c t n ch nh";
 
     const ustring LettersWithoutMarks    = "aaaddeeooouu";
     const ustring LettersMayChangeMarks  = "aăâdđeêoôơuư";
@@ -208,6 +210,10 @@ namespace BoGo {
     
 	ustring addMarkToVowel (ustring str, Marks mark);
 	ustring addAccentToVowel (ustring str, Accents accent);
+    _size_t_ getLastVowerPos (ustring str);
+    ustring getLastVowerPart (ustring str);
+    ustring toRawText (ustring str);
+    bool isSpecialVowel (ustring str);
     ustring addMarkToText (ustring str, Marks mark);
     ustring addAccentToText( ustring str, Accents accent);
 }

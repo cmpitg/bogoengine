@@ -326,6 +326,27 @@ TEST (WordHelpers, AddAccentToVowel) {
 	EXPECT_STREQ ("uYề", addAccentToVowel("uYế",GRAVE).c_str());
 }
 
+TEST (TextHelpers, GetLastVowelPos) {
+    EXPECT_EQ (1, getLastVowerPos ("niêuc"));
+    EXPECT_EQ (3, getLastVowerPos ("mĩmiều"));
+    EXPECT_EQ (5, getLastVowerPos ("giagiáo"));
+    EXPECT_EQ (3, getLastVowerPos ("uyquyền"));
+    EXPECT_EQ (2, getLastVowerPos ("aioán"));
+    EXPECT_EQ (5, getLastVowerPos ("liêuxiêu"));
+}
+
+TEST (TextHelpers, GetLastVowelPart) {
+    EXPECT_STREQ ("iêu", getLastVowerPart ("niêuc").c_str());
+    EXPECT_STREQ ("iỀu", getLastVowerPart ("mĩmiỀu").c_str());
+    EXPECT_STREQ ("áO", getLastVowerPart ("giagiáO").c_str());
+    EXPECT_STREQ ("uyề", getLastVowerPart ("uyquyền").c_str());
+    EXPECT_STREQ ("oán", getLastVowerPart ("aioán").c_str());
+    EXPECT_STREQ ("óa", getLastVowerPart ("xóa").c_str());
+    EXPECT_STREQ ("iêu", getLastVowerPart ("liêuxiêu").c_str());
+}
+
+
+
 int main (int argc, char *argv[]) {
     testing::InitGoogleTest (&argc, argv);
     int dummyVal = RUN_ALL_TESTS ();

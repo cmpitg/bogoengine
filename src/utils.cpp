@@ -517,22 +517,77 @@ namespace BoGo {
         return isLowerCase (_(ch));
     }
 
-	ustring addMarkToWord (ustring str, Marks mark) {
+    ustring toRawText (ustring str) {
+        return removeAllMarksFromWord (removeAccentFromWord (str)).lowercase();
+    }
+
+	ustring addMarkToVowel (ustring vowel, Marks mark) {
 		
 		return "incompleted";
 	}
 
 	ustring addAccentToVowel (ustring vowel, Accents accent) {
 		ustring rawVowel = removeAccentFromWord (vowel);
-		_size_t_ pos = rawVowel.find ("ê");
-        if (pos == ustring::npos)
-            pos = rawVowel.find ("ơ");
+        ustring specialSingleVowels = "ăâơê";
+        ustring ch;
+        _size_t_ pos;
+        for ( _size_t_ i = 0; i < 4; i++) {
+            ch = _(specialSingleVowels[i]);
+            pos = rawVowel.find (ch);
+            if (pos != ustring::npos) break;
+        }
+            
         if (pos == ustring::npos) {
             pos = ( rawVowel.size () <= 2) ? 0 : 1;
         }
         
         return rawVowel.replace (pos, 1, addAccentToChar (rawVowel[pos], accent));
 	}
+
+    bool isSpecialVowel(ustring str) {
+        // consider some following strings as vowel.
+        ustring raw = toRawText(str);
+        if ((raw == "oan") || (raw == "oat") ||
+            (raw == "oen") || (raw == "oet")) {
+            return true;
+        }
+        else return false;
+    }
+
+    _size_t_ getLastVowerPos (ustring str) {
+        ustring part = "";
+        _size_t_ pos = ustring::npos;
+                
+        for (_size_t_ i = str.size () -1; i >= 0; i--)
+            for (_size_t_ j = i-2; j<=i; j++)
+                if (j >=0) {
+                    part = toRawText(ustring (str, j, i-j+1));
+                    if ( isSpecialVowel (part))
+                        return j;
+                    pos = AllVowels.find (part);
+                    if (pos != ustring::npos) return j;
+                }
+    }
+
+    ustring getLastVowerPart (ustring str) {
+        ustring part = "";
+        _size_t_ pos = ustring::npos;
+        //oan oat oen oet ao eo yeu ieu
+        
+        for (_size_t_ i = str.size () -1; i >= 0; i--)
+            for (_size_t_ j = i-2; j<=i; j++)
+                if (j >=0) {
+                    part = toRawText (ustring (str, j, i-j+1));
+                    if ( isSpecialVowel (part))
+                        return ustring (str, j, i-j+1);
+                    pos = AllVowels.find (part);
+                    if (pos != ustring::npos) return ustring (str, j, i-j+1);
+                }
+    }
+    
+    ustring addAccentToText (ustring str, Accents accent) {
+        
+    }
 	
 
 
