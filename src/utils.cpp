@@ -20,7 +20,7 @@
 */
 
 #include "utils.hpp"
-// #include <iostream>
+#include <iostream>
 
 // FIXME charset
 // FIXME Polish and clean up code
@@ -39,6 +39,34 @@ namespace BoGo {
 #undef __
 #endif
 #define __(x) (ustring ("") + x).c_str ()
+
+    ustring removeAllMarksFromWord (ustring word) {
+        ustring res = "";
+        for (_size_t_ i = 0; i < word.length (); i++)
+            res += removeMarkFromChar (word[i]);
+        return res;
+    }
+
+    ustring removeAllMarksFromWord (string word) {
+        return removeAllMarksFromWord (_(word));
+    }
+
+    ustring removeAllMarksFromWord (const gchar *word) {
+        return removeAllMarksFromWord (_(word));
+    }
+
+    ustring removeMarkFromWord (ustring word, _size_t_ pos) {
+        ustring ch = _(word[pos]);
+        return word.replace (pos, 1, removeMarkFromChar (ch));
+    }
+
+    ustring removeMarkFromWord (string word, _size_t_ pos) {
+        return removeMarkFromWord (_(word), pos);
+    }
+
+    ustring removeMarkFromWord (const gchar *word, _size_t_ pos) {
+        return removeMarkFromWord (_(word), pos);
+    }
 
     ustring removeAccentFromWord (ustring word) {
         ustring res;
@@ -439,22 +467,22 @@ namespace BoGo {
         return isLetter (_(ch));
     }
 
-    bool isWordBreak (ustring ch) {
+    bool isWordBreak (ustring ch, guint BackspaceChar) {
         // A char is a word-break if and only if tt's a non-letter
         // character and not a Backspace.
-        return !isLetter (ch.lowercase ()) && ch != _(BACKSPACE_CODE);
+        return !isLetter (ch.lowercase ()) && ch != _(BackspaceChar);
     }
 
-    bool isWordBreak (const gchar *ch) {
-        return isWordBreak (_(ch));
+    bool isWordBreak (const gchar *ch, guint BackspaceChar) {
+        return isWordBreak (_(ch), BackspaceChar);
     }
 
-    bool isWordBreak (string ch) {
-        return isWordBreak (_(ch));
+    bool isWordBreak (string ch, guint BackspaceChar) {
+        return isWordBreak (_(ch), BackspaceChar);
     }
 
-    bool isWordBreak (guint ch) {
-        return isWordBreak (_(ch));
+    bool isWordBreak (guint ch, guint BackspaceChar) {
+        return isWordBreak (_(ch), BackspaceChar);
     }
 
     bool isUpperCase (ustring ch) {

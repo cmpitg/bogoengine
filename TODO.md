@@ -1,9 +1,5 @@
 ## `ustring addMarkToWord (ustring, Marks)`
 
-## `ustring removeMarkFromWord (ustring, _size_t_)`
-
-## `ustring removeAllMarksFromWord (ustring)`
-
 ## `ustring addAccentToWord (ustring, Accents)`
 
 ## Thêm phần hỗ trợ các bảng mã
@@ -100,9 +96,19 @@ Ví dụ: nội dung của file mô tả kiểu gõ *Simple Telex*:
 
 ##### Mặc định, **BoGoEngine** đi kèm với 4 kiểu gõ: *Telex*, *Simple Telex*, *VNI*, và *VIQR*
 
+##### Ghi chú: Để thêm dấu cho một đoạn text, cần tìm **từ cuối cùng** của text, chẳng hạn "nànố", "mèovàng", ...
+
 ## Thảo luận:
 
 ### Hỗ trợ việc thêm dấu
     "[kiểu mới](http://vi.wikipedia.org/wiki/Quy_tắc_đặt_dấu_thanh_trong_tiếng_Việt#Ki.E1.BB.83u_m.E1.BB.9Bi)"?
 
-* **cmpitg**: không hỗ trợ, không ủng hộ.
+**cmpitg**: không hỗ trợ, không ủng hộ cách bỏ dấu "kiểu mới".  Để giữ gìn sự trong sáng của tiếng việt.
+
+### Xử lý từ tiếng Việt: "mecf" (không thêm dấu khi nhấn "f") với "mèc" (thêm dấu khi nhấn "f")?
+
+Ví dụ:
+
+* "mecf" thành "mèc" hay "mecf"?
+* "mecfwee" thành "mecfê" hay "mecfwee"?
+

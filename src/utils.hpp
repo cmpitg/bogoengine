@@ -89,6 +89,14 @@ namespace BoGo {
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
+    ustring removeAllMarksFromWord (ustring word);
+    ustring removeAllMarksFromWord (string word);
+    ustring removeAllMarksFromWord (const gchar *word);
+
+    ustring removeMarkFromWord (ustring word, _size_t_ pos);
+    ustring removeMarkFromWord (string word, _size_t_ pos);
+    ustring removeMarkFromWord (const gchar *word, _size_t_ pos);
+
     ustring removeAccentFromWord (ustring word);
     ustring removeAccentFromWord (string word);
     ustring removeAccentFromWord (const gchar *word);
@@ -184,10 +192,10 @@ namespace BoGo {
     bool isLowerCase (const gchar *ch);
     bool isLowerCase (guint ch);
 
-    bool isWordBreak (ustring ch);
-    bool isWordBreak (string ch);
-    bool isWordBreak (const gchar *ch);
-    bool isWordBreak (guint ch);
+    bool isWordBreak (ustring ch, guint BackspaceChar = BACKSPACE_CODE);
+    bool isWordBreak (string ch, guint BackspaceChar = BACKSPACE_CODE);
+    bool isWordBreak (const gchar *ch, guint BackspaceChar = BACKSPACE_CODE);
+    bool isWordBreak (guint ch, guint BackspaceChar = BACKSPACE_CODE);
 
     ustring removeAccentFromChar (ustring ch);
     ustring removeAccentFromChar (string ch);

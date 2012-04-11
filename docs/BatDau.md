@@ -16,9 +16,9 @@
 * **BoGoEngine** sử dụng C++.  Lý do: tiết kiệm công sức cho việc mở rộng và
   bảo trì mã nguồn mà vẫn đạt được hiệu suất rất cao.
 
-* **BoGoEngine** dùng thư viện **gtkmm** (wrapper của GTK+ cho ngôn ngữ C++).
-  Lý do: GTK+ nhẹ, nhanh, API rõ ràng, trong sáng, có convention, tương đối dễ
-  sử dụng, khả năng bảo trì và mở rộng tốt; đặc biệt GTK+ có mặt mặc định trên
+* **BoGoEngine** dùng thư viện **glibmm** (wrapper của Glib cho ngôn ngữ C++).
+  Lý do: Glib nhẹ, nhanh, API rõ ràng, trong sáng, có convention, tương đối dễ
+  sử dụng, khả năng bảo trì và mở rộng tốt; đặc biệt Glib có mặt mặc định trên
   hầu hết các bản phân phối GNU/Linux.
 
 * **BoGoEngine** đặc biệt chú trọng vào *khả năng tái sử dụng (reusability)*,

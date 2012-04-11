@@ -40,9 +40,31 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
-InputMethodT testIM = makeStandardIM (IM_SIMPLETELEX);
+
+TEST (MarkAndWord, RemoveAllMarks) {
+    EXPECT_STREQ ("thuỏ", removeAllMarksFromWord ("thuở").c_str ());
+    EXPECT_STREQ ("gIỵA", removeAllMarksFromWord ("gIỵA").c_str ());
+    EXPECT_STREQ ("uýNh", removeAllMarksFromWord ("uýNh").c_str ());
+    EXPECT_STREQ ("LỌn", removeAllMarksFromWord ("LỘn").c_str ());
+    EXPECT_STREQ ("xOoNg", removeAllMarksFromWord ("xOoNg").c_str ());
+    EXPECT_STREQ ("xOÒng", removeAllMarksFromWord ("xOÒng").c_str ());
+    EXPECT_STREQ ("khúC", removeAllMarksFromWord ("khứC").c_str ());
+    EXPECT_STREQ ("HuO", removeAllMarksFromWord ("HuƠ").c_str ());
+    EXPECT_STREQ ("HuOu", removeAllMarksFromWord ("HưƠu").c_str ());
+    EXPECT_STREQ ("HuONg", removeAllMarksFromWord ("HưƠNg").c_str ());
+}
 
 
+TEST (MarkAndWord, RemoveMark) {
+    EXPECT_STREQ ("thuỏ", removeMarkFromWord ("thuở", 3).c_str ());
+    EXPECT_STREQ ("gIỵA", removeMarkFromWord ("gIỵA", 2).c_str ());
+    EXPECT_STREQ ("uýNh", removeMarkFromWord ("uýNh", 1).c_str ());
+    EXPECT_STREQ ("LỌn", removeMarkFromWord ("LỘn", 1).c_str ());
+    EXPECT_STREQ ("xOoNg", removeMarkFromWord ("xOoNg", 3).c_str ());
+    EXPECT_STREQ ("xOÒng", removeMarkFromWord ("xOÒng", 2).c_str ());
+    EXPECT_STREQ ("khúC", removeMarkFromWord ("khứC", 2).c_str ());
+    EXPECT_STREQ ("HuO", removeMarkFromWord ("HuƠ", 2).c_str ());
+}
 
 TEST (AccentAndWord, RemoveAccent) {
     EXPECT_STREQ ("thuơ", removeAccentFromWord ("thuở").c_str ());
@@ -283,14 +305,15 @@ TEST (ProcessKey, BackspacePressed) {
 }
 
 TEST (FindTransformation, SimpleTelex) {
+    InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
 	ustringArrayT transfromation_w;
 	transfromation_w.push_back("o+");
 	transfromation_w.push_back("u+");
 	transfromation_w.push_back("*v");
 	
-	EXPECT_EQ (transfromation_w[0], findTransformation ( "w", testIM)[0]);
-	EXPECT_EQ (transfromation_w[1], findTransformation ( "w", testIM)[1]);
-	EXPECT_EQ (transfromation_w[2], findTransformation ( "w", testIM)[2]);
+	EXPECT_EQ (transfromation_w[0], findTransformation ( "w", im)[0]);
+	EXPECT_EQ (transfromation_w[1], findTransformation ( "w", im)[1]);
+	EXPECT_EQ (transfromation_w[2], findTransformation ( "w", im)[2]);
 }
 
 
