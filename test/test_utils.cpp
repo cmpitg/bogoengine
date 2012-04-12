@@ -323,8 +323,12 @@ TEST (WordHelpers, AddAccentToVowel) {
 	EXPECT_STREQ ("uối", addAccentToVowel ("uôi",ACUTE).c_str());
 	EXPECT_STREQ ("Ẹ", addAccentToVowel ("E",DOT).c_str());
 	EXPECT_STREQ ("uYề", addAccentToVowel("uYê",GRAVE).c_str());
+<<<<<<< HEAD
 	EXPECT_STREQ ("uYê", addAccentToVowel("uYế",NO_ACCENT).c_str());
     EXPECT_STREQ ("óa", addAccentToVowel("oa",ACUTE).c_str());
+=======
+	EXPECT_STREQ ("uYề", addAccentToVowel("uYế",GRAVE).c_str());
+>>>>>>> parent of 99473db... Fix indexing bugs
 }
 
 TEST (TextHelpers, GetLastVowelPos) {
@@ -342,9 +346,9 @@ TEST (TextHelpers, GetLastVowelPart) {
     EXPECT_STREQ ("áO", getLastVowerPart ("giagiáO").c_str());
     EXPECT_STREQ ("uyề", getLastVowerPart ("uyquyền").c_str());
     EXPECT_STREQ ("oán", getLastVowerPart ("aioán").c_str());
-    EXPECT_STREQ ("oa", getLastVowerPart ("toa").c_str());
-    EXPECT_STREQ ("oan", getLastVowerPart ("toan").c_str());
+    EXPECT_STREQ ("óa", getLastVowerPart ("xóa").c_str());
     EXPECT_STREQ ("iêu", getLastVowerPart ("liêuxiêu").c_str());
+<<<<<<< HEAD
     EXPECT_STREQ ("aO", getLastVowerPart ("aO").c_str());
 }
 
@@ -361,6 +365,8 @@ TEST (TextHelpers, AddAccentToTextWithTransformation) {
     EXPECT_STREQ ("hoẽn", addAccentToText ("hoẹn", "x~").c_str());
     EXPECT_STREQ ("hOen", addAccentToText ("hOẹn", "_").c_str());
     
+=======
+>>>>>>> parent of 99473db... Fix indexing bugs
 }
 
 

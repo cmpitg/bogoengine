@@ -216,8 +216,12 @@ namespace BoGo {
     bool isSpecialVowel (ustring str);
 
     ustring addMarkToText (ustring str, Marks mark);
+<<<<<<< HEAD
     ustring addMarkToChar (ustring str, ustring key_transf);
     
     ustring addAccentToText (ustring str, Accents accent);
     ustring addAccentToText (ustring str, ustring key_transf)
+=======
+    ustring addAccentToText( ustring str, Accents accent);
+>>>>>>> parent of 99473db... Fix indexing bugs
 }
