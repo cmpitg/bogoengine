@@ -7,7 +7,8 @@
 * CMake 2.6+
 * gcc 4.2+
 * glibmm 2.4
-* GoogleTest
+* Google Test **1.5.0** (bản *1.6.0* có lỗi khi so sánh string, không sử dụng
+  *được với BoGoEngine*)
 
 ## Lưu ý
 
