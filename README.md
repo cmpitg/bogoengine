@@ -64,8 +64,6 @@ triển.
 ### Cho việc biên dịch
 
 * CMake 2.6+
-* Google Test **1.5.0** (bản *1.6.0* có lỗi khi so sánh string, không sử dụng
-  *được với BoGoEngine*)
 * glibmm 2.4
 
 ### Cho việc sử dụng
