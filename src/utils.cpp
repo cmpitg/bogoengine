@@ -545,7 +545,7 @@ namespace BoGo {
         return rawVowel.replace (pos, 1, addAccentToChar (rawVowel[pos], accent));
 	}
 
-    bool isSpecialVowel (ustring str) {
+    bool isSpecialVowel(ustring str) {
         // consider some following strings as vowel.
         ustring raw = toRawText(str);
         if ((raw == "oan") || (raw == "oat") ||
@@ -556,12 +556,13 @@ namespace BoGo {
     }
 
 
+	
     _size_t_ getLastVowerPos (ustring str) {
         ustring part = "";
         _size_t_ pos = ustring::npos;
                 
         for (_size_t_ i = str.size () -1; i >= 0; i--)
-            for (_size_t_ j = i-2; j<=i; j++)
+            for (_size_t_ j = (i > 2) ? i-2 : 0; j<=i; j++)
                 if (j >=0) {
                     part = toRawText(ustring (str, j, i-j+1));
                     if ( isSpecialVowel (part))
@@ -575,42 +576,53 @@ namespace BoGo {
         ustring part = "";
         _size_t_ pos = ustring::npos;
         //oan oat oen oet ao eo yeu ieu
-        
         for (_size_t_ i = str.size () -1; i >= 0; i--)
-            for (_size_t_ j = i-2; j<=i; j++)
+            for (_size_t_ j = (i > 2) ? i - 2 : 0; j<=i; j++)
                 if (j >=0) {
                     part = toRawText (ustring (str, j, i-j+1));
                     if ( isSpecialVowel (part))
                         return ustring (str, j, i-j+1);
                     pos = AllVowels.find (part);
-                    if (pos != ustring::npos) return ustring (str, j, i-j+1);
+                    if (pos != ustring::npos)
+                        return ustring (str, j, i-j+1);
                 }
     }
     
     ustring addAccentToText (ustring str, Accents accent) {
-        
+        _size_t_ vpos = getLastVowerPos (str);
+        if (vpos != ustring::npos) {
+            ustring lastVowel = getLastVowerPart (str);
+            _size_t_ cpos = vpos + lastVowel.size ();
+             ustring lastConsonant = (cpos < str.size ()) ? ustring (str, cpos) : "";
+            ustring changedVowel = addAccentToVowel (lastVowel, accent);
+            ustring newStr = (vpos > 0) ? ustring (str, 0, vpos) +
+                changedVowel + lastConsonant :
+                changedVowel + lastConsonant;
+            return newStr;
+        } else
+            return "error";
     }
 
     ustring addAccentToText (ustring str, ustring key_transf) {
-        ustring ch = key_transf[0];
+        ustring ch = _(key_transf[0]);
         ustring transf = getTransformation (key_transf);
-        if (transf == "/") return addAccentToText (str, ACUTE);
-        if (transf == "\\") return addAccentToText (str, GRAVE);
-        if (transf == "?") return addAccentToText (str, HOOK);
-        if (transf == "~") return addAccentToText (str, TILDE);
-        if (transf == ".") return addAccentToText (str, ACUTE);
-        if (transf == "_") return addAccentToText (str, NO_ACCENT);
-    
+        if (transf == "*/") return addAccentToText (str, ACUTE);
+        if (transf == "*\\") return addAccentToText (str, GRAVE);
+        if (transf == "*?") return addAccentToText (str, HOOK);
+        if (transf == "*~") return addAccentToText (str, TILDE);
+        if (transf == "*.") return addAccentToText (str, DOT);
+        if (transf == "*_") return addAccentToText (str, NO_ACCENT);
     }
 
-	ustring getTransformation (ustring key_transf) {
-		/* get the tranformation part from the string describing the transfformation
+
+	ustring getTransformation (ustring trans) {
+		/* get the tranformation part from the string describing the transformation
 		   ex: "a a+" -> "a+" */
-		key_transf.erase (0,1);
-		while (_(key_transf[0]) == " ") {
-			key_transf.erase(0,1);
+		trans.erase (0,1);
+		while (_(trans[0]) == " ") {
+			trans.erase(0,1);
 		}
-		return key_transf;
+		return trans;
 	}
 	
 	ustringArrayT  findTransformation (ustring ch, InputMethodT im) {
@@ -619,25 +631,18 @@ namespace BoGo {
 		for (guint i = 0; i < im.size(); i++) {
 			ustring tr = im[i];
 			if (ch == _(tr[0])) {
-				transforms.push_back (im[i]);
+				transforms.push_back (getTransformation (tr));
 			}
 		}
 		return transforms;
 	}
-
-
-   	ustring processKey (ustring ch, ustring str, InputMethodT im) {
+	
+	ustring processKey (ustring ch, ustring str, InputMethodT im) {
 		// Default input method is telex  and default charset is UTF8
 		if (ch == _(BACKSPACE_CODE)) {
 			str.erase (str.size() - 1, 1);
 			return str;
 		}
-
-        ustringArrayT possibleTrans = findTransformation (ch, im);
-        if (possibleTrans.size () != 0) {
-            
-        }
-        
 
 		
 		

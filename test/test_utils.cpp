@@ -307,9 +307,9 @@ TEST (ProcessKey, BackspacePressed) {
 TEST (FindTransformation, SimpleTelex) {
     InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
 	ustringArrayT transformation_w;
-	transformation_w.push_back("wo+");
-	transformation_w.push_back("wu+");
-	transformation_w.push_back("w*v");
+	transformation_w.push_back("o+");
+	transformation_w.push_back("u+");
+	transformation_w.push_back("*v");
 	
 	EXPECT_EQ (transformation_w[0], findTransformation ( "w", im)[0]);
 	EXPECT_EQ (transformation_w[1], findTransformation ( "w", im)[1]);
@@ -323,12 +323,9 @@ TEST (WordHelpers, AddAccentToVowel) {
 	EXPECT_STREQ ("uối", addAccentToVowel ("uôi",ACUTE).c_str());
 	EXPECT_STREQ ("Ẹ", addAccentToVowel ("E",DOT).c_str());
 	EXPECT_STREQ ("uYề", addAccentToVowel("uYê",GRAVE).c_str());
-<<<<<<< HEAD
 	EXPECT_STREQ ("uYê", addAccentToVowel("uYế",NO_ACCENT).c_str());
-    EXPECT_STREQ ("óa", addAccentToVowel("oa",ACUTE).c_str());
-=======
 	EXPECT_STREQ ("uYề", addAccentToVowel("uYế",GRAVE).c_str());
->>>>>>> parent of 99473db... Fix indexing bugs
+    EXPECT_STREQ ("óa", addAccentToVowel("oa",ACUTE).c_str());
 }
 
 TEST (TextHelpers, GetLastVowelPos) {
@@ -348,25 +345,35 @@ TEST (TextHelpers, GetLastVowelPart) {
     EXPECT_STREQ ("oán", getLastVowerPart ("aioán").c_str());
     EXPECT_STREQ ("óa", getLastVowerPart ("xóa").c_str());
     EXPECT_STREQ ("iêu", getLastVowerPart ("liêuxiêu").c_str());
-<<<<<<< HEAD
     EXPECT_STREQ ("aO", getLastVowerPart ("aO").c_str());
 }
 
-TEST (TextHelpers, AddAccentToTextWithTransformation) {
-    EXPECT_STREQ ("áO", addAccentToText ("aO", "s/").c_str());
-    EXPECT_STREQ ("tóa", addAccentToText ("toa", "s/").c_str());
-    EXPECT_STREQ ("làmtoán", addAccentToText ("làmtoan", "s/").c_str());
-    EXPECT_STREQ ("uyquyền", addAccentToText ("uyquyên", "f\\").c_str());
-    EXPECT_STREQ ("họa", addAccentToText ("hoa", "j.").c_str());
-    EXPECT_STREQ ("hoạn", addAccentToText ("hoan", "j.").c_str());
-    EXPECT_STREQ ("hoạt", addAccentToText ("hoát", "j.").c_str());
-    EXPECT_STREQ ("xoét", addAccentToText ("xoet", "s/").c_str());
-    EXPECT_STREQ ("xỏe", addAccentToText ("xòe", "r?").c_str());
-    EXPECT_STREQ ("hoẽn", addAccentToText ("hoẹn", "x~").c_str());
-    EXPECT_STREQ ("hOen", addAccentToText ("hOẹn", "_").c_str());
-    
-=======
->>>>>>> parent of 99473db... Fix indexing bugs
+TEST (TextHelpers, AddAccentToText) {
+    EXPECT_STREQ ("áO", addAccentToText ("aO", ACUTE).c_str());
+    EXPECT_STREQ ("tóa", addAccentToText ("toa", ACUTE).c_str());
+    EXPECT_STREQ ("làmtoán", addAccentToText ("làmtoan", ACUTE).c_str());
+    EXPECT_STREQ ("uyquyền", addAccentToText ("uyquyên", GRAVE).c_str());
+    EXPECT_STREQ ("họa", addAccentToText ("hoa", DOT).c_str());
+    EXPECT_STREQ ("hoạn", addAccentToText ("hoan", DOT).c_str());
+    EXPECT_STREQ ("hoạt", addAccentToText ("hoát", DOT).c_str());
+    EXPECT_STREQ ("xoét", addAccentToText ("xoet", ACUTE).c_str());
+    EXPECT_STREQ ("xỏe", addAccentToText ("xòe", HOOK).c_str());
+    EXPECT_STREQ ("hoẽn", addAccentToText ("hoẹn", TILDE).c_str());
+    EXPECT_STREQ ("hoen", addAccentToText ("hoẹn", NO_ACCENT).c_str());
+}
+
+TEST (TestHelpers, AddAccentToTextWithTransfomation) {
+    EXPECT_STREQ ("áO", addAccentToText ("aO", "*/").c_str());
+    EXPECT_STREQ ("tóa", addAccentToText ("toa", "*/").c_str());
+    EXPECT_STREQ ("làmtoán", addAccentToText ("làmtoan", "*/").c_str());
+    EXPECT_STREQ ("uyquyền", addAccentToText ("uyquyên", "*\\").c_str());
+    EXPECT_STREQ ("họa", addAccentToText ("hoa", "*.").c_str());
+    EXPECT_STREQ ("hoạn", addAccentToText ("hoan", "*.").c_str());
+    EXPECT_STREQ ("hoạt", addAccentToText ("hoát", "*.").c_str());
+    EXPECT_STREQ ("xoét", addAccentToText ("xoet", "*/").c_str());
+    EXPECT_STREQ ("xỏe", addAccentToText ("xòe", "*?").c_str());
+    EXPECT_STREQ ("hoẽn", addAccentToText ("hoẹn", "*~").c_str());
+    EXPECT_STREQ ("hoen", addAccentToText ("hoẹn", "*_").c_str());
 }
 
 

@@ -82,8 +82,8 @@ namespace BoGo {
     const ustring VowelsWithAccents =
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
-    const ustring AllVowels = "a e  i o u y ao oa eo oe ie eu oo uo ua ye uye ieu yeu";
-    const ustring ValidFinalConsonants = "c ch n nh ng m p t th";
+    const ustring AllVowels = "a e e i o u y ao oa eo oe ie eu oo uo ua ye uye ieu yeu";
+    const ustring ValidFinalConsonants = "c t n ch nh";
 
     const ustring LettersWithoutMarks    = "aaaddeeooouu";
     const ustring LettersMayChangeMarks  = "aăâdđeêoôơuư";
@@ -214,14 +214,9 @@ namespace BoGo {
     ustring getLastVowerPart (ustring str);
     ustring toRawText (ustring str);
     bool isSpecialVowel (ustring str);
-
     ustring addMarkToText (ustring str, Marks mark);
-<<<<<<< HEAD
     ustring addMarkToChar (ustring str, ustring key_transf);
     
     ustring addAccentToText (ustring str, Accents accent);
-    ustring addAccentToText (ustring str, ustring key_transf)
-=======
-    ustring addAccentToText( ustring str, Accents accent);
->>>>>>> parent of 99473db... Fix indexing bugs
+    ustring addAccentToText (ustring str, ustring key_transf);
 }
