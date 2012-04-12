@@ -112,3 +112,8 @@ Ví dụ:
 * "mecf" thành "mèc" hay "mecf"?
 * "mecfwee" thành "mecfê" hay "mecfwee"?
 
+Dam Tien Long
+
+    Có thể coi vần như là 1 cách để biết rằng từ đang viết còn có thể mở rộng hay là đã kết thúc. (ac có thể mở rộng thành ach, ach thì ko thể mở rộng được nữa)
+
+    

@@ -528,6 +528,7 @@ namespace BoGo {
 
 	ustring addAccentToVowel (ustring vowel, Accents accent) {
 		ustring rawVowel = removeAccentFromWord (vowel);
+        if (accent == NO_ACCENT) return rawVowel;
         ustring specialSingleVowels = "ăâơê";
         ustring ch;
         _size_t_ pos;
@@ -544,7 +545,7 @@ namespace BoGo {
         return rawVowel.replace (pos, 1, addAccentToChar (rawVowel[pos], accent));
 	}
 
-    bool isSpecialVowel(ustring str) {
+    bool isSpecialVowel (ustring str) {
         // consider some following strings as vowel.
         ustring raw = toRawText(str);
         if ((raw == "oan") || (raw == "oat") ||
@@ -553,6 +554,7 @@ namespace BoGo {
         }
         else return false;
     }
+
 
     _size_t_ getLastVowerPos (ustring str) {
         ustring part = "";
@@ -597,17 +599,27 @@ namespace BoGo {
         } else
             return "error";
     }
-	
 
+    ustring addAccentToText (ustring str, ustring key_transf) {
+        ustring ch = key_transf[0];
+        ustring transf = getTransformation (key_transf);
+        if (transf == "/") return addAccentToText (str, ACUTE);
+        if (transf == "\\") return addAccentToText (str, GRAVE);
+        if (transf == "?") return addAccentToText (str, HOOK);
+        if (transf == "~") return addAccentToText (str, TILDE);
+        if (transf == ".") return addAccentToText (str, ACUTE);
+        if (transf == "_") return addAccentToText (str, NO_ACCENT);
+    
+    }
 
-	ustring getTransformation (ustring trans) {
-		/* get the tranformation part from the string describing the transformation
+	ustring getTransformation (ustring key_transf) {
+		/* get the tranformation part from the string describing the transfformation
 		   ex: "a a+" -> "a+" */
-		trans.erase (0,1);
-		while (_(trans[0]) == " ") {
-			trans.erase(0,1);
+		key_transf.erase (0,1);
+		while (_(key_transf[0]) == " ") {
+			key_transf.erase(0,1);
 		}
-		return trans;
+		return key_transf;
 	}
 	
 	ustringArrayT  findTransformation (ustring ch, InputMethodT im) {
@@ -616,18 +628,25 @@ namespace BoGo {
 		for (guint i = 0; i < im.size(); i++) {
 			ustring tr = im[i];
 			if (ch == _(tr[0])) {
-				transforms.push_back (getTransformation (tr));
+				transforms.push_back (im[i]);
 			}
 		}
 		return transforms;
 	}
-	
-	ustring processKey (ustring ch, ustring str, InputMethodT im) {
+
+
+   	ustring processKey (ustring ch, ustring str, InputMethodT im) {
 		// Default input method is telex  and default charset is UTF8
 		if (ch == _(BACKSPACE_CODE)) {
 			str.erase (str.size() - 1, 1);
 			return str;
 		}
+
+        ustringArrayT possibleTrans = findTransformation (ch, im);
+        if (possibleTrans.size () != 0) {
+            
+        }
+        
 
 		
 		
