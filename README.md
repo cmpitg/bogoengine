@@ -80,6 +80,7 @@ phát hành dưới các quy định ghi trong Giấy phép Công cộng GNU, ph
 ## Credit
 
 Bản quyền (C) năm 2012 bởi:
+
 * Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
 * Nguyễn Thành Hải <phaikawl@gmail.com>
 
