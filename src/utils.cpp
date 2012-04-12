@@ -559,7 +559,7 @@ namespace BoGo {
         _size_t_ pos = ustring::npos;
                 
         for (_size_t_ i = str.size () -1; i >= 0; i--)
-            for (_size_t_ j = i-2; j<=i; j++)
+            for (_size_t_ j = (i > 2) ? i-2 : 0; j<=i; j++)
                 if (j >=0) {
                     part = toRawText(ustring (str, j, i-j+1));
                     if ( isSpecialVowel (part))
@@ -573,20 +573,29 @@ namespace BoGo {
         ustring part = "";
         _size_t_ pos = ustring::npos;
         //oan oat oen oet ao eo yeu ieu
-        
         for (_size_t_ i = str.size () -1; i >= 0; i--)
-            for (_size_t_ j = i-2; j<=i; j++)
+            for (_size_t_ j = (i > 2) ? i - 2 : 0; j<=i; j++)
                 if (j >=0) {
                     part = toRawText (ustring (str, j, i-j+1));
                     if ( isSpecialVowel (part))
                         return ustring (str, j, i-j+1);
                     pos = AllVowels.find (part);
-                    if (pos != ustring::npos) return ustring (str, j, i-j+1);
+                    if (pos != ustring::npos)
+                        return ustring (str, j, i-j+1);
                 }
     }
     
     ustring addAccentToText (ustring str, Accents accent) {
-        
+        _size_t_ vpos = getLastVowerPos (str);
+        if (vpos != ustring::npos) {
+            ustring lastVowel = getLastVowerPart (str);
+            _size_t_ cpos = vpos + lastVowel.size ();
+             ustring lastConsonant = (cpos < str.size ()) ? ustring (str, cpos) : "";
+            ustring changedVowel = addAccentToVowel (lastVowel, accent);
+            ustring newStr = (vpos > 0) ? ustring (str, 0, vpos) + changedVowel + lastConsonant : changedVowel + lastConsonant;
+            return newStr;
+        } else
+            return "error";
     }
 	
 

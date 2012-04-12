@@ -215,5 +215,5 @@ namespace BoGo {
     ustring toRawText (ustring str);
     bool isSpecialVowel (ustring str);
     ustring addMarkToText (ustring str, Marks mark);
-    ustring addAccentToText( ustring str, Accents accent);
+    ustring addAccentToText (ustring str, Accents accent);
 }

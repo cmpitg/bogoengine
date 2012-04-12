@@ -324,6 +324,7 @@ TEST (WordHelpers, AddAccentToVowel) {
 	EXPECT_STREQ ("Ẹ", addAccentToVowel ("E",DOT).c_str());
 	EXPECT_STREQ ("uYề", addAccentToVowel("uYê",GRAVE).c_str());
 	EXPECT_STREQ ("uYề", addAccentToVowel("uYế",GRAVE).c_str());
+    EXPECT_STREQ ("óa", addAccentToVowel("oa",ACUTE).c_str());
 }
 
 TEST (TextHelpers, GetLastVowelPos) {
@@ -341,8 +342,24 @@ TEST (TextHelpers, GetLastVowelPart) {
     EXPECT_STREQ ("áO", getLastVowerPart ("giagiáO").c_str());
     EXPECT_STREQ ("uyề", getLastVowerPart ("uyquyền").c_str());
     EXPECT_STREQ ("oán", getLastVowerPart ("aioán").c_str());
-    EXPECT_STREQ ("óa", getLastVowerPart ("xóa").c_str());
+    EXPECT_STREQ ("oa", getLastVowerPart ("toa").c_str());
+    EXPECT_STREQ ("oan", getLastVowerPart ("toan").c_str());
     EXPECT_STREQ ("iêu", getLastVowerPart ("liêuxiêu").c_str());
+    EXPECT_STREQ ("aO", getLastVowerPart ("aO").c_str());
+}
+
+TEST (TextHelpers, AddAccentToText) {
+    EXPECT_STREQ ("áO", addAccentToText ("aO", ACUTE).c_str());
+    EXPECT_STREQ ("tóa", addAccentToText ("toa", ACUTE).c_str());
+    EXPECT_STREQ ("làmtoán", addAccentToText ("làmtoan", ACUTE).c_str());
+    EXPECT_STREQ ("uyquyền", addAccentToText ("uyquyên", GRAVE).c_str());
+    EXPECT_STREQ ("họa", addAccentToText ("hoa", DOT).c_str());
+    EXPECT_STREQ ("hoạn", addAccentToText ("hoan", DOT).c_str());
+    EXPECT_STREQ ("hoạt", addAccentToText ("hoát", DOT).c_str());
+    EXPECT_STREQ ("xoét", addAccentToText ("xoet", ACUTE).c_str());
+    EXPECT_STREQ ("xỏe", addAccentToText ("xòe", HOOK).c_str());
+    EXPECT_STREQ ("hoẽn", addAccentToText ("hoẹn", TILDE).c_str());
+    
 }
 
 
