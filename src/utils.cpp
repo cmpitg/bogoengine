@@ -560,24 +560,23 @@ namespace BoGo {
     _size_t_ getLastVowerPos (ustring str) {
         ustring part = "";
         _size_t_ pos = ustring::npos;
-                
-        for (_size_t_ i = str.size () -1; i >= 0; i--)
-            for (_size_t_ j = (i > 2) ? i-2 : 0; j<=i; j++)
-                if (j >=0) {
-                    part = toRawText(ustring (str, j, i-j+1));
-                    if ( isSpecialVowel (part))
-                        return j;
-                    pos = AllVowels.find (part);
-                    if (pos != ustring::npos) return j;
-                }
+        for (gint i = str.size () -1; i >= 0; i--)
+            for (gint j = (i > 2) ? i-2 : 0; j<=i; j++) {
+                part = toRawText(ustring (str, j, i-j+1));
+                if ( isSpecialVowel (part))
+                    return j;
+                pos = AllVowels.find (part);
+                if (pos != ustring::npos) return j;
+            }
+        return ustring::npos;
     }
 
     ustring getLastVowerPart (ustring str) {
         ustring part = "";
         _size_t_ pos = ustring::npos;
         //oan oat oen oet ao eo yeu ieu
-        for (_size_t_ i = str.size () -1; i >= 0; i--)
-            for (_size_t_ j = (i > 2) ? i - 2 : 0; j<=i; j++)
+        for (gint i = str.size () -1; i >= 0; i--)
+            for (gint j = (i > 2) ? i - 2 : 0; j<=i; j++)
                 if (j >=0) {
                     part = toRawText (ustring (str, j, i-j+1));
                     if ( isSpecialVowel (part))
@@ -600,7 +599,7 @@ namespace BoGo {
                 changedVowel + lastConsonant;
             return newStr;
         } else
-            return "error";
+            return str;
     }
 
     ustring addAccentToText (ustring str, ustring key_transf) {
@@ -612,8 +611,8 @@ namespace BoGo {
         if (transf == "*~") return addAccentToText (str, TILDE);
         if (transf == "*.") return addAccentToText (str, DOT);
         if (transf == "*_") return addAccentToText (str, NO_ACCENT);
+        return str;
     }
-
 
 	ustring getTransformation (ustring trans) {
 		/* get the tranformation part from the string describing the transformation
@@ -631,11 +630,15 @@ namespace BoGo {
 		for (guint i = 0; i < im.size(); i++) {
 			ustring tr = im[i];
 			if (ch == _(tr[0])) {
-				transforms.push_back (getTransformation (tr));
+				transforms.push_back (tr);
 			}
 		}
 		return transforms;
 	}
+
+    ustring processAccentKey (ustring ch, ustring str, InputMethodT im) {
+        
+    }
 	
 	ustring processKey (ustring ch, ustring str, InputMethodT im) {
 		// Default input method is telex  and default charset is UTF8

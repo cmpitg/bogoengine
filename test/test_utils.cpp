@@ -307,9 +307,9 @@ TEST (ProcessKey, BackspacePressed) {
 TEST (FindTransformation, SimpleTelex) {
     InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
 	ustringArrayT transformation_w;
-	transformation_w.push_back("o+");
-	transformation_w.push_back("u+");
-	transformation_w.push_back("*v");
+	transformation_w.push_back("wo+");
+	transformation_w.push_back("wu+");
+	transformation_w.push_back("w*v");
 	
 	EXPECT_EQ (transformation_w[0], findTransformation ( "w", im)[0]);
 	EXPECT_EQ (transformation_w[1], findTransformation ( "w", im)[1]);
@@ -346,6 +346,7 @@ TEST (TextHelpers, GetLastVowelPart) {
     EXPECT_STREQ ("óa", getLastVowerPart ("xóa").c_str());
     EXPECT_STREQ ("iêu", getLastVowerPart ("liêuxiêu").c_str());
     EXPECT_STREQ ("aO", getLastVowerPart ("aO").c_str());
+    EXPECT_STREQ ("", getLastVowerPart ("lx").c_str());
 }
 
 TEST (TextHelpers, AddAccentToText) {
@@ -360,20 +361,25 @@ TEST (TextHelpers, AddAccentToText) {
     EXPECT_STREQ ("xỏe", addAccentToText ("xòe", HOOK).c_str());
     EXPECT_STREQ ("hoẽn", addAccentToText ("hoẹn", TILDE).c_str());
     EXPECT_STREQ ("hoen", addAccentToText ("hoẹn", NO_ACCENT).c_str());
+    EXPECT_STREQ ("hn", addAccentToText ("hn", HOOK).c_str());
+    
 }
 
-TEST (TestHelpers, AddAccentToTextWithTransfomation) {
-    EXPECT_STREQ ("áO", addAccentToText ("aO", "*/").c_str());
-    EXPECT_STREQ ("tóa", addAccentToText ("toa", "*/").c_str());
-    EXPECT_STREQ ("làmtoán", addAccentToText ("làmtoan", "*/").c_str());
-    EXPECT_STREQ ("uyquyền", addAccentToText ("uyquyên", "*\\").c_str());
-    EXPECT_STREQ ("họa", addAccentToText ("hoa", "*.").c_str());
-    EXPECT_STREQ ("hoạn", addAccentToText ("hoan", "*.").c_str());
-    EXPECT_STREQ ("hoạt", addAccentToText ("hoát", "*.").c_str());
-    EXPECT_STREQ ("xoét", addAccentToText ("xoet", "*/").c_str());
-    EXPECT_STREQ ("xỏe", addAccentToText ("xòe", "*?").c_str());
-    EXPECT_STREQ ("hoẽn", addAccentToText ("hoẹn", "*~").c_str());
-    EXPECT_STREQ ("hoen", addAccentToText ("hoẹn", "*_").c_str());
+TEST (TextHelpers, AddAccentToTextWithTransfomation) {
+    EXPECT_STREQ ("áO", addAccentToText ("aO", "s*/").c_str());
+    EXPECT_STREQ ("tóa", addAccentToText ("toa", "s*/").c_str());
+    EXPECT_STREQ ("làmtoán", addAccentToText ("làmtoan", "s*/").c_str());
+    EXPECT_STREQ ("uyquyền", addAccentToText ("uyquyên", "f*\\").c_str());
+    EXPECT_STREQ ("họa", addAccentToText ("hoa", "j*.").c_str());
+    EXPECT_STREQ ("hoạn", addAccentToText ("hoan", "j*.").c_str());
+    EXPECT_STREQ ("hoạt", addAccentToText ("hoát", "j*.").c_str());
+    EXPECT_STREQ ("xoét", addAccentToText ("xoet", "s*/").c_str());
+    EXPECT_STREQ ("xỏe", addAccentToText ("xòe", "r*?").c_str());
+    EXPECT_STREQ ("hoẽn", addAccentToText ("hoẹn", "x*~").c_str());
+    EXPECT_STREQ ("hoen", addAccentToText ("hoẹn", "z*_").c_str());
+    EXPECT_STREQ ("hn", addAccentToText ("hn", "z*_").c_str());
+    EXPECT_STREQ ("hoẹnf", addAccentToText ("hoẹnf", "z*_").c_str());
+    
 }
 
 
