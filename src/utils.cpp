@@ -40,6 +40,27 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
+    /*
+     * This function modifies "whole-word sign",
+     * Usually to add or modify mark/accent from the end of a word
+     * For example, with Telex: hair -> hải; hảif -> hài
+     * note: "sign" means mark or accent
+     */
+    ustring modifyWordSign(ustring word, char sign) {
+        /* FIXME: to be implemented */
+        return "";
+    }
+
+    /*
+     * This function gets the last Vietnamese word
+     *  from a group of consecutive alphabetical characters
+     * For example, with the argument "bộgõ", this function returns "gõ"
+     */
+    ustring getLastWord(ustring text) {
+        /* FIXME: to be implemented */
+        return "";
+    }
+
     ustring removeAllMarksFromWord (ustring word) {
         ustring res = "";
         for (_size_t_ i = 0; i < word.length (); i++)

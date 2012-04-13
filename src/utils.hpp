@@ -89,6 +89,9 @@ namespace BoGo {
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
+    ustring modifyWordSign(ustring word, char sign);
+    ustring getLastWord(ustring text);
+
     ustring removeAllMarksFromWord (ustring word);
     ustring removeAllMarksFromWord (string word);
     ustring removeAllMarksFromWord (const gchar *word);
