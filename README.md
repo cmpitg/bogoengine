@@ -64,9 +64,8 @@ triển.
 ### Cho việc biên dịch
 
 * CMake 2.6+
-* Google Test **1.5.0** (bản *1.6.0* có lỗi khi so sánh string, không sử dụng
-  *được với BoGoEngine*)
 * glibmm 2.4
+* gcc 4.2+
 
 ### Cho việc sử dụng
 
@@ -80,7 +79,10 @@ phát hành dưới các quy định ghi trong Giấy phép Công cộng GNU, ph
 
 ## Credit
 
-Bản quyền (C) năm 2012 bởi Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
+Bản quyền (C) năm 2012 bởi:
+
+* Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
+* Nguyễn Thành Hải <phaikawl@gmail.com>
 
 Xin chân thành gửi lời cảm ơn đặc biệt đến:
 
