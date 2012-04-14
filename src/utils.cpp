@@ -526,80 +526,40 @@ namespace BoGo {
 		return "incompleted";
 	}
 
-	ustring addAccentToVowel (ustring vowel, Accents accent) {
-		ustring rawVowel = removeAccentFromWord (vowel);
-        if (accent == NO_ACCENT) return rawVowel;
-        ustring specialSingleVowels = "ăâơê";
+	ustring addAccentToWord (ustring str, Accents accent) {
+        ustring rawStr = removeAccentFromWord (str);
+        if (accent == NO_ACCENT) return rawStr;
+
+        ustringArrayT comp = analyseWord ( rawStr );
+        ustring vowel = comp[1];
+        if (vowel == "") return str;
+        
+
+        ustring specialSingleWords = "ăâơê";
         ustring ch;
         _size_t_ pos;
+        
         for ( _size_t_ i = 0; i < 4; i++) {
-            ch = _(specialSingleVowels[i]);
-            pos = rawVowel.find (ch);
+            ch = _(specialSingleWords[i]);
+            pos = vowel.find (ch);
             if (pos != ustring::npos) break;
         }
             
         if (pos == ustring::npos) {
-            pos = ( rawVowel.size () <= 2) ? 0 : 1;
+            if (comp[2] == "")
+                pos = ( vowel.size () <= 2) ? 0 : 1;
+            else pos = vowel.size () -1;
         }
-        
-        return rawVowel.replace (pos, 1, addAccentToChar (rawVowel[pos], accent));
+
+        vowel = vowel.replace (pos, 1, addAccentToChar (vowel[pos], accent));
+ 
+                                                                  
+        return comp[0] + vowel + comp[2];
 	}
 
-    bool isSpecialVowel(ustring str) {
-        // consider some following strings as vowel.
-        ustring raw = toRawText(str);
-        if ((raw == "oan") || (raw == "oat") ||
-            (raw == "oen") || (raw == "oet")) {
-            return true;
-        }
-        else return false;
-    }
-
-
-	
-    _size_t_ getLastVowerPos (ustring str) {
-        ustring part = "";
-        _size_t_ pos = ustring::npos;
-        for (gint i = str.size () -1; i >= 0; i--)
-            for (gint j = (i > 2) ? i-2 : 0; j<=i; j++) {
-                part = toRawText(ustring (str, j, i-j+1));
-                if ( isSpecialVowel (part))
-                    return j;
-                pos = AllVowels.find (part);
-                if (pos != ustring::npos) return j;
-            }
-        return ustring::npos;
-    }
-
-    ustring getLastVowerPart (ustring str) {
-        ustring part = "";
-        _size_t_ pos = ustring::npos;
-        //oan oat oen oet ao eo yeu ieu
-        for (gint i = str.size () -1; i >= 0; i--)
-            for (gint j = (i > 2) ? i - 2 : 0; j<=i; j++)
-                if (j >=0) {
-                    part = toRawText (ustring (str, j, i-j+1));
-                    if ( isSpecialVowel (part))
-                        return ustring (str, j, i-j+1);
-                    pos = AllVowels.find (part);
-                    if (pos != ustring::npos)
-                        return ustring (str, j, i-j+1);
-                }
-    }
-    
+	    
     ustring addAccentToText (ustring str, Accents accent) {
-        _size_t_ vpos = getLastVowerPos (str);
-        if (vpos != ustring::npos) {
-            ustring lastVowel = getLastVowerPart (str);
-            _size_t_ cpos = vpos + lastVowel.size ();
-             ustring lastConsonant = (cpos < str.size ()) ? ustring (str, cpos) : "";
-            ustring changedVowel = addAccentToVowel (lastVowel, accent);
-            ustring newStr = (vpos > 0) ? ustring (str, 0, vpos) +
-                changedVowel + lastConsonant :
-                changedVowel + lastConsonant;
-            return newStr;
-        } else
-            return str;
+        return addAccentToWord (str, accent);
     }
 
     ustring addAccentToText (ustring str, ustring key_transf) {
@@ -636,9 +596,6 @@ namespace BoGo {
 		return transforms;
 	}
 
-    ustring processAccentKey (ustring ch, ustring str, InputMethodT im) {
-        
-    }
 	
 	ustring processKey (ustring ch, ustring str, InputMethodT im) {
 		// Default input method is telex  and default charset is UTF8
