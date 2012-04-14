@@ -521,10 +521,9 @@ namespace BoGo {
         return removeAllMarksFromWord (removeAccentFromWord (str)).lowercase();
     }
 
-	ustring addMarkToVowel (ustring vowel, Marks mark) {
-		
-		return "incompleted";
-	}
+    ustring toEnglishText (ustring str) {
+        return removeAllMarksFromWord (removeAccentFromWord (str));
+    }
 
 	ustring addAccentToWord (ustring str, Accents accent) {
         ustring rawStr = removeAccentFromWord (str);
@@ -574,6 +573,69 @@ namespace BoGo {
         return str;
     }
 
+    ustring addMarkToWord (ustring str, Marks mark) {
+        if (mark == NO_MARK)
+            return removeAllMarksFromWord (str);
+        guint lpos = str.size () -1;
+        ustring lastChar = _(str[lpos]);
+        ustring firstPart = ustring (str, 0, lpos);
+
+        if (lpos == 0) {
+            if (canAddMarkToLetter (lastChar, mark)) {
+                return addMarkToChar (lastChar, mark);
+            }
+            return lastChar; 
+        }                                      
+        // Special case : uo ươ
+        if ((lpos > 0) && (mark == HORN) &&
+            (toRawText(lastChar) == "o" ) &&  (toRawText (_(str[lpos -1])) == "u"))
+            return
+                (lpos > 2) ? ustring (str, 0, lpos -2) : ""
+                + addMarkToChar (str[lpos-1], HORN)
+                + addMarkToChar (str[lpos], HORN);
+
+        if (canAddMarkToLetter (lastChar, mark))
+            return firstPart + addMarkToChar (lastChar, mark);
+        else
+            return addMarkToWord (firstPart, mark)  + lastChar;
+
+        return str;
+    }
+
+    bool canAddMarkToLetter (ustring ch, Marks mark) {
+        ustring _ch = toRawText (ch);
+        if (mark == HAT) {
+            if ((_ch == "a") || (_ch == "e") || (_ch == "o"))
+                return true;
+            else return false;
+        }
+
+        if (mark == HORN) {
+            if ((_ch == "o") || (_ch == "u"))
+                return true;
+            else return false;
+        }
+
+        if (mark == BREVE) {
+            if (_ch == "a")
+                return true;
+            else return false;
+        }
+
+        if (mark == BAR) {
+            if (_ch == "d")
+                return true;
+            else return false;
+        }
+
+        if (mark == NO_MARK) return true;
+    }
+    
+    bool canAddMarkToLetter (gchar ch, Marks mark) {
+        return canAddMarkToLetter (_(ch), mark);
+    }
+    
+
 	ustring getTransformation (ustring trans) {
 		/* get the tranformation part from the string describing the transformation
 		   ex: "a a+" -> "a+" */
@@ -596,7 +658,7 @@ namespace BoGo {
 		return transforms;
 	}
 
-	
+
 	ustring processKey (ustring ch, ustring str, InputMethodT im) {
 		// Default input method is telex  and default charset is UTF8
 		if (ch == _(BACKSPACE_CODE)) {

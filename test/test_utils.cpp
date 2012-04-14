@@ -328,6 +328,16 @@ TEST (WordHelpers, AddAccentToWord) {
     EXPECT_STREQ ("xoÁn", addAccentToWord ("xoAn",ACUTE).c_str());
 }
 
+TEST (WordHelpers, AddMarkToWord) {
+	EXPECT_STREQ ("ê", addMarkToWord ("e", HAT).c_str());
+	EXPECT_STREQ ("đ", addMarkToWord ("d", BAR).c_str());
+	EXPECT_STREQ ("uối", addMarkToWord ("uói", HAT).c_str());
+	EXPECT_STREQ ("mưa", addMarkToWord ("mua", HORN).c_str());
+    EXPECT_STREQ ("đeo", addMarkToWord ("deo", BAR).c_str());
+    EXPECT_STREQ ("ươi", addMarkToWord ("uoi", HORN).c_str());
+    EXPECT_STREQ ("nẰm", addMarkToWord ("nÀm", BREVE).c_str());
+
+}
 
 
 

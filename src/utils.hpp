@@ -91,16 +91,6 @@ namespace BoGo {
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
-    const ustring PARTNER_C = "a   ă   â   e   i   o   ô   u   ư   oa   oă   oo   ";
-    const ustring PARTNER_CH = "a   e   ê   i   ";
-    const ustring PARTNER_N = "a   ă   â   e   ê   i   o   ô   ơ   u   ư   oa   oă   oe   iê   yê   uâ   uyê   ";
-    const ustring PARTNER_NH = "a   ê   i   ";
-    const ustring PARTNER_NG = "a   ă   â   e   o   ô   oo   ";
-    const ustring PARTNER_M = "a   ă   â   e   ê   i   o   ô   ơ   u   yê   iê   oa   ";
-    const ustring PARTNER_P = "a   â   ă   e   ê   i   o   ô   ơ   u   oa   ";
-    const ustring PARTNER_T = "a   â   ă   e   ê   i   o   ô   ơ   u   ư   oa oe   uât   oă   ";
-    
-
     ustring removeAllMarksFromWord (ustring word);
     ustring removeAllMarksFromWord (string word);
     ustring removeAllMarksFromWord (const gchar *word);
@@ -220,8 +210,13 @@ namespace BoGo {
     
 
     ustring toRawText (ustring str);
+    ustring toEnglishText (ustring str);
 	ustring addAccentToWord (ustring str, Accents accent);
     ustring addAccentToText (ustring str, Accents accent);
     ustring addAccentToText (ustring str, ustring key_transf);
+
+    bool canAddMarkToLetter (ustring ch, Marks mark);
+    bool canAddMarkToLetter (gchar ch, Marks mark);
+    ustring addMarkToWord (ustring str, Marks mark);
 }
 
