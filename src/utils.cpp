@@ -536,11 +536,13 @@ namespace BoGo {
 
         ustring specialSingleWords = "ăâơê";
         ustring ch;
+        ustring _vowel = toRawText (vowel);
         _size_t_ pos;
+        
         
         for ( _size_t_ i = 0; i < 4; i++) {
             ch = _(specialSingleWords[i]);
-            pos = vowel.find (ch);
+            pos = _vowel.find (ch);
             if (pos != ustring::npos) break;
         }
             
@@ -561,9 +563,7 @@ namespace BoGo {
         return addAccentToWord (str, accent);
     }
 
-    ustring addAccentToText (ustring str, ustring key_transf) {
-        ustring ch = _(key_transf[0]);
-        ustring transf = getTransformation (key_transf);
+    ustring addAccentToText (ustring str, ustring transf) {
         if (transf == "*/") return addAccentToText (str, ACUTE);
         if (transf == "*\\") return addAccentToText (str, GRAVE);
         if (transf == "*?") return addAccentToText (str, HOOK);
@@ -588,11 +588,12 @@ namespace BoGo {
         }                                      
         // Special case : uo ươ
         if ((lpos > 0) && (mark == HORN) &&
-            (toRawText(lastChar) == "o" ) &&  (toRawText (_(str[lpos -1])) == "u"))
+            (toRawText(lastChar) == "o" ) &&  (toRawText (_(str[lpos -1])) == "u")) {
             return
-                (lpos > 2) ? ustring (str, 0, lpos -2) : ""
+                ((lpos >= 2) ? ustring (str, 0, lpos - 1) : "")
                 + addMarkToChar (str[lpos-1], HORN)
                 + addMarkToChar (str[lpos], HORN);
+        }
 
         if (canAddMarkToLetter (lastChar, mark))
             return firstPart + addMarkToChar (lastChar, mark);
@@ -601,6 +602,17 @@ namespace BoGo {
 
         return str;
     }
+
+    ustring addMarkToText (ustring str, ustring transf) {
+        if (transf == "a^") return addMarkToWord (str, HAT);
+        if (transf == "o^") return addMarkToWord (str, HAT);
+        if (transf == "e^") return addMarkToWord (str, HAT);
+        if (transf == "o+") return addMarkToWord (str, HORN);
+        if (transf == "u+") return addMarkToWord (str, HORN);
+        if (transf == "*-") return addMarkToWord (str, BAR);
+        return str;
+    }
+    
 
     bool canAddMarkToLetter (ustring ch, Marks mark) {
         ustring _ch = toRawText (ch);
@@ -658,6 +670,29 @@ namespace BoGo {
 		return transforms;
 	}
 
+    ustring addCharactorToWord (ustring str, ustring ch) {
+        return str + ch;
+    }
+
+    ustring (*filterTransformation (ustring key_transf )) (ustring, ustring) {
+        if (key_transf.find ("*-") != ustring::npos) return &addMarkToText;
+        if (key_transf.find ("*") != ustring::npos) return &addAccentToText;
+        if (key_transf.find ("^") != ustring::npos) return &addMarkToText;
+        if (key_transf.find ("+") != ustring::npos) return &addMarkToText;
+        return &addCharactorToWord;
+    }
+
+    Transform kindOfTransformation (ustring key_transf) {
+        if (key_transf.find ("*-") != ustring::npos) return ADD_MARK;
+        // <<<< Fix it please
+        if (key_transf.find ("w") != ustring::npos) return ADD_MARK;
+        // >>>>
+        if (key_transf.find ("*") != ustring::npos) return ADD_ACCENT;
+        if (key_transf.find ("^") != ustring::npos) return ADD_MARK;
+        if (key_transf.find ("+") != ustring::npos) return ADD_MARK;
+        return ADD_CHAR;
+    }
+
 
 	ustring processKey (ustring ch, ustring str, InputMethodT im) {
 		// Default input method is telex  and default charset is UTF8
@@ -665,17 +700,26 @@ namespace BoGo {
 			str.erase (str.size() - 1, 1);
 			return str;
 		}
+        ustring (*doTransform) (ustring, ustring);
+        ustring newStr = str;
+        ustringArrayT transforms = findTransformation (ch, im);
+        Transform kind;
+        if (transforms.size () != 0) {
+            for (_size_t_ i = 0; i < transforms.size (); i++) {
+                doTransform = filterTransformation (transforms[i]);
+                kind = kindOfTransformation (transforms[i]);
+                newStr = doTransform (newStr, getTransformation (transforms[i]));
+            }
+        } else
+            newStr = addCharactorToWord (str, ch);
+        if (newStr == str) {
+            if (kind == ADD_MARK)
+                newStr = addCharactorToWord (removeAllMarksFromWord (str), ch);
+            if (kind == ADD_ACCENT)
+                newStr = addCharactorToWord (removeAccentFromWord (str), ch);
+        }
 
-		
-		
-		/* if ch is transform char then:
-		      find the charactor needed to transform
-		      transform it
-		      return the string
-		   else
-		      append ch to str
-		 */
-		
+        return newStr;
 	}
 
 

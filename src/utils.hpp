@@ -34,6 +34,7 @@ namespace BoGo {
     typedef vector<ustring> ustringArrayT;
     typedef guint Accents;
     typedef guint Marks;
+    typedef guint Transform;
     typedef ustringArrayT InputMethodT;
 
     const guint NUMBER_OF_IMS = 4;
@@ -57,6 +58,10 @@ namespace BoGo {
         "f \\\n"
     };
 
+    const guint ADD_ACCENT = 0,
+        ADD_MARK = 1,
+        ADD_CHAR = 2;
+    
     const guint NUMBER_OF_ACCENTS = 6;
     const guint GRAVE  = 0,
         ACUTE          = 1,
@@ -206,6 +211,7 @@ namespace BoGo {
 
     ustring getTransformation (ustring trans);
 	ustringArrayT findTransformation (ustring ch, InputMethodT im);
+    ustring (*filterTransformation (ustring key_transf)) (ustring str, ustring transf);
     ustring processKey (ustring ch, ustring str, InputMethodT im);
     
 
@@ -218,5 +224,9 @@ namespace BoGo {
     bool canAddMarkToLetter (ustring ch, Marks mark);
     bool canAddMarkToLetter (gchar ch, Marks mark);
     ustring addMarkToWord (ustring str, Marks mark);
+    ustring addMarkToText (ustring str, ustring key_transf);
+
+    ustring addCharactorToWord (ustring  str, ustring ch);
+    
 }
 

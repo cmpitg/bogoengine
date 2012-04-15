@@ -297,11 +297,24 @@ TEST (CharacterHelpers, PlainCharacters) {
     EXPECT_FALSE (isLetter ((gchar) 13)); // Return
 }
 
-TEST (ProcessKey, BackspacePressed) {
+TEST (ProcessKey, ProcessKey) {
 	InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
 	EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));
-	EXPECT_STREQ(__("m"), __(processKey (_(BACKSPACE_CODE), "mè", im)));	
-	EXPECT_STREQ(__(""), __(processKey (_(BACKSPACE_CODE), "m", im)));
+    EXPECT_STREQ(__("mèo"), __(processKey ("f", "meo", im)));
+    EXPECT_STREQ(__("đèo"), __(processKey ("d", "dèo", im)));
+    EXPECT_STREQ(__("đeo"), __(processKey ("z", "đèo", im)));
+    EXPECT_STREQ(__("mưa"), __(processKey ("w", "mua", im)));
+    EXPECT_STREQ(__("rươi"), __(processKey ("w", "ruoi", im)));
+    EXPECT_STREQ(__("ruòi"), __(processKey ("f", "ruoi", im)));
+    EXPECT_STREQ(__("ruoiw"), __(processKey ("w", "rươi", im)));
+    EXPECT_STREQ(__("mỬ"), __(processKey ("w", "mỦ", im)));
+    EXPECT_STREQ(__("mỦw"), __(processKey ("w", "mỬ", im)));
+    EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));
+    EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));
+    EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));
+    EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));
+    EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));
+    EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));
 }
 
 TEST (FindTransformation, SimpleTelex) {
@@ -326,6 +339,7 @@ TEST (WordHelpers, AddAccentToWord) {
 	EXPECT_STREQ ("uYê", addAccentToWord ("uYế",NO_ACCENT).c_str());
     EXPECT_STREQ ("xóa", addAccentToWord ("xoa",ACUTE).c_str());
     EXPECT_STREQ ("xoÁn", addAccentToWord ("xoAn",ACUTE).c_str());
+    EXPECT_STREQ ("xoẮn", addAccentToWord ("xoĂn",ACUTE).c_str());
 }
 
 TEST (WordHelpers, AddMarkToWord) {
@@ -336,7 +350,9 @@ TEST (WordHelpers, AddMarkToWord) {
     EXPECT_STREQ ("đeo", addMarkToWord ("deo", BAR).c_str());
     EXPECT_STREQ ("ươi", addMarkToWord ("uoi", HORN).c_str());
     EXPECT_STREQ ("nẰm", addMarkToWord ("nÀm", BREVE).c_str());
-
+    EXPECT_STREQ ("ĐẰm", addMarkToWord ("DẰm", BAR).c_str());
+    EXPECT_STREQ ("rƯơi", addMarkToWord ("rUoi", HORN).c_str());
+    EXPECT_STREQ ("TrƯơng", addMarkToWord ("TrUong", HORN).c_str());
 }
 
 
