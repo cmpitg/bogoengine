@@ -204,6 +204,6 @@ namespace BoGo {
     ustring removeAccentFromChar (guint ch);
 
     bool charListContains (ustring list, gunichar needle);
-    ustring getLastWord (ustring text);
+    int getLastWord (ustring text);
 }
 

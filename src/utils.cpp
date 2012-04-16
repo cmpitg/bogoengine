@@ -48,34 +48,29 @@ namespace BoGo {
         return charListContains (list, _(needle));
     }
 
-    ustring copyToEnd (ustring text, int from) {
-        return text.substr (from, text.size()-from);
-    }
+    int getLastWord (ustring text, int last, bool vowelEncountered = false); //Just a forward declaration
 
-
-    ustring getLastWord (ustring text, int last, bool vowelEncountered = false); //Just a forward declaration
-
-    ustring getLastWord (ustring text, int last, gunichar processingCons) {
-        if (last<0) return copyToEnd (text, last+1);
+    int getLastWord (ustring text, int last, gunichar processingCons) {
+        if (last<0) return last+1;
         ustring str = "";
         str+=text[last];
         str+=processingCons;
         if (charListContains (ValidFinalMulticonsonants, str)) {
             return getLastWord (text, last-1);
         } else {
-            return copyToEnd (text, last+1);
+            return last+1;
         }
     }
 
-    ustring getLastWord (ustring text, int last, bool vowelEncountered) {
-        if (last<0) return copyToEnd (text, last+1);
+    int getLastWord (ustring text, int last, bool vowelEncountered) {
+        if (last<0) return last+1;
         gunichar lastChar = text[last];
         if (isVowel (lastChar)) {
             return getLastWord (text, last-1, true);
         } else {
-            if (!isConsonant (lastChar) || vowelEncountered) return copyToEnd (text, last);
+            if (!isConsonant (lastChar) || vowelEncountered) return last;
             if (charListContains (InvalidFinalConsonants, lastChar)) {
-                return copyToEnd (text, last);
+                return last;
             }
             else if (charListContains (ValidFinalConsonants, lastChar)) {
                 return getLastWord (text, last-1, lastChar);
@@ -90,7 +85,7 @@ namespace BoGo {
      *  from a group of consecutive alphabetical characters
      * For example, with the argument "bộgõ", this function returns "gõ"
      */
-    ustring getLastWord (ustring text) {
+    int getLastWord (ustring text) {
         return getLastWord (text, text.size()-1);
     }
 
