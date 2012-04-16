@@ -51,7 +51,7 @@ namespace BoGo {
         "w v\n"
         "d -\n"
         "s /\n"
-		"r ?\n"
+        "r ?\n"
         "x ~\n"
         "j .\n"
         "z _\n"
@@ -120,7 +120,7 @@ namespace BoGo {
 
     InputMethodT addTransformation (InputMethodT im, ustring trans);
     InputMethodT addTransformation (InputMethodT im, const gchar *trans);
-	ustring getTransformation (ustring trans);
+    ustring getTransformation (ustring trans);
 
     ustring addMarkToChar (ustring ch, Marks mark);
     ustring addMarkToChar (string ch, Marks mark);
@@ -210,14 +210,14 @@ namespace BoGo {
     ustring removeAccentFromChar (guint ch);
 
     ustring getTransformation (ustring trans);
-	ustringArrayT findTransformation (ustring ch, InputMethodT im);
+    ustringArrayT findTransformation (ustring ch, InputMethodT im);
     ustring (*filterTransformation (ustring key_transf)) (ustring str, ustring transf);
     ustring processKey (ustring ch, ustring str, InputMethodT im);
     
 
     ustring toRawText (ustring str);
     ustring toEnglishText (ustring str);
-	ustring addAccentToWord (ustring str, Accents accent);
+    ustring addAccentToWord (ustring str, Accents accent);
     ustring addAccentToText (ustring str, Accents accent);
     ustring addAccentToText (ustring str, ustring key_transf);
 
@@ -226,7 +226,7 @@ namespace BoGo {
     ustring addMarkToWord (ustring str, Marks mark);
     ustring addMarkToText (ustring str, ustring key_transf);
 
-    ustring addCharactorToWord (ustring  str, ustring ch);
+    ustring addCharToWord (ustring  str, ustring ch);
     
 }
 

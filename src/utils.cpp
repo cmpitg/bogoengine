@@ -525,7 +525,7 @@ namespace BoGo {
         return removeAllMarksFromWord (removeAccentFromWord (str));
     }
 
-	ustring addAccentToWord (ustring str, Accents accent) {
+    ustring addAccentToWord (ustring str, Accents accent) {
         ustring rawStr = removeAccentFromWord (str);
         if (accent == NO_ACCENT) return rawStr;
 
@@ -556,9 +556,9 @@ namespace BoGo {
  
                                                                   
         return comp[0] + vowel + comp[2];
-	}
+    }
 
-	    
+        
     ustring addAccentToText (ustring str, Accents accent) {
         return addAccentToWord (str, accent);
     }
@@ -648,29 +648,29 @@ namespace BoGo {
     }
     
 
-	ustring getTransformation (ustring trans) {
-		/* get the tranformation part from the string describing the transformation
-		   ex: "a a+" -> "a+" */
-		trans.erase (0,1);
-		while (_(trans[0]) == " ") {
-			trans.erase(0,1);
-		}
-		return trans;
-	}
-	
-	ustringArrayT  findTransformation (ustring ch, InputMethodT im) {
-		/* Because a key can associate with more than 1 transformation, we need to know what transfrom are possible */
-		ustringArrayT  transforms;
-		for (guint i = 0; i < im.size(); i++) {
-			ustring tr = im[i];
-			if (ch == _(tr[0])) {
-				transforms.push_back (tr);
-			}
-		}
-		return transforms;
-	}
+    ustring getTransformation (ustring trans) {
+        /* get the tranformation part from the string describing the transformation
+           ex: "a a+" -> "a+" */
+        trans.erase (0,1);
+        while (_(trans[0]) == " ") {
+            trans.erase(0,1);
+        }
+        return trans;
+    }
+    
+    ustringArrayT  findTransformation (ustring ch, InputMethodT im) {
+        /* Because a key can associate with more than 1 transformation, we need to know what transfrom are possible */
+        ustringArrayT  transforms;
+        for (guint i = 0; i < im.size(); i++) {
+            ustring tr = im[i];
+            if (ch == _(tr[0])) {
+                transforms.push_back (tr);
+            }
+        }
+        return transforms;
+    }
 
-    ustring addCharactorToWord (ustring str, ustring ch) {
+    ustring addCharToWord (ustring str, ustring ch) {
         return str + ch;
     }
 
@@ -679,7 +679,7 @@ namespace BoGo {
         if (key_transf.find ("*") != ustring::npos) return &addAccentToText;
         if (key_transf.find ("^") != ustring::npos) return &addMarkToText;
         if (key_transf.find ("+") != ustring::npos) return &addMarkToText;
-        return &addCharactorToWord;
+        return &addCharToWord;
     }
 
     Transform kindOfTransformation (ustring key_transf) {
@@ -694,12 +694,12 @@ namespace BoGo {
     }
 
 
-	ustring processKey (ustring ch, ustring str, InputMethodT im) {
-		// Default input method is telex  and default charset is UTF8
-		if (ch == _(BACKSPACE_CODE)) {
-			str.erase (str.size() - 1, 1);
-			return str;
-		}
+    ustring processKey (ustring ch, ustring str, InputMethodT im) {
+        // Default input method is telex  and default charset is UTF8
+        if (ch == _(BACKSPACE_CODE)) {
+            str.erase (str.size() - 1, 1);
+            return str;
+        }
         ustring (*doTransform) (ustring, ustring);
         ustring newStr = str;
         ustringArrayT transforms = findTransformation (ch, im);
@@ -711,19 +711,17 @@ namespace BoGo {
                 newStr = doTransform (newStr, getTransformation (transforms[i]));
             }
         } else
-            newStr = addCharactorToWord (str, ch);
+            newStr = addCharToWord (str, ch);
         if (newStr == str) {
             if (kind == ADD_MARK)
-                newStr = addCharactorToWord (removeAllMarksFromWord (str), ch);
+                newStr = addCharToWord (removeAllMarksFromWord (str), ch);
             if (kind == ADD_ACCENT)
-                newStr = addCharactorToWord (removeAccentFromWord (str), ch);
+                newStr = addCharToWord (removeAccentFromWord (str), ch);
         }
 
         return newStr;
-	}
-
-
+    }
+    
 #undef _
 #undef __
-
 }
