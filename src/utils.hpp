@@ -82,7 +82,9 @@ namespace BoGo {
     const ustring VowelsWithAccents =
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
-
+    const ustring ValidFinalConsonants = "ghctmnp";
+    const ustring ValidFinalMulticonsonants = "ng ch nh";
+    const ustring InvalidFinalConsonants = "bdđfklqrsvx";
     const ustring LettersWithoutMarks    = "aaaddeeooouu";
     const ustring LettersMayChangeMarks  = "aăâdđeêoôơuư";
     const ustring LettersWithMarks =
@@ -200,4 +202,8 @@ namespace BoGo {
     ustring removeAccentFromChar (string ch);
     ustring removeAccentFromChar (const gchar *ch);
     ustring removeAccentFromChar (guint ch);
+
+    bool charListContains (ustring list, gunichar needle);
+    int getLastWord (ustring text);
 }
+
