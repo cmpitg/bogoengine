@@ -40,15 +40,49 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
-    /*
-     * This function modifies "whole-word sign",
-     * Usually to add or modify mark/accent from the end of a word
-     * For example, with Telex: hair -> hải; hảif -> hài
-     * note: "sign" means mark or accent
-     */
-    ustring modifyWordSign(ustring word, char sign) {
-        /* FIXME: to be implemented */
-        return "";
+    bool charListContains (ustring list, ustring needle) {
+        return list.find (needle.lowercase()) != ustring::npos;
+    }
+
+    bool charListContains (ustring list, gunichar needle) {
+        return charListContains (list, _(needle));
+    }
+
+    ustring copyToEnd (ustring text, int from) {
+        return text.substr (from, text.size()-from);
+    }
+
+
+    ustring getLastWord (ustring text, int last, bool vowelEncountered = false); //Just a forward declaration
+
+    ustring getLastWord (ustring text, int last, gunichar processingCons) {
+        if (last<0) return copyToEnd (text, last+1);
+        ustring str = "";
+        str+=text[last];
+        str+=processingCons;
+        if (charListContains (ValidFinalMulticonsonants, str)) {
+            return getLastWord (text, last-1);
+        } else {
+            return copyToEnd (text, last+1);
+        }
+    }
+
+    ustring getLastWord (ustring text, int last, bool vowelEncountered) {
+        if (last<0) return copyToEnd (text, last+1);
+        gunichar lastChar = text[last];
+        if (isVowel (lastChar)) {
+            return getLastWord (text, last-1, true);
+        } else {
+            if (!isConsonant (lastChar) || vowelEncountered) return copyToEnd (text, last);
+            if (charListContains (InvalidFinalConsonants, lastChar)) {
+                return copyToEnd (text, last);
+            }
+            else if (charListContains (ValidFinalConsonants, lastChar)) {
+                return getLastWord (text, last-1, lastChar);
+            }
+
+            throw new string ("something wrong happened to getLastWord");
+        }
     }
 
     /*
@@ -56,9 +90,8 @@ namespace BoGo {
      *  from a group of consecutive alphabetical characters
      * For example, with the argument "bộgõ", this function returns "gõ"
      */
-    ustring getLastWord(ustring text) {
-        /* FIXME: to be implemented */
-        return "";
+    ustring getLastWord (ustring text) {
+        return getLastWord (text, text.size()-1);
     }
 
     ustring removeAllMarksFromWord (ustring word) {
@@ -536,6 +569,14 @@ namespace BoGo {
 
     bool isLowerCase (guint ch) {
         return isLowerCase (_(ch));
+    }
+
+    ustring toRawText (ustring str) {
+        return removeAllMarksFromWord (removeAccentFromWord (str)).lowercase();
+    }
+
+    ustring toEnglishText (ustring str) {
+        return removeAllMarksFromWord (removeAccentFromWord (str));
     }
 
 #undef _

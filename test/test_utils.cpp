@@ -40,40 +40,6 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
-//note: Sign means Mark and Accent
-/* The modifyWordSign function only applies for whole-word sign manipulations
-        (used by Telex)
-*/
-TEST (SignManipulation, ModifyWordSign) {
-    /*
-     * We use "The Telex way" to indicate sign changes here
-     * these lines should be self-descriptive
-     * note: it doens't mean that this function can only be used for Telex
-     */
-    EXPECT_STREQ ("tân", modifyWordSign ("tan", 'a').c_str ());
-    EXPECT_STREQ ("đàn", modifyWordSign ("dàn", 'd').c_str ());
-    EXPECT_STREQ ("điên", modifyWordSign ("đien", 'e').c_str ());
-    EXPECT_STREQ ("xiềng", modifyWordSign ("xiêng", 'f').c_str ());
-    EXPECT_STREQ ("buông", modifyWordSign ("buong", 'o').c_str ());
-    EXPECT_STREQ ("mảng", modifyWordSign ("mang", 'r').c_str ());
-    EXPECT_STREQ ("tiếng", modifyWordSign ("tiêng", 's').c_str ());
-    EXPECT_STREQ ("thưa", modifyWordSign ("thua", 'w').c_str ());
-    EXPECT_STREQ ("trương", modifyWordSign ("truong", 'w').c_str ());
-    EXPECT_STREQ ("thuơ", modifyWordSign ("thuo", 'w').c_str ());
-    EXPECT_STREQ ("mắm", modifyWordSign ("mám", 'w').c_str ());
-    EXPECT_STREQ ("liễu", modifyWordSign ("liêu", 'x').c_str ());
-}
-
-TEST (SignManipulation, GetLastWord) {
-    EXPECT_STREQ ("giang", getLastWord("giang").c_str ());
-    EXPECT_STREQ ("đường", getLastWord("conđường").c_str ());
-    EXPECT_STREQ ("thằnghề", getLastWord("ghề").c_str ());
-    /*The result above isn't really correct (looks stupid ^^!)
-     but it's totally acceptable and it causes no problem*/
-    EXPECT_STREQ ("x", getLastWord("liêux").c_str ());
-    EXPECT_STREQ ("n", getLastWord("caon").c_str ());
-}
-
 TEST (MarkAndWord, RemoveAllMarks) {
     EXPECT_STREQ ("thuỏ", removeAllMarksFromWord ("thuở").c_str ());
     EXPECT_STREQ ("gIỵA", removeAllMarksFromWord ("gIỵA").c_str ());
@@ -247,6 +213,7 @@ TEST (WordHelpers, Other) {
     EXPECT_TRUE (isWordBreak ((gchar) 13));
     EXPECT_FALSE (isWordBreak ("â"));
     EXPECT_FALSE (isWordBreak ("â"));
+    EXPECT_TRUE (charListContains (_("điên"), (gunichar)273));
 }
 
 TEST (CharacterHelpers, AccentsAndTransform) {
@@ -328,6 +295,18 @@ TEST (CharacterHelpers, PlainCharacters) {
     EXPECT_TRUE (isLetter ("O"));
     EXPECT_FALSE (isLetter ("\\"));
     EXPECT_FALSE (isLetter ((gchar) 13)); // Return
+}
+
+TEST (WholeWordManipulation, GetLastWord) {
+    EXPECT_STREQ ("giang", getLastWord("giang").c_str ());
+    EXPECT_STREQ ("đường", getLastWord("conđường").c_str ());
+    EXPECT_STREQ ("hề", getLastWord("thằnghề").c_str ());
+    EXPECT_STREQ ("hạ", getLastWord("nhànhạ").c_str ());
+    EXPECT_STREQ ("hà", getLastWord("cáinhà").c_str ());
+    //the "hà" result above isn't really correct in theory, but it's totally acceptable
+    EXPECT_STREQ ("nàNG", getLastWord("nàNG").c_str ());
+    EXPECT_STREQ ("x", getLastWord("liêux").c_str ());
+    EXPECT_STREQ ("n", getLastWord("caon").c_str ());
 }
 
 int main (int argc, char *argv[]) {
