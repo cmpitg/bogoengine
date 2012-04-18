@@ -331,32 +331,29 @@ TEST (FindTransformation, SimpleTelex) {
 
 
 TEST (WordHelpers, AddAccentToWord) {
-	EXPECT_STREQ ("èo", addAccentToWord ("eo",GRAVE).c_str());
-	EXPECT_STREQ ("iều", addAccentToWord ("iêu",GRAVE).c_str());
-	EXPECT_STREQ ("uối", addAccentToWord ("uôi",ACUTE).c_str());
-	EXPECT_STREQ ("Ẹ", addAccentToWord ("E",DOT).c_str());
-	EXPECT_STREQ ("huYền", addAccentToWord ("huYên",GRAVE).c_str());
-	EXPECT_STREQ ("uYê", addAccentToWord ("uYế",NO_ACCENT).c_str());
-    EXPECT_STREQ ("xóa", addAccentToWord ("xoa",ACUTE).c_str());
-    EXPECT_STREQ ("xoÁn", addAccentToWord ("xoAn",ACUTE).c_str());
-    EXPECT_STREQ ("xoẮn", addAccentToWord ("xoĂn",ACUTE).c_str());
+	EXPECT_STREQ ("èo", addAccentToWord ("eo",GRAVE).c_str ());
+	EXPECT_STREQ ("iều", addAccentToWord ("iêu",GRAVE).c_str ());
+	EXPECT_STREQ ("uối", addAccentToWord ("uôi",ACUTE).c_str ());
+	EXPECT_STREQ ("Ẹ", addAccentToWord ("E",DOT).c_str ());
+	EXPECT_STREQ ("huYền", addAccentToWord ("huYên",GRAVE).c_str ());
+	EXPECT_STREQ ("uYê", addAccentToWord ("uYế",NO_ACCENT).c_str ());
+    EXPECT_STREQ ("xóa", addAccentToWord ("xoa",ACUTE).c_str ());
+    EXPECT_STREQ ("xoÁn", addAccentToWord ("xoAn",ACUTE).c_str ());
+    EXPECT_STREQ ("xoẮn", addAccentToWord ("xoĂn",ACUTE).c_str ());
 }
 
 TEST (WordHelpers, AddMarkToWord) {
-	EXPECT_STREQ ("ê", addMarkToWord ("e", HAT).c_str());
-	EXPECT_STREQ ("đ", addMarkToWord ("d", BAR).c_str());
-	EXPECT_STREQ ("uối", addMarkToWord ("uói", HAT).c_str());
-	EXPECT_STREQ ("mưa", addMarkToWord ("mua", HORN).c_str());
-    EXPECT_STREQ ("đeo", addMarkToWord ("deo", BAR).c_str());
-    EXPECT_STREQ ("ươi", addMarkToWord ("uoi", HORN).c_str());
-    EXPECT_STREQ ("nẰm", addMarkToWord ("nÀm", BREVE).c_str());
-    EXPECT_STREQ ("ĐẰm", addMarkToWord ("DẰm", BAR).c_str());
-    EXPECT_STREQ ("rƯơi", addMarkToWord ("rUoi", HORN).c_str());
-    EXPECT_STREQ ("TrƯơng", addMarkToWord ("TrUong", HORN).c_str());
+	EXPECT_STREQ ("ê", addMarkToWord ("e", HAT).c_str ());
+	EXPECT_STREQ ("đ", addMarkToWord ("d", BAR).c_str ());
+	EXPECT_STREQ ("uối", addMarkToWord ("uói", HAT).c_str ());
+	EXPECT_STREQ ("mưa", addMarkToWord ("mua", HORN).c_str ());
+    EXPECT_STREQ ("đeo", addMarkToWord ("deo", BAR).c_str ());
+    EXPECT_STREQ ("ươi", addMarkToWord ("uoi", HORN).c_str ());
+    EXPECT_STREQ ("nẰm", addMarkToWord ("nÀm", BREVE).c_str ());
+    EXPECT_STREQ ("ĐẰm", addMarkToWord ("DẰm", BAR).c_str ());
+    EXPECT_STREQ ("rƯơi", addMarkToWord ("rUoi", HORN).c_str ());
+    EXPECT_STREQ ("TrƯơng", addMarkToWord ("TrUong", HORN).c_str ());
 }
-
-
-
 
 int main (int argc, char *argv[]) {
     testing::InitGoogleTest (&argc, argv);

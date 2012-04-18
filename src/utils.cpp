@@ -534,14 +534,14 @@ namespace BoGo {
         if (vowel == "") return str;
         
 
-        ustring specialSingleWords = "ăâơê";
+        ustring specialSingleVowel = "ăâơê";
         ustring ch;
         ustring _vowel = toRawText (vowel);
         _size_t_ pos;
         
         
         for ( _size_t_ i = 0; i < 4; i++) {
-            ch = _(specialSingleWords[i]);
+            ch = _(specialSingleVowel[i]);
             pos = _vowel.find (ch);
             if (pos != ustring::npos) break;
         }
@@ -588,7 +588,8 @@ namespace BoGo {
         }                                      
         // Special case : uo ươ
         if ((lpos > 0) && (mark == HORN) &&
-            (toRawText(lastChar) == "o" ) &&  (toRawText (_(str[lpos -1])) == "u")) {
+            (toRawText(lastChar) == "o" ) &&
+            (toRawText (_(str[lpos -1])) == "u")) {
             return
                 ((lpos >= 2) ? ustring (str, 0, lpos - 1) : "")
                 + addMarkToChar (str[lpos-1], HORN)
@@ -616,31 +617,28 @@ namespace BoGo {
 
     bool canAddMarkToLetter (ustring ch, Marks mark) {
         ustring _ch = toRawText (ch);
-        if (mark == HAT) {
+        switch (mark) {
+        case HAT:
             if ((_ch == "a") || (_ch == "e") || (_ch == "o"))
                 return true;
-            else return false;
-        }
-
-        if (mark == HORN) {
+            break;
+        case HORN:
             if ((_ch == "o") || (_ch == "u"))
                 return true;
-            else return false;
-        }
-
-        if (mark == BREVE) {
+            break;
+        case BREVE:
             if (_ch == "a")
                 return true;
-            else return false;
-        }
-
-        if (mark == BAR) {
+            break;
+        case BAR:
             if (_ch == "d")
                 return true;
-            else return false;
+            break;
+        case NO_MARK:
+            return true;
+            break;
         }
-
-        if (mark == NO_MARK) return true;
+        return false;
     }
     
     bool canAddMarkToLetter (gchar ch, Marks mark) {
@@ -695,7 +693,7 @@ namespace BoGo {
 
 
     ustring processKey (ustring ch, ustring str, InputMethodT im) {
-        // Default input method is telex  and default charset is UTF8
+        // Default input method is telex and default charset is UTF8
         if (ch == _(BACKSPACE_CODE)) {
             str.erase (str.size() - 1, 1);
             return str;
