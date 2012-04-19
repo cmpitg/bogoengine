@@ -309,7 +309,7 @@ TEST (ProcessKey, ProcessKey) {
     EXPECT_STREQ(__("ruoiw"), __(processKey ("w", "rươi", im)));
     EXPECT_STREQ(__("mỬ"), __(processKey ("w", "mỦ", im)));
     EXPECT_STREQ(__("mỦw"), __(processKey ("w", "mỬ", im)));
-    EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));
+    EXPECT_STREQ(__("măn"), __(processKey ("w", "man", im)));
     EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));
     EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));
     EXPECT_STREQ(__("mèo"), __(processKey (_(BACKSPACE_CODE), "mèov", im)));

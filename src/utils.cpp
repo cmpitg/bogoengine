@@ -564,12 +564,9 @@ namespace BoGo {
     }
 
     ustring addAccentToText (ustring str, ustring transf) {
-        if (transf == "*/") return addAccentToText (str, ACUTE);
-        if (transf == "*\\") return addAccentToText (str, GRAVE);
-        if (transf == "*?") return addAccentToText (str, HOOK);
-        if (transf == "*~") return addAccentToText (str, TILDE);
-        if (transf == "*.") return addAccentToText (str, DOT);
-        if (transf == "*_") return addAccentToText (str, NO_ACCENT);
+        _size_t_ pos = AccentTransformations.find (transf);
+        if (pos != ustring::npos)
+            return addAccentToText (str, ACCENTS[pos/2]);
         return str;
     }
 
@@ -596,6 +593,17 @@ namespace BoGo {
                 + addMarkToChar (str[lpos], HORN);
         }
 
+        // Special case: ua + w -> ưa not uă
+        if ((lpos > 0) && (mark == BREVE) &&
+            (toRawText(lastChar) == "a" ) &&
+            (toRawText (_(str[lpos -1])) == "u")) {
+            return
+                ((lpos >= 2) ? ustring (str, 0, lpos - 1) : "")
+                + addMarkToChar (str[lpos-1], HORN)
+                + str[lpos];
+        }
+        
+
         if (canAddMarkToLetter (lastChar, mark))
             return firstPart + addMarkToChar (lastChar, mark);
         else
@@ -605,12 +613,10 @@ namespace BoGo {
     }
 
     ustring addMarkToText (ustring str, ustring transf) {
-        if (transf == "a^") return addMarkToWord (str, HAT);
-        if (transf == "o^") return addMarkToWord (str, HAT);
-        if (transf == "e^") return addMarkToWord (str, HAT);
-        if (transf == "o+") return addMarkToWord (str, HORN);
-        if (transf == "u+") return addMarkToWord (str, HORN);
-        if (transf == "*-") return addMarkToWord (str, BAR);
+        _size_t_ pos = MarkTransformations.find (transf);
+        if (pos != ustring::npos)
+            return addMarkToWord (str, MARKS[pos/2]);
+
         return str;
     }
     
@@ -646,14 +652,14 @@ namespace BoGo {
     }
     
 
-    ustring getTransformation (ustring trans) {
+    ustring getTransformation (ustring key_transf) {
         /* get the tranformation part from the string describing the transformation
            ex: "a a+" -> "a+" */
-        trans.erase (0,1);
-        while (_(trans[0]) == " ") {
-            trans.erase(0,1);
+        ustring transf = key_transf.erase (0,1);
+        while (transf[0] == ' ' ) {
+            transf.erase(0,1);
         }
-        return trans;
+        return transf;
     }
     
     ustringArrayT  findTransformation (ustring ch, InputMethodT im) {
@@ -673,21 +679,23 @@ namespace BoGo {
     }
 
     ustring (*filterTransformation (ustring key_transf )) (ustring, ustring) {
-        if (key_transf.find ("*-") != ustring::npos) return &addMarkToText;
-        if (key_transf.find ("*") != ustring::npos) return &addAccentToText;
-        if (key_transf.find ("^") != ustring::npos) return &addMarkToText;
-        if (key_transf.find ("+") != ustring::npos) return &addMarkToText;
+        ustring transf = getTransformation (key_transf);
+        if (MarkTransformations.find (transf) != ustring::npos)
+            return &addMarkToText;
+
+        if (AccentTransformations.find (transf) != ustring::npos)
+            return &addAccentToText;
         return &addCharToWord;
     }
 
     Transform kindOfTransformation (ustring key_transf) {
-        if (key_transf.find ("*-") != ustring::npos) return ADD_MARK;
-        // <<<< Fix it please
-        if (key_transf.find ("w") != ustring::npos) return ADD_MARK;
-        // >>>>
-        if (key_transf.find ("*") != ustring::npos) return ADD_ACCENT;
-        if (key_transf.find ("^") != ustring::npos) return ADD_MARK;
-        if (key_transf.find ("+") != ustring::npos) return ADD_MARK;
+        ustring transf = getTransformation (key_transf);
+        if (MarkTransformations.find (transf) != ustring::npos)
+            return ADD_MARK;
+
+        if (AccentTransformations.find (transf) != ustring::npos)
+            return ADD_ACCENT;
+
         return ADD_CHAR;
     }
 

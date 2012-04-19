@@ -69,6 +69,8 @@ namespace BoGo {
         TILDE          = 3,
         DOT            = 4,
         NO_ACCENT      = 5;
+    const Accents ACCENTS[] = {GRAVE, ACUTE, HOOK, TILDE, DOT, NO_ACCENT};
+    const ustring AccentTransformations = "*\\" "*/" "*?" "*~" "*." "*_";
 
     const guint NUMBER_OF_MARKS = 5;
     const guint NO_MARK  = 0,
@@ -76,6 +78,8 @@ namespace BoGo {
         HORN             = 2,
         BREVE            = 3,
         BAR              = 4;
+    const Marks MARKS[] = {HAT, HAT, HAT, HORN, HORN, BREVE, BAR};
+    const ustring MarkTransformations = "a^" "o^" "e^" "o+" "u+" "*v" "*-";
 
     const gchar BACKSPACE_CODE = 8;
 
@@ -226,7 +230,6 @@ namespace BoGo {
     ustring addMarkToWord (ustring str, Marks mark);
     ustring addMarkToText (ustring str, ustring key_transf);
 
-    ustring addCharToWord (ustring  str, ustring ch);
-    
+    ustring addCharToWord (ustring  str, ustring ch);    
 }
 
