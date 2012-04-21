@@ -228,12 +228,11 @@ namespace BoGo {
         // Second part: Vowel
         // Third part: Consonant 2
 
-        for (int part = 0; part < 3; part++) {
+        for (int part = 2; part >= 0; part --) {
             res[part] = "";
-            // This is safe due to short-circuit logic
-            while (str.length () > 0 && testFuncs[part] (_(str[0]))) {
-                res[part] += _(str[0]);
-                str.replace (0, 1, "");
+            while (str.length () > 0 && testFuncs[part] (_(str[str.length () - 1]))){
+                res[part] = _(str[str.length () -1]) + res[part];
+                str.replace (str.length () -1, 1, "");
             }
         }
 
