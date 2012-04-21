@@ -236,6 +236,9 @@ namespace BoGo {
             }
         }
 
+        // push the remaining part into res[0]
+        res[0] = str + res[0];
+
         // Special case: "qu" and "gi" are considered consonants
         if (analyseWordCheckSpecialConsonants (res, "qu") ||
             analyseWordCheckSpecialConsonants (res, "gi")) {
@@ -525,19 +528,21 @@ namespace BoGo {
     }
 
     ustring addAccentToWord (ustring str, Accents accent) {
-        ustring rawStr = removeAccentFromWord (str);
-        if (accent == NO_ACCENT) return rawStr;
+        //  ustring rawStr = removeAccentFromWord (str);
+        //  if (accent == NO_ACCENT) return str;
 
-        ustringArrayT comp = analyseWord ( rawStr );
+        ustringArrayT comp = analyseWord (str);
+        comp[1] = removeAccentFromWord (comp[1]);
+        if (accent == NO_ACCENT)
+            return comp[0] + comp[1] + comp[2];
+            
         ustring vowel = comp[1];
         if (vowel == "") return str;
-        
 
         ustring specialSingleVowel = "ăâơê";
         ustring ch;
         ustring _vowel = toRawText (vowel);
         _size_t_ pos;
-        
         
         for ( _size_t_ i = 0; i < 4; i++) {
             ch = _(specialSingleVowel[i]);
@@ -552,8 +557,6 @@ namespace BoGo {
         }
 
         vowel = vowel.replace (pos, 1, addAccentToChar (vowel[pos], accent));
- 
-                                                                  
         return comp[0] + vowel + comp[2];
     }
 
@@ -602,7 +605,6 @@ namespace BoGo {
                 + str[lpos];
         }
         
-
         if (canAddMarkToLetter (lastChar, mark))
             return firstPart + addMarkToChar (lastChar, mark);
         else
