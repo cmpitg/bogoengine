@@ -34,6 +34,7 @@ namespace BoGo {
     typedef vector<ustring> ustringArrayT;
     typedef guint Accents;
     typedef guint Marks;
+    typedef guint Transform;
     typedef ustringArrayT InputMethodT;
 
     const guint NUMBER_OF_IMS = 4;
@@ -57,6 +58,10 @@ namespace BoGo {
         "f \\\n"
     };
 
+    const guint ADD_ACCENT = 0,
+        ADD_MARK = 1,
+        ADD_CHAR = 2;
+    
     const guint NUMBER_OF_ACCENTS = 6;
     const guint GRAVE  = 0,
         ACUTE          = 1,
@@ -64,6 +69,8 @@ namespace BoGo {
         TILDE          = 3,
         DOT            = 4,
         NO_ACCENT      = 5;
+    const Accents ACCENTS[] = {GRAVE, ACUTE, HOOK, TILDE, DOT, NO_ACCENT};
+    const ustring AccentTransformations = "*\\" "*/" "*?" "*~" "*." "*_";
 
     const guint NUMBER_OF_MARKS = 5;
     const guint NO_MARK  = 0,
@@ -71,6 +78,8 @@ namespace BoGo {
         HORN             = 2,
         BREVE            = 3,
         BAR              = 4;
+    const Marks MARKS[] = {HAT, HAT, HAT, HORN, HORN, BREVE, BAR};
+    const ustring MarkTransformations = "a^" "o^" "e^" "o+" "u+" "*v" "*-";
 
     const gchar BACKSPACE_CODE = 8;
 
@@ -82,6 +91,9 @@ namespace BoGo {
     const ustring VowelsWithAccents =
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
+    const ustring SpecialSingleVowel = "ăâơê";
+    const ustring AllVowels = "a e e i o u y ao oa eo oe ie eu oo uo ua ye uye ieu yeu";
+    const ustring ValidFinalConsonants = "c t n ch nh";
 
     const ustring LettersWithoutMarks    = "aaaddeeooouu";
     const ustring LettersMayChangeMarks  = "aăâdđeêoôơuư";
@@ -113,6 +125,7 @@ namespace BoGo {
 
     InputMethodT addTransformation (InputMethodT im, ustring trans);
     InputMethodT addTransformation (InputMethodT im, const gchar *trans);
+    ustring getTransformation (ustring trans);
 
     ustring addMarkToChar (ustring ch, Marks mark);
     ustring addMarkToChar (string ch, Marks mark);
@@ -200,4 +213,26 @@ namespace BoGo {
     ustring removeAccentFromChar (string ch);
     ustring removeAccentFromChar (const gchar *ch);
     ustring removeAccentFromChar (guint ch);
+
+    ustring removeAccentFromLastWord (ustring str);
+
+    ustring getTransformation (ustring trans);
+    ustringArrayT findTransformation (ustring ch, InputMethodT im);
+    ustring (*filterTransformation (ustring key_transf)) (ustring str, ustring transf);
+    ustring processKey (gchar key, ustring str, InputMethodT im);
+    
+
+    ustring toRawText (ustring str);
+    ustring toEnglishText (ustring str);
+    ustring addAccentToWord (ustring str, Accents accent);
+    ustring addAccentToText (ustring str, Accents accent);
+    ustring addAccentToText (ustring str, ustring key_transf);
+
+    bool canAddMarkToLetter (ustring ch, Marks mark);
+    bool canAddMarkToLetter (gchar ch, Marks mark);
+    ustring addMarkToWord (ustring str, Marks mark);
+    ustring addMarkToText (ustring str, ustring key_transf);
+
+    ustring addCharToWord (ustring  str, ustring ch);    
 }
+
