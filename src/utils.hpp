@@ -91,6 +91,7 @@ namespace BoGo {
     const ustring VowelsWithAccents =
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
+    const ustring SpecialSingleVowel = "ăâơê";
     const ustring AllVowels = "a e e i o u y ao oa eo oe ie eu oo uo ua ye uye ieu yeu";
     const ustring ValidFinalConsonants = "c t n ch nh";
 

@@ -550,20 +550,20 @@ namespace BoGo {
         ustring vowel = comp[1];
         if (vowel == "") return str;
 
-        ustring specialSingleVowel = "ăâơê";
+        
         ustring ch;
-        ustring _vowel = toRawText (vowel);
+        ustring rawVowel = toRawText (vowel);
+        _size_t_ vowelSize = vowel.size ();
         _size_t_ pos;
 
         for ( _size_t_ i = 0; i < 4; i++) {
-            ch = _(specialSingleVowel[i]);
-            pos = _vowel.find (ch);
+            pos = rawVowel.find (SpecialSingleVowel[i]);
             if (pos != ustring::npos) break;
         }
 
         if (pos == ustring::npos) {
             if (comp[2] == "")
-                pos = ( vowel.size () <= 2) ? 0 : 1;
+                pos = ( vowelSize <= 2) ? 0 : vowelSize - 2;
             else pos = vowel.size () -1;
         }
 
