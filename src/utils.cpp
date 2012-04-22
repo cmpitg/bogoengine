@@ -527,6 +527,14 @@ namespace BoGo {
         return removeAllMarksFromWord (removeAccentFromWord (str));
     }
 
+    ustring removeAccentFromLastWord (ustring str) {
+        ustringArrayT comp = analyseWord (str);
+        if (comp[2].size () > 2)
+            return str;
+        comp[1] = removeAccentFromWord (comp[1]);
+        return comp[0] + comp[1] + comp[2];
+    }
+
     ustring addAccentToWord (ustring str, Accents accent) {
         //  ustring rawStr = removeAccentFromWord (str);
         //  if (accent == NO_ACCENT) return str;
@@ -535,7 +543,10 @@ namespace BoGo {
         comp[1] = removeAccentFromWord (comp[1]);
         if (accent == NO_ACCENT)
             return comp[0] + comp[1] + comp[2];
-            
+        if (comp[2].size () > 2) {
+            return str;
+        }
+
         ustring vowel = comp[1];
         if (vowel == "") return str;
 
@@ -543,13 +554,13 @@ namespace BoGo {
         ustring ch;
         ustring _vowel = toRawText (vowel);
         _size_t_ pos;
-        
+
         for ( _size_t_ i = 0; i < 4; i++) {
             ch = _(specialSingleVowel[i]);
             pos = _vowel.find (ch);
             if (pos != ustring::npos) break;
         }
-            
+
         if (pos == ustring::npos) {
             if (comp[2] == "")
                 pos = ( vowel.size () <= 2) ? 0 : 1;
@@ -560,7 +571,7 @@ namespace BoGo {
         return comp[0] + vowel + comp[2];
     }
 
-        
+
     ustring addAccentToText (ustring str, Accents accent) {
         return addAccentToWord (str, accent);
     }
@@ -583,8 +594,8 @@ namespace BoGo {
             if (canAddMarkToLetter (lastChar, mark)) {
                 return addMarkToChar (lastChar, mark);
             }
-            return lastChar; 
-        }                                      
+            return lastChar;
+        }
         // Special case : uo ươ
         if ((lpos > 0) && (mark == HORN) &&
             (toRawText(lastChar) == "o" ) &&
@@ -604,7 +615,7 @@ namespace BoGo {
                 + addMarkToChar (str[lpos-1], HORN)
                 + str[lpos];
         }
-        
+
         if (canAddMarkToLetter (lastChar, mark))
             return firstPart + addMarkToChar (lastChar, mark);
         else
@@ -620,7 +631,7 @@ namespace BoGo {
 
         return str;
     }
-    
+
 
     bool canAddMarkToLetter (ustring ch, Marks mark) {
         ustring _ch = toRawText (ch);
@@ -647,11 +658,11 @@ namespace BoGo {
         }
         return false;
     }
-    
+
     bool canAddMarkToLetter (gchar ch, Marks mark) {
         return canAddMarkToLetter (_(ch), mark);
     }
-    
+
 
     ustring getTransformation (ustring key_transf) {
         /* get the tranformation part from the string describing the transformation
@@ -662,7 +673,7 @@ namespace BoGo {
         }
         return transf;
     }
-    
+
     ustringArrayT  findTransformation (ustring ch, InputMethodT im) {
         /* Because a key can associate with more than 1 transformation, we need to know what transfrom are possible */
         ustringArrayT  transforms;
@@ -723,12 +734,12 @@ namespace BoGo {
             if (kind == ADD_MARK)
                 newStr = addCharToWord (removeAllMarksFromWord (str), ch);
             if (kind == ADD_ACCENT)
-                newStr = addCharToWord (removeAccentFromWord (str), ch);
+                newStr = addCharToWord (removeAccentFromLastWord (str), ch);
         }
 
         return newStr;
     }
-    
+
 #undef _
 #undef __
 }
