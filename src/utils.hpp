@@ -214,10 +214,12 @@ namespace BoGo {
     ustring removeAccentFromChar (const gchar *ch);
     ustring removeAccentFromChar (guint ch);
 
+    ustring removeAccentFromLastWord (ustring str);
+
     ustring getTransformation (ustring trans);
     ustringArrayT findTransformation (ustring ch, InputMethodT im);
     ustring (*filterTransformation (ustring key_transf)) (ustring str, ustring transf);
-    ustring processKey (ustring ch, ustring str, InputMethodT im);
+    ustring processKey (gchar key, ustring str, InputMethodT im);
     
 
     ustring toRawText (ustring str);

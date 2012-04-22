@@ -712,8 +712,10 @@ namespace BoGo {
     }
 
 
-    ustring processKey (ustring ch, ustring str, InputMethodT im) {
+    ustring processKey (gchar key, ustring str, InputMethodT im) {
         // Default input method is telex and default charset is UTF8
+        ustring ch = _(key);
+        
         if (ch == _(BACKSPACE_CODE)) {
             str.erase (str.size() - 1, 1);
             return str;
