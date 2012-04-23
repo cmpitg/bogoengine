@@ -89,4 +89,3 @@ Xin chân thành gửi lời cảm ơn đặc biệt đến:
 * Ngô Trung <ndtrung4419@gmail.com>
 * Hoàng Minh Thắng <hoangminhthang@xaydunghoanglong.com>
 * Đàm Tiến Long <longdt90@gmail.com>
-* Nguyễn Thành Hải <phaikawl@gmail.com>
