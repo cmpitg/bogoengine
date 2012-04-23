@@ -59,6 +59,11 @@ triển.
 
 **BoGoEngine** ra đời nhằm đáp ứng đầy đủ cả 8 yêu cầu này.
 
+## Tài liệu
+
+Tài liệu nằm trong thư mục **docs** của dự án, đồng thời có trên
+[Wiki](https://github.com/CMPITG/BoGoEngine/wiki) tại Github.
+
 ## Yêu cầu
 
 ### Cho việc biên dịch
