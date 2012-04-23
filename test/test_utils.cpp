@@ -207,13 +207,22 @@ TEST (CharacterHelpers, CharacterCases) {
     EXPECT_FALSE (isUpperCase ("y"));
 }
 
-TEST (WordHelpers, Other) {
+TEST (WordHelpers, WordBreak) {
     EXPECT_FALSE (isWordBreak ((gchar) 8));
     EXPECT_TRUE (isWordBreak ("1"));
     EXPECT_TRUE (isWordBreak ((gchar) 13));
     EXPECT_FALSE (isWordBreak ("â"));
     EXPECT_FALSE (isWordBreak ("â"));
-    EXPECT_TRUE (stringContains (_("điên"), (gunichar)273));
+}
+
+TEST (OtherHelpers, StringContains) {
+    EXPECT_TRUE (stringContains ("điên", (guint) 273));
+    EXPECT_TRUE (stringContains ("Xin chào!", "À"));
+    EXPECT_FALSE (stringContains ("Xin chào!", "À", false));
+    EXPECT_TRUE (stringContains ("Xin chào!", "!"));
+    EXPECT_TRUE (stringContains ("Xin chào!", " "));
+    EXPECT_TRUE (stringContains ("Xin chào!", "X"));
+    EXPECT_FALSE (stringContains ("Xin chào!", "x", false));
 }
 
 TEST (CharacterHelpers, AccentsAndTransform) {

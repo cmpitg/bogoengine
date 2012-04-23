@@ -91,6 +91,21 @@ namespace BoGo {
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
+    bool stringContains (ustring str, ustring needle, bool ignoreCase = true);
+    bool stringContains (string str, ustring needle, bool ignoreCase = true);
+    bool stringContains (const gchar *str, ustring needle, bool ignoreCase = true);
+    bool stringContains (ustring str, string needle, bool ignoreCase = true);
+    bool stringContains (string str, string needle, bool ignoreCase = true);
+    bool stringContains (const gchar *str, string needle, bool ignoreCase = true);
+    bool stringContains (ustring str, guint needle, bool ignoreCase = true);
+    bool stringContains (string str, guint needle, bool ignoreCase = true);
+    bool stringContains (const gchar *str, guint needle, bool ignoreCase = true);
+    bool stringContains (ustring str, const gchar *needle, bool ignoreCase = true);
+    bool stringContains (string str, const gchar *needle, bool ignoreCase = true);
+    bool stringContains (const gchar *str, const gchar *needle, bool ignoreCase = true);
+
+    int getLastWord (ustring text);
+
     ustring removeAllMarksFromWord (ustring word);
     ustring removeAllMarksFromWord (string word);
     ustring removeAllMarksFromWord (const gchar *word);
@@ -202,8 +217,5 @@ namespace BoGo {
     ustring removeAccentFromChar (string ch);
     ustring removeAccentFromChar (const gchar *ch);
     ustring removeAccentFromChar (guint ch);
-
-    bool stringContains (ustring list, gunichar needle);
-    int getLastWord (ustring text);
 }
 
