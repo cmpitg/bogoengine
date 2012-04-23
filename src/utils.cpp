@@ -40,6 +40,47 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
+    // int getLastWord (ustring text, int last, bool vowelEncountered = false); //Just a forward declaration
+
+    // int getLastWord (ustring text, int last, gunichar processingCons) {
+    //     if (last<0) return last+1;
+    //     ustring str = "";
+    //     str+=text[last];
+    //     str+=processingCons;
+    //     if (stringContains (ValidFinalMulticonsonants, str)) {
+    //         return getLastWord (text, last-1);
+    //     } else {
+    //         return last+1;
+    //     }
+    // }
+
+    // int getLastWord (ustring text, int last, bool vowelEncountered) {
+    //     if (last<0) return last+1;
+    //     gunichar lastChar = text[last];
+    //     if (isVowel (lastChar)) {
+    //         return getLastWord (text, last-1, true);
+    //     } else {
+    //         if (!isConsonant (lastChar) || vowelEncountered) return last;
+    //         if (stringContains (InvalidFinalConsonants, lastChar)) {
+    //             return last;
+    //         }
+    //         else if (stringContains (ValidFinalConsonants, lastChar)) {
+    //             return getLastWord (text, last-1, lastChar);
+    //         }
+
+    //         throw new string ("something wrong happened to getLastWord");
+    //     }
+    // }
+
+    /*
+     * This function gets the last Vietnamese word
+     *  from a group of consecutive alphabetical characters
+     * For example, with the argument "bộgõ", this function returns "gõ"
+     */
+    // int getLastWord (ustring text) {
+    //     return getLastWord (text, text.size()-1);
+    // }
+
     bool stringContains (ustring str, ustring needle, bool ignoreCase) {
         if (ignoreCase) {
             str = str.lowercase ();
@@ -90,47 +131,6 @@ namespace BoGo {
 
     bool stringContains (const gchar *str, const gchar *needle, bool ignoreCase) {
         return stringContains (_(str), _(needle), ignoreCase);
-    }
-
-    int getLastWord (ustring text, int last, bool vowelEncountered = false); //Just a forward declaration
-
-    int getLastWord (ustring text, int last, gunichar processingCons) {
-        if (last<0) return last+1;
-        ustring str = "";
-        str+=text[last];
-        str+=processingCons;
-        if (stringContains (ValidFinalMulticonsonants, str)) {
-            return getLastWord (text, last-1);
-        } else {
-            return last+1;
-        }
-    }
-
-    int getLastWord (ustring text, int last, bool vowelEncountered) {
-        if (last<0) return last+1;
-        gunichar lastChar = text[last];
-        if (isVowel (lastChar)) {
-            return getLastWord (text, last-1, true);
-        } else {
-            if (!isConsonant (lastChar) || vowelEncountered) return last;
-            if (stringContains (InvalidFinalConsonants, lastChar)) {
-                return last;
-            }
-            else if (stringContains (ValidFinalConsonants, lastChar)) {
-                return getLastWord (text, last-1, lastChar);
-            }
-
-            throw new string ("something wrong happened to getLastWord");
-        }
-    }
-
-    /*
-     * This function gets the last Vietnamese word
-     *  from a group of consecutive alphabetical characters
-     * For example, with the argument "bộgõ", this function returns "gõ"
-     */
-    int getLastWord (ustring text) {
-        return getLastWord (text, text.size()-1);
     }
 
     ustring removeAllMarksFromWord (ustring word) {
