@@ -82,12 +82,29 @@ namespace BoGo {
     const ustring VowelsWithAccents =
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
-
+    const ustring ValidFinalConsonants = "ghctmnp";
+    const ustring ValidFinalMulticonsonants = "ng ch nh";
+    const ustring InvalidFinalConsonants = "bdđfklqrsvx";
     const ustring LettersWithoutMarks    = "aaaddeeooouu";
     const ustring LettersMayChangeMarks  = "aăâdđeêoôơuư";
     const ustring LettersWithMarks =
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
+
+    bool stringContains (ustring str, ustring needle, bool ignoreCase = true);
+    bool stringContains (string str, ustring needle, bool ignoreCase = true);
+    bool stringContains (const gchar *str, ustring needle, bool ignoreCase = true);
+    bool stringContains (ustring str, string needle, bool ignoreCase = true);
+    bool stringContains (string str, string needle, bool ignoreCase = true);
+    bool stringContains (const gchar *str, string needle, bool ignoreCase = true);
+    bool stringContains (ustring str, guint needle, bool ignoreCase = true);
+    bool stringContains (string str, guint needle, bool ignoreCase = true);
+    bool stringContains (const gchar *str, guint needle, bool ignoreCase = true);
+    bool stringContains (ustring str, const gchar *needle, bool ignoreCase = true);
+    bool stringContains (string str, const gchar *needle, bool ignoreCase = true);
+    bool stringContains (const gchar *str, const gchar *needle, bool ignoreCase = true);
+
+    int getLastWord (ustring text);
 
     ustring removeAllMarksFromWord (ustring word);
     ustring removeAllMarksFromWord (string word);
@@ -201,3 +218,4 @@ namespace BoGo {
     ustring removeAccentFromChar (const gchar *ch);
     ustring removeAccentFromChar (guint ch);
 }
+

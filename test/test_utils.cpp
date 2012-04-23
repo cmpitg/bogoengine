@@ -40,6 +40,18 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
+// TEST (WholeWordManipulation, GetLastWord) {
+//     EXPECT_EQ (0, getLastWord("giang")); //-> "giang"
+//     EXPECT_EQ (3, getLastWord("conđường")); //-> "đường"
+//     EXPECT_EQ (5, getLastWord("thằnghề")); //-> "hề"
+//     EXPECT_EQ (4, getLastWord("nhànhạ")); //-> "hạ"
+//     EXPECT_EQ (4, getLastWord("cáinhà")); //-> "hà"
+//     //the "hà" result above isn't really correct in theory, but it's totally acceptable
+//     EXPECT_EQ (0, getLastWord("nàNG")); //-> "nàNG"
+//     EXPECT_EQ (4, getLastWord("liêux")); //-> "x"
+//     EXPECT_EQ (3, getLastWord("caon")); //-> "n"
+// }
+
 TEST (MarkAndWord, RemoveAllMarks) {
     EXPECT_STREQ ("thuỏ", removeAllMarksFromWord ("thuở").c_str ());
     EXPECT_STREQ ("gIỵA", removeAllMarksFromWord ("gIỵA").c_str ());
@@ -207,12 +219,22 @@ TEST (CharacterHelpers, CharacterCases) {
     EXPECT_FALSE (isUpperCase ("y"));
 }
 
-TEST (WordHelpers, Other) {
+TEST (WordHelpers, WordBreak) {
     EXPECT_FALSE (isWordBreak ((gchar) 8));
     EXPECT_TRUE (isWordBreak ("1"));
     EXPECT_TRUE (isWordBreak ((gchar) 13));
     EXPECT_FALSE (isWordBreak ("â"));
     EXPECT_FALSE (isWordBreak ("â"));
+}
+
+TEST (OtherHelpers, StringContains) {
+    EXPECT_TRUE (stringContains ("điên", (guint) 273));
+    EXPECT_TRUE (stringContains ("Xin chào!", "À"));
+    EXPECT_FALSE (stringContains ("Xin chào!", "À", false));
+    EXPECT_TRUE (stringContains ("Xin chào!", "!"));
+    EXPECT_TRUE (stringContains ("Xin chào!", " "));
+    EXPECT_TRUE (stringContains ("Xin chào!", "X"));
+    EXPECT_FALSE (stringContains ("Xin chào!", "x", false));
 }
 
 TEST (CharacterHelpers, AccentsAndTransform) {
