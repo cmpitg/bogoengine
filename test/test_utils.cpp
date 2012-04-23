@@ -213,7 +213,7 @@ TEST (WordHelpers, Other) {
     EXPECT_TRUE (isWordBreak ((gchar) 13));
     EXPECT_FALSE (isWordBreak ("â"));
     EXPECT_FALSE (isWordBreak ("â"));
-    EXPECT_TRUE (charListContains (_("điên"), (gunichar)273));
+    EXPECT_TRUE (stringContains (_("điên"), (gunichar)273));
 }
 
 TEST (CharacterHelpers, AccentsAndTransform) {
@@ -307,6 +307,7 @@ TEST (WholeWordManipulation, GetLastWord) {
     EXPECT_EQ (0, getLastWord("nàNG")); //-> "nàNG"
     EXPECT_EQ (4, getLastWord("liêux")); //-> "x"
     EXPECT_EQ (3, getLastWord("caon")); //-> "n"
+    
 }
 
 int main (int argc, char *argv[]) {

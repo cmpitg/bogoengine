@@ -40,12 +40,12 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
-    bool charListContains (ustring list, ustring needle) {
+    bool stringContains (ustring list, ustring needle) {
         return list.find (needle.lowercase()) != ustring::npos;
     }
 
-    bool charListContains (ustring list, gunichar needle) {
-        return charListContains (list, _(needle));
+    bool stringContains (ustring list, gunichar needle) {
+        return stringContains (list, _(needle));
     }
 
     int getLastWord (ustring text, int last, bool vowelEncountered = false); //Just a forward declaration
@@ -55,7 +55,7 @@ namespace BoGo {
         ustring str = "";
         str+=text[last];
         str+=processingCons;
-        if (charListContains (ValidFinalMulticonsonants, str)) {
+        if (stringContains (ValidFinalMulticonsonants, str)) {
             return getLastWord (text, last-1);
         } else {
             return last+1;
@@ -69,10 +69,10 @@ namespace BoGo {
             return getLastWord (text, last-1, true);
         } else {
             if (!isConsonant (lastChar) || vowelEncountered) return last;
-            if (charListContains (InvalidFinalConsonants, lastChar)) {
+            if (stringContains (InvalidFinalConsonants, lastChar)) {
                 return last;
             }
-            else if (charListContains (ValidFinalConsonants, lastChar)) {
+            else if (stringContains (ValidFinalConsonants, lastChar)) {
                 return getLastWord (text, last-1, lastChar);
             }
 

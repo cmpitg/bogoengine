@@ -203,7 +203,7 @@ namespace BoGo {
     ustring removeAccentFromChar (const gchar *ch);
     ustring removeAccentFromChar (guint ch);
 
-    bool charListContains (ustring list, gunichar needle);
+    bool stringContains (ustring list, gunichar needle);
     int getLastWord (ustring text);
 }
 
