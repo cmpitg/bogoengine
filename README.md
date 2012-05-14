@@ -1,5 +1,14 @@
 # BoGoEngine
 
+## Thông báo
+
+Do gặp trục trặc về mặt sức khỏe
+([RSI](http://en.wikipedia.org/wiki/Repetitive_stress_injury)), nhánh phát
+triển do **Dương (cmpitg)** quản lý đã bị chậm lại từ giữa tháng 04/2012 đến
+giữa tháng 05/2012.
+
+Tính từ ngày 17/05/2012, nhánh này sẽ lại được phát triển tiếp tục.
+
 ## Giới thiệu
 
 **BoGoEngine** là một thư viện sử dụng cho việc gõ tiếng Việt.  **BoGoEngine**
