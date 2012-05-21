@@ -711,36 +711,37 @@ namespace BoGo {
         return ADD_CHAR;
     }
 
+    // ustring processKey (gchar key, ustring str, InputMethodT im) {
+    //     // Default input method is telex and default charset is UTF8
+    //     ustring ch = _(key);
 
-    ustring processKey (gchar key, ustring str, InputMethodT im) {
-        // Default input method is telex and default charset is UTF8
-        ustring ch = _(key);
-        
-        if (ch == _(BACKSPACE_CODE)) {
-            str.erase (str.size() - 1, 1);
-            return str;
-        }
-        ustring (*doTransform) (ustring, ustring);
-        ustring newStr = str;
-        ustringArrayT transforms = findTransformation (ch, im);
-        Transform kind;
-        if (transforms.size () != 0) {
-            for (_size_t_ i = 0; i < transforms.size (); i++) {
-                doTransform = filterTransformation (transforms[i]);
-                kind = kindOfTransformation (transforms[i]);
-                newStr = doTransform (newStr, getTransformation (transforms[i]));
-            }
-        } else
-            newStr = addCharToWord (str, ch);
-        if (newStr == str) {
-            if (kind == ADD_MARK)
-                newStr = addCharToWord (removeAllMarksFromWord (str), ch);
-            if (kind == ADD_ACCENT)
-                newStr = addCharToWord (removeAccentFromLastWord (str), ch);
-        }
+    //     if (ch == _(BACKSPACE_CODE)) {
+    //         str.erase (str.size() - 1, 1);
+    //         return str;
+    //     }
 
-        return newStr;
-    }
+    //     ustring (*doTransform) (ustring, ustring);
+    //     ustring newStr = str;
+    //     ustringArrayT transforms = findTransformation (ch.lowercase (), im);
+    //     Transform kind;
+    //     if (transforms.size () != 0) {
+    //         for (_size_t_ i = 0; i < transforms.size (); i++) {
+    //             doTransform = filterTransformation (transforms[i]);
+    //             kind = kindOfTransformation (transforms[i]);
+    //             newStr = doTransform (newStr, getTransformation (transforms[i]));
+    //         }
+    //     } else
+    //         newStr = addCharToWord (str, ch);
+
+    //     if (newStr == str) {
+    //         if (kind == ADD_MARK)
+    //             newStr = addCharToWord (removeAllMarksFromWord (str), ch);
+    //         if (kind == ADD_ACCENT)
+    //             newStr = addCharToWord (removeAccentFromLastWord (str), ch);
+    //     }
+
+    //     return newStr;
+    // }
 
 #undef _
 #undef __
