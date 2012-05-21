@@ -39,6 +39,8 @@ namespace BoGo {
 #undef __
 #endif
 #define __(x) (ustring ("") + x).c_str ()
+#define have(x) find(x) != ustring::npos
+#define dont_have(x) find(x) == ustring::npos
 
     ustring removeAllMarksFromWord (ustring word) {
         ustring res = "";
@@ -230,7 +232,8 @@ namespace BoGo {
 
         for (int part = 2; part >= 0; part --) {
             res[part] = "";
-            while (str.length () > 0 && testFuncs[part] (_(str[str.length () - 1]))){
+            while (str.length () > 0 &&
+                   testFuncs[part] (_(str[str.length () - 1]))){
                 res[part] = _(str[str.length () -1]) + res[part];
                 str.replace (str.length () -1, 1, "");
             }
@@ -550,7 +553,7 @@ namespace BoGo {
         ustring vowel = comp[1];
         if (vowel == "") return str;
 
-        
+
         ustring ch;
         ustring rawVowel = toRawText (vowel);
         _size_t_ vowelSize = vowel.size ();
@@ -626,22 +629,22 @@ namespace BoGo {
 
     ustring addMarkToText (ustring str, ustring transf) {
         _size_t_ pos = MarkTransformations.find (transf);
-        if (pos != ustring::npos)
-            return addMarkToWord (str, MARKS[pos/2]);
-
-        return str;
+        gchar AffectedChar = transf[0];
+        if (( AffectedChar != '*') &&
+            ( toRawText (str).dont_have (AffectedChar)))
+            return str;
+        return addMarkToWord (str, MARKS[pos/2]);
     }
-
 
     bool canAddMarkToLetter (ustring ch, Marks mark) {
         ustring _ch = toRawText (ch);
         switch (mark) {
         case HAT:
-            if ((_ch == "a") || (_ch == "e") || (_ch == "o"))
+            if (_("aeo").have (_ch))
                 return true;
             break;
         case HORN:
-            if ((_ch == "o") || (_ch == "u"))
+            if (_("ou").have (_ch))
                 return true;
             break;
         case BREVE:
@@ -665,7 +668,8 @@ namespace BoGo {
 
 
     ustring getTransformation (ustring key_transf) {
-        /* get the tranformation part from the string describing the transformation
+        /* get the transformation part from the string describing the
+           transformation
            ex: "a a+" -> "a+" */
         ustring transf = key_transf.erase (0,1);
         while (transf[0] == ' ' ) {
@@ -675,7 +679,8 @@ namespace BoGo {
     }
 
     ustringArrayT  findTransformation (ustring ch, InputMethodT im) {
-        /* Because a key can associate with more than 1 transformation, we need to know what transfrom are possible */
+        /* Because a key can associate with more than 1 transformation,
+           we need to know what transfrom are possible */
         ustringArrayT  transforms;
         for (guint i = 0; i < im.size(); i++) {
             ustring tr = im[i];
@@ -715,20 +720,21 @@ namespace BoGo {
     ustring processKey (gchar key, ustring str, InputMethodT im) {
         // Default input method is telex and default charset is UTF8
         ustring ch = _(key);
-        
+
         if (ch == _(BACKSPACE_CODE)) {
             str.erase (str.size() - 1, 1);
             return str;
         }
         ustring (*doTransform) (ustring, ustring);
         ustring newStr = str;
-        ustringArrayT transforms = findTransformation (ch, im);
+        ustringArrayT transforms = findTransformation (toRawText (ch), im);
         Transform kind;
         if (transforms.size () != 0) {
             for (_size_t_ i = 0; i < transforms.size (); i++) {
                 doTransform = filterTransformation (transforms[i]);
                 kind = kindOfTransformation (transforms[i]);
-                newStr = doTransform (newStr, getTransformation (transforms[i]));
+                newStr = doTransform (newStr,
+                                      getTransformation (transforms[i]));
             }
         } else
             newStr = addCharToWord (str, ch);
