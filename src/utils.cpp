@@ -697,20 +697,21 @@ namespace BoGo {
 
     ustring (*filterTransformation (ustring key_transf )) (ustring, ustring) {
         ustring transf = getTransformation (key_transf);
-        if (MarkTransformations.find (transf) != ustring::npos)
+        if (MarkTransformations.have (transf))
             return &addMarkToText;
 
-        if (AccentTransformations.find (transf) != ustring::npos)
+        if (AccentTransformations.have (transf))
             return &addAccentToText;
         return &addCharToWord;
     }
 
-    Transform kindOfTransformation (ustring key_transf) {
+    Transform getTypeTranformation (ustring key_transf) {
+        //Determine the type of transformation: add mark or add accent
         ustring transf = getTransformation (key_transf);
-        if (MarkTransformations.find (transf) != ustring::npos)
+        if (MarkTransformations.have (transf))
             return ADD_MARK;
 
-        if (AccentTransformations.find (transf) != ustring::npos)
+        if (AccentTransformations.have (transf))
             return ADD_ACCENT;
 
         return ADD_CHAR;
@@ -732,7 +733,7 @@ namespace BoGo {
         if (transforms.size () != 0) {
             for (_size_t_ i = 0; i < transforms.size (); i++) {
                 doTransform = filterTransformation (transforms[i]);
-                kind = kindOfTransformation (transforms[i]);
+                kind = getTypeTranformation (transforms[i]);
                 newStr = doTransform (newStr,
                                       getTransformation (transforms[i]));
             }

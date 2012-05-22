@@ -220,7 +220,7 @@ namespace BoGo {
     ustringArrayT findTransformation (ustring ch, InputMethodT im);
     ustring (*filterTransformation (ustring key_transf)) (ustring str, ustring transf);
     ustring processKey (gchar key, ustring str, InputMethodT im);
-    
+    Transform getTypeTranformation (ustring key_transf);
 
     ustring toRawText (ustring str);
     ustring toEnglishText (ustring str);
@@ -233,6 +233,5 @@ namespace BoGo {
     ustring addMarkToWord (ustring str, Marks mark);
     ustring addMarkToText (ustring str, ustring key_transf);
 
-    ustring addCharToWord (ustring  str, ustring ch);    
+    ustring addCharToWord (ustring  str, ustring ch);
 }
-
