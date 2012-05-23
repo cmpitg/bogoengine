@@ -21,7 +21,7 @@ Mail group thảo luận các vấn đề liên quan đến việc *phát triể
 ## Lịch sử và nguyên nhân ra đời
 
 Lịch sử và nguyên nhân ra đời có thể được xem tại
-[trang chủ của dự án](http://bogoengine.github.com/).
+[trang chủ của dự án](http://cmpitg.github.com/BoGoEngine/).
 
 ## Tài liệu
 
