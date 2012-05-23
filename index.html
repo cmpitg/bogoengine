@@ -4,7 +4,6 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
   <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
@@ -31,37 +30,103 @@
         <div class="inner">
           <a href="https://github.com/CMPITG/BoGoEngine/tarball/master" class="download-button tar"><span>Download</span></a>
           <a href="https://github.com/CMPITG/BoGoEngine/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/CMPITG/BoGoEngine" class="code">View BoGoEngine on GitHub</a>
+          <a href="https://github.com/CMPITG/BoGoEngine" class="code">Thăm BoGoEngine trên Github</a>
         </div>
         <span class="blc"></span><span class="trc"></span>
         </div>
         <article class="markdown-body">
-          <h3>Welcome to GitHub Pages.</h3>
+          <h3>Trang chủ dự án BoGoEngine</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<p><strong>BoGoEngine</strong> là một thư viện sử dụng cho việc gõ tiếng Việt, được viết bằng ngôn ngữ C++, với <a href='https://en.wikipedia.org/wiki/Functional_programming'>functional programming paradigm</a></p>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+<h3>Lý do ra đời</h3>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<p>Tính đến thời điểm tháng 03 năm 2012, Việt Nam có 04 bộ gõ tiếng Việt trên GNU/Linux được biết đến và sử dụng phổ biến nhất:</p>
 
-<h3>Designer Templates</h3>
+<ul>
+  <li><a href='http://unikey.org/linux.php'>x-unikey</a> của tác giả <strong>Phạm Kim Long</strong>, lần phát hành cuối cùng là vào năm 2006, giấy phép GPL v2.</li>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+  <li><a href='http://xvnkb.sourceforge.net/'>xvnkb</a> của tác giả <strong>Dao Hai Lam</strong> &lt;lam [at] visc-network [dot] com&gt;, lần phát hành cuối cùng vào năm 2004, giấy phép GPL v2.</li>
 
-<h3>Rather Drive Stick?</h3>
+  <li><a href='http://code.google.com/p/scim-unikey/'>scim-unikey</a> và <a href='http://code.google.com/p/ibus-unikey/'>ibus-unikey</a> là 2 input method (IM) dùng cho SCIM và IBus, phát triển bởi <strong>Lê Quốc Tuấn</strong> &lt;mr [dot] lequoctuan [at] gmail [dot] com&gt; và <strong>Lê Kiến Trúc</strong> &lt;afterlastangel [at] ubuntu-vn [dot] org&gt;, với engine Unikey trích xuất từ x-unikey, giấy phép GPL v2. <emp>ibus-unikey</emp> được sử dụng phổ biến nhất, có mặt mặc định trên hầu hết tất cả các bản phân phối GNU/Linux. <emp>scim-unikey</emp> phát hành lần cuối cùng vào tháng 08/2009. <emp>ibus-unikey</emp> phát hành bản 0.6 vào tháng 01/2012 và hiện nay vẫn đang tiếp tục được phát triển.</li>
+</ul>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>Tất cả 4 bộ gõ nói trên đều còn nhiều hạn chế, gây khó khăn cho người sử dụng, đặc biệt với người sử dụng phổ thông. Cụ thể hơn: bộ gõ tiếng Việt trên GNU/Linux cần đảm bảo các yếu tố sau:</p>
 
-<h3>Authors and Contributors</h3>
+<ul>
+  <li>Là Phần mềm Tự do Nguồn mở (<a href='https://en.wikipedia.org/wiki/Free_and_open_source_software'>FOSS</a>).</li>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+  <li>Sẵn có trên hầu hết các bản phân phối GNU/Linux, đặc biệt là các bản phân phối phổ biến: <a href='https://en.wikipedia.org/wiki/Ubuntu_(operating_system)'>Ubuntu</a>, <a href='https://en.wikipedia.org/wiki/Fedora_(operating_system)'>Fedora</a>, <a href='https://en.wikipedia.org/wiki/Debian'>Debian</a>, ...</li>
 
-<h3>Support or Contact</h3>
+  <li>Có IM cho các IM platform/framework mặc định phổ biến nhất hiện nay: SCIM và IBus.</li>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+  <li>Tài liệu cho người sử dụng và người phát triển rõ ràng, chăm sóc cẩn thận.</li>
+
+  <li>Mã nguồn trong sáng, có convention, guideline.</li>
+
+  <li>Chạy ổn định, dễ dùng.</li>
+
+  <li>Hỗ trợ các bảng mã (UTF-8, UTF-16, TCVN 3, VNI, VIQR, ...) và cách gõ phổ biến nhât (Telex, Simple Telex, VNI).</li>
+
+  <li>Hỗ trợ tính năng chuyển mã.</li>
+
+  <li>Khả năng mở rộng, bảo trì, tái sử dụng cao.</li>
+</ul>
+
+<p>Không có một bộ gõ tiếng Việt nào trong số 4 bộ gõ nói trên đáp ứng được đầy đủ cả 9 yêu cầu này tính đến thời điểm tháng 03 năm 2012.  Bên cạnh đó, ibus-unikey có tính năng preedit rất bất tiện cho người sử dụng nhưng không được tác giả engine này điều chỉnh.  Trong quá trình tìm hiểu khắc phục các hạn chế này, tác giả <emp>BoGoEngine</emp> <a href="https://github.com/CMPITG" class="user-mention">Nguyễn Hà Dương (@cmpitg)</a> gặp phải hàng loạt các vấn đề:</p>
+
+<ul>
+  <li>Mã nguồn của Unikey engine và ibus-unikey không có convention, phần lớn không được document, rất khó chỉnh sửa và bảo trì.</li>
+
+  <li>Cách thức xử lý tiếng Việt của Unikey engine không tự nhiên và không được mô tả trong bất kỳ tài liệu nào tìm được.</li>
+
+  <li>Unikey engine kết hợp object oriented programming và imperative programming rối rắm, sử dụng state nhiều, hạn chế rất lớn khả năng mở rộng và bảo trì, dễ phát sinh lỗi.</li>
+
+  <li>Tác giả cố gắng refactor và document mã nguồn của Unikey engine cũng như ibus-unikey, thành công trong việc loại bỏ preedit text nhưng chương trình phát sinh lỗi không kiểm soát được khi người sử dụng gõ phím nhanh.</li>
+</ul>
+
+<p>So sánh việc công sức tương đối giữa việc đào sâu tìm hiểu mã nguồn, sửa lỗi, đáp ứng thêm 9 yêu cầu nói trên với việc xây dựng một engine mới, tác giả quyết định chọn phương án thứ hai: viết lại hoàn toàn engine xử lý nhập liệu tiếng Việt và cho ra đời dự án BoGoEngine vào tháng 04 năm 2012.</p>
+
+<h3>Tài nguyên</h3>
+
+<ul>
+  <li>Trang chủ dự án: <a href='http://cmpitg.github.com/BoGoEngine'>http://cmpitg.github.com/BoGoEngine</a>.</li>
+
+  <li><a href='https://github.com/CMPITG/BoGoEngine/wiki'>Wiki</a> của dự án tại <a href='https://github.com'>Github</a>.</li>
+
+  <li>Mail group thảo luận các vấn đề liên quan đến việc phát triển BoGoEngine: <a href='mailto:bogoengine-dev@googlegroups.com'>bogoengine [hyphen] dev [at] googlegroups [dot] com</a>, subscribe tại giao diện web <a href='http://groups.google.com/group/bogoengine-dev'>Google Group</a>.</li>
+
+  <li>Dự án tích hợp BoGoEngine vào IBus: <a href='community-space.wikia.com/wiki/ibus-bogo'>ibus-bogo</a>.</li>
+</ul>
+
+<h3>Giấy phép xuất bản (License)</h3>
+
+Toàn bộ mã nguồn của BoGoEngine cùng tất cả các tài nguyên đi kèm đều được phát hành dưới các quy định ghi trong Giấy phép Công cộng GNU, phiên bản 3.0 (<a href='https://www.gnu.org/licenses/gpl-3.0-standalone.html'>GNU General Public License v3.0</a>).
+
+<h3>Tác giả và Những người đóng góp</h3>
+
+<p>Bản quyền (C) năm 2012 bởi:</p>
+
+<ul>
+  <li><a href="https://github.com/CMPITG" class="user-mention">Nguyễn Hà Dương (@cmpitg)</a></li>
+
+  <li><a href="https://github.com/phaikawl" class="user-mention">Nguyễn Thành Hải (@phaikawl)</a></li>
+
+  <li><a href="https://github.com/milkycoffee" class="user-mention">Đàm Tiến Long (@milkycoffee)</a></li>
+</ul>
+
+<p>Xin chân thành gửi lời cảm ơn đặc biệt đến những người đóng góp cho BoGoEngine:</p>
+
+<ul>
+  <li><a href="https://github.com/lewtds" class="user-mention">Ngô Trung (@lewtds)</a></li>
+
+  <li><a href="https://github.com/myguidingstar" class="user-mention">Hoàng Minh Thắng (@myguidingstar)</a></li>
+</ul>
+
+<h3>Liên hệ</h3>
+
+<p>Mọi chi tiết xin liên hệ tác giả <a href="https://github.com/CMPITG" class="user-mention">@cmpitg</a> hoặc thông qua mailing list phát triển BoGoEngine nói trên.</p>
+
         </article>
       </div>
     </div>
