@@ -1,21 +1,21 @@
 /*
 
-  This file is a part of BoGoEngine project.
+ This file is a part of BoGoEngine project.
 
-  Copyright (C) 2012 Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
+ Copyright (C) 2012 Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
 
-  BoGoEngine is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
+ BoGoEngine is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
 
-  BoGoEngine is distributed in the hope that it will be useful, but
-  WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-  General Public License for more details.
+ BoGoEngine is distributed in the hope that it will be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ General Public License for more details.
 
-  You should have received a copy of the GNU General Public License
-  along with BoGoEngine.  If not, see <http://www.gnu.org/licenses/>.
+ You should have received a copy of the GNU General Public License
+ along with BoGoEngine. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
@@ -40,6 +40,7 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
+// <<<<<<< HEAD
 // TEST (WholeWordManipulation, GetLastWord) {
 //     EXPECT_EQ (0, getLastWord("giang")); //-> "giang"
 //     EXPECT_EQ (3, getLastWord("conđường")); //-> "đường"
@@ -51,6 +52,8 @@ vector<ustring> makeustringVec3 (const gchar *e0,
 //     EXPECT_EQ (4, getLastWord("liêux")); //-> "x"
 //     EXPECT_EQ (3, getLastWord("caon")); //-> "n"
 // }
+// =======
+// >>>>>>> longdt
 
 TEST (MarkAndWord, RemoveAllMarks) {
     EXPECT_STREQ ("thuỏ", removeAllMarksFromWord ("thuở").c_str ());
@@ -99,27 +102,27 @@ TEST (InputMethod, MakeIM) {
 
     im = makeIM (5, "aa^", "f*\\", "w*\\", "oo+", "j*.");
     EXPECT_STREQ ("a -> a^\nf -> *\\\nw -> *\\\no -> o+\nj -> *.\n",
-                  __(toString (im)));
+                 __(toString (im)));
 
     im = makeIMFromString ("a -> a^\nf -> *\\\no -> o+\nj -> *.\n");
     EXPECT_STREQ ("a -> a^\nf -> *\\\no -> o+\nj -> *.\n",
-                  __(toString (im)));
+                 __(toString (im)));
 
     im = makeStandardIM (IM_SIMPLETELEX);
     EXPECT_STREQ ("a -> a^\n"
-                  "o -> o^\n"
-                  "e -> e^\n"
-                  "w -> o+\n"
-                  "w -> u+\n"
-                  "w -> *v\n"
-                  "d -> *-\n"
-                  "s -> */\n"
-                  "r -> *?\n"
-                  "x -> *~\n"
-                  "j -> *.\n"
-                  "z -> *_\n"
-                  "f -> *\\"
-                  "\n", __(toString (im)));
+                 "o -> o^\n"
+                 "e -> e^\n"
+                 "w -> o+\n"
+                 "w -> u+\n"
+                 "w -> *v\n"
+                 "d -> *-\n"
+                 "s -> */\n"
+                 "r -> *?\n"
+                 "x -> *~\n"
+                 "j -> *.\n"
+                 "z -> *_\n"
+                 "f -> *\\"
+                 "\n", __(toString (im)));
 }
 
 TEST (TestItself, TestHelpers) {
@@ -317,6 +320,67 @@ TEST (CharacterHelpers, PlainCharacters) {
     EXPECT_FALSE (isLetter ("\\"));
     EXPECT_FALSE (isLetter ((gchar) 13)); // Return
 }
+
+TEST (FindTransformation, SimpleTelex) {
+    InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
+    ustringArrayT transformation_w;
+    transformation_w.push_back("wo+");
+    transformation_w.push_back("wu+");
+    transformation_w.push_back("w*v");
+
+    EXPECT_EQ (transformation_w[0], findTransformation ( "w", im)[0]);
+    EXPECT_EQ (transformation_w[1], findTransformation ( "w", im)[1]);
+    EXPECT_EQ (transformation_w[2], findTransformation ( "w", im)[2]);
+}
+
+TEST (WordHelpers, AddAccentToWord) {
+    EXPECT_STREQ ("èo", addAccentToWord ("eo", GRAVE).c_str ());
+    EXPECT_STREQ ("iều", addAccentToWord ("iêu", GRAVE).c_str ());
+    EXPECT_STREQ ("uối", addAccentToWord ("uôi", ACUTE).c_str ());
+    EXPECT_STREQ ("Ẹ", addAccentToWord ("E", DOT).c_str ());
+    EXPECT_STREQ ("huYền", addAccentToWord ("huYên", GRAVE).c_str ());
+    EXPECT_STREQ ("uYê", addAccentToWord ("uYế", NO_ACCENT).c_str ());
+    EXPECT_STREQ ("xóa", addAccentToWord ("xoa", ACUTE).c_str ());
+    EXPECT_STREQ ("xoÁn", addAccentToWord ("xoAn", ACUTE).c_str ());
+    EXPECT_STREQ ("xoẮn", addAccentToWord ("xoĂn", ACUTE).c_str ());
+    EXPECT_STREQ ("xoaán", addAccentToWord ("xoaan", ACUTE).c_str ());
+}
+
+TEST (WordHelpers, AddMarkToWord) {
+    EXPECT_STREQ ("ê", addMarkToWord ("e", HAT).c_str ());
+    EXPECT_STREQ ("đ", addMarkToWord ("d", BAR).c_str ());
+    EXPECT_STREQ ("uối", addMarkToWord ("uói", HAT).c_str ());
+    EXPECT_STREQ ("mưa", addMarkToWord ("mua", HORN).c_str ());
+    EXPECT_STREQ ("đeo", addMarkToWord ("deo", BAR).c_str ());
+    EXPECT_STREQ ("ươi", addMarkToWord ("uoi", HORN).c_str ());
+    EXPECT_STREQ ("nẰm", addMarkToWord ("nÀm", BREVE).c_str ());
+    EXPECT_STREQ ("ĐẰm", addMarkToWord ("DẰm", BAR).c_str ());
+    EXPECT_STREQ ("rƯơi", addMarkToWord ("rUoi", HORN).c_str ());
+    EXPECT_STREQ ("TrƯơng", addMarkToWord ("TrUong", HORN).c_str ());
+}
+
+// TEST (ProcessKey, ProcessKey) {
+//     InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
+//     EXPECT_STREQ(__("mèo"), __(processKey (BACKSPACE_CODE, "mèov", im)));
+//     EXPECT_STREQ(__("mèo"), __(processKey ('f', "meo", im)));
+//     EXPECT_STREQ(__("Đèo"), __(processKey ('d', "Dèo", im)));
+//     EXPECT_STREQ(__("đèo"), __(processKey ('D', "dèo", im)));
+//     EXPECT_STREQ(__("đEO"), __(processKey ('z', "đÈO", im)));
+//     EXPECT_STREQ(__("mưA"), __(processKey ('w', "muA", im)));
+//     EXPECT_STREQ(__("rƯơi"), __(processKey ('w', "rUoi", im)));
+//     EXPECT_STREQ(__("rUòi"), __(processKey ('f', "rUoi", im)));
+//     EXPECT_STREQ(__("ruoiw"), __(processKey ('w', "rươi", im)));
+//     EXPECT_STREQ(__("mỬ"), __(processKey ('w', "mỦ", im)));
+//     EXPECT_STREQ(__("mỦw"), __(processKey ('w', "mỬ", im)));
+//     EXPECT_STREQ(__("măn"), __(processKey ('w', "man", im)));
+//     EXPECT_STREQ(__("mũmmĩm"), __(processKey ('x', "mũmmim", im)));
+//     EXPECT_STREQ(__("làmănz"), __(processKey ('z', "làmăn", im)));
+//     EXPECT_STREQ(__("chuyệk"), __(processKey ('j', "chuyêk", im)));
+//     EXPECT_STREQ(__("quảđur"), __(processKey ('r', "quảđủ", im)));c
+//     EXPECT_STREQ(__("mèokckf"), __(processKey ('f', "mèokck", im)));
+//     EXPECT_STREQ(__("meO"), __(processKey ('O', "me", im)));
+//     // EXPECT_STREQ(__("họa"), __(processKey (BACKSPACE_CODE, "hoạt", im)));
+// }
 
 int main (int argc, char *argv[]) {
     testing::InitGoogleTest (&argc, argv);

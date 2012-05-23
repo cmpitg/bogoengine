@@ -321,14 +321,16 @@ namespace BoGo {
         // Second part: Vowel
         // Third part: Consonant 2
 
-        for (int part = 0; part < 3; part++) {
+        for (int part = 2; part >= 0; part --) {
             res[part] = "";
-            // This is safe due to short-circuit logic
-            while (str.length () > 0 && testFuncs[part] (_(str[0]))) {
-                res[part] += _(str[0]);
-                str.replace (0, 1, "");
+            while (str.length () > 0 && testFuncs[part] (_(str[str.length () - 1]))){
+                res[part] = _(str[str.length () -1]) + res[part];
+                str.replace (str.length () -1, 1, "");
             }
         }
+
+        // push the remaining part into res[0]
+        res[0] = str + res[0];
 
         // Special case: "qu" and "gi" are considered consonants
         if (analyseWordCheckSpecialConsonants (res, "qu") ||
@@ -618,7 +620,225 @@ namespace BoGo {
         return removeAllMarksFromWord (removeAccentFromWord (str));
     }
 
+// <<<<<<< HEAD
+// =======
+    ustring removeAccentFromLastWord (ustring str) {
+        ustringArrayT comp = analyseWord (str);
+        if (comp[2].size () > 2)
+            return str;
+        comp[1] = removeAccentFromWord (comp[1]);
+        return comp[0] + comp[1] + comp[2];
+    }
+
+    ustring addAccentToWord (ustring str, Accents accent) {
+        //  ustring rawStr = removeAccentFromWord (str);
+        //  if (accent == NO_ACCENT) return str;
+
+        ustringArrayT comp = analyseWord (str);
+        comp[1] = removeAccentFromWord (comp[1]);
+        if (accent == NO_ACCENT)
+            return comp[0] + comp[1] + comp[2];
+        if (comp[2].size () > 2) {
+            return str;
+        }
+
+        ustring vowel = comp[1];
+        if (vowel == "") return str;
+
+        
+        ustring ch;
+        ustring rawVowel = toRawText (vowel);
+        _size_t_ vowelSize = vowel.size ();
+        _size_t_ pos;
+
+        for ( _size_t_ i = 0; i < 4; i++) {
+            pos = rawVowel.find (SpecialSingleVowel[i]);
+            if (pos != ustring::npos) break;
+        }
+
+        if (pos == ustring::npos) {
+            if (comp[2] == "")
+                pos = ( vowelSize <= 2) ? 0 : vowelSize - 2;
+            else pos = vowel.size () -1;
+        }
+
+        vowel = vowel.replace (pos, 1, addAccentToChar (vowel[pos], accent));
+        return comp[0] + vowel + comp[2];
+    }
+
+
+    ustring addAccentToText (ustring str, Accents accent) {
+        return addAccentToWord (str, accent);
+    }
+
+    ustring addAccentToText (ustring str, ustring transf) {
+        _size_t_ pos = AccentTransformations.find (transf);
+        if (pos != ustring::npos)
+            return addAccentToText (str, ACCENTS[pos/2]);
+        return str;
+    }
+
+    ustring addMarkToWord (ustring str, Marks mark) {
+        if (mark == NO_MARK)
+            return removeAllMarksFromWord (str);
+        guint lpos = str.size () -1;
+        ustring lastChar = _(str[lpos]);
+        ustring firstPart = ustring (str, 0, lpos);
+
+        if (lpos == 0) {
+            if (canAddMarkToLetter (lastChar, mark)) {
+                return addMarkToChar (lastChar, mark);
+            }
+            return lastChar;
+        }
+        // Special case : uo ươ
+        if ((lpos > 0) && (mark == HORN) &&
+            (toRawText(lastChar) == "o" ) &&
+            (toRawText (_(str[lpos -1])) == "u")) {
+            return
+                ((lpos >= 2) ? ustring (str, 0, lpos - 1) : "")
+                + addMarkToChar (str[lpos-1], HORN)
+                + addMarkToChar (str[lpos], HORN);
+        }
+
+        // Special case: ua + w -> ưa not uă
+        if ((lpos > 0) && (mark == BREVE) &&
+            (toRawText(lastChar) == "a" ) &&
+            (toRawText (_(str[lpos -1])) == "u")) {
+            return
+                ((lpos >= 2) ? ustring (str, 0, lpos - 1) : "")
+                + addMarkToChar (str[lpos-1], HORN)
+                + str[lpos];
+        }
+
+        if (canAddMarkToLetter (lastChar, mark))
+            return firstPart + addMarkToChar (lastChar, mark);
+        else
+            return addMarkToWord (firstPart, mark)  + lastChar;
+
+        return str;
+    }
+
+    ustring addMarkToText (ustring str, ustring transf) {
+        _size_t_ pos = MarkTransformations.find (transf);
+        if (pos != ustring::npos)
+            return addMarkToWord (str, MARKS[pos/2]);
+
+        return str;
+    }
+
+
+    bool canAddMarkToLetter (ustring ch, Marks mark) {
+        ustring _ch = toRawText (ch);
+        switch (mark) {
+        case HAT:
+            if ((_ch == "a") || (_ch == "e") || (_ch == "o"))
+                return true;
+            break;
+        case HORN:
+            if ((_ch == "o") || (_ch == "u"))
+                return true;
+            break;
+        case BREVE:
+            if (_ch == "a")
+                return true;
+            break;
+        case BAR:
+            if (_ch == "d")
+                return true;
+            break;
+        case NO_MARK:
+            return true;
+            break;
+        }
+        return false;
+    }
+
+    bool canAddMarkToLetter (gchar ch, Marks mark) {
+        return canAddMarkToLetter (_(ch), mark);
+    }
+
+
+    ustring getTransformation (ustring key_transf) {
+        /* get the tranformation part from the string describing the transformation
+           ex: "a a+" -> "a+" */
+        ustring transf = key_transf.erase (0,1);
+        while (transf[0] == ' ' ) {
+            transf.erase(0,1);
+        }
+        return transf;
+    }
+
+    ustringArrayT  findTransformation (ustring ch, InputMethodT im) {
+        /* Because a key can associate with more than 1 transformation, we need to know what transfrom are possible */
+        ustringArrayT  transforms;
+        for (guint i = 0; i < im.size(); i++) {
+            ustring tr = im[i];
+            if (ch == _(tr[0])) {
+                transforms.push_back (tr);
+            }
+        }
+        return transforms;
+    }
+
+    ustring addCharToWord (ustring str, ustring ch) {
+        return str + ch;
+    }
+
+    ustring (*filterTransformation (ustring key_transf )) (ustring, ustring) {
+        ustring transf = getTransformation (key_transf);
+        if (MarkTransformations.find (transf) != ustring::npos)
+            return &addMarkToText;
+
+        if (AccentTransformations.find (transf) != ustring::npos)
+            return &addAccentToText;
+        return &addCharToWord;
+    }
+
+    Transform kindOfTransformation (ustring key_transf) {
+        ustring transf = getTransformation (key_transf);
+        if (MarkTransformations.find (transf) != ustring::npos)
+            return ADD_MARK;
+
+        if (AccentTransformations.find (transf) != ustring::npos)
+            return ADD_ACCENT;
+
+        return ADD_CHAR;
+    }
+
+    // ustring processKey (gchar key, ustring str, InputMethodT im) {
+    //     // Default input method is telex and default charset is UTF8
+    //     ustring ch = _(key);
+
+    //     if (ch == _(BACKSPACE_CODE)) {
+    //         str.erase (str.size() - 1, 1);
+    //         return str;
+    //     }
+
+    //     ustring (*doTransform) (ustring, ustring);
+    //     ustring newStr = str;
+    //     ustringArrayT transforms = findTransformation (ch.lowercase (), im);
+    //     Transform kind;
+    //     if (transforms.size () != 0) {
+    //         for (_size_t_ i = 0; i < transforms.size (); i++) {
+    //             doTransform = filterTransformation (transforms[i]);
+    //             kind = kindOfTransformation (transforms[i]);
+    //             newStr = doTransform (newStr, getTransformation (transforms[i]));
+    //         }
+    //     } else
+    //         newStr = addCharToWord (str, ch);
+
+    //     if (newStr == str) {
+    //         if (kind == ADD_MARK)
+    //             newStr = addCharToWord (removeAllMarksFromWord (str), ch);
+    //         if (kind == ADD_ACCENT)
+    //             newStr = addCharToWord (removeAccentFromLastWord (str), ch);
+    //     }
+
+    //     return newStr;
+    // }
+
+// >>>>>>> longdt
 #undef _
 #undef __
-
 }
