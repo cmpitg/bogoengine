@@ -38,7 +38,8 @@ Tài liệu nằm trong thư mục **docs** của dự án, đồng thời có t
 
 ### Cho việc sử dụng
 
-FIXME
+* glibmm 2.4
+* gcc 4.2+
 
 ## Giấy phép xuất bản (License)
 
@@ -52,9 +53,9 @@ Bản quyền (C) năm 2012 bởi:
 
 * Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
 * Nguyễn Thành Hải <phaikawl@gmail.com>
-* Hoàng Minh Thắng <hoangminhthang@xaydunghoanglong.com>
+* Đàm Tiến Long <longdt90@gmail.com>
 
 Xin chân thành gửi lời cảm ơn đặc biệt đến:
 
 * Ngô Trung <ndtrung4419@gmail.com>
-* Đàm Tiến Long <longdt90@gmail.com>
+* Hoàng Minh Thắng <hoangminhthang@xaydunghoanglong.com>
