@@ -337,24 +337,29 @@ TEST (WordHelpers, AddMarkToWord) {
 
 TEST (ProcessKey, ProcessKey) {
     InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
-    EXPECT_STREQ (__("mèo"), __(processKey (BACKSPACE_CODE, "mèov", im)));
-    EXPECT_STREQ (__("mèo"), __(processKey ('f', "meo", im)));
-    EXPECT_STREQ (__("đèo"), __(processKey ('d', "dèo", im)));
-    EXPECT_STREQ (__("đeo"), __(processKey ('z', "đèo", im)));
-    EXPECT_STREQ (__("mưa"), __(processKey ('w', "mua", im)));
-    EXPECT_STREQ (__("rươi"), __(processKey ('w', "ruoi", im)));
-    EXPECT_STREQ (__("ruòi"), __(processKey ('f', "ruoi", im)));
-    EXPECT_STREQ (__("ruoiw"), __(processKey ('w', "rươi", im)));
-    EXPECT_STREQ (__("mỬ"), __(processKey ('w', "mỦ", im)));
-    EXPECT_STREQ (__("mỦw"), __(processKey ('w', "mỬ", im)));
-    EXPECT_STREQ (__("măn"), __(processKey ('w', "man", im)));
-    EXPECT_STREQ (__("mũmmĩm"), __(processKey ('x', "mũmmim", im)));
+    EXPECT_STREQ(__("mèo"), __(processKey (BACKSPACE_CODE, "mèov", im)));
+    EXPECT_STREQ(__("mèo"), __(processKey ('f', "meo", im)));
+    EXPECT_STREQ(__("Đèo"), __(processKey ('d', "Dèo", im)));
+    EXPECT_STREQ(__("đèo"), __(processKey ('D', "dèo", im)));
+    EXPECT_STREQ(__("đEO"), __(processKey ('z', "đÈO", im)));
+    EXPECT_STREQ(__("mưA"), __(processKey ('w', "muA", im)));
+    EXPECT_STREQ(__("rƯơi"), __(processKey ('w', "rUoi", im)));
+    EXPECT_STREQ(__("rUòi"), __(processKey ('f', "rUoi", im)));
+    EXPECT_STREQ(__("ruoiw"), __(processKey ('w', "rươi", im)));
+    EXPECT_STREQ(__("mỬ"), __(processKey ('w', "mỦ", im)));
+    EXPECT_STREQ(__("mỦw"), __(processKey ('w', "mỬ", im)));
+    EXPECT_STREQ(__("măn"), __(processKey ('w', "man", im)));
+    EXPECT_STREQ(__("mũmmĩm"), __(processKey ('X', "mũmmim", im)));
+    EXPECT_STREQ(__("làmănz"), __(processKey ('z', "làmăn", im)));
+    EXPECT_STREQ(__("chuyệk"), __(processKey ('j', "chuyêk", im)));
+    EXPECT_STREQ(__("quảđur"), __(processKey ('r', "quảđủ", im)));
+    EXPECT_STREQ(__("mèokckf"), __(processKey ('f', "mèokck", im)));
+    EXPECT_STREQ(__("meO"), __(processKey ('O', "me", im)));
     EXPECT_STREQ (__("làmănz"), __(processKey ('z', "làmăn", im)));
-    EXPECT_STREQ (__("chuyệk"), __(processKey ('j', "chuyêk", im)));
-    EXPECT_STREQ (__("quảđur"), __(processKey ('r', "quảđủ", im)));
-    EXPECT_STREQ (__("mèokckf"), __(processKey ('f', "mèokck", im)));
-    EXPECT_STREQ (__("đèo"), __(processKey ('D',"dèo", im)));
-    EXPECT_STREQ (__("geo"), __(processKey ('o', "ge", im)));
+    EXPECT_STREQ (__("chuyệk"), __(processKey ('j', "chuyêk", im))); // FIXME: Need to discuss
+    EXPECT_STREQ (__("đèO"), __(processKey ('D',"dèO", im)));
+    EXPECT_STREQ (__("geO"), __(processKey ('O', "ge", im)));
+    // EXPECT_STREQ(__("họa"), __(processKey (BACKSPACE_CODE, "hoạt", im)));
 }
 
 int main (int argc, char *argv[]) {

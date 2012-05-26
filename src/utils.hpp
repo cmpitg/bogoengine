@@ -61,7 +61,7 @@ namespace BoGo {
     const guint ADD_ACCENT = 0,
         ADD_MARK = 1,
         ADD_CHAR = 2;
-    
+
     const guint NUMBER_OF_ACCENTS = 6;
     const guint GRAVE  = 0,
         ACUTE          = 1,
