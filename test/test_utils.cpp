@@ -303,7 +303,7 @@ TEST (FindTransformation, SimpleTelex) {
     transformation_w.push_back("wo+");
     transformation_w.push_back("wu+");
     transformation_w.push_back("w*v");
-    
+
     EXPECT_EQ (transformation_w[0], findTransformation ( "w", im)[0]);
     EXPECT_EQ (transformation_w[1], findTransformation ( "w", im)[1]);
     EXPECT_EQ (transformation_w[2], findTransformation ( "w", im)[2]);
@@ -359,6 +359,8 @@ TEST (ProcessKey, ProcessKey) {
     EXPECT_STREQ (__("chuyệk"), __(processKey ('j', "chuyêk", im))); // FIXME: Need to discuss
     EXPECT_STREQ (__("đèO"), __(processKey ('D',"dèO", im)));
     EXPECT_STREQ (__("geO"), __(processKey ('O', "ge", im)));
+    EXPECT_STREQ (__("goa"), __(processKey ('a', "go", im)));
+    EXPECT_STREQ (__("gô"), __(processKey ('o', "go", im)));
     // EXPECT_STREQ(__("họa"), __(processKey (BACKSPACE_CODE, "hoạt", im)));
 }
 
