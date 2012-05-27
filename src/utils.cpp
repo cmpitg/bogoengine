@@ -727,13 +727,13 @@ namespace BoGo {
         return str;
     }
 
-    ustring addMarkToText (ustring str, ustring transf) {
-        _size_t_ pos = MarkTransforms.find (transf);
-        gchar affectedChar = transf[0];
+    ustring addMarkToText (ustring text, ustring trans) {
+        _size_t_ pos = MarkTransforms.find (trans);
+        gchar affectedChar = trans[0];
         if ((affectedChar != '*') &&
             (!containsP (toRawText (str), _(affectedChar))))
             return str;
-        return addMarkToWord (str, MARKS[pos/2]);
+        return addMarkToWord (str, MARKS[pos / 2]);
     }
 
     bool canAddMarkToLetterP (ustring ch, Marks mark) {
