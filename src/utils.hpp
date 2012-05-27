@@ -107,26 +107,26 @@ namespace BoGo {
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
-    bool stringContains (ustring str, ustring needle, bool ignoreCase = true);
-    bool stringContains (string str, ustring needle, bool ignoreCase = true);
-    bool stringContains (const gchar *str, ustring needle, bool ignoreCase = true);
-    bool stringContains (ustring str, string needle, bool ignoreCase = true);
-    bool stringContains (string str, string needle, bool ignoreCase = true);
-    bool stringContains (const gchar *str, string needle, bool ignoreCase = true);
-    bool stringContains (ustring str, guint needle, bool ignoreCase = true);
-    bool stringContains (string str, guint needle, bool ignoreCase = true);
-    bool stringContains (const gchar *str, guint needle, bool ignoreCase = true);
-    bool stringContains (ustring str, const gchar *needle, bool ignoreCase = true);
-    bool stringContains (string str, const gchar *needle, bool ignoreCase = true);
-    bool stringContains (const gchar *str, const gchar *needle, bool ignoreCase = true);
+    bool containsP (ustring str, ustring needle, bool ignoreCase = true);
+    bool containsP (string str, ustring needle, bool ignoreCase = true);
+    bool containsP (const gchar *str, ustring needle, bool ignoreCase = true);
+    bool containsP (ustring str, string needle, bool ignoreCase = true);
+    bool containsP (string str, string needle, bool ignoreCase = true);
+    bool containsP (const gchar *str, string needle, bool ignoreCase = true);
+    bool containsP (ustring str, guint needle, bool ignoreCase = true);
+    bool containsP (string str, guint needle, bool ignoreCase = true);
+    bool containsP (const gchar *str, guint needle, bool ignoreCase = true);
+    bool containsP (ustring str, const gchar *needle, bool ignoreCase = true);
+    bool containsP (string str, const gchar *needle, bool ignoreCase = true);
+    bool containsP (const gchar *str, const gchar *needle, bool ignoreCase = true);
 
     int getLastWord (ustring text);
 
     bool containsP (ustringArrayT a, ustring s);
-    bool containsP (ustring parent, ustring child);
-    bool containsP (ustring parent, const gchar *child);
-    bool containsP (const gchar *parent, ustring child);
-    bool containsP (const gchar *parent, const gchar *child);
+    // bool containsP (ustring parent, ustring child);
+    // bool containsP (ustring parent, const gchar *child);
+    // bool containsP (const gchar *parent, ustring child);
+    // bool containsP (const gchar *parent, const gchar *child);
 
     long find (ustring s, ustringArrayT a);
 

@@ -81,7 +81,7 @@ namespace BoGo {
     //     return getLastWord (text, text.size()-1);
     // }
 
-    bool stringContains (ustring str, ustring needle, bool ignoreCase) {
+    bool containsP (ustring str, ustring needle, bool ignoreCase) {
         if (ignoreCase) {
             str = str.lowercase ();
             needle = needle.lowercase ();
@@ -89,48 +89,48 @@ namespace BoGo {
         return str.find (needle) != ustring::npos;
     }
 
-    bool stringContains (string str, ustring needle, bool ignoreCase) {
-        return stringContains (_(str), needle, ignoreCase);
+    bool containsP (string str, ustring needle, bool ignoreCase) {
+        return containsP (_(str), needle, ignoreCase);
     }
 
-    bool stringContains (const gchar *str, ustring needle, bool ignoreCase) {
-        return stringContains (_(str), needle, ignoreCase);
+    bool containsP (const gchar *str, ustring needle, bool ignoreCase) {
+        return containsP (_(str), needle, ignoreCase);
     }
 
-    bool stringContains (ustring str, string needle, bool ignoreCase) {
-        return stringContains (str, _(needle), ignoreCase);
+    bool containsP (ustring str, string needle, bool ignoreCase) {
+        return containsP (str, _(needle), ignoreCase);
     }
 
-    bool stringContains (string str, string needle, bool ignoreCase) {
-        return stringContains (_(str), _(needle), ignoreCase);
+    bool containsP (string str, string needle, bool ignoreCase) {
+        return containsP (_(str), _(needle), ignoreCase);
     }
 
-    bool stringContains (const gchar *str, string needle, bool ignoreCase) {
-        return stringContains (_(str), _(needle), ignoreCase);
+    bool containsP (const gchar *str, string needle, bool ignoreCase) {
+        return containsP (_(str), _(needle), ignoreCase);
     }
 
-    bool stringContains (ustring str, guint needle, bool ignoreCase) {
-        return stringContains (str, _(needle), ignoreCase);
+    bool containsP (ustring str, guint needle, bool ignoreCase) {
+        return containsP (str, _(needle), ignoreCase);
     }
 
-    bool stringContains (string str, guint needle, bool ignoreCase) {
-        return stringContains (_(str), _(needle), ignoreCase);
+    bool containsP (string str, guint needle, bool ignoreCase) {
+        return containsP (_(str), _(needle), ignoreCase);
     }
 
-    bool stringContains (const gchar *str, guint needle, bool ignoreCase) {
-        return stringContains (_(str), _(needle), ignoreCase);
+    bool containsP (const gchar *str, guint needle, bool ignoreCase) {
+        return containsP (_(str), _(needle), ignoreCase);
     }
 
-    bool stringContains (ustring str, const gchar *needle, bool ignoreCase) {
-        return stringContains (str, _(needle), ignoreCase);
+    bool containsP (ustring str, const gchar *needle, bool ignoreCase) {
+        return containsP (str, _(needle), ignoreCase);
     }
 
-    bool stringContains (string str, const gchar *needle, bool ignoreCase) {
-        return stringContains (_(str), _(needle), ignoreCase);
+    bool containsP (string str, const gchar *needle, bool ignoreCase) {
+        return containsP (_(str), _(needle), ignoreCase);
     }
 
-    bool stringContains (const gchar *str, const gchar *needle, bool ignoreCase) {
-        return stringContains (_(str), _(needle), ignoreCase);
+    bool containsP (const gchar *str, const gchar *needle, bool ignoreCase) {
+        return containsP (_(str), _(needle), ignoreCase);
     }
 
     long find (ustring s, ustringArrayT a) {
@@ -140,21 +140,21 @@ namespace BoGo {
         return -1;
     }
 
-    bool containsP (ustring parent, ustring child) {
-        return parent.find (child) != ustring::npos;
-    }
+    // bool containsP (ustring parent, ustring child) {
+    //     return parent.find (child) != ustring::npos;
+    // }
 
-    bool containsP (ustring parent, const gchar *child) {
-        return containsP (parent, _(child));
-    }
+    // bool containsP (ustring parent, const gchar *child) {
+    //     return containsP (parent, _(child));
+    // }
 
-    bool containsP (const gchar *parent, const gchar *child) {
-        return containsP (_(parent), _(child));
-    }
+    // bool containsP (const gchar *parent, const gchar *child) {
+    //     return containsP (_(parent), _(child));
+    // }
 
-    bool containsP (const gchar *parent, ustring child) {
-        return containsP (_(parent), child);
-    }
+    // bool containsP (const gchar *parent, ustring child) {
+    //     return containsP (_(parent), child);
+    // }
 
     bool containsP (ustringArrayT a, ustring s) {
         return find (s, a) != -1;

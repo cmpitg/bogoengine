@@ -293,13 +293,13 @@ TEST (WordHelpers, WordBreak) {
 }
 
 TEST (OtherHelpers, StringContains) {
-    EXPECT_TRUE (stringContains ("điên", (guint) 273));
-    EXPECT_TRUE (stringContains ("Xin chào!", "À"));
-    EXPECT_FALSE (stringContains ("Xin chào!", "À", false));
-    EXPECT_TRUE (stringContains ("Xin chào!", "!"));
-    EXPECT_TRUE (stringContains ("Xin chào!", " "));
-    EXPECT_TRUE (stringContains ("Xin chào!", "X"));
-    EXPECT_FALSE (stringContains ("Xin chào!", "x", false));
+    EXPECT_TRUE (containsP ("điên", (guint) 273));
+    EXPECT_TRUE (containsP ("Xin chào!", "À"));
+    EXPECT_FALSE (containsP ("Xin chào!", "À", false));
+    EXPECT_TRUE (containsP ("Xin chào!", "!"));
+    EXPECT_TRUE (containsP ("Xin chào!", " "));
+    EXPECT_TRUE (containsP ("Xin chào!", "X"));
+    EXPECT_FALSE (containsP ("Xin chào!", "x", false));
 }
 
 TEST (CharacterHelpers, AccentsAndTransform) {
