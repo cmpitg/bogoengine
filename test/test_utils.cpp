@@ -62,15 +62,15 @@ TEST (MarkAndWord, CanAddMarkToLetterP) {
 //     EXPECT_EQ (3, getLastWord("caon")); //-> "n"
 // }
 
-TEST (FindTransformation, SimpleTelex) {
+TEST (FindTransform, SimpleTelex) {
     InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
-    ustringArrayT availTrans = findTransformation ("w", im);
+    ustringArrayT availTrans = findTransform ("w", im);
 
     EXPECT_EQ (3, availTrans.size ());
     EXPECT_TRUE (containsP (availTrans, _("wo+")));
     EXPECT_TRUE (containsP (availTrans, _("wu+")));
     EXPECT_TRUE (containsP (availTrans, _("w*v")));
-    EXPECT_EQ (0, findTransformation ("t", im).size ());
+    EXPECT_EQ (0, findTransform ("t", im).size ());
 }
 
 TEST (WordHelpers, AddAccentToWord) {
@@ -166,10 +166,10 @@ TEST (AccentAndWord, RemoveAccent) {
 
 TEST (InputMethod, MakeIM) {
     InputMethodT im;
-    im = addTransformation (im, "aa^");
-    im = addTransformation (im, "f*\\");
-    im = addTransformation (im, "w*\\");
-    im = addTransformation (im, "oo+");
+    im = addTransform (im, "aa^");
+    im = addTransform (im, "f*\\");
+    im = addTransform (im, "w*\\");
+    im = addTransform (im, "oo+");
     EXPECT_STREQ ("a -> a^\nf -> *\\\nw -> *\\\no -> o+\n", __(toString (im)));
 
     im = makeIM (5, "aa^", "f*\\", "w*\\", "oo+", "j*.");

@@ -70,7 +70,7 @@ namespace BoGo {
         DOT            = 4,
         NO_ACCENT      = 5;
     const Accents ACCENTS[] = {GRAVE, ACUTE, HOOK, TILDE, DOT, NO_ACCENT};
-    const ustring AccentTransformations = "*\\" "*/" "*?" "*~" "*." "*_";
+    const ustring AccentTransforms = "*\\" "*/" "*?" "*~" "*." "*_";
 
     const guint NUMBER_OF_MARKS = 5;
     const guint NO_MARK  = 0,
@@ -80,7 +80,7 @@ namespace BoGo {
         BAR              = 4;
 
     const Marks MARKS[] = {HAT, HAT, HAT, HORN, HORN, BREVE, BAR};
-    const ustring MarkTransformations = "a^" "o^" "e^" "o+" "u+" "*v" "*-";
+    const ustring MarkTransforms = "a^" "o^" "e^" "o+" "u+" "*v" "*-";
 
     const gchar BACKSPACE_CODE = 8;
 
@@ -149,9 +149,9 @@ namespace BoGo {
 
     ustring toString (InputMethodT im);
 
-    InputMethodT addTransformation (InputMethodT im, ustring trans);
-    InputMethodT addTransformation (InputMethodT im, const gchar *trans);
-    ustring getTransformation (ustring trans);
+    InputMethodT addTransform (InputMethodT im, ustring trans);
+    InputMethodT addTransform (InputMethodT im, const gchar *trans);
+    ustring getTransform (ustring trans);
 
     ustring addMarkToChar (ustring ch, Marks mark);
     ustring addMarkToChar (string ch, Marks mark);
@@ -242,9 +242,9 @@ namespace BoGo {
 
     ustring removeAccentFromLastWord (ustring str);
 
-    ustring getTransformation (ustring trans);
-    ustringArrayT findTransformation (ustring ch, InputMethodT im);
-    ustring (*filterTransformation (ustring key_transf)) (ustring str, ustring transf);
+    ustring getTransform (ustring trans);
+    ustringArrayT findTransform (ustring ch, InputMethodT im);
+    ustring (*filterTransform (ustring key_transf)) (ustring str, ustring transf);
     ustring processKey (gchar key, ustring str, InputMethodT im);
     Transform getTypeTranformation (ustring key_transf);
 

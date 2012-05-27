@@ -212,7 +212,7 @@ namespace BoGo {
             eolPos = imStr.find ("\n");
             transPortion = imStr.substr (0, eolPos);
             imStr = imStr.replace (0, eolPos + 1, "");
-            im = addTransformation
+            im = addTransform
                 (im, transPortion.replace (1, specialToken.length (), ""));
         }
         return standardizeIM (im);
@@ -234,20 +234,20 @@ namespace BoGo {
 
         for (guint i = 0; i < count; i++) {
             trans = va_arg (transList, const gchar *);
-            im = addTransformation (im, _(trans));
+            im = addTransform (im, _(trans));
         }
 
         va_end (transList);
         return im;
     }
 
-    InputMethodT addTransformation (InputMethodT im, ustring trans) {
+    InputMethodT addTransform (InputMethodT im, ustring trans) {
         im.push_back (trans);
         return im;
     }
 
-    InputMethodT addTransformation (InputMethodT im, const gchar *trans) {
-        return addTransformation (im, _(trans));
+    InputMethodT addTransform (InputMethodT im, const gchar *trans) {
+        return addTransform (im, _(trans));
     }
 
     ustring toString (InputMethodT im) {
@@ -641,20 +641,18 @@ namespace BoGo {
     }
 
     ustring addAccentToWord (ustring str, Accents accent) {
-        //  ustring rawStr = removeAccentFromWord (str);
-        //  if (accent == NO_ACCENT) return str;
-
         ustringArrayT comp = analyseWord (str);
+
         comp[1] = removeAccentFromWord (comp[1]);
+
         if (accent == NO_ACCENT)
             return comp[0] + comp[1] + comp[2];
-        if (comp[2].size () > 2) {
+
+        if (comp[2].size () > 2)
             return str;
-        }
 
         ustring vowel = comp[1];
         if (vowel == "") return str;
-
 
         ustring ch;
         ustring rawVowel = toRawText (vowel);
@@ -682,7 +680,7 @@ namespace BoGo {
     }
 
     ustring addAccentToText (ustring str, ustring transf) {
-        _size_t_ pos = AccentTransformations.find (transf);
+        _size_t_ pos = AccentTransforms.find (transf);
         if (pos != ustring::npos)
             return addAccentToText (str, ACCENTS[pos/2]);
         return str;
@@ -730,7 +728,7 @@ namespace BoGo {
     }
 
     ustring addMarkToText (ustring str, ustring transf) {
-        _size_t_ pos = MarkTransformations.find (transf);
+        _size_t_ pos = MarkTransforms.find (transf);
         gchar affectedChar = transf[0];
         if ((affectedChar != '*') &&
             (!containsP (toRawText (str), _(affectedChar))))
@@ -768,7 +766,7 @@ namespace BoGo {
         return canAddMarkToLetterP (_(ch), mark);
     }
 
-    ustring getTransformation (ustring key_transf) {
+    ustring getTransform (ustring key_transf) {
         /* get the transformation part from the string describing the
            transformation
            ex: "a a+" -> "a+" */
@@ -779,7 +777,7 @@ namespace BoGo {
         return transf;
     }
 
-    ustringArrayT findTransformation (ustring ch, InputMethodT im) {
+    ustringArrayT findTransform (ustring ch, InputMethodT im) {
         ustringArrayT trans;
         for (guint i = 0; i < im.size(); i++) {
             ustring tr = im[i];
@@ -794,13 +792,13 @@ namespace BoGo {
         return str + ch;
     }
 
-    ustring (*filterTransformation (ustring key_transf)) (ustring, ustring) {
-        ustring transf = getTransformation (key_transf);
+    ustring (*filterTransform (ustring key_transf)) (ustring, ustring) {
+        ustring transf = getTransform (key_transf);
 
-        if (containsP (MarkTransformations, transf))
+        if (containsP (MarkTransforms, transf))
             return &addMarkToText;
 
-        if (containsP (AccentTransformations, transf))
+        if (containsP (AccentTransforms, transf))
             return &addAccentToText;
 
         return &addChar;
@@ -808,11 +806,11 @@ namespace BoGo {
 
     Transform getTypeTranformation (ustring key_transf) {
         //Determine the type of transformation: add mark or add accent
-        ustring transf = getTransformation (key_transf);
-        if (containsP (MarkTransformations, transf))
+        ustring transf = getTransform (key_transf);
+        if (containsP (MarkTransforms, transf))
             return ADD_MARK;
 
-        if (containsP (AccentTransformations, transf))
+        if (containsP (AccentTransforms, transf))
             return ADD_ACCENT;
 
         return ADD_CHAR;
@@ -830,14 +828,14 @@ namespace BoGo {
 
         ustring (*doTransform) (ustring, ustring);
         ustring newStr = str;
-        ustringArrayT transforms = findTransformation (toRawText (ch), im);
+        ustringArrayT transforms = findTransform (toRawText (ch), im);
         Transform kind;
         if (transforms.size () != 0) {
             for (_size_t_ i = 0; i < transforms.size (); i++) {
-                doTransform = filterTransformation (transforms[i]);
+                doTransform = filterTransform (transforms[i]);
                 kind = getTypeTranformation (transforms[i]);
                 newStr = doTransform (newStr,
-                                      getTransformation (transforms[i]));
+                                      getTransform (transforms[i]));
             }
         } else
             newStr = addChar (str, ch);
