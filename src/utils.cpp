@@ -814,18 +814,18 @@ namespace BoGo {
         return ADD_CHAR;
     }
 
-    ustring processKey (gchar key, ustring str, InputMethodT im) {
+    ustring processKey (gchar key, ustring text, InputMethodT im) {
         // Default input method is telex and default charset is UTF8
         ustring ch = _(key);
 
         // Process Backspace
         if (ch == _(BACKSPACE_CODE)) {
-            str.erase (str.size() - 1, 1);
-            return str;
+            text.erase (text.size() - 1, 1);
+            return text;
         }
 
         TransformFuncT *transFunc;
-        ustring result = str;
+        ustring result = text;
         ustringArrayT availTrans = findTransform (toRawText (ch), im);
         Transform type;
 
@@ -840,13 +840,13 @@ namespace BoGo {
         }
         // Otherwise
         else
-            result = addChar (str, ch);
+            result = addChar (text, ch);
 
-        if (result == str) {
+        if (result == text) {
             if (type == ADD_MARK)
-                result = addChar (removeAllMarksFromWord (str), ch);
+                result = addChar (removeAllMarksFromWord (text), ch);
             if (type == ADD_ACCENT)
-                result = addChar (removeAccentFromLastWord (str), ch);
+                result = addChar (removeAccentFromLastWord (text), ch);
         }
 
         return result;
