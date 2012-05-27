@@ -2,7 +2,7 @@
 
   This file is a part of BoGoEngine project.
 
-  Copyright (C) 2012 Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
+  Copyright (C) 2012 Dương H. Nguyễn <cmpitg@gmail.com>
 
   BoGoEngine is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -61,7 +61,7 @@ namespace BoGo {
     const guint ADD_ACCENT = 0,
         ADD_MARK = 1,
         ADD_CHAR = 2;
-    
+
     const guint NUMBER_OF_ACCENTS = 6;
     const guint GRAVE  = 0,
         ACUTE          = 1,
@@ -91,16 +91,16 @@ namespace BoGo {
     const ustring VowelsWithAccents =
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
-// <<<<<<< HEAD
+
     const ustring ValidFinalConsonants = "ghctmnp";
     const ustring ValidFinalMulticonsonants = "ng ch nh";
     const ustring InvalidFinalConsonants = "bdđfklqrsvx";
-// =======
-    const ustring SpecialSingleVowel = "ăâơê";
-    const ustring AllVowels = "a e e i o u y ao oa eo oe ie eu oo uo ua ye uye ieu yeu";
-    const ustring ValidFinalConsonants = "c t n ch nh";
 
-// >>>>>>> longdt
+    const ustring SpecialSingleVowel = "ăâơê";
+    const ustring AllVowels = "a e e i o u y ao oa eo oe ie eu"
+        " oo uo ua ye uye ieu yeu";
+    // const ustring ValidFinalConsonants2 = "c t n ch nh";
+
     const ustring LettersWithoutMarks    = "aaaddeeooouu";
     const ustring LettersMayChangeMarks  = "aăâdđeêoôơuư";
     const ustring LettersWithMarks =
@@ -121,6 +121,14 @@ namespace BoGo {
     bool stringContains (const gchar *str, const gchar *needle, bool ignoreCase = true);
 
     int getLastWord (ustring text);
+
+    bool containsP (ustringArrayT a, ustring s);
+    bool containsP (ustring parent, ustring child);
+    bool containsP (ustring parent, const gchar *child);
+    bool containsP (const gchar *parent, ustring child);
+    bool containsP (const gchar *parent, const gchar *child);
+
+    long find (ustring s, ustringArrayT a);
 
     ustring removeAllMarksFromWord (ustring word);
     ustring removeAllMarksFromWord (string word);
@@ -241,7 +249,7 @@ namespace BoGo {
     ustringArrayT findTransformation (ustring ch, InputMethodT im);
     ustring (*filterTransformation (ustring key_transf)) (ustring str, ustring transf);
     ustring processKey (gchar key, ustring str, InputMethodT im);
-    
+    Transform getTypeTranformation (ustring key_transf);
 
     ustring toRawText (ustring str);
     ustring toEnglishText (ustring str);
@@ -254,6 +262,5 @@ namespace BoGo {
     ustring addMarkToWord (ustring str, Marks mark);
     ustring addMarkToText (ustring str, ustring key_transf);
 
-    ustring addCharToWord (ustring  str, ustring ch);    
+    ustring addCharToWord (ustring  str, ustring ch);
 }
-

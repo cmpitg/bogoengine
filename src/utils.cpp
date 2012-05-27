@@ -2,7 +2,7 @@
 
   This file is a part of BoGoEngine project.
 
-  Copyright (C) 2012 Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
+  Copyright (C) 2012 Dương H. Nguyễn <cmpitg@gmail.com>
 
   BoGoEngine is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -131,6 +131,33 @@ namespace BoGo {
 
     bool stringContains (const gchar *str, const gchar *needle, bool ignoreCase) {
         return stringContains (_(str), _(needle), ignoreCase);
+    }
+
+    long find (ustring s, ustringArrayT a) {
+        for (long i = 0; i < a.size (); i++)
+            if (a[i] == s)
+                return i;
+        return -1;
+    }
+
+    bool containsP (ustring parent, ustring child) {
+        return parent.find (child) != ustring::npos;
+    }
+
+    bool containsP (ustring parent, const gchar *child) {
+        return containsP (parent, _(child));
+    }
+
+    bool containsP (const gchar *parent, const gchar *child) {
+        return containsP (_(parent), _(child));
+    }
+
+    bool containsP (const gchar *parent, ustring child) {
+        return containsP (_(parent), child);
+    }
+
+    bool containsP (ustringArrayT a, ustring s) {
+        return find (s, a) != -1;
     }
 
     ustring removeAllMarksFromWord (ustring word) {
@@ -323,7 +350,8 @@ namespace BoGo {
 
         for (int part = 2; part >= 0; part --) {
             res[part] = "";
-            while (str.length () > 0 && testFuncs[part] (_(str[str.length () - 1]))){
+            while (str.length () > 0 &&
+                   testFuncs[part] (_(str[str.length () - 1]))){
                 res[part] = _(str[str.length () -1]) + res[part];
                 str.replace (str.length () -1, 1, "");
             }
@@ -620,8 +648,6 @@ namespace BoGo {
         return removeAllMarksFromWord (removeAccentFromWord (str));
     }
 
-// <<<<<<< HEAD
-// =======
     ustring removeAccentFromLastWord (ustring str) {
         ustringArrayT comp = analyseWord (str);
         if (comp[2].size () > 2)
@@ -645,7 +671,7 @@ namespace BoGo {
         ustring vowel = comp[1];
         if (vowel == "") return str;
 
-        
+
         ustring ch;
         ustring rawVowel = toRawText (vowel);
         _size_t_ vowelSize = vowel.size ();
@@ -714,29 +740,29 @@ namespace BoGo {
         if (canAddMarkToLetter (lastChar, mark))
             return firstPart + addMarkToChar (lastChar, mark);
         else
-            return addMarkToWord (firstPart, mark)  + lastChar;
+            return addMarkToWord (firstPart, mark) + lastChar;
 
         return str;
     }
 
     ustring addMarkToText (ustring str, ustring transf) {
         _size_t_ pos = MarkTransformations.find (transf);
-        if (pos != ustring::npos)
-            return addMarkToWord (str, MARKS[pos/2]);
-
-        return str;
+        gchar affectedChar = transf[0];
+        if ((affectedChar != '*') &&
+            (!containsP (toRawText (str), _(affectedChar))))
+            return str;
+        return addMarkToWord (str, MARKS[pos/2]);
     }
-
 
     bool canAddMarkToLetter (ustring ch, Marks mark) {
         ustring _ch = toRawText (ch);
         switch (mark) {
         case HAT:
-            if ((_ch == "a") || (_ch == "e") || (_ch == "o"))
+            if (containsP("aeo", _ch))
                 return true;
             break;
         case HORN:
-            if ((_ch == "o") || (_ch == "u"))
+            if (containsP("ou", _ch))
                 return true;
             break;
         case BREVE:
@@ -758,9 +784,9 @@ namespace BoGo {
         return canAddMarkToLetter (_(ch), mark);
     }
 
-
     ustring getTransformation (ustring key_transf) {
-        /* get the tranformation part from the string describing the transformation
+        /* get the transformation part from the string describing the
+           transformation
            ex: "a a+" -> "a+" */
         ustring transf = key_transf.erase (0,1);
         while (transf[0] == ' ' ) {
@@ -769,76 +795,78 @@ namespace BoGo {
         return transf;
     }
 
-    ustringArrayT  findTransformation (ustring ch, InputMethodT im) {
-        /* Because a key can associate with more than 1 transformation, we need to know what transfrom are possible */
-        ustringArrayT  transforms;
+    ustringArrayT findTransformation (ustring ch, InputMethodT im) {
+        ustringArrayT trans;
         for (guint i = 0; i < im.size(); i++) {
             ustring tr = im[i];
             if (ch == _(tr[0])) {
-                transforms.push_back (tr);
+                trans.push_back (tr);
             }
         }
-        return transforms;
+        return trans;
     }
 
-    ustring addCharToWord (ustring str, ustring ch) {
+    ustring addChar (ustring str, ustring ch) {
         return str + ch;
     }
 
-    ustring (*filterTransformation (ustring key_transf )) (ustring, ustring) {
+    ustring (*filterTransformation (ustring key_transf)) (ustring, ustring) {
         ustring transf = getTransformation (key_transf);
-        if (MarkTransformations.find (transf) != ustring::npos)
+
+        if (containsP (MarkTransformations, transf))
             return &addMarkToText;
 
-        if (AccentTransformations.find (transf) != ustring::npos)
+        if (containsP (AccentTransformations, transf))
             return &addAccentToText;
-        return &addCharToWord;
+
+        return &addChar;
     }
 
-    Transform kindOfTransformation (ustring key_transf) {
+    Transform getTypeTranformation (ustring key_transf) {
+        //Determine the type of transformation: add mark or add accent
         ustring transf = getTransformation (key_transf);
-        if (MarkTransformations.find (transf) != ustring::npos)
+        if (containsP (MarkTransformations, transf))
             return ADD_MARK;
 
-        if (AccentTransformations.find (transf) != ustring::npos)
+        if (containsP (AccentTransformations, transf))
             return ADD_ACCENT;
 
         return ADD_CHAR;
     }
 
-    // ustring processKey (gchar key, ustring str, InputMethodT im) {
-    //     // Default input method is telex and default charset is UTF8
-    //     ustring ch = _(key);
+    ustring processKey (gchar key, ustring str, InputMethodT im) {
+        // Default input method is telex and default charset is UTF8
+        ustring ch = _(key);
 
-    //     if (ch == _(BACKSPACE_CODE)) {
-    //         str.erase (str.size() - 1, 1);
-    //         return str;
-    //     }
+        // Process Backspace
+        if (ch == _(BACKSPACE_CODE)) {
+            str.erase (str.size() - 1, 1);
+            return str;
+        }
 
-    //     ustring (*doTransform) (ustring, ustring);
-    //     ustring newStr = str;
-    //     ustringArrayT transforms = findTransformation (ch.lowercase (), im);
-    //     Transform kind;
-    //     if (transforms.size () != 0) {
-    //         for (_size_t_ i = 0; i < transforms.size (); i++) {
-    //             doTransform = filterTransformation (transforms[i]);
-    //             kind = kindOfTransformation (transforms[i]);
-    //             newStr = doTransform (newStr, getTransformation (transforms[i]));
-    //         }
-    //     } else
-    //         newStr = addCharToWord (str, ch);
+        ustring (*doTransform) (ustring, ustring);
+        ustring newStr = str;
+        ustringArrayT transforms = findTransformation (toRawText (ch), im);
+        Transform kind;
+        if (transforms.size () != 0) {
+            for (_size_t_ i = 0; i < transforms.size (); i++) {
+                doTransform = filterTransformation (transforms[i]);
+                kind = getTypeTranformation (transforms[i]);
+                newStr = doTransform (newStr,
+                                      getTransformation (transforms[i]));
+            }
+        } else
+            newStr = addChar (str, ch);
+        if (newStr == str) {
+            if (kind == ADD_MARK)
+                newStr = addChar (removeAllMarksFromWord (str), ch);
+            if (kind == ADD_ACCENT)
+                newStr = addChar (removeAccentFromLastWord (str), ch);
+        }
 
-    //     if (newStr == str) {
-    //         if (kind == ADD_MARK)
-    //             newStr = addCharToWord (removeAllMarksFromWord (str), ch);
-    //         if (kind == ADD_ACCENT)
-    //             newStr = addCharToWord (removeAccentFromLastWord (str), ch);
-    //     }
+        return newStr;
+    }
 
-    //     return newStr;
-    // }
-
-// >>>>>>> longdt
 #undef _
 #undef __
 }
