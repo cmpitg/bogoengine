@@ -696,7 +696,7 @@ namespace BoGo {
         ustring firstPart = ustring (str, 0, lpos);
 
         if (lpos == 0) {
-            if (canAddMarkToLetter (lastChar, mark)) {
+            if (canAddMarkToLetterP (lastChar, mark)) {
                 return addMarkToChar (lastChar, mark);
             }
             return lastChar;
@@ -721,7 +721,7 @@ namespace BoGo {
                 + str[lpos];
         }
 
-        if (canAddMarkToLetter (lastChar, mark))
+        if (canAddMarkToLetterP (lastChar, mark))
             return firstPart + addMarkToChar (lastChar, mark);
         else
             return addMarkToWord (firstPart, mark) + lastChar;
@@ -738,7 +738,7 @@ namespace BoGo {
         return addMarkToWord (str, MARKS[pos/2]);
     }
 
-    bool canAddMarkToLetter (ustring ch, Marks mark) {
+    bool canAddMarkToLetterP (ustring ch, Marks mark) {
         ustring _ch = toRawText (ch);
         switch (mark) {
         case HAT:
@@ -764,8 +764,8 @@ namespace BoGo {
         return false;
     }
 
-    bool canAddMarkToLetter (gchar ch, Marks mark) {
-        return canAddMarkToLetter (_(ch), mark);
+    bool canAddMarkToLetterP (const gchar ch, Marks mark) {
+        return canAddMarkToLetterP (_(ch), mark);
     }
 
     ustring getTransformation (ustring key_transf) {

@@ -78,6 +78,7 @@ namespace BoGo {
         HORN             = 2,
         BREVE            = 3,
         BAR              = 4;
+
     const Marks MARKS[] = {HAT, HAT, HAT, HORN, HORN, BREVE, BAR};
     const ustring MarkTransformations = "a^" "o^" "e^" "o+" "u+" "*v" "*-";
 
@@ -249,14 +250,16 @@ namespace BoGo {
 
     ustring toRawText (ustring str);
     ustring toEnglishText (ustring str);
+
     ustring addAccentToWord (ustring str, Accents accent);
     ustring addAccentToText (ustring str, Accents accent);
     ustring addAccentToText (ustring str, ustring key_transf);
 
-    bool canAddMarkToLetter (ustring ch, Marks mark);
-    bool canAddMarkToLetter (gchar ch, Marks mark);
+    bool canAddMarkToLetterP (ustring ch, Marks mark);
+    bool canAddMarkToLetterP (gchar ch, Marks mark);
+
     ustring addMarkToWord (ustring str, Marks mark);
     ustring addMarkToText (ustring str, ustring key_transf);
 
-    ustring addCharToWord (ustring  str, ustring ch);
+    ustring addChar (ustring str, ustring ch);
 }

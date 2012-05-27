@@ -40,6 +40,16 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
+TEST (MarkAndWord, CanAddMarkToLetterP) {
+    EXPECT_TRUE (canAddMarkToLetterP ("a", HAT));
+    EXPECT_TRUE (canAddMarkToLetterP ("o", HAT));
+    EXPECT_TRUE (canAddMarkToLetterP ("A", HAT));
+    EXPECT_FALSE (canAddMarkToLetterP ("V", HAT));
+    EXPECT_TRUE (canAddMarkToLetterP ("O", HORN));
+    EXPECT_TRUE (canAddMarkToLetterP ("u", HORN));
+    EXPECT_FALSE (canAddMarkToLetterP ("e", HORN));
+}
+
 // TEST (WholeWordManipulation, GetLastWord) {
 //     EXPECT_EQ (0, getLastWord("giang")); //-> "giang"
 //     EXPECT_EQ (3, getLastWord("conđường")); //-> "đường"
