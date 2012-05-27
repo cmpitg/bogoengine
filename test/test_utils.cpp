@@ -40,6 +40,72 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
+TEST (FindTransformation, SimpleTelex) {
+    InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
+    ustringArrayT availTrans = findTransformation ("w", im);
+
+    EXPECT_STREQ ("wo+", __(findTransformation ("w", im)[0]));
+    EXPECT_STREQ ("wu+", __(findTransformation ("w", im)[1]));
+    EXPECT_STREQ ("w*v", __(findTransformation ("w", im)[2]));
+    // EXPECT_EQ (3, availTrans.size ());
+    // EXPECT_TRUE (availTrans )
+    EXPECT_EQ (0, findTransformation ("t", im).size ());
+}
+
+TEST (WordHelpers, AddAccentToWord) {
+    EXPECT_STREQ ("èo", addAccentToWord ("eo", GRAVE).c_str ());
+    EXPECT_STREQ ("iều", addAccentToWord ("iêu", GRAVE).c_str ());
+    EXPECT_STREQ ("uối", addAccentToWord ("uôi", ACUTE).c_str ());
+    EXPECT_STREQ ("Ẹ", addAccentToWord ("E", DOT).c_str ());
+    EXPECT_STREQ ("huYền", addAccentToWord ("huYên", GRAVE).c_str ());
+    EXPECT_STREQ ("uYê", addAccentToWord ("uYế", NO_ACCENT).c_str ());
+    EXPECT_STREQ ("xóa", addAccentToWord ("xoa", ACUTE).c_str ());
+    EXPECT_STREQ ("xoÁn", addAccentToWord ("xoAn", ACUTE).c_str ());
+    EXPECT_STREQ ("xoẮn", addAccentToWord ("xoĂn", ACUTE).c_str ());
+    EXPECT_STREQ ("xoaán", addAccentToWord ("xoaan", ACUTE).c_str ());
+}
+
+TEST (WordHelpers, AddMarkToWord) {
+    EXPECT_STREQ ("ê", addMarkToWord ("e", HAT).c_str ());
+    EXPECT_STREQ ("đ", addMarkToWord ("d", BAR).c_str ());
+    EXPECT_STREQ ("uối", addMarkToWord ("uói", HAT).c_str ());
+    EXPECT_STREQ ("mưa", addMarkToWord ("mua", HORN).c_str ());
+    EXPECT_STREQ ("đeo", addMarkToWord ("deo", BAR).c_str ());
+    EXPECT_STREQ ("ươi", addMarkToWord ("uoi", HORN).c_str ());
+    EXPECT_STREQ ("nẰm", addMarkToWord ("nÀm", BREVE).c_str ());
+    EXPECT_STREQ ("ĐẰm", addMarkToWord ("DẰm", BAR).c_str ());
+    EXPECT_STREQ ("rƯơi", addMarkToWord ("rUoi", HORN).c_str ());
+    EXPECT_STREQ ("TrƯơng", addMarkToWord ("TrUong", HORN).c_str ());
+}
+
+TEST (ProcessKey, ProcessKey) {
+    InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
+    EXPECT_STREQ(__("mèo"), __(processKey (BACKSPACE_CODE, "mèov", im)));
+    EXPECT_STREQ(__("mèo"), __(processKey ('f', "meo", im)));
+    EXPECT_STREQ(__("Đèo"), __(processKey ('d', "Dèo", im)));
+    EXPECT_STREQ(__("đèo"), __(processKey ('D', "dèo", im)));
+    EXPECT_STREQ(__("đEO"), __(processKey ('z', "đÈO", im)));
+    EXPECT_STREQ(__("mưA"), __(processKey ('w', "muA", im)));
+    EXPECT_STREQ(__("rƯơi"), __(processKey ('w', "rUoi", im)));
+    EXPECT_STREQ(__("rUòi"), __(processKey ('f', "rUoi", im)));
+    EXPECT_STREQ(__("ruoiw"), __(processKey ('w', "rươi", im)));
+    EXPECT_STREQ(__("mỬ"), __(processKey ('w', "mỦ", im)));
+    EXPECT_STREQ(__("mỦw"), __(processKey ('w', "mỬ", im)));
+    EXPECT_STREQ(__("măn"), __(processKey ('w', "man", im)));
+    EXPECT_STREQ(__("mũmmĩm"), __(processKey ('X', "mũmmim", im)));
+    EXPECT_STREQ(__("làmănz"), __(processKey ('z', "làmăn", im)));
+    EXPECT_STREQ(__("chuyệk"), __(processKey ('j', "chuyêk", im)));
+    EXPECT_STREQ(__("quảđur"), __(processKey ('r', "quảđủ", im)));
+    EXPECT_STREQ(__("mèokckf"), __(processKey ('f', "mèokck", im)));
+    EXPECT_STREQ(__("meO"), __(processKey ('O', "me", im)));
+    EXPECT_STREQ (__("làmănz"), __(processKey ('z', "làmăn", im)));
+    EXPECT_STREQ (__("chuyệk"), __(processKey ('j', "chuyêk", im))); // FIXME: Need to discuss
+    EXPECT_STREQ (__("đèO"), __(processKey ('D',"dèO", im)));
+    EXPECT_STREQ (__("geO"), __(processKey ('O', "ge", im)));
+    EXPECT_STREQ (__("goa"), __(processKey ('a', "go", im)));
+    EXPECT_STREQ (__("gô"), __(processKey ('o', "go", im)));
+    // EXPECT_STREQ(__("họa"), __(processKey (BACKSPACE_CODE, "hoạt", im)));
+}
 
 TEST (MarkAndWord, RemoveAllMarks) {
     EXPECT_STREQ ("thuỏ", removeAllMarksFromWord ("thuở").c_str ());
@@ -295,70 +361,6 @@ TEST (CharacterHelpers, PlainCharacters) {
     EXPECT_TRUE (isLetter ("O"));
     EXPECT_FALSE (isLetter ("\\"));
     EXPECT_FALSE (isLetter ((gchar) 13)); // Return
-}
-
-TEST (FindTransformation, SimpleTelex) {
-    InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
-
-    EXPECT_STREQ ("wo+", __(findTransformation ("w", im)[0]));
-    EXPECT_STREQ ("wu+", __(findTransformation ("w", im)[1]));
-    EXPECT_STREQ ("w*v", __(findTransformation ("w", im)[2]));
-    EXPECT_EQ (0, findTransformation ("t", im).size ());
-}
-
-TEST (WordHelpers, AddAccentToWord) {
-    EXPECT_STREQ ("èo", addAccentToWord ("eo", GRAVE).c_str ());
-    EXPECT_STREQ ("iều", addAccentToWord ("iêu", GRAVE).c_str ());
-    EXPECT_STREQ ("uối", addAccentToWord ("uôi", ACUTE).c_str ());
-    EXPECT_STREQ ("Ẹ", addAccentToWord ("E", DOT).c_str ());
-    EXPECT_STREQ ("huYền", addAccentToWord ("huYên", GRAVE).c_str ());
-    EXPECT_STREQ ("uYê", addAccentToWord ("uYế", NO_ACCENT).c_str ());
-    EXPECT_STREQ ("xóa", addAccentToWord ("xoa", ACUTE).c_str ());
-    EXPECT_STREQ ("xoÁn", addAccentToWord ("xoAn", ACUTE).c_str ());
-    EXPECT_STREQ ("xoẮn", addAccentToWord ("xoĂn", ACUTE).c_str ());
-    EXPECT_STREQ ("xoaán", addAccentToWord ("xoaan", ACUTE).c_str ());
-}
-
-TEST (WordHelpers, AddMarkToWord) {
-    EXPECT_STREQ ("ê", addMarkToWord ("e", HAT).c_str ());
-    EXPECT_STREQ ("đ", addMarkToWord ("d", BAR).c_str ());
-    EXPECT_STREQ ("uối", addMarkToWord ("uói", HAT).c_str ());
-    EXPECT_STREQ ("mưa", addMarkToWord ("mua", HORN).c_str ());
-    EXPECT_STREQ ("đeo", addMarkToWord ("deo", BAR).c_str ());
-    EXPECT_STREQ ("ươi", addMarkToWord ("uoi", HORN).c_str ());
-    EXPECT_STREQ ("nẰm", addMarkToWord ("nÀm", BREVE).c_str ());
-    EXPECT_STREQ ("ĐẰm", addMarkToWord ("DẰm", BAR).c_str ());
-    EXPECT_STREQ ("rƯơi", addMarkToWord ("rUoi", HORN).c_str ());
-    EXPECT_STREQ ("TrƯơng", addMarkToWord ("TrUong", HORN).c_str ());
-}
-
-TEST (ProcessKey, ProcessKey) {
-    InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
-    EXPECT_STREQ(__("mèo"), __(processKey (BACKSPACE_CODE, "mèov", im)));
-    EXPECT_STREQ(__("mèo"), __(processKey ('f', "meo", im)));
-    EXPECT_STREQ(__("Đèo"), __(processKey ('d', "Dèo", im)));
-    EXPECT_STREQ(__("đèo"), __(processKey ('D', "dèo", im)));
-    EXPECT_STREQ(__("đEO"), __(processKey ('z', "đÈO", im)));
-    EXPECT_STREQ(__("mưA"), __(processKey ('w', "muA", im)));
-    EXPECT_STREQ(__("rƯơi"), __(processKey ('w', "rUoi", im)));
-    EXPECT_STREQ(__("rUòi"), __(processKey ('f', "rUoi", im)));
-    EXPECT_STREQ(__("ruoiw"), __(processKey ('w', "rươi", im)));
-    EXPECT_STREQ(__("mỬ"), __(processKey ('w', "mỦ", im)));
-    EXPECT_STREQ(__("mỦw"), __(processKey ('w', "mỬ", im)));
-    EXPECT_STREQ(__("măn"), __(processKey ('w', "man", im)));
-    EXPECT_STREQ(__("mũmmĩm"), __(processKey ('X', "mũmmim", im)));
-    EXPECT_STREQ(__("làmănz"), __(processKey ('z', "làmăn", im)));
-    EXPECT_STREQ(__("chuyệk"), __(processKey ('j', "chuyêk", im)));
-    EXPECT_STREQ(__("quảđur"), __(processKey ('r', "quảđủ", im)));
-    EXPECT_STREQ(__("mèokckf"), __(processKey ('f', "mèokck", im)));
-    EXPECT_STREQ(__("meO"), __(processKey ('O', "me", im)));
-    EXPECT_STREQ (__("làmănz"), __(processKey ('z', "làmăn", im)));
-    EXPECT_STREQ (__("chuyệk"), __(processKey ('j', "chuyêk", im))); // FIXME: Need to discuss
-    EXPECT_STREQ (__("đèO"), __(processKey ('D',"dèO", im)));
-    EXPECT_STREQ (__("geO"), __(processKey ('O', "ge", im)));
-    EXPECT_STREQ (__("goa"), __(processKey ('a', "go", im)));
-    EXPECT_STREQ (__("gô"), __(processKey ('o', "go", im)));
-    // EXPECT_STREQ(__("họa"), __(processKey (BACKSPACE_CODE, "hoạt", im)));
 }
 
 int main (int argc, char *argv[]) {
