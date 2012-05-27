@@ -36,6 +36,7 @@ namespace BoGo {
     typedef guint Marks;
     typedef guint Transform;
     typedef ustringArrayT InputMethodT;
+    typedef ustring TransformFuncT (ustring, ustring);
 
     const guint NUMBER_OF_IMS = 4;
     const guint IM_SIMPLETELEX = 0,
@@ -244,7 +245,7 @@ namespace BoGo {
 
     ustring getTransform (ustring trans);
     ustringArrayT findTransform (ustring ch, InputMethodT im);
-    ustring (*filterTransform (ustring key_transf)) (ustring str, ustring transf);
+    TransformFuncT *getTransformFunc (ustring key_transf);
     ustring processKey (gchar key, ustring str, InputMethodT im);
     Transform getTypeTranformation (ustring key_transf);
 

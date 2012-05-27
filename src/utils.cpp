@@ -792,7 +792,7 @@ namespace BoGo {
         return str + ch;
     }
 
-    ustring (*filterTransform (ustring key_transf)) (ustring, ustring) {
+    TransformFuncT *getTransformFunc (ustring key_transf) {
         ustring transf = getTransform (key_transf);
 
         if (containsP (MarkTransforms, transf))
@@ -826,14 +826,14 @@ namespace BoGo {
             return str;
         }
 
-        ustring (*doTrans) (ustring, ustring);
+        TransformFuncT *doTrans;
         ustring newStr = str;
         ustringArrayT availTrans = findTransform (toRawText (ch), im);
         Transform kind;
 
         if (availTrans.size () != 0) {
             for (_size_t_ i = 0; i < availTrans.size (); i++) {
-                doTrans = filterTransform (availTrans[i]);
+                doTrans = getTransformFunc (availTrans[i]);
                 kind = getTypeTranformation (availTrans[i]);
                 newStr = doTrans (newStr,
                                   getTransform (availTrans[i]));
