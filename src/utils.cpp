@@ -2,7 +2,7 @@
 
   This file is a part of BoGoEngine project.
 
-  Copyright (C) 2012 Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
+  Copyright (C) 2012 Dương H. Nguyễn <cmpitg@gmail.com>
 
   BoGoEngine is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -41,6 +41,17 @@ namespace BoGo {
 #define __(x) (ustring ("") + x).c_str ()
 #define have(x) find(x) != ustring::npos
 #define dont_have(x) find(x) == ustring::npos
+
+    long find (ustring s, ustringArrayT a) {
+        for (long i = 0; i < a.size (); i++)
+            if (a[i] == s)
+                return i;
+        return -1;
+    }
+
+    bool containsP (ustringArrayT a, ustring s) {
+        return find (s, a) != -1;
+    }
 
     ustring removeAllMarksFromWord (ustring word) {
         ustring res = "";
