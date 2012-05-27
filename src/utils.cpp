@@ -825,7 +825,7 @@ namespace BoGo {
         }
 
         TransformFuncT *transFunc;
-        ustring newStr = str;
+        ustring result = str;
         ustringArrayT availTrans = findTransform (toRawText (ch), im);
         Transform type;
 
@@ -834,22 +834,22 @@ namespace BoGo {
             for (_size_t_ i = 0; i < availTrans.size (); i++) {
                 transFunc = getTransformResultFunc (availTrans[i]);
                 type = getTransformType (availTrans[i]);
-                newStr = transFunc (newStr,
+                result = transFunc (result,
                                     getTransformResult (availTrans[i]));
             }
         }
         // Otherwise
         else
-            newStr = addChar (str, ch);
+            result = addChar (str, ch);
 
-        if (newStr == str) {
+        if (result == str) {
             if (type == ADD_MARK)
-                newStr = addChar (removeAllMarksFromWord (str), ch);
+                result = addChar (removeAllMarksFromWord (str), ch);
             if (type == ADD_ACCENT)
-                newStr = addChar (removeAccentFromLastWord (str), ch);
+                result = addChar (removeAccentFromLastWord (str), ch);
         }
 
-        return newStr;
+        return result;
     }
 
 #undef _
