@@ -152,7 +152,8 @@ namespace BoGo {
 
     InputMethodT addTransform (InputMethodT im, ustring trans);
     InputMethodT addTransform (InputMethodT im, const gchar *trans);
-    ustring getTransform (ustring trans);
+
+    ustring getTransformResult (ustring key_trans);
 
     ustring addMarkToChar (ustring ch, Marks mark);
     ustring addMarkToChar (string ch, Marks mark);

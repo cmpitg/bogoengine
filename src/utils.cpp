@@ -766,15 +766,12 @@ namespace BoGo {
         return canAddMarkToLetterP (_(ch), mark);
     }
 
-    ustring getTransform (ustring key_transf) {
-        /* get the transformation part from the string describing the
-           transformation
-           ex: "a a+" -> "a+" */
-        ustring transf = key_transf.erase (0,1);
-        while (transf[0] == ' ' ) {
-            transf.erase(0,1);
+    ustring getTransformResult (ustring key_trans) {
+        ustring trans = key_trans.erase (0, 1);
+        while (trans[0] == ' ' ) {
+            trans.erase(0, 1);
         }
-        return transf;
+        return trans;
     }
 
     ustringArrayT findTransform (ustring ch, InputMethodT im) {
@@ -792,8 +789,8 @@ namespace BoGo {
         return str + ch;
     }
 
-    TransformFuncT *getTransformFunc (ustring key_transf) {
-        ustring transf = getTransform (key_transf);
+    TransformFuncT *getTransformResultFunc (ustring key_transf) {
+        ustring transf = getTransformResult (key_transf);
 
         if (containsP (MarkTransforms, transf))
             return &addMarkToText;
@@ -806,7 +803,7 @@ namespace BoGo {
 
     Transform getTypeTranformation (ustring key_transf) {
         //Determine the type of transformation: add mark or add accent
-        ustring transf = getTransform (key_transf);
+        ustring transf = getTransformResult (key_transf);
         if (containsP (MarkTransforms, transf))
             return ADD_MARK;
 
@@ -831,14 +828,16 @@ namespace BoGo {
         ustringArrayT availTrans = findTransform (toRawText (ch), im);
         Transform kind;
 
+        // If the transform exists
         if (availTrans.size () != 0) {
             for (_size_t_ i = 0; i < availTrans.size (); i++) {
-                transFunc = getTransformFunc (availTrans[i]);
+                transFunc = getTransformResultFunc (availTrans[i]);
                 kind = getTypeTranformation (availTrans[i]);
                 newStr = transFunc (newStr,
-                                    getTransform (availTrans[i]));
+                                    getTransformResult (availTrans[i]));
             }
         }
+        // Otherwise
         else
             newStr = addChar (str, ch);
 
