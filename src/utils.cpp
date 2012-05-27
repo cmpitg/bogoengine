@@ -826,17 +826,17 @@ namespace BoGo {
             return str;
         }
 
-        TransformFuncT *doTrans;
+        TransformFuncT *transFunc;
         ustring newStr = str;
         ustringArrayT availTrans = findTransform (toRawText (ch), im);
         Transform kind;
 
         if (availTrans.size () != 0) {
             for (_size_t_ i = 0; i < availTrans.size (); i++) {
-                doTrans = getTransformFunc (availTrans[i]);
+                transFunc = getTransformFunc (availTrans[i]);
                 kind = getTypeTranformation (availTrans[i]);
-                newStr = doTrans (newStr,
-                                  getTransform (availTrans[i]));
+                newStr = transFunc (newStr,
+                                    getTransform (availTrans[i]));
             }
         }
         else
