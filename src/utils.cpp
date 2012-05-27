@@ -713,18 +713,20 @@ namespace BoGo {
         return trans;
     }
 
-    ustring addCharToWord (ustring str, ustring ch) {
+    ustring addChar (ustring str, ustring ch) {
         return str + ch;
     }
 
-    ustring (*filterTransformation (ustring key_transf )) (ustring, ustring) {
+    ustring (*filterTransformation (ustring key_transf)) (ustring, ustring) {
         ustring transf = getTransformation (key_transf);
+
         if (containsP (MarkTransformations, transf))
             return &addMarkToText;
 
         if (containsP (AccentTransformations, transf))
             return &addAccentToText;
-        return &addCharToWord;
+
+        return &addChar;
     }
 
     Transform getTypeTranformation (ustring key_transf) {
@@ -761,12 +763,12 @@ namespace BoGo {
                                       getTransformation (transforms[i]));
             }
         } else
-            newStr = addCharToWord (str, ch);
+            newStr = addChar (str, ch);
         if (newStr == str) {
             if (kind == ADD_MARK)
-                newStr = addCharToWord (removeAllMarksFromWord (str), ch);
+                newStr = addChar (removeAllMarksFromWord (str), ch);
             if (kind == ADD_ACCENT)
-                newStr = addCharToWord (removeAccentFromLastWord (str), ch);
+                newStr = addChar (removeAccentFromLastWord (str), ch);
         }
 
         return newStr;
