@@ -801,13 +801,14 @@ namespace BoGo {
         return &addChar;
     }
 
-    Transform getTypeTranformation (ustring key_transf) {
-        //Determine the type of transformation: add mark or add accent
-        ustring transf = getTransformResult (key_transf);
-        if (containsP (MarkTransforms, transf))
+    Transform getTransformType (ustring key_trans) {
+        // Determine the type of: add mark, add accent, or just char
+        ustring trans = getTransformResult (key_trans);
+
+        if (containsP (MarkTransforms, trans))
             return ADD_MARK;
 
-        if (containsP (AccentTransforms, transf))
+        if (containsP (AccentTransforms, trans))
             return ADD_ACCENT;
 
         return ADD_CHAR;
@@ -832,7 +833,7 @@ namespace BoGo {
         if (availTrans.size () != 0) {
             for (_size_t_ i = 0; i < availTrans.size (); i++) {
                 transFunc = getTransformResultFunc (availTrans[i]);
-                kind = getTypeTranformation (availTrans[i]);
+                kind = getTransformType (availTrans[i]);
                 newStr = transFunc (newStr,
                                     getTransformResult (availTrans[i]));
             }

@@ -59,6 +59,7 @@ namespace BoGo {
         "f \\\n"
     };
 
+    // Type of transform
     const guint ADD_ACCENT = 0,
         ADD_MARK = 1,
         ADD_CHAR = 2;
@@ -248,7 +249,7 @@ namespace BoGo {
     ustringArrayT findTransform (ustring ch, InputMethodT im);
     TransformFuncT *getTransformFunc (ustring key_transf);
     ustring processKey (gchar key, ustring str, InputMethodT im);
-    Transform getTypeTranformation (ustring key_transf);
+    Transform getTransformType (ustring key_trans);
 
     ustring toRawText (ustring str);
     ustring toEnglishText (ustring str);
