@@ -103,6 +103,9 @@ namespace BoGo {
 
     bool containsP (ustringArrayT a, ustring s);
     bool containsP (ustring parent, ustring child);
+    bool containsP (ustring parent, const gchar *child);
+    bool containsP (const gchar *parent, ustring child);
+    bool containsP (const gchar *parent, const gchar *child);
 
     long find (ustring s, ustringArrayT a);
 

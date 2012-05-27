@@ -63,7 +63,6 @@ namespace BoGo {
         return containsP (_(parent), child);
     }
 
-
     bool containsP (ustringArrayT a, ustring s) {
         return find (s, a) != -1;
     }
