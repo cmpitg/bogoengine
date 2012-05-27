@@ -61,7 +61,7 @@ TEST (WordHelpers, AddAccentToWord) {
     EXPECT_STREQ ("xóa", addAccentToWord ("xoa", ACUTE).c_str ());
     EXPECT_STREQ ("xoÁn", addAccentToWord ("xoAn", ACUTE).c_str ());
     EXPECT_STREQ ("xoẮn", addAccentToWord ("xoĂn", ACUTE).c_str ());
-    EXPECT_STREQ ("xoaán", addAccentToWord ("xoaan", ACUTE).c_str ());
+    EXPECT_STREQ ("xoaÁN", addAccentToWord ("xoaAN", ACUTE).c_str ());
 }
 
 TEST (WordHelpers, AddMarkToWord) {
