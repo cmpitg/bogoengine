@@ -678,7 +678,7 @@ namespace BoGo {
         return transf;
     }
 
-    ustringArrayT  findTransformation (ustring ch, InputMethodT im) {
+    ustringArrayT findTransformation (ustring ch, InputMethodT im) {
         /* Because a key can associate with more than 1 transformation,
            we need to know what transfrom are possible */
         ustringArrayT  transforms;
@@ -722,10 +722,12 @@ namespace BoGo {
         // Default input method is telex and default charset is UTF8
         ustring ch = _(key);
 
+        // Process Backspace
         if (ch == _(BACKSPACE_CODE)) {
             str.erase (str.size() - 1, 1);
             return str;
         }
+
         ustring (*doTransform) (ustring, ustring);
         ustring newStr = str;
         ustringArrayT transforms = findTransformation (toRawText (ch), im);

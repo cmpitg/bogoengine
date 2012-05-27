@@ -299,14 +299,11 @@ TEST (CharacterHelpers, PlainCharacters) {
 
 TEST (FindTransformation, SimpleTelex) {
     InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
-    ustringArrayT transformation_w;
-    transformation_w.push_back("wo+");
-    transformation_w.push_back("wu+");
-    transformation_w.push_back("w*v");
 
-    EXPECT_EQ (transformation_w[0], findTransformation ( "w", im)[0]);
-    EXPECT_EQ (transformation_w[1], findTransformation ( "w", im)[1]);
-    EXPECT_EQ (transformation_w[2], findTransformation ( "w", im)[2]);
+    EXPECT_STREQ ("wo+", __(findTransformation ("w", im)[0]));
+    EXPECT_STREQ ("wu+", __(findTransformation ("w", im)[1]));
+    EXPECT_STREQ ("w*v", __(findTransformation ("w", im)[2]));
+    EXPECT_EQ (0, findTransformation ("t", im).size ());
 }
 
 TEST (WordHelpers, AddAccentToWord) {
