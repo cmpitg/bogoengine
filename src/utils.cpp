@@ -140,22 +140,6 @@ namespace BoGo {
         return -1;
     }
 
-    // bool containsP (ustring parent, ustring child) {
-    //     return parent.find (child) != ustring::npos;
-    // }
-
-    // bool containsP (ustring parent, const gchar *child) {
-    //     return containsP (parent, _(child));
-    // }
-
-    // bool containsP (const gchar *parent, const gchar *child) {
-    //     return containsP (_(parent), _(child));
-    // }
-
-    // bool containsP (const gchar *parent, ustring child) {
-    //     return containsP (_(parent), child);
-    // }
-
     bool containsP (ustringArrayT a, ustring s) {
         return find (s, a) != -1;
     }

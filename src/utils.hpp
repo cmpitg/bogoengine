@@ -118,15 +118,11 @@ namespace BoGo {
     bool containsP (const gchar *str, guint needle, bool ignoreCase = true);
     bool containsP (ustring str, const gchar *needle, bool ignoreCase = true);
     bool containsP (string str, const gchar *needle, bool ignoreCase = true);
-    bool containsP (const gchar *str, const gchar *needle, bool ignoreCase = true);
+    bool containsP (const gchar *str, const gchar *needle,
+                    bool ignoreCase = true);
+    bool containsP (ustringArrayT a, ustring s);
 
     int getLastWord (ustring text);
-
-    bool containsP (ustringArrayT a, ustring s);
-    // bool containsP (ustring parent, ustring child);
-    // bool containsP (ustring parent, const gchar *child);
-    // bool containsP (const gchar *parent, ustring child);
-    // bool containsP (const gchar *parent, const gchar *child);
 
     long find (ustring s, ustringArrayT a);
 
