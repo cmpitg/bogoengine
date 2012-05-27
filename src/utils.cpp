@@ -51,6 +51,19 @@ namespace BoGo {
         return parent.find (child) != ustring::npos;
     }
 
+    bool containsP (ustring parent, const gchar *child) {
+        return containsP (parent, _(child));
+    }
+
+    bool containsP (const gchar *parent, const gchar *child) {
+        return containsP (_(parent), _(child));
+    }
+
+    bool containsP (const gchar *parent, ustring child) {
+        return containsP (_(parent), child);
+    }
+
+
     bool containsP (ustringArrayT a, ustring s) {
         return find (s, a) != -1;
     }
@@ -635,16 +648,16 @@ namespace BoGo {
         if (canAddMarkToLetter (lastChar, mark))
             return firstPart + addMarkToChar (lastChar, mark);
         else
-            return addMarkToWord (firstPart, mark)  + lastChar;
+            return addMarkToWord (firstPart, mark) + lastChar;
 
         return str;
     }
 
     ustring addMarkToText (ustring str, ustring transf) {
         _size_t_ pos = MarkTransformations.find (transf);
-        gchar AffectedChar = transf[0];
-        if ((AffectedChar != '*') &&
-            (!containsP (toRawText (str), _(AffectedChar))))
+        gchar affectedChar = transf[0];
+        if ((affectedChar != '*') &&
+            (!containsP (toRawText (str), _(affectedChar))))
             return str;
         return addMarkToWord (str, MARKS[pos/2]);
     }
@@ -653,11 +666,11 @@ namespace BoGo {
         ustring _ch = toRawText (ch);
         switch (mark) {
         case HAT:
-            if (containsP(_("aeo"), _ch))
+            if (containsP("aeo", _ch))
                 return true;
             break;
         case HORN:
-            if (containsP(_("ou"), _ch))
+            if (containsP("ou", _ch))
                 return true;
             break;
         case BREVE:
