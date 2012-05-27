@@ -826,19 +826,22 @@ namespace BoGo {
             return str;
         }
 
-        ustring (*doTransform) (ustring, ustring);
+        ustring (*doTrans) (ustring, ustring);
         ustring newStr = str;
-        ustringArrayT transforms = findTransform (toRawText (ch), im);
+        ustringArrayT availTrans = findTransform (toRawText (ch), im);
         Transform kind;
-        if (transforms.size () != 0) {
-            for (_size_t_ i = 0; i < transforms.size (); i++) {
-                doTransform = filterTransform (transforms[i]);
-                kind = getTypeTranformation (transforms[i]);
-                newStr = doTransform (newStr,
-                                      getTransform (transforms[i]));
+
+        if (availTrans.size () != 0) {
+            for (_size_t_ i = 0; i < availTrans.size (); i++) {
+                doTrans = filterTransform (availTrans[i]);
+                kind = getTypeTranformation (availTrans[i]);
+                newStr = doTrans (newStr,
+                                  getTransform (availTrans[i]));
             }
-        } else
+        }
+        else
             newStr = addChar (str, ch);
+
         if (newStr == str) {
             if (kind == ADD_MARK)
                 newStr = addChar (removeAllMarksFromWord (str), ch);
