@@ -40,15 +40,25 @@ vector<ustring> makeustringVec3 (const gchar *e0,
     return v;
 }
 
+long find (ustring s, ustringArrayT a) {
+    for (long i = 0; i < a.size (); i++)
+        if (a[i] == s)
+            return i;
+    return -1;
+}
+
+bool containsP (ustringArrayT a, ustring s) {
+    return find (s, a) != -1;
+}
+
 TEST (FindTransformation, SimpleTelex) {
     InputMethodT im = makeStandardIM (IM_SIMPLETELEX);
     ustringArrayT availTrans = findTransformation ("w", im);
 
-    EXPECT_STREQ ("wo+", __(findTransformation ("w", im)[0]));
-    EXPECT_STREQ ("wu+", __(findTransformation ("w", im)[1]));
-    EXPECT_STREQ ("w*v", __(findTransformation ("w", im)[2]));
-    // EXPECT_EQ (3, availTrans.size ());
-    // EXPECT_TRUE (availTrans )
+    EXPECT_EQ (3, availTrans.size ());
+    EXPECT_TRUE (containsP (availTrans, _("wo+")));
+    EXPECT_TRUE (containsP (availTrans, _("wu+")));
+    EXPECT_TRUE (containsP (availTrans, _("w*v")));
     EXPECT_EQ (0, findTransformation ("t", im).size ());
 }
 
