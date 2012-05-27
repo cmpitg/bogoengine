@@ -39,14 +39,16 @@ namespace BoGo {
 #undef __
 #endif
 #define __(x) (ustring ("") + x).c_str ()
-#define have(x) find(x) != ustring::npos
-#define dont_have(x) find(x) == ustring::npos
 
     long find (ustring s, ustringArrayT a) {
         for (long i = 0; i < a.size (); i++)
             if (a[i] == s)
                 return i;
         return -1;
+    }
+
+    bool containsP (ustring parent, ustring child) {
+        return parent.find (child) != ustring::npos;
     }
 
     bool containsP (ustringArrayT a, ustring s) {
@@ -641,8 +643,8 @@ namespace BoGo {
     ustring addMarkToText (ustring str, ustring transf) {
         _size_t_ pos = MarkTransformations.find (transf);
         gchar AffectedChar = transf[0];
-        if (( AffectedChar != '*') &&
-            ( toRawText (str).dont_have (AffectedChar)))
+        if ((AffectedChar != '*') &&
+            (!containsP (toRawText (str), _(AffectedChar))))
             return str;
         return addMarkToWord (str, MARKS[pos/2]);
     }
@@ -651,11 +653,11 @@ namespace BoGo {
         ustring _ch = toRawText (ch);
         switch (mark) {
         case HAT:
-            if (_("aeo").have (_ch))
+            if (containsP(_("aeo"), _ch))
                 return true;
             break;
         case HORN:
-            if (_("ou").have (_ch))
+            if (containsP(_("ou"), _ch))
                 return true;
             break;
         case BREVE:
@@ -708,10 +710,10 @@ namespace BoGo {
 
     ustring (*filterTransformation (ustring key_transf )) (ustring, ustring) {
         ustring transf = getTransformation (key_transf);
-        if (MarkTransformations.have (transf))
+        if (containsP (MarkTransformations, transf))
             return &addMarkToText;
 
-        if (AccentTransformations.have (transf))
+        if (containsP (AccentTransformations, transf))
             return &addAccentToText;
         return &addCharToWord;
     }
@@ -719,15 +721,14 @@ namespace BoGo {
     Transform getTypeTranformation (ustring key_transf) {
         //Determine the type of transformation: add mark or add accent
         ustring transf = getTransformation (key_transf);
-        if (MarkTransformations.have (transf))
+        if (containsP (MarkTransformations, transf))
             return ADD_MARK;
 
-        if (AccentTransformations.have (transf))
+        if (containsP (AccentTransformations, transf))
             return ADD_ACCENT;
 
         return ADD_CHAR;
     }
-
 
     ustring processKey (gchar key, ustring str, InputMethodT im) {
         // Default input method is telex and default charset is UTF8

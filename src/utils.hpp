@@ -102,6 +102,7 @@ namespace BoGo {
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
     bool containsP (ustringArrayT a, ustring s);
+    bool containsP (ustring parent, ustring child);
 
     long find (ustring s, ustringArrayT a);
 
