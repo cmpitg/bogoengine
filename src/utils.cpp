@@ -691,7 +691,6 @@ namespace BoGo {
         return canAddMarkToLetter (_(ch), mark);
     }
 
-
     ustring getTransformation (ustring key_transf) {
         /* get the transformation part from the string describing the
            transformation
@@ -704,16 +703,14 @@ namespace BoGo {
     }
 
     ustringArrayT findTransformation (ustring ch, InputMethodT im) {
-        /* Because a key can associate with more than 1 transformation,
-           we need to know what transfrom are possible */
-        ustringArrayT  transforms;
+        ustringArrayT trans;
         for (guint i = 0; i < im.size(); i++) {
             ustring tr = im[i];
             if (ch == _(tr[0])) {
-                transforms.push_back (tr);
+                trans.push_back (tr);
             }
         }
-        return transforms;
+        return trans;
     }
 
     ustring addCharToWord (ustring str, ustring ch) {
