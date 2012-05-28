@@ -646,16 +646,21 @@ namespace BoGo {
             return removeAccentFromWord (word);
 
         // Analyzing the word into 3 components
+        // comp[0] = consonantPiece #1
+        // comp[1] = vowelPiece
+        // comp[2] = consonantPiece #2
         ustringArrayT comp = analyseWord (word);
         comp[1] = removeAccentFromWord (comp[1]);
+        ustring vowelPiece = comp[1];
+        ustring consonantPiece = comp[2];
 
         // Case: no vowels
-        ustring vowel = comp[1];
-        if (vowel == "") return word;
+        if (vowelPiece.size () == 0)
+            return word;
 
         ustring ch;
-        ustring rawVowel = toRawText (vowel);
-        _size_t_ vowelSize = vowel.size ();
+        ustring rawVowel = toRawText (vowelPiece);
+        _size_t_ vowelSize = vowelPiece.size ();
         _size_t_ pos;
 
         for ( _size_t_ i = 0; i < 4; i++) {
@@ -666,11 +671,13 @@ namespace BoGo {
         if (pos == ustring::npos) {
             if (comp[2] == "")
                 pos = ( vowelSize <= 2) ? 0 : vowelSize - 2;
-            else pos = vowel.size () -1;
+            else pos = vowelPiece.size () -1;
         }
 
-        vowel = vowel.replace (pos, 1, addAccentToChar (vowel[pos], accent));
-        return comp[0] + vowel + comp[2];
+        return comp[0]
+            + vowelPiece.replace (pos, 1,
+                                  addAccentToChar (vowelPiece[pos], accent))
+            + comp[2];
     }
 
 
