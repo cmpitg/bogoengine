@@ -686,12 +686,12 @@ namespace BoGo {
         return str;
     }
 
-    ustring addMarkToWord (ustring str, Marks mark) {
+    ustring addMarkToWord (ustring word, Marks mark) {
         if (mark == NO_MARK)
-            return removeAllMarksFromWord (str);
-        guint lpos = str.size () -1;
-        ustring lastChar = _(str[lpos]);
-        ustring firstPart = ustring (str, 0, lpos);
+            return removeAllMarksFromWord (word);
+        guint lpos = word.size () -1;
+        ustring lastChar = _(word[lpos]);
+        ustring firstPart = ustring (word, 0, lpos);
 
         if (lpos == 0) {
             if (canAddMarkToLetterP (lastChar, mark)) {
@@ -702,21 +702,21 @@ namespace BoGo {
         // Special case : uo ươ
         if ((lpos > 0) && (mark == HORN) &&
             (toRawText(lastChar) == "o" ) &&
-            (toRawText (_(str[lpos -1])) == "u")) {
+            (toRawText (_(word[lpos -1])) == "u")) {
             return
-                ((lpos >= 2) ? ustring (str, 0, lpos - 1) : "")
-                + addMarkToChar (str[lpos-1], HORN)
-                + addMarkToChar (str[lpos], HORN);
+                ((lpos >= 2) ? ustring (word, 0, lpos - 1) : "")
+                + addMarkToChar (word[lpos-1], HORN)
+                + addMarkToChar (word[lpos], HORN);
         }
 
         // Special case: ua + w -> ưa not uă
         if ((lpos > 0) && (mark == BREVE) &&
             (toRawText(lastChar) == "a" ) &&
-            (toRawText (_(str[lpos -1])) == "u")) {
+            (toRawText (_(word[lpos -1])) == "u")) {
             return
-                ((lpos >= 2) ? ustring (str, 0, lpos - 1) : "")
-                + addMarkToChar (str[lpos-1], HORN)
-                + str[lpos];
+                ((lpos >= 2) ? ustring (word, 0, lpos - 1) : "")
+                + addMarkToChar (word[lpos-1], HORN)
+                + word[lpos];
         }
 
         if (canAddMarkToLetterP (lastChar, mark))
@@ -724,16 +724,25 @@ namespace BoGo {
         else
             return addMarkToWord (firstPart, mark) + lastChar;
 
-        return str;
+        return word;
     }
+
+    ustring addMarkToWord (string word, Marks mark) {
+        return addMarkToWord (_(word), mark);
+    }
+
+    ustring addMarkToWord (const gchar *word, Marks mark) {
+        return addMarkToWord (_(word), mark);
+    }
+
 
     ustring addMarkToText (ustring text, ustring trans) {
         _size_t_ pos = MarkTransforms.find (trans);
         gchar affectedChar = trans[0];
         if ((affectedChar != '*') &&
-            (!containsP (toRawText (str), _(affectedChar))))
-            return str;
-        return addMarkToWord (str, MARKS[pos / 2]);
+            (!containsP (toRawText (text), _(affectedChar))))
+            return text;
+        return addMarkToWord (text, MARKS[pos / 2]);
     }
 
     bool canAddMarkToLetterP (ustring ch, Marks mark) {
@@ -836,6 +845,8 @@ namespace BoGo {
                 type = getTransformType (availTrans[i]);
                 result = transFunc (result,
                                     getTransformResult (availTrans[i]));
+                cout << ">> " << __(key) << " -> " << __(text) << " -> " << __(result) << endl;
+                break;
             }
         }
         // Otherwise

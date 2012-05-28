@@ -259,9 +259,12 @@ namespace BoGo {
     ustring addAccentToText (ustring str, ustring key_transf);
 
     bool canAddMarkToLetterP (ustring ch, Marks mark);
-    bool canAddMarkToLetterP (gchar ch, Marks mark);
+    bool canAddMarkToLetterP (const gchar ch, Marks mark);
 
-    ustring addMarkToWord (ustring str, Marks mark);
+    ustring addMarkToWord (ustring word, Marks mark);
+    ustring addMarkToWord (string word, Marks mark);
+    ustring addMarkToWord (const gchar *word, Marks mark);
+
     ustring addMarkToText (ustring str, ustring key_transf);
 
     ustring addChar (ustring str, ustring ch);
