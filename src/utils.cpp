@@ -693,12 +693,12 @@ namespace BoGo {
         // 1. Find the last position of the letter corresponding to the mark
         _size_t_ len = word.size ();
         _size_t_ pos = ustring::npos;
-        for (_size_t_ i = len - 1; i >= 0; i--)
-            if (containsP (AvailLettersForMarks[mark],
-                           toRawText (_(word[i])))) {
+        for (_size_t_ i = len - 1; i >= 0; i--) {
+            if (canAddMarkToLetterP (_(word[i]), mark)) {
                 pos = i;
                 break;
             }
+        }
 
         // 1'. In case there is no letter to add mark to
         if (pos == ustring::npos)
@@ -731,7 +731,6 @@ namespace BoGo {
         return addMarkToWord (_(word), mark);
     }
 
-
     // ustring addMarkToText (ustring text, ustring trans) {
     //     _size_t_ pos = MarkTransforms.find (trans);
     //     gchar affectedChar = trans[0];
@@ -741,35 +740,19 @@ namespace BoGo {
     //     return addMarkToWord (text, MARKS[pos / 2]);
     // }
 
-    bool canAddMarkToLetterP (ustring ch, Marks mark) {
-        ustring _ch = toRawText (ch);
-        switch (mark) {
-        case HAT:
-            if (containsP("aeo", _ch))
-                return true;
-            break;
-        case HORN:
-            if (containsP("ou", _ch))
-                return true;
-            break;
-        case BREVE:
-            if (_ch == "a")
-                return true;
-            break;
-        case BAR:
-            if (_ch == "d")
-                return true;
-            break;
-        case NO_MARK:
-            return true;
-            break;
-        }
-        return false;
+    bool canAddMarkToLetterP (ustring letter, Marks mark) {
+        return containsP (AvailLettersForMarks[mark],
+                          toPlainLetter (letter).lowercase ());
     }
 
-    bool canAddMarkToLetterP (const gchar ch, Marks mark) {
-        return canAddMarkToLetterP (_(ch), mark);
+    bool canAddMarkToLetterP (const gchar *letter, Marks mark) {
+        return canAddMarkToLetterP (_(letter), mark);
     }
+
+    // This function has glitches when dealing with non-ascii character
+    // bool canAddMarkToLetterP (const gchar letter, Marks mark) {
+    //     return canAddMarkToLetterP (_(letter), mark);
+    // }
 
     ustring getTransformResult (ustring key_trans) {
         ustring trans = key_trans.erase (0, 1);
