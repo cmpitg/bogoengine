@@ -645,10 +645,11 @@ namespace BoGo {
         ustringArrayT comp = analyseWord (word);
         comp[1] = removeAccentFromWord (comp[1]);
 
-        // Remove accent
+        // Case: remove accent
         if (accent == NO_ACCENT)
             return comp[0] + comp[1] + comp[2];
 
+        // Case: 
         if (comp[2].size () > 2)
             return word;
 

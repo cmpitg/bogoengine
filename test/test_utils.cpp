@@ -84,6 +84,8 @@ TEST (WordHelpers, AddAccentToWord) {
     EXPECT_STREQ ("xoÁn", addAccentToWord ("xoAn", ACUTE).c_str ());
     EXPECT_STREQ ("xoẮn", addAccentToWord ("xoĂn", ACUTE).c_str ());
     EXPECT_STREQ ("xoaÁN", addAccentToWord ("xoaAN", ACUTE).c_str ());
+    EXPECT_STREQ ("giịa", addAccentToWord ("giia", DOT).c_str ());
+    EXPECT_STREQ ("Đoòng", addAccentToWord ("Đoong", GRAVE).c_str ());
 }
 
 TEST (WordHelpers, AddMarkToWord) {
