@@ -254,9 +254,11 @@ namespace BoGo {
     Transform getTransformType (ustring key_trans);
 
     ustring toRawText (ustring str);
+
     ustring toEnglishText (ustring str);
 
-    ustring addAccentToWord (ustring str, Accents accent);
+    ustring addAccentToWord (ustring word, Accents accent);
+
     ustring addAccentToText (ustring str, Accents accent);
     ustring addAccentToText (ustring str, ustring key_transf);
 

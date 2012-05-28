@@ -640,19 +640,20 @@ namespace BoGo {
         return comp[0] + comp[1] + comp[2];
     }
 
-    ustring addAccentToWord (ustring str, Accents accent) {
-        ustringArrayT comp = analyseWord (str);
-
+    ustring addAccentToWord (ustring word, Accents accent) {
+        // Analyzing the word into 3 components
+        ustringArrayT comp = analyseWord (word);
         comp[1] = removeAccentFromWord (comp[1]);
 
+        // Remove accent
         if (accent == NO_ACCENT)
             return comp[0] + comp[1] + comp[2];
 
         if (comp[2].size () > 2)
-            return str;
+            return word;
 
         ustring vowel = comp[1];
-        if (vowel == "") return str;
+        if (vowel == "") return word;
 
         ustring ch;
         ustring rawVowel = toRawText (vowel);
