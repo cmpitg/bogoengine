@@ -80,9 +80,7 @@ namespace BoGo {
         HORN             = 2,
         BREVE            = 3,
         BAR              = 4;
-
-    const Marks MARKS[] = {HAT, HAT, HAT, HORN, HORN, BREVE, BAR};
-    const ustring MarkTransforms = "a^" "o^" "e^" "o+" "u+" "*v" "*-";
+    const ustring AvailLettersForMarks[] = { "", "aoe", "ou", "a", "d" };
 
     const gchar BACKSPACE_CODE = 8;
 

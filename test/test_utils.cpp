@@ -97,6 +97,7 @@ TEST (WordHelpers, AddMarkToWord) {
     EXPECT_STREQ ("ĐẰm", addMarkToWord ("DẰm", BAR).c_str ());
     EXPECT_STREQ ("rƯơi", addMarkToWord ("rUoi", HORN).c_str ());
     EXPECT_STREQ ("TrƯơng", addMarkToWord ("TrUong", HORN).c_str ());
+    EXPECT_STREQ ("ưu", addMarkToWord ("uu", HORN).c_str ());
 }
 
 // TEST (ProcessKey, ProcessKey) {
