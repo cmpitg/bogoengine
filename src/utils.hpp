@@ -97,7 +97,7 @@ namespace BoGo {
     const ustring ValidFinalMulticonsonants = "ng ch nh";
     const ustring InvalidFinalConsonants = "bdđfklqrsvx";
 
-    const ustring SpecialSingleVowel = "ăâơê";
+    const ustring SpecialVowels = "ăâơê";
     const ustring AllVowels = "a e e i o u y ao oa eo oe ie eu"
         " oo uo ua ye uye ieu yeu";
     // const ustring ValidFinalConsonants2 = "c t n ch nh";
@@ -253,11 +253,19 @@ namespace BoGo {
     ustring processKey (gchar key, ustring str, InputMethodT im);
     Transform getTransformType (ustring key_trans);
 
-    ustring toRawText (ustring str);
+    ustring toRawText (ustring text);
+    ustring toRawText (string text);
+    ustring toRawText (const gchar *text);
+
+    _size_t_ findSpecialVowel (ustring text);
+    _size_t_ findSpecialVowel (string text);
+    _size_t_ findSpecialVowel (const gchar *text);
 
     ustring toEnglishText (ustring str);
 
     ustring addAccentToWord (ustring word, Accents accent);
+    ustring addAccentToWord (string word, Accents accent);
+    ustring addAccentToWord (const gchar *word, Accents accent);
 
     ustring addAccentToText (ustring str, Accents accent);
     ustring addAccentToText (ustring str, ustring key_transf);

@@ -624,8 +624,16 @@ namespace BoGo {
         return isLowerCase (_(ch));
     }
 
-    ustring toRawText (ustring str) {
-        return removeAllMarksFromWord (removeAccentFromWord (str)).lowercase();
+    ustring toRawText (ustring text) {
+        return removeAllMarksFromWord (removeAccentFromWord (text)).lowercase();
+    }
+
+    ustring toRawText (string text) {
+        return toRawText (_(text));
+    }
+
+    ustring toRawText (const gchar *text) {
+        return toRawText (_(text));
     }
 
     ustring toEnglishText (ustring str) {
@@ -638,6 +646,23 @@ namespace BoGo {
             return str;
         comp[1] = removeAccentFromWord (comp[1]);
         return comp[0] + comp[1] + comp[2];
+    }
+
+    _size_t_ findSpecialVowel (ustring text) {
+        for (_size_t_ pos = 0; pos < text.size (); pos++) {
+            if (containsP (SpecialVowels,
+                           toRawText (_(text[pos]))))
+                return pos;
+        }
+        return ustring::npos;
+    }
+
+    _size_t_ findSpecialVowel (string text) {
+        return findSpecialVowel (_(text));
+    }
+
+    _size_t_ findSpecialVowel (const gchar *text) {
+        return findSpecialVowel (_(text));
     }
 
     ustring addAccentToWord (ustring word, Accents accent) {
@@ -653,36 +678,48 @@ namespace BoGo {
         comp[1] = removeAccentFromWord (comp[1]);
         ustring vowelPiece = comp[1];
         ustring consonantPiece = comp[2];
+        ustring newChar;
 
         // Case: no vowels
         if (vowelPiece.size () == 0)
             return word;
 
-        ustring ch;
-        ustring rawVowel = toRawText (vowelPiece);
-        _size_t_ vowelSize = vowelPiece.size ();
-        _size_t_ pos;
-
-        for ( _size_t_ i = 0; i < 4; i++) {
-            pos = rawVowel.find (SpecialSingleVowel[i]);
-            if (pos != ustring::npos) break;
+        // Case #1: vowelPiece contains special vowel ("ăâơê")
+        _size_t_ posToPlaceAccent = findSpecialVowel (vowelPiece);
+        if (posToPlaceAccent != ustring::npos) {
+            // Do nothing, the position is right
         }
 
-        if (pos == ustring::npos) {
-            if (comp[2] == "")
-                pos = ( vowelSize <= 2) ? 0 : vowelSize - 2;
-            else pos = vowelPiece.size () -1;
-        }
+        // Case #2: consonantPiece exists
+        else if (consonantPiece.size () > 0)
+            posToPlaceAccent = vowelPiece.size () - 1;
 
-        return comp[0]
-            + vowelPiece.replace (pos, 1,
-                                  addAccentToChar (vowelPiece[pos], accent))
-            + comp[2];
+        // Case #3: vowelPiece contains 3 letters
+        else if (vowelPiece.size () == 3)
+            posToPlaceAccent = 1;
+
+        // Otherwise
+        else
+            posToPlaceAccent = 0;
+
+        return comp[0] +
+            vowelPiece.replace (posToPlaceAccent, 1,
+                                addAccentToChar (
+                                    vowelPiece[posToPlaceAccent],
+                                    accent)) +
+            consonantPiece;
     }
 
+    ustring addAccentToWord (string word, Accents accent) {
+        return addAccentToWord (_(word), accent);
+    }
+
+    ustring addAccentToWord (const gchar *word, Accents accent) {
+        return addAccentToWord (_(word), accent);
+    }
 
     ustring addAccentToText (ustring str, Accents accent) {
-        return addAccentToWord (str, accent);
+        return "";
     }
 
     ustring addAccentToText (ustring str, ustring transf) {
