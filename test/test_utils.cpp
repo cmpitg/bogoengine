@@ -71,7 +71,9 @@ TEST (TextManipulation, AddAccentToText) {
 //    EXPECT_STREQ (__("rƯơi"), );
     EXPECT_STREQ (__("rUỏi"), __(addAccentToText ("rUoi", HOOK)));
     EXPECT_STREQ (__("mỮT"), __(addAccentToText ("mƯT", TILDE)));
-    EXPECT_STREQ (__("mụw"), __(addAccentToText ("muw", DOT)));
+    EXPECT_STREQ (__("muw"), __(addAccentToText ("muw", DOT)));
+    EXPECT_STREQ (__("trgiận"), __(addAccentToText ("trgiân", DOT)));
+    EXPECT_STREQ (__("trquán"), __(addAccentToText ("trquan", ACUTE)));
 //    EXPECT_STREQ (__("măn"), );
 //    EXPECT_STREQ (__("mũmmĩm"), );
 //    EXPECT_STREQ (__("làmănz"), );
@@ -79,6 +81,22 @@ TEST (TextManipulation, AddAccentToText) {
     EXPECT_STREQ (__("chuyêk"), __(addAccentToText ("chuyêk", DOT)));
     EXPECT_STREQ (__("nokckf"), __(addAccentToText ("nokckf", TILDE)));
     EXPECT_STREQ (__("gôu"), __(addAccentToText ("gốu", NO_ACCENT)));
+}
+
+TEST (TextManipulation, ValidEndingConsonants) {
+    EXPECT_TRUE (hasValidEndingConsonantsP("lntmèo"));
+    EXPECT_TRUE (hasValidEndingConsonantsP("TmèO"));
+    EXPECT_TRUE (hasValidEndingConsonantsP("KĐẹo"));
+    EXPECT_TRUE (hasValidEndingConsonantsP("rUỏi"));
+    EXPECT_TRUE (hasValidEndingConsonantsP("mỮT"));
+    EXPECT_FALSE (hasValidEndingConsonantsP("mụw"));
+    EXPECT_TRUE (hasValidEndingConsonantsP("trgiận"));
+    EXPECT_TRUE (hasValidEndingConsonantsP("trquán"));
+    EXPECT_FALSE (hasValidEndingConsonantsP("làmănz"));
+    EXPECT_FALSE (hasValidEndingConsonantsP("chuyêk"));
+    EXPECT_FALSE (hasValidEndingConsonantsP("chuyêk"));
+    EXPECT_FALSE (hasValidEndingConsonantsP("nokckf"));
+    EXPECT_TRUE (hasValidEndingConsonantsP("gôu"));
 }
 
 TEST (FindTransform, SimpleTelex) {

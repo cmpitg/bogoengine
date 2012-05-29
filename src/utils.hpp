@@ -59,6 +59,8 @@ namespace BoGo {
         "f \\\n"
     };
 
+    const gchar BACKSPACE_CODE = 8;
+
     // Type of transform
     const guint ADD_ACCENT = 0,
         ADD_MARK = 1,
@@ -71,8 +73,6 @@ namespace BoGo {
         TILDE          = 3,
         DOT            = 4,
         NO_ACCENT      = 5;
-    const Accents ACCENTS[] = {GRAVE, ACUTE, HOOK, TILDE, DOT, NO_ACCENT};
-    const ustring AccentTransforms = "*\\" "*/" "*?" "*~" "*." "*_";
 
     const guint NUMBER_OF_MARKS = 5;
     const guint NO_MARK  = 0,
@@ -80,9 +80,7 @@ namespace BoGo {
         HORN             = 2,
         BREVE            = 3,
         BAR              = 4;
-    const ustring AvailLettersForMarks[] = { "", "aoe", "ou", "a", "d" };
-
-    const gchar BACKSPACE_CODE = 8;
+    const ustring ValidLettersToMark[] = { "", "aoe", "ou", "a", "d" };
 
     const ustring LowerCaseLetters = "aăâbcdđeêfghijklmnoôơpqrstuưvwxy";
     const ustring Numbers = "0123456789";
@@ -93,9 +91,9 @@ namespace BoGo {
         "àáảãạa" "ằắẳẵặă" "ầấẩẫậâ" "èéẻẽẹe" "ềếểễệê" "ìíỉĩịi"
         "òóỏõọo" "ồốổỗộô" "ờớởỡợơ" "ùúủũụu" "ừứửữựư" "ỳýỷỹỵy";
 
-    const ustring ValidFinalConsonants = "ghctmnp";
-    const ustring ValidFinalMulticonsonants = "ng ch nh";
-    const ustring InvalidFinalConsonants = "bdđfklqrsvx";
+    const guint NUMBER_OF_VALID_ENDING_CONSONANTS = 8;
+    const ustring ValidEndingConsonants[] =
+    { "c", "m", "n", "p", "t", "ng", "ch" "nh" };
 
     const ustring SpecialVowels = "ăâơê";
     const ustring AllVowels = "a e e i o u y ao oa eo oe ie eu"
@@ -267,11 +265,18 @@ namespace BoGo {
     ustring addAccentToWord (string word, Accents accent);
     ustring addAccentToWord (const gchar *word, Accents accent);
 
-    ustring addAccentToText (ustring str, Accents accent);
-    ustring addAccentToText (ustring str, ustring key_transf);
+    ustring addAccentToText (ustring text, Accents accent);
+    ustring addAccentToText (string text, Accents accent);
+    ustring addAccentToText (const gchar *text, Accents accent);
 
     bool canAddMarkToLetterP (ustring letter, Marks mark);
     bool canAddMarkToLetterP (const gchar *letter, Marks mark);
+
+    _size_t_ getLastWordPos (ustring text);
+    _size_t_ getLastWordPos (string text);
+    _size_t_ getLastWordPos (const gchar *text);
+
+    bool hasValidEndingConsonantsP (ustring word);
 
     ustring addMarkToText (ustring str, ustring key_transf);
 

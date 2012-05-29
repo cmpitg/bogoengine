@@ -40,47 +40,6 @@ namespace BoGo {
 #endif
 #define __(x) (ustring ("") + x).c_str ()
 
-    // int getLastWord (ustring text, int last, bool vowelEncountered = false); //Just a forward declaration
-
-    // int getLastWord (ustring text, int last, gunichar processingCons) {
-    //     if (last<0) return last+1;
-    //     ustring str = "";
-    //     str+=text[last];
-    //     str+=processingCons;
-    //     if (stringContains (ValidFinalMulticonsonants, str)) {
-    //         return getLastWord (text, last-1);
-    //     } else {
-    //         return last+1;
-    //     }
-    // }
-
-    // int getLastWord (ustring text, int last, bool vowelEncountered) {
-    //     if (last<0) return last+1;
-    //     gunichar lastChar = text[last];
-    //     if (isVowel (lastChar)) {
-    //         return getLastWord (text, last-1, true);
-    //     } else {
-    //         if (!isConsonant (lastChar) || vowelEncountered) return last;
-    //         if (stringContains (InvalidFinalConsonants, lastChar)) {
-    //             return last;
-    //         }
-    //         else if (stringContains (ValidFinalConsonants, lastChar)) {
-    //             return getLastWord (text, last-1, lastChar);
-    //         }
-
-    //         throw new string ("something wrong happened to getLastWord");
-    //     }
-    // }
-
-    /*
-     * This function gets the last Vietnamese word
-     *  from a group of consecutive alphabetical characters
-     * For example, with the argument "bộgõ", this function returns "gõ"
-     */
-    // int getLastWord (ustring text) {
-    //     return getLastWord (text, text.size()-1);
-    // }
-
     bool containsP (ustring str, ustring needle, bool ignoreCase) {
         if (ignoreCase) {
             str = str.lowercase ();
@@ -718,8 +677,84 @@ namespace BoGo {
         return addAccentToWord (_(word), accent);
     }
 
-    ustring addAccentToText (ustring str, Accents accent) {
-        return "";
+    bool endsWith (ustring text, ustring pattern) {
+        // Ignore case
+        _size_t_ pos = text.lowercase ().rfind (pattern.lowercase ());
+        return pos != ustring::npos && (text.size () - pos == pattern.size ());
+    }
+
+    bool hasValidEndingConsonantsP (ustring word) {
+        if (word.size () == 0 || isVowel (lastChar (word)))
+            return true;
+
+        for (guint i = 0; i < NUMBER_OF_VALID_ENDING_CONSONANTS; i++)
+            if (endsWith (word, ValidEndingConsonants[i]))
+                return true;
+        return false;
+    }
+
+    _size_t_ getLastWordPos (ustring text) {
+        // Get the position of the beginning of the last word in a
+        // text by consecutively finding: longest consonant piece,
+        // longest vowel piece, and check for special cases.
+
+        _size_t_ result = text.size () - 1;
+        while (result > 0 && isConsonant (text[result]))
+            result--;
+
+        // Case: all letters are consonants
+        if (result == 0 && isConsonant (text[0]))
+            return ustring::npos;
+
+        // Case: invalid ending consonants
+        if (!hasValidEndingConsonantsP (text.substr (result + 1)));
+
+        while (result > 0 && isVowel (text[result]))
+            result--;
+        result++;
+
+        // Special cases: "qu" and "gi"
+        if (result > 0) {
+            ustring maybeSpecial =
+                (_(text[result - 1]) + _(text[result])).lowercase ();
+            if (maybeSpecial == "qu" || maybeSpecial == "gi")
+                return (result + 1) >= text.size () ?
+                    ustring::npos : (result + 1);
+        }
+
+        return result;
+    }
+
+    _size_t_ getLastWordPos (string text) {
+        return getLastWordPos (_(text));
+    }
+
+    _size_t_ getLastWordPos (const gchar *text) {
+        return getLastWordPos (_(text));
+    }
+
+    ustring addAccentToText (ustring text, Accents accent) {
+        _size_t_ pos = getLastWordPos (text);
+
+        // Case: no word inside text
+        if (pos == ustring::npos)
+            return text;
+
+        ustring firstPart = text.substr (0, pos);
+        ustring lastWord = text.substr (pos);
+
+        if (hasValidEndingConsonantsP (lastWord))
+            return firstPart + addAccentToWord (lastWord, accent);
+        else
+            return text;
+    }
+
+    ustring addAccentToText (string text, Accents accent) {
+        return addAccentToText (_(text), accent);
+    }
+
+    ustring addAccentToText (const gchar *text, Accents accent) {
+        return addAccentToText (_(text), accent);
     }
 
     ustring addMarkToWord (ustring word, Marks mark) {
@@ -777,7 +812,7 @@ namespace BoGo {
     // }
 
     bool canAddMarkToLetterP (ustring letter, Marks mark) {
-        return containsP (AvailLettersForMarks[mark],
+        return containsP (ValidLettersToMark[mark],
                           toPlainLetter (letter).lowercase ());
     }
 
