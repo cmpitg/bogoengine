@@ -722,13 +722,6 @@ namespace BoGo {
         return "";
     }
 
-    ustring addAccentToText (ustring str, ustring transf) {
-        _size_t_ pos = AccentTransforms.find (transf);
-        if (pos != ustring::npos)
-            return addAccentToText (str, ACCENTS[pos/2]);
-        return str;
-    }
-
     ustring addMarkToWord (ustring word, Marks mark) {
         if (mark == NO_MARK)
             return removeAllMarksFromWord (word);
