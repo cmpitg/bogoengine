@@ -69,17 +69,11 @@ TEST (TextManipulation, AddAccentToText) {
     EXPECT_STREQ (__("lntmèo"), __(addAccentToText ("lntmeo", GRAVE)));
     EXPECT_STREQ (__("TmèO"), __(addAccentToText ("TmeO", GRAVE)));
     EXPECT_STREQ (__("KĐẹo"), __(addAccentToText ("KĐeo", DOT)));
-//    EXPECT_STREQ (__("đEO"), addAccentToText ("", ));
-//    EXPECT_STREQ (__("mưA"), addAccentToText ("", ));
-//    EXPECT_STREQ (__("rƯơi"), );
     EXPECT_STREQ (__("rUỏi"), __(addAccentToText ("rUoi", HOOK)));
     EXPECT_STREQ (__("mỮT"), __(addAccentToText ("mƯT", TILDE)));
     EXPECT_STREQ (__("muw"), __(addAccentToText ("muw", DOT)));
     EXPECT_STREQ (__("trgiận"), __(addAccentToText ("trgiân", DOT)));
     EXPECT_STREQ (__("trquán"), __(addAccentToText ("trquan", ACUTE)));
-//    EXPECT_STREQ (__("măn"), );
-//    EXPECT_STREQ (__("mũmmĩm"), );
-//    EXPECT_STREQ (__("làmănz"), );
     EXPECT_STREQ (__("chuyêk"), __(addAccentToText ("chuyêk", ACUTE)));
     EXPECT_STREQ (__("chuyêk"), __(addAccentToText ("chuyêk", DOT)));
     EXPECT_STREQ (__("nokckf"), __(addAccentToText ("nokckf", TILDE)));
