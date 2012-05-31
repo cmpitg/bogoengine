@@ -21,7 +21,6 @@
 
 #include "utils.hpp"
 #include <iostream>
-#include <cstdio>
 
 // FIXME charset
 // FIXME Polish and clean up code
@@ -766,20 +765,29 @@ namespace BoGo {
 
         // 1. Find the last position of the letter corresponding
         // to the mark
-        if (letter == '*')
-            for (_size_t_ i = word.size () - 1; i >= 0; i--) {
+        if (letter == '*') {
+            bool found = false;
+            for (_size_t_ i = word.size () - 1; i != 0; i--) {
                 if (canAddMarkToLetterP (_(word[i]), mark)) {
                     pos = i;
+                    found = true;
                     break;
                 }
             }
+            if (!found) {
+                if (canAddMarkToLetterP (_(word[0]), mark))
+                    pos = 0;
+                else
+                    pos = ustring::npos;
+            }
+        }
         else {
             pos = word.lowercase ().find (_(letter));
             // Special case with "ưu" and "ươ"
             if (letter == 'u' &&
                 pos < word.size () - 1 &&
                 (_(word[pos + 1]).lowercase () == "u" ||
-                 _(word[pos + 1]).lowercase () == "o"))
+                _(word[pos + 1]).lowercase () == "o"))
                 pos++;
         }
 
@@ -815,20 +823,10 @@ namespace BoGo {
     }
 
     ustring addMarkToText (ustring text, Marks mark, gchar letter) {
-        // _size_t_ pos = getLastWordPos (text);
-
-        // // Case: no word inside text
-        // if (pos == ustring::npos)
-        //     return text;
-
-        // ustring firstPart = text.substr (0, pos);
-        // ustring lastWord = text.substr (pos);
-
-        // if (hasValidEndingConsonantsP (lastWord))
-        //     return firstPart + addAccentToWord (lastWord, accent);
-        // else
-        //     return text;
-        return "";
+        if (hasValidEndingConsonantsP (text))
+            return addMarkToWord (text, mark, letter);
+        else
+            return text;
     }
 
     bool canAddMarkToLetterP (ustring letter, Marks mark) {

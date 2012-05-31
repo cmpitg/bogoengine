@@ -50,34 +50,34 @@ TEST (MarkAndWord, CanAddMarkToLetterP) {
     EXPECT_FALSE (canAddMarkToLetterP ("e", HORN));
 }
 
-// TEST (TextManipulation, AddMarkToText) {
-//     EXPECT_STREQ (__("KĐẹo"), __(addMarkToText ("KDẹo", BAR)));
-//     EXPECT_STREQ (__("đEO"), __(addMarkToText ("dEO", BAR)));
-//     EXPECT_STREQ (__("mưA"), __(addMarkToText ("muA", HORN)));
-//     EXPECT_STREQ (__("rƯơi"), __(addMarkToText ("rUoi", HORN)));
-//     EXPECT_STREQ (__("rUỏi"), __(addMarkToText ("rUỏi", BAR)));
-//     EXPECT_STREQ (__("mỮT"), __(addMarkToText ("mỮT", BREVE)));
-//     EXPECT_STREQ (__("trgiận"), __(addMarkToText ("trgiạn", HAT)));
-//     EXPECT_STREQ (__("trquẮn"), __(addMarkToText ("trquÁn", BREVE)));
-//     EXPECT_STREQ (__("măn"), __(addMarkToText ("man", BREVE)));
-//     EXPECT_STREQ (__("làmanz"), __(addMarkToText ("làmanz", BREVE)));
-//     EXPECT_STREQ (__("chuyek"), __(addMarkToText ("chuyek", HAT)));
-//     EXPECT_STREQ (__("gọu"), __(addMarkToText ("gọu", HAT)));
-// }
+TEST (TextManipulation, AddMarkToText) {
+    EXPECT_STREQ ("KĐẹo", __(addMarkToText ("KDẹo", BAR)));
+    EXPECT_STREQ ("đEO", __(addMarkToText ("dEO", BAR)));
+    EXPECT_STREQ ("mưA", __(addMarkToText ("muA", HORN)));
+    EXPECT_STREQ ("rƯơi", __(addMarkToText ("rUoi", HORN)));
+    EXPECT_STREQ ("rUỏi", __(addMarkToText ("rUỏi", BAR)));
+    EXPECT_STREQ ("mỮT", __(addMarkToText ("mỮT", BREVE)));
+    EXPECT_STREQ ("trgiận", __(addMarkToText ("trgiạn", HAT)));
+    EXPECT_STREQ ("trquẮn", __(addMarkToText ("trquÁn", BREVE)));
+    EXPECT_STREQ ("măn", __(addMarkToText ("man", BREVE)));
+    EXPECT_STREQ ("làmanz", __(addMarkToText ("làmanz", BREVE)));
+    EXPECT_STREQ ("chuyek", __(addMarkToText ("chuyek", HAT)));
+    EXPECT_STREQ ("gộu", __(addMarkToText ("gọu", HAT)));
+}
 
 TEST (TextManipulation, AddAccentToText) {
-    EXPECT_STREQ (__("lntmèo"), __(addAccentToText ("lntmeo", GRAVE)));
-    EXPECT_STREQ (__("TmèO"), __(addAccentToText ("TmeO", GRAVE)));
-    EXPECT_STREQ (__("KĐẹo"), __(addAccentToText ("KĐeo", DOT)));
-    EXPECT_STREQ (__("rUỏi"), __(addAccentToText ("rUoi", HOOK)));
-    EXPECT_STREQ (__("mỮT"), __(addAccentToText ("mƯT", TILDE)));
-    EXPECT_STREQ (__("muw"), __(addAccentToText ("muw", DOT)));
-    EXPECT_STREQ (__("trgiận"), __(addAccentToText ("trgiân", DOT)));
-    EXPECT_STREQ (__("trquán"), __(addAccentToText ("trquan", ACUTE)));
-    EXPECT_STREQ (__("chuyêk"), __(addAccentToText ("chuyêk", ACUTE)));
-    EXPECT_STREQ (__("chuyêk"), __(addAccentToText ("chuyêk", DOT)));
-    EXPECT_STREQ (__("nokckf"), __(addAccentToText ("nokckf", TILDE)));
-    EXPECT_STREQ (__("gôu"), __(addAccentToText ("gốu", NO_ACCENT)));
+    EXPECT_STREQ ("lntmèo", __(addAccentToText ("lntmeo", GRAVE)));
+    EXPECT_STREQ ("TmèO", __(addAccentToText ("TmeO", GRAVE)));
+    EXPECT_STREQ ("KĐẹo", __(addAccentToText ("KĐeo", DOT)));
+    EXPECT_STREQ ("rUỏi", __(addAccentToText ("rUoi", HOOK)));
+    EXPECT_STREQ ("mỮT", __(addAccentToText ("mƯT", TILDE)));
+    EXPECT_STREQ ("muw", __(addAccentToText ("muw", DOT)));
+    EXPECT_STREQ ("trgiận", __(addAccentToText ("trgiân", DOT)));
+    EXPECT_STREQ ("trquán", __(addAccentToText ("trquan", ACUTE)));
+    EXPECT_STREQ ("chuyêk", __(addAccentToText ("chuyêk", ACUTE)));
+    EXPECT_STREQ ("chuyêk", __(addAccentToText ("chuyêk", DOT)));
+    EXPECT_STREQ ("nokckf", __(addAccentToText ("nokckf", TILDE)));
+    EXPECT_STREQ ("gôu", __(addAccentToText ("gốu", NO_ACCENT)));
 }
 
 TEST (TextManipulation, ValidEndingConsonants) {
@@ -108,35 +108,35 @@ TEST (FindTransform, SimpleTelex) {
 }
 
 TEST (WordHelpers, AddAccentToWord) {
-    EXPECT_STREQ ("èo", addAccentToWord ("eo", GRAVE).c_str ());
-    EXPECT_STREQ ("iều", addAccentToWord ("iêu", GRAVE).c_str ());
-    EXPECT_STREQ ("uối", addAccentToWord ("uôi", ACUTE).c_str ());
-    EXPECT_STREQ ("Ẹ", addAccentToWord ("E", DOT).c_str ());
-    EXPECT_STREQ ("huYền", addAccentToWord ("huYên", GRAVE).c_str ());
-    EXPECT_STREQ ("uYê", addAccentToWord ("uYế", NO_ACCENT).c_str ());
-    EXPECT_STREQ ("xóa", addAccentToWord ("xoa", ACUTE).c_str ());
-    EXPECT_STREQ ("xoÁn", addAccentToWord ("xoAn", ACUTE).c_str ());
-    EXPECT_STREQ ("xoẮn", addAccentToWord ("xoĂn", ACUTE).c_str ());
-    EXPECT_STREQ ("xoaÁN", addAccentToWord ("xoaAN", ACUTE).c_str ());
-    EXPECT_STREQ ("giịa", addAccentToWord ("giia", DOT).c_str ());
-    EXPECT_STREQ ("Đoòng", addAccentToWord ("Đoong", GRAVE).c_str ());
+    EXPECT_STREQ ("èo", __(addAccentToWord ("eo", GRAVE)));
+    EXPECT_STREQ ("iều", __(addAccentToWord ("iêu", GRAVE)));
+    EXPECT_STREQ ("uối", __(addAccentToWord ("uôi", ACUTE)));
+    EXPECT_STREQ ("Ẹ", __(addAccentToWord ("E", DOT)));
+    EXPECT_STREQ ("huYền", __(addAccentToWord ("huYên", GRAVE)));
+    EXPECT_STREQ ("uYê", __(addAccentToWord ("uYế", NO_ACCENT)));
+    EXPECT_STREQ ("xóa", __(addAccentToWord ("xoa", ACUTE)));
+    EXPECT_STREQ ("xoÁn", __(addAccentToWord ("xoAn", ACUTE)));
+    EXPECT_STREQ ("xoẮn", __(addAccentToWord ("xoĂn", ACUTE)));
+    EXPECT_STREQ ("xoaÁN", __(addAccentToWord ("xoaAN", ACUTE)));
+    EXPECT_STREQ ("giịa", __(addAccentToWord ("giia", DOT)));
+    EXPECT_STREQ ("Đoòng", __(addAccentToWord ("Đoong", GRAVE)));
 }
 
 TEST (WordHelpers, AddMarkToWord) {
-    EXPECT_STREQ ("ê", addMarkToWord ("e", HAT).c_str ());
-    EXPECT_STREQ ("đ", addMarkToWord ("d", BAR).c_str ());
-    EXPECT_STREQ ("uối", addMarkToWord ("uói", HAT).c_str ());
-    EXPECT_STREQ ("uói", addMarkToWord ("uói", HAT, 'a').c_str ());
-    EXPECT_STREQ ("mưa", addMarkToWord ("mua", HORN).c_str ());
-    EXPECT_STREQ ("muâ", addMarkToWord ("mua", HAT, 'a').c_str ());
-    EXPECT_STREQ ("đeo", addMarkToWord ("deo", BAR).c_str ());
-    EXPECT_STREQ ("ươi", addMarkToWord ("uoi", HORN).c_str ());
-    EXPECT_STREQ ("nẰm", addMarkToWord ("nÀm", BREVE).c_str ());
-    EXPECT_STREQ ("ĐẰm", addMarkToWord ("DẰm", BAR).c_str ());
-    EXPECT_STREQ ("rƯơi", addMarkToWord ("rUoi", HORN).c_str ());
-    EXPECT_STREQ ("TrƯơng", addMarkToWord ("TrUong", HORN).c_str ());
-    EXPECT_STREQ ("TrƯơng", addMarkToWord ("TrUong", HORN, 'u').c_str ());
-    EXPECT_STREQ ("ưu", addMarkToWord ("uu", HORN).c_str ());
+    EXPECT_STREQ ("ê", __(addMarkToWord ("e", HAT)));
+    EXPECT_STREQ ("đ", __(addMarkToWord ("d", BAR)));
+    EXPECT_STREQ ("uối", __(addMarkToWord ("uói", HAT)));
+    EXPECT_STREQ ("uói", __(addMarkToWord ("uói", HAT, 'a')));
+    EXPECT_STREQ ("mưa", __(addMarkToWord ("mua", HORN)));
+    EXPECT_STREQ ("muâ", __(addMarkToWord ("mua", HAT, 'a')));
+    EXPECT_STREQ ("đeo", __(addMarkToWord ("deo", BAR)));
+    EXPECT_STREQ ("ươi", __(addMarkToWord ("uoi", HORN)));
+    EXPECT_STREQ ("nẰm", __(addMarkToWord ("nÀm", BREVE)));
+    EXPECT_STREQ ("ĐẰm", __(addMarkToWord ("DẰm", BAR)));
+    EXPECT_STREQ ("rƯơi", __(addMarkToWord ("rUoi", HORN)));
+    EXPECT_STREQ ("TrƯơng", __(addMarkToWord ("TrUong", HORN)));
+    EXPECT_STREQ ("TrƯơng", __(addMarkToWord ("TrUong", HORN, 'u')));
+    EXPECT_STREQ ("ưu", __(addMarkToWord ("uu", HORN)));
 }
 
 // TEST (ProcessKey, ProcessKey) {
@@ -169,39 +169,39 @@ TEST (WordHelpers, AddMarkToWord) {
 // }
 
 TEST (MarkAndWord, RemoveAllMarks) {
-    EXPECT_STREQ ("thuỏ", removeAllMarksFromWord ("thuở").c_str ());
-    EXPECT_STREQ ("gIỵA", removeAllMarksFromWord ("gIỵA").c_str ());
-    EXPECT_STREQ ("uýNh", removeAllMarksFromWord ("uýNh").c_str ());
-    EXPECT_STREQ ("LỌn", removeAllMarksFromWord ("LỘn").c_str ());
-    EXPECT_STREQ ("xOoNg", removeAllMarksFromWord ("xOoNg").c_str ());
-    EXPECT_STREQ ("xOÒng", removeAllMarksFromWord ("xOÒng").c_str ());
-    EXPECT_STREQ ("khúC", removeAllMarksFromWord ("khứC").c_str ());
-    EXPECT_STREQ ("HuO", removeAllMarksFromWord ("HuƠ").c_str ());
-    EXPECT_STREQ ("HuOu", removeAllMarksFromWord ("HưƠu").c_str ());
-    EXPECT_STREQ ("HuONg", removeAllMarksFromWord ("HưƠNg").c_str ());
+    EXPECT_STREQ ("thuỏ", __(removeAllMarksFromWord ("thuở")));
+    EXPECT_STREQ ("gIỵA", __(removeAllMarksFromWord ("gIỵA")));
+    EXPECT_STREQ ("uýNh", __(removeAllMarksFromWord ("uýNh")));
+    EXPECT_STREQ ("LỌn", __(removeAllMarksFromWord ("LỘn")));
+    EXPECT_STREQ ("xOoNg", __(removeAllMarksFromWord ("xOoNg")));
+    EXPECT_STREQ ("xOÒng", __(removeAllMarksFromWord ("xOÒng")));
+    EXPECT_STREQ ("khúC", __(removeAllMarksFromWord ("khứC")));
+    EXPECT_STREQ ("HuO", __(removeAllMarksFromWord ("HuƠ")));
+    EXPECT_STREQ ("HuOu", __(removeAllMarksFromWord ("HưƠu")));
+    EXPECT_STREQ ("HuONg", __(removeAllMarksFromWord ("HưƠNg")));
 }
 
 TEST (MarkAndWord, RemoveMark) {
-    EXPECT_STREQ ("thuỏ", removeMarkFromWord ("thuở", 3).c_str ());
-    EXPECT_STREQ ("gIỵA", removeMarkFromWord ("gIỵA", 2).c_str ());
-    EXPECT_STREQ ("uýNh", removeMarkFromWord ("uýNh", 1).c_str ());
-    EXPECT_STREQ ("LỌn", removeMarkFromWord ("LỘn", 1).c_str ());
-    EXPECT_STREQ ("xOoNg", removeMarkFromWord ("xOoNg", 3).c_str ());
-    EXPECT_STREQ ("xOÒng", removeMarkFromWord ("xOÒng", 2).c_str ());
-    EXPECT_STREQ ("khúC", removeMarkFromWord ("khứC", 2).c_str ());
-    EXPECT_STREQ ("HuO", removeMarkFromWord ("HuƠ", 2).c_str ());
+    EXPECT_STREQ ("thuỏ", __(removeMarkFromWord ("thuở", 3)));
+    EXPECT_STREQ ("gIỵA", __(removeMarkFromWord ("gIỵA", 2)));
+    EXPECT_STREQ ("uýNh", __(removeMarkFromWord ("uýNh", 1)));
+    EXPECT_STREQ ("LỌn", __(removeMarkFromWord ("LỘn", 1)));
+    EXPECT_STREQ ("xOoNg", __(removeMarkFromWord ("xOoNg", 3)));
+    EXPECT_STREQ ("xOÒng", __(removeMarkFromWord ("xOÒng", 2)));
+    EXPECT_STREQ ("khúC", __(removeMarkFromWord ("khứC", 2)));
+    EXPECT_STREQ ("HuO", __(removeMarkFromWord ("HuƠ", 2)));
 }
 
 TEST (AccentAndWord, RemoveAccent) {
-    EXPECT_STREQ ("thuơ", removeAccentFromWord ("thuở").c_str ());
-    EXPECT_STREQ ("gIyA", removeAccentFromWord ("gIỵA").c_str ());
-    EXPECT_STREQ ("uyNh", removeAccentFromWord ("uýNh").c_str ());
-    EXPECT_STREQ ("LÔn", removeAccentFromWord ("LỘn").c_str ());
-    EXPECT_STREQ ("xOoNg", removeAccentFromWord ("xOoNg").c_str ());
-    EXPECT_STREQ ("xOOng", removeAccentFromWord ("xOÒng").c_str ());
-    EXPECT_STREQ ("khuC", removeAccentFromWord ("khúC").c_str ());
-    EXPECT_STREQ ("kHuYU", removeAccentFromWord ("kHuỶU").c_str ());
-    EXPECT_STREQ ("HuƠ", removeAccentFromWord ("HuƠ").c_str ());
+    EXPECT_STREQ ("thuơ", __(removeAccentFromWord ("thuở")));
+    EXPECT_STREQ ("gIyA", __(removeAccentFromWord ("gIỵA")));
+    EXPECT_STREQ ("uyNh", __(removeAccentFromWord ("uýNh")));
+    EXPECT_STREQ ("LÔn", __(removeAccentFromWord ("LỘn")));
+    EXPECT_STREQ ("xOoNg", __(removeAccentFromWord ("xOoNg")));
+    EXPECT_STREQ ("xOOng", __(removeAccentFromWord ("xOÒng")));
+    EXPECT_STREQ ("khuC", __(removeAccentFromWord ("khúC")));
+    EXPECT_STREQ ("kHuYU", __(removeAccentFromWord ("kHuỶU")));
+    EXPECT_STREQ ("HuƠ", __(removeAccentFromWord ("HuƠ")));
 }
 
 TEST (InputMethod, MakeIM) {
@@ -353,31 +353,31 @@ TEST (OtherHelpers, StringContains) {
 }
 
 TEST (CharacterHelpers, AccentsAndTransform) {
-    EXPECT_STREQ (__("ô"), removeAccentFromChar ("ố").c_str ());
-    EXPECT_STREQ (__("ô"), removeAccentFromChar ("ổ").c_str ());
-    EXPECT_STREQ (__("Ô"), removeAccentFromChar ("Ỗ").c_str ());
-    EXPECT_STREQ (__("ô"), removeAccentFromChar ("ộ").c_str ());
-    EXPECT_STREQ (__("â"), removeAccentFromChar ("ầ").c_str ());
-    EXPECT_STREQ (__("Â"), removeAccentFromChar ("Ấ").c_str ());
-    EXPECT_STREQ (__("â"), removeAccentFromChar ("ẩ").c_str ());
-    EXPECT_STREQ (__("Â"), removeAccentFromChar ("Ẫ").c_str ());
-    EXPECT_STREQ (__("â"), removeAccentFromChar ("ậ").c_str ());
+    EXPECT_STREQ (__("ô"), __(removeAccentFromChar ("ố")));
+    EXPECT_STREQ (__("ô"), __(removeAccentFromChar ("ổ")));
+    EXPECT_STREQ (__("Ô"), __(removeAccentFromChar ("Ỗ")));
+    EXPECT_STREQ (__("ô"), __(removeAccentFromChar ("ộ")));
+    EXPECT_STREQ (__("â"), __(removeAccentFromChar ("ầ")));
+    EXPECT_STREQ (__("Â"), __(removeAccentFromChar ("Ấ")));
+    EXPECT_STREQ (__("â"), __(removeAccentFromChar ("ẩ")));
+    EXPECT_STREQ (__("Â"), __(removeAccentFromChar ("Ẫ")));
+    EXPECT_STREQ (__("â"), __(removeAccentFromChar ("ậ")));
 
-    EXPECT_STREQ (__("ó"), removeMarkFromChar ("ố").c_str ());
-    EXPECT_STREQ (__("ỏ"), removeMarkFromChar ("ổ").c_str ());
-    EXPECT_STREQ (__("Õ"), removeMarkFromChar ("Ỗ").c_str ());
-    EXPECT_STREQ (__("ọ"), removeMarkFromChar ("ộ").c_str ());
-    EXPECT_STREQ (__("à"), removeMarkFromChar ("ầ").c_str ());
-    EXPECT_STREQ (__("Á"), removeMarkFromChar ("Ấ").c_str ());
-    EXPECT_STREQ (__("ả"), removeMarkFromChar ("ẩ").c_str ());
-    EXPECT_STREQ (__("Ã"), removeMarkFromChar ("Ẫ").c_str ());
-    EXPECT_STREQ (__("ạ"), removeMarkFromChar ("ậ").c_str ());
+    EXPECT_STREQ (__("ó"), __(removeMarkFromChar ("ố")));
+    EXPECT_STREQ (__("ỏ"), __(removeMarkFromChar ("ổ")));
+    EXPECT_STREQ (__("Õ"), __(removeMarkFromChar ("Ỗ")));
+    EXPECT_STREQ (__("ọ"), __(removeMarkFromChar ("ộ")));
+    EXPECT_STREQ (__("à"), __(removeMarkFromChar ("ầ")));
+    EXPECT_STREQ (__("Á"), __(removeMarkFromChar ("Ấ")));
+    EXPECT_STREQ (__("ả"), __(removeMarkFromChar ("ẩ")));
+    EXPECT_STREQ (__("Ã"), __(removeMarkFromChar ("Ẫ")));
+    EXPECT_STREQ (__("ạ"), __(removeMarkFromChar ("ậ")));
 
-    EXPECT_STREQ (__("a"), toPlainLetter ("â").c_str ());
-    EXPECT_STREQ (__("a"), toPlainLetter ("ắ").c_str ());
-    EXPECT_STREQ (__("N"), toPlainLetter ("N").c_str ());
-    EXPECT_STREQ (__("O"), toPlainLetter ("Ộ").c_str ());
-    EXPECT_STREQ (__("E"), toPlainLetter ("Ễ").c_str ());
+    EXPECT_STREQ (__("a"), __(toPlainLetter ("â")));
+    EXPECT_STREQ (__("a"), __(toPlainLetter ("ắ")));
+    EXPECT_STREQ (__("N"), __(toPlainLetter ("N")));
+    EXPECT_STREQ (__("O"), __(toPlainLetter ("Ộ")));
+    EXPECT_STREQ (__("E"), __(toPlainLetter ("Ễ")));
 
     EXPECT_EQ (0, getAccentFromChar ("ồ"));
     EXPECT_EQ (1, getAccentFromChar ("Ứ"));
@@ -387,21 +387,21 @@ TEST (CharacterHelpers, AccentsAndTransform) {
     EXPECT_EQ (4, getAccentFromChar ("ị"));
     EXPECT_EQ (5, getAccentFromChar ("n"));
 
-    EXPECT_STREQ (__("á"), addAccentToChar ("a", ACUTE).c_str ());
-    EXPECT_STREQ (__("ặ"), addAccentToChar ("ă", DOT).c_str ());
-    EXPECT_STREQ (__("Ổ"), addAccentToChar ("Ô", HOOK).c_str ());
-    EXPECT_STREQ (__("n"), addAccentToChar ("n", DOT).c_str ());
-    EXPECT_STREQ (__("Ễ"), addAccentToChar ("Ê", TILDE).c_str ());
+    EXPECT_STREQ (__("á"), __(addAccentToChar ("a", ACUTE)));
+    EXPECT_STREQ (__("ặ"), __(addAccentToChar ("ă", DOT)));
+    EXPECT_STREQ (__("Ổ"), __(addAccentToChar ("Ô", HOOK)));
+    EXPECT_STREQ (__("n"), __(addAccentToChar ("n", DOT)));
+    EXPECT_STREQ (__("Ễ"), __(addAccentToChar ("Ê", TILDE)));
 
-    EXPECT_STREQ (__("â"), addMarkToChar ("ă", HAT).c_str ());
-    EXPECT_STREQ (__("Ự"), addMarkToChar ("Ự", HAT).c_str ());
-    EXPECT_STREQ (__("N"), addMarkToChar ("N", HAT).c_str ());
-    EXPECT_STREQ (__("ổ"), addMarkToChar ("ỏ", HAT).c_str ());
-    EXPECT_STREQ (__(" "), addMarkToChar (" ", HAT).c_str ());
-    EXPECT_STREQ (__("Ẳ"), addMarkToChar ("Ả", BREVE).c_str ());
-    EXPECT_STREQ (__("ử"), addMarkToChar ("ủ", HORN).c_str ());
-    EXPECT_STREQ (__("Đ"), addMarkToChar ("D", BAR).c_str ());
-    EXPECT_STREQ (__("Đ"), addMarkToChar ("Đ", BAR).c_str ());
+    EXPECT_STREQ (__("â"), __(addMarkToChar ("ă", HAT)));
+    EXPECT_STREQ (__("Ự"), __(addMarkToChar ("Ự", HAT)));
+    EXPECT_STREQ (__("N"), __(addMarkToChar ("N", HAT)));
+    EXPECT_STREQ (__("ổ"), __(addMarkToChar ("ỏ", HAT)));
+    EXPECT_STREQ (__(" "), __(addMarkToChar (" ", HAT)));
+    EXPECT_STREQ (__("Ẳ"), __(addMarkToChar ("Ả", BREVE)));
+    EXPECT_STREQ (__("ử"), __(addMarkToChar ("ủ", HORN)));
+    EXPECT_STREQ (__("Đ"), __(addMarkToChar ("D", BAR)));
+    EXPECT_STREQ (__("Đ"), __(addMarkToChar ("Đ", BAR)));
 }
 
 TEST (CharacterHelpers, PlainCharacters) {
