@@ -157,9 +157,9 @@ namespace BoGo {
     ustring addMarkToChar (const gchar *ch, Marks mark);
     ustring addMarkToChar (guint ch, Marks mark);
 
-    ustring addMarkToWord (ustring word, Marks mark);
-    ustring addMarkToWord (string word, Marks mark);
-    ustring addMarkToWord (const gchar *word, Marks mark);
+    ustring addMarkToWord (ustring word, Marks mark, gchar letter = '*');
+    ustring addMarkToWord (string word, Marks mark, gchar letter = '*');
+    ustring addMarkToWord (const gchar *word, Marks mark, gchar letter = '*');
 
     ustringArrayT analyseWord (ustring str);
     ustringArrayT analyseWord (string str);
@@ -278,7 +278,7 @@ namespace BoGo {
 
     bool hasValidEndingConsonantsP (ustring word);
 
-    ustring addMarkToText (ustring str, ustring key_transf);
+    ustring addMarkToText (ustring text, Marks mark, gchar letter = '*');
 
     ustring addChar (ustring str, ustring ch);
 }

@@ -21,6 +21,7 @@
 
 #include "utils.hpp"
 #include <iostream>
+#include <cstdio>
 
 // FIXME charset
 // FIXME Polish and clean up code
@@ -757,18 +758,29 @@ namespace BoGo {
         return addAccentToText (_(text), accent);
     }
 
-    ustring addMarkToWord (ustring word, Marks mark) {
+    ustring addMarkToWord (ustring word, Marks mark, gchar letter) {
         if (mark == NO_MARK)
             return removeAllMarksFromWord (word);
 
-        // 1. Find the last position of the letter corresponding to the mark
-        _size_t_ len = word.size ();
         _size_t_ pos = ustring::npos;
-        for (_size_t_ i = len - 1; i >= 0; i--) {
-            if (canAddMarkToLetterP (_(word[i]), mark)) {
-                pos = i;
-                break;
+
+        // 1. Find the last position of the letter corresponding
+        // to the mark
+        if (letter == '*')
+            for (_size_t_ i = word.size () - 1; i >= 0; i--) {
+                if (canAddMarkToLetterP (_(word[i]), mark)) {
+                    pos = i;
+                    break;
+                }
             }
+        else {
+            pos = word.lowercase ().find (_(letter));
+            // Special case with "ưu" and "ươ"
+            if (letter == 'u' &&
+                pos < word.size () - 1 &&
+                (_(word[pos + 1]).lowercase () == "u" ||
+                 _(word[pos + 1]).lowercase () == "o"))
+                pos++;
         }
 
         // 1'. In case there is no letter to add mark to
@@ -794,22 +806,30 @@ namespace BoGo {
         return word.replace (pos, 1, newLetter);
     }
 
-    ustring addMarkToWord (string word, Marks mark) {
-        return addMarkToWord (_(word), mark);
+    ustring addMarkToWord (string word, Marks mark, gchar letter) {
+        return addMarkToWord (_(word), mark, letter);
     }
 
-    ustring addMarkToWord (const gchar *word, Marks mark) {
-        return addMarkToWord (_(word), mark);
+    ustring addMarkToWord (const gchar *word, Marks mark, gchar letter) {
+        return addMarkToWord (_(word), mark, letter);
     }
 
-    // ustring addMarkToText (ustring text, ustring trans) {
-    //     _size_t_ pos = MarkTransforms.find (trans);
-    //     gchar affectedChar = trans[0];
-    //     if ((affectedChar != '*') &&
-    //         (!containsP (toRawText (text), _(affectedChar))))
-    //         return text;
-    //     return addMarkToWord (text, MARKS[pos / 2]);
-    // }
+    ustring addMarkToText (ustring text, Marks mark, gchar letter) {
+        // _size_t_ pos = getLastWordPos (text);
+
+        // // Case: no word inside text
+        // if (pos == ustring::npos)
+        //     return text;
+
+        // ustring firstPart = text.substr (0, pos);
+        // ustring lastWord = text.substr (pos);
+
+        // if (hasValidEndingConsonantsP (lastWord))
+        //     return firstPart + addAccentToWord (lastWord, accent);
+        // else
+        //     return text;
+        return "";
+    }
 
     bool canAddMarkToLetterP (ustring letter, Marks mark) {
         return containsP (ValidLettersToMark[mark],
