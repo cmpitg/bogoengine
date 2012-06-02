@@ -35,8 +35,14 @@ namespace BoGo {
     typedef guint Accents;
     typedef guint Marks;
     typedef guint Transform;
+    typedef guint CharSetT;
     typedef ustringArrayT InputMethodT;
     typedef ustring TransformFuncT (ustring, ustring);
+
+    const guint NUMBER_OF_CHARSETS = 3;
+    const CharSetT CHARSET_UTF8 = 0,
+        CHARSET_TCVN3 = 1,
+        CHARSET_VNI = 2;
 
     const guint NUMBER_OF_IMS = 4;
     const guint IM_SIMPLETELEX = 0,
@@ -60,11 +66,6 @@ namespace BoGo {
     };
 
     const gchar BACKSPACE_CODE = 8;
-
-    // Type of transform
-    const guint ADD_ACCENT = 0,
-        ADD_MARK = 1,
-        ADD_CHAR = 2;
 
     const guint NUMBER_OF_ACCENTS = 6;
     const guint GRAVE  = 0,
@@ -279,4 +280,19 @@ namespace BoGo {
     ustring addMarkToText (ustring text, Marks mark, gchar letter = '*');
 
     ustring addChar (ustring str, ustring ch);
+
+    ustring processKeyUTF8 (ustring text,
+                            char key,
+                            InputMethodT im = makeStandardIM (IM_SIMPLETELEX));
+
+    ustring processKey (ustring text,
+                        char key,
+                        InputMethodT im = makeStandardIM (IM_SIMPLETELEX));
+
+    void processKey (const char *text,
+                     char key,
+                     const char *result,
+                     InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
+                     CharSetT charset = CHARSET_UTF8);
 }
+

@@ -891,6 +891,14 @@ namespace BoGo {
     //     return ADD_CHAR;
     // }
 
+    ustring processKeyUTF8 (ustring text, char key, InputMethodT im) {
+        return "";
+    }
+
+    ustring processKey (ustring text, char key, InputMethodT im) {
+        return processKeyUTF8 (text, key, im);
+    }
+
     // ustring processKey (gchar key, ustring text, InputMethodT im) {
     //     // Default input method is telex and default charset is UTF8
     //     ustring ch = _(key);
