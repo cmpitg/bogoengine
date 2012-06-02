@@ -283,11 +283,13 @@ namespace BoGo {
 
     ustring processKeyUTF8 (ustring text,
                             char key,
-                            InputMethodT im = makeStandardIM (IM_SIMPLETELEX));
+                            InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
+                            guint BackspaceChar = BACKSPACE_CODE);
 
     ustring processKey (ustring text,
                         char key,
-                        InputMethodT im = makeStandardIM (IM_SIMPLETELEX));
+                        InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
+                        guint BackspaceChar = BACKSPACE_CODE);
 
     void processKey (const char *text,
                      char key,

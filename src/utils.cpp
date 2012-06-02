@@ -625,9 +625,9 @@ namespace BoGo {
     }
 
     ustring addAccentToWord (ustring word, Accents accent) {
-        // Case: removing accent
-        if (accent == NO_ACCENT)
-            return removeAccentFromWord (word);
+        // // Case: removing accent
+        // if (accent == NO_ACCENT)
+        //     return removeAccentFromWord (word);
 
         // Analyzing the word into 3 components
         // comp[0] = consonantPiece #1
@@ -758,8 +758,8 @@ namespace BoGo {
     }
 
     ustring addMarkToWord (ustring word, Marks mark, gchar letter) {
-        if (mark == NO_MARK)
-            return removeAllMarksFromWord (word);
+        // if (mark == NO_MARK)
+        //     return removeAllMarksFromWord (word);
 
         _size_t_ pos = ustring::npos;
 
@@ -891,12 +891,38 @@ namespace BoGo {
     //     return ADD_CHAR;
     // }
 
-    ustring processKeyUTF8 (ustring text, char key, InputMethodT im) {
+    Accents getAccentFromWord (ustring word) {
+        for (_size_t_ i = 0; i < word.size (); i++) {
+            Accents c = getAccentFromChar (__(word[i]));
+            if (c != NO_ACCENT)
+                return c;
+        }
+        return NO_ACCENT;
+    }
+
+    ustring processKeyUTF8 (ustring text, char key, InputMethodT im,
+                            guint BackspaceChar) {
+        // Case: Backspace character
+        if (key == BackspaceChar) {
+            _size_t_ pos = getLastPseudoWordPos (text);
+
+            // Case: no word inside text
+            if (pos == ustring::npos)
+                return text.substr (0, text.size () - 1);
+
+            ustring firstPart = text.substr (0, pos);
+            ustring lastWord = text.substr (pos);
+            Accents accent = getAccentFromWord (lastWord);
+            lastWord.replace (lastWord.size () - 1, 1, "");
+            return firstPart + addAccentToWord (lastWord, accent);
+        }
+
         return "";
     }
 
-    ustring processKey (ustring text, char key, InputMethodT im) {
-        return processKeyUTF8 (text, key, im);
+    ustring processKey (ustring text, char key, InputMethodT im,
+                        guint BackspaceChar) {
+        return processKeyUTF8 (text, key, im, BackspaceChar);
     }
 
     // ustring processKey (gchar key, ustring text, InputMethodT im) {
