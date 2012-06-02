@@ -51,7 +51,7 @@ phát hành dưới các quy định ghi trong Giấy phép Công cộng GNU, ph
 
 Bản quyền (C) năm 2012 bởi:
 
-* Dương "Yang" ヤン Nguyễn <cmpitg@gmail.com>
+* Nguyễn Hà Dương <cmpitg@gmail.com>
 * Nguyễn Thành Hải <phaikawl@gmail.com>
 * Đàm Tiến Long <longdt90@gmail.com>
 
