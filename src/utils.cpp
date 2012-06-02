@@ -693,7 +693,7 @@ namespace BoGo {
         return false;
     }
 
-    _size_t_ getLastWordPos (ustring text) {
+    _size_t_ getLastPseudoWordPos (ustring text) {
         // Get the position of the beginning of the last word in a
         // text by consecutively finding: longest consonant piece,
         // longest vowel piece, and check for special cases.
@@ -725,16 +725,16 @@ namespace BoGo {
         return result;
     }
 
-    _size_t_ getLastWordPos (string text) {
-        return getLastWordPos (_(text));
+    _size_t_ getLastPseudoWordPos (string text) {
+        return getLastPseudoWordPos (_(text));
     }
 
-    _size_t_ getLastWordPos (const gchar *text) {
-        return getLastWordPos (_(text));
+    _size_t_ getLastPseudoWordPos (const gchar *text) {
+        return getLastPseudoWordPos (_(text));
     }
 
     ustring addAccentToText (ustring text, Accents accent) {
-        _size_t_ pos = getLastWordPos (text);
+        _size_t_ pos = getLastPseudoWordPos (text);
 
         // Case: no word inside text
         if (pos == ustring::npos)

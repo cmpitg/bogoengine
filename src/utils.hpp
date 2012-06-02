@@ -121,8 +121,6 @@ namespace BoGo {
                     bool ignoreCase = true);
     bool containsP (ustringArrayT a, ustring s);
 
-    int getLastWord (ustring text);
-
     long find (ustring s, ustringArrayT a);
 
     ustring removeAllMarksFromWord (ustring word);
@@ -272,9 +270,9 @@ namespace BoGo {
     bool canAddMarkToLetterP (ustring letter, Marks mark);
     bool canAddMarkToLetterP (const gchar *letter, Marks mark);
 
-    _size_t_ getLastWordPos (ustring text);
-    _size_t_ getLastWordPos (string text);
-    _size_t_ getLastWordPos (const gchar *text);
+    _size_t_ getLastPseudoWordPos (ustring text);
+    _size_t_ getLastPseudoWordPos (string text);
+    _size_t_ getLastPseudoWordPos (const gchar *text);
 
     bool hasValidEndingConsonantsP (ustring word);
 
