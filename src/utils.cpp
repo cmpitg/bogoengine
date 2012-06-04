@@ -900,10 +900,26 @@ namespace BoGo {
         return NO_ACCENT;
     }
 
-    void getTransform (InputMethodT im, char key,
+    void getTransform (InputMethodT im, ustring &text, const gchar key,
                        TransformTypeT &type,
                        TransformT &transform,
                        gchar &letter) {
+        ustringArrayT transformResults = findTransform (__(key), im);
+
+        // Case: `key` is not for transforming
+        if (transformResults.size () == 0) {
+            type = INVALID_TRANSFORM;
+            transform = -1;
+            letter = '*';
+            return;
+        }
+
+        ustring pseudoLastWord =
+            text.substr (getLastPseudoWordPos (text)).lowercase ();
+        // for (guint i = 0; i < transformResults.size (); i++) {
+        //     type = getTransformType (transformResults[2]);
+        //     transform = getTransform (transformResults[1]);
+        // }
     }
 
     ustring processKeyUTF8 (ustring text, char key, InputMethodT im,
@@ -927,7 +943,7 @@ namespace BoGo {
         TransformT transform;
         gchar letter;
 
-        getTransform (im, key, type, transform, letter);
+        getTransform (im, text, key, type, transform, letter);
 
         switch (type) {
         case INVALID_TRANSFORM:

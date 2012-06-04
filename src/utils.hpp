@@ -60,7 +60,7 @@ namespace BoGo {
         "e e^\n"
         "w o+\n"
         "w u+\n"
-        "w v\n"
+        "w av\n"
         "d -\n"
         "s /\n"
         "r ?\n"
@@ -112,10 +112,10 @@ namespace BoGo {
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
-    void getTransform (InputMethodT im, char key,
+    void getTransform (InputMethodT im, ustring &text, const gchar key,
                        TransformTypeT &type,
                        TransformT &transform,
-                       ustring &obj);
+                       gchar &obj);
 
     bool containsP (ustring str, ustring needle, bool ignoreCase = true);
     bool containsP (string str, ustring needle, bool ignoreCase = true);
