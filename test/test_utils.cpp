@@ -53,6 +53,7 @@ TEST (MarkAndWord, CanAddMarkToLetterP) {
 TEST (TextManipulation, AddMarkToText) {
     EXPECT_STREQ ("KĐẹo", __(addMarkToText ("KDẹo", BAR)));
     EXPECT_STREQ ("đEO", __(addMarkToText ("dEO", BAR)));
+    EXPECT_STREQ ("ĐEO", __(addMarkToText ("DEO", BAR, 'D')));
     EXPECT_STREQ ("mưA", __(addMarkToText ("muA", HORN)));
     EXPECT_STREQ ("rƯơi", __(addMarkToText ("rUoi", HORN)));
     EXPECT_STREQ ("rUỏi", __(addMarkToText ("rUỏi", BAR)));
@@ -63,6 +64,9 @@ TEST (TextManipulation, AddMarkToText) {
     EXPECT_STREQ ("làmanz", __(addMarkToText ("làmanz", BREVE)));
     EXPECT_STREQ ("chuyek", __(addMarkToText ("chuyek", HAT)));
     EXPECT_STREQ ("gộu", __(addMarkToText ("gọu", HAT)));
+    EXPECT_STREQ ("ưa", __(addMarkToText ("ua", HORN)));
+    EXPECT_STREQ ("âu", __(addMarkToText ("au", HAT)));
+    EXPECT_STREQ ("mỬ", __(addMarkToText ("mỦ", HORN, 'u')));
 }
 
 TEST (TextManipulation, AddAccentToText) {
@@ -130,6 +134,7 @@ TEST (WordHelpers, AddMarkToWord) {
     EXPECT_STREQ ("mưa", __(addMarkToWord ("mua", HORN)));
     EXPECT_STREQ ("muâ", __(addMarkToWord ("mua", HAT, 'a')));
     EXPECT_STREQ ("đeo", __(addMarkToWord ("deo", BAR)));
+    EXPECT_STREQ ("ĐEO", __(addMarkToText ("DEO", BAR, 'D')));
     EXPECT_STREQ ("ươi", __(addMarkToWord ("uoi", HORN)));
     EXPECT_STREQ ("nẰm", __(addMarkToWord ("nÀm", BREVE)));
     EXPECT_STREQ ("ĐẰm", __(addMarkToWord ("DẰm", BAR)));
@@ -137,35 +142,35 @@ TEST (WordHelpers, AddMarkToWord) {
     EXPECT_STREQ ("TrƯơng", __(addMarkToWord ("TrUong", HORN)));
     EXPECT_STREQ ("TrƯơng", __(addMarkToWord ("TrUong", HORN, 'u')));
     EXPECT_STREQ ("ưu", __(addMarkToWord ("uu", HORN)));
+    EXPECT_STREQ ("mỬ", __(addMarkToWord ("mỦ", HORN)));
 }
 
 TEST (ProcessKey, ProcessKey) {
     EXPECT_STREQ(__("mèo"), __(processKey ("mèov", BACKSPACE_CODE)));
-    // EXPECT_STREQ(__("mèo"), __(processKey ("meo", 'f')));
-    // EXPECT_STREQ(__("Đèo"), __(processKey ("Dèo", 'd')));
-    // EXPECT_STREQ(__("đèo"), __(processKey ("dèo", 'D')));
-    // EXPECT_STREQ(__("đEO"), __(processKey ("đÈO", 'z')));
-    // EXPECT_STREQ(__("mưA"), __(processKey ("muA", 'w')));
-    // EXPECT_STREQ(__("rƯơi"), __(processKey ("rUoi", 'w')));
-    // EXPECT_STREQ(__("rUòi"), __(processKey ("rUoi", 'f')));
-    // EXPECT_STREQ(__("ruoiw"), __(processKey ("rươi", 'w')));
-    // EXPECT_STREQ(__("mỬ"), __(processKey ("mỦ", 'w')));
-    // EXPECT_STREQ(__("mỦw"), __(processKey ("mỬ", 'w')));
-    // EXPECT_STREQ(__("măn"), __(processKey ("man", 'w')));
-    // EXPECT_STREQ(__("mũmmĩm"), __(processKey ("mũmmim", 'X')));
-    // EXPECT_STREQ(__("làmănz"), __(processKey ("làmăn", 'z')));
-    // EXPECT_STREQ(__("chuyệk"), __(processKey ("chuyêk", 'j')));
-    // EXPECT_STREQ(__("quảđur"), __(processKey ("quảđủ", 'r')));
-    // EXPECT_STREQ(__("mèokckf"), __(processKey ("mèokck", 'f')));
+    EXPECT_STREQ(__("mèo"), __(processKey ("meo", 'f')));
+    EXPECT_STREQ(__("Đèo"), __(processKey ("Dèo", 'd')));
+    EXPECT_STREQ(__("đèo"), __(processKey ("dèo", 'D')));
+    EXPECT_STREQ(__("đEO"), __(processKey ("đÈO", 'z')));
+    EXPECT_STREQ(__("rƯơi"), __(processKey ("rUoi", 'w')));
+    EXPECT_STREQ(__("rUòi"), __(processKey ("rUoi", 'f')));
+    EXPECT_STREQ(__("ruoiw"), __(processKey ("rươi", 'w')));
+    EXPECT_STREQ(__("mỬ"), __(processKey ("mỦ", 'w')));
+    EXPECT_STREQ(__("mỦw"), __(processKey ("mỬ", 'w')));
+    EXPECT_STREQ(__("măn"), __(processKey ("man", 'w')));
+    EXPECT_STREQ(__("mũmmĩm"), __(processKey ("mũmmim", 'X')));
+    EXPECT_STREQ(__("quảđur"), __(processKey ("quảđủ", 'r')));
+    EXPECT_STREQ(__("mèokckf"), __(processKey ("mèokck", 'f'))); // FIXME: Need to discuss
     EXPECT_STREQ(__("meO"), __(processKey ("me", 'O')));
     EXPECT_STREQ (__("làmănz"), __(processKey ("làmăn", 'z')));
-    // EXPECT_STREQ (__("chuyệk"), __(processKey ("chuyêk", 'j'))); // FIXME: Need to discuss
-    // EXPECT_STREQ (__("đèO"), __(processKey ("dèO", 'D')));
+    EXPECT_STREQ (__("chuyêkj"), __(processKey ("chuyêk", 'j'))); // FIXME: Need to discuss
+    EXPECT_STREQ (__("đèO"), __(processKey ("dèO", 'D')));
     EXPECT_STREQ (__("geO"), __(processKey ("ge", 'O')));
     EXPECT_STREQ (__("goa"), __(processKey ("go", 'a')));
     EXPECT_STREQ (__("gô"), __(processKey ("go", 'o')));
     EXPECT_STREQ (__("auw"), __(processKey ("au", 'w')));
     EXPECT_STREQ(__("họa"), __(processKey ("hoạt", BACKSPACE_CODE)));
+    EXPECT_STREQ(__("mưA"), __(processKey ("muA", 'w')));
+    EXPECT_STREQ(__("làmănz"), __(processKey ("làmăn", 'z'))); // Special case
 }
 
 TEST (MarkAndWord, RemoveAllMarks) {
@@ -400,6 +405,7 @@ TEST (CharacterHelpers, AccentsAndTransform) {
     EXPECT_STREQ (__(" "), __(addMarkToChar (" ", HAT)));
     EXPECT_STREQ (__("Ẳ"), __(addMarkToChar ("Ả", BREVE)));
     EXPECT_STREQ (__("ử"), __(addMarkToChar ("ủ", HORN)));
+    EXPECT_STREQ (__("Ử"), __(addMarkToChar ("Ủ", HORN)));
     EXPECT_STREQ (__("Đ"), __(addMarkToChar ("D", BAR)));
     EXPECT_STREQ (__("Đ"), __(addMarkToChar ("Đ", BAR)));
 }

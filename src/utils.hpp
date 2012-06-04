@@ -138,6 +138,8 @@ namespace BoGo {
     ustring removeAllMarksFromWord (string word);
     ustring removeAllMarksFromWord (const gchar *word);
 
+    ustring removeMarksFromLastWord (ustring text);
+
     ustring removeMarkFromWord (ustring word, _size_t_ pos);
     ustring removeMarkFromWord (string word, _size_t_ pos);
     ustring removeMarkFromWord (const gchar *word, _size_t_ pos);
@@ -169,6 +171,8 @@ namespace BoGo {
     ustring addMarkToWord (ustring word, Marks mark, gchar letter = '*');
     ustring addMarkToWord (string word, Marks mark, gchar letter = '*');
     ustring addMarkToWord (const gchar *word, Marks mark, gchar letter = '*');
+
+    ustring addMarkToText (ustring text, Marks mark, gchar letter = '*');
 
     ustringArrayT analyseWord (ustring str);
     ustringArrayT analyseWord (string str);
@@ -222,6 +226,8 @@ namespace BoGo {
     Accents getAccentFromChar (const gchar *ch);
     Accents getAccentFromChar (guint ch);
 
+    Accents getAccentFromWord (ustring word);
+
     ustring toPlainLetter (ustring ch);
     ustring toPlainLetter (string ch);
     ustring toPlainLetter (const gchar *ch);
@@ -257,7 +263,7 @@ namespace BoGo {
     // ustring getTransform (ustring trans);
     ustringArrayT findTransform (ustring ch, InputMethodT im);
     // TransformFuncT *getTransformFunc (ustring key_transf);
-    ustring processKey (gchar key, ustring str, InputMethodT im);
+    // ustring processKey (gchar key, ustring str, InputMethodT im);
     // Transform getTransformType (ustring key_trans);
 
     ustring toRawText (ustring text);
@@ -287,23 +293,22 @@ namespace BoGo {
 
     bool hasValidEndingConsonantsP (ustring word);
 
-    ustring addMarkToText (ustring text, Marks mark, gchar letter = '*');
 
     ustring addChar (ustring str, ustring ch);
 
     ustring processKeyUTF8 (ustring text,
-                            char key,
+                            gchar key,
                             InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
                             guint BackspaceChar = BACKSPACE_CODE);
 
     ustring processKey (ustring text,
-                        char key,
+                        gchar key,
                         InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
                         guint BackspaceChar = BACKSPACE_CODE);
 
-    void processKey (const char *text,
-                     char key,
-                     const char *result,
+    void processKey (const gchar *text,
+                     gchar key,
+                     const gchar *result,
                      InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
                      CharSetT charset = CHARSET_UTF8);
 }
