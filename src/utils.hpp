@@ -34,10 +34,15 @@ namespace BoGo {
     typedef vector<ustring> ustringArrayT;
     typedef guint Accents;
     typedef guint Marks;
-    typedef guint Transform;
+    typedef guint TransformTypeT;
+    typedef guint TransformT;
     typedef guint CharSetT;
     typedef ustringArrayT InputMethodT;
     typedef ustring TransformFuncT (ustring, ustring);
+
+    const guint INVALID_TRANSFORM = -1,
+        TRANSFORM_MARK = 0,
+        TRANSFORM_ACCENT = 1;
 
     const guint NUMBER_OF_CHARSETS = 3;
     const CharSetT CHARSET_UTF8 = 0,
@@ -106,6 +111,11 @@ namespace BoGo {
     const ustring LettersWithMarks =
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
+
+    void getTransform (InputMethodT im, char key,
+                       TransformTypeT &type,
+                       TransformT &transform,
+                       ustring &obj);
 
     bool containsP (ustring str, ustring needle, bool ignoreCase = true);
     bool containsP (string str, ustring needle, bool ignoreCase = true);
@@ -244,11 +254,11 @@ namespace BoGo {
 
     ustring removeAccentFromLastWord (ustring str);
 
-    ustring getTransform (ustring trans);
+    // ustring getTransform (ustring trans);
     ustringArrayT findTransform (ustring ch, InputMethodT im);
-    TransformFuncT *getTransformFunc (ustring key_transf);
+    // TransformFuncT *getTransformFunc (ustring key_transf);
     ustring processKey (gchar key, ustring str, InputMethodT im);
-    Transform getTransformType (ustring key_trans);
+    // Transform getTransformType (ustring key_trans);
 
     ustring toRawText (ustring text);
     ustring toRawText (string text);

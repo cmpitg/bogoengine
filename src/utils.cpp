@@ -900,6 +900,12 @@ namespace BoGo {
         return NO_ACCENT;
     }
 
+    void getTransform (InputMethodT im, char key,
+                       TransformTypeT &type,
+                       TransformT &transform,
+                       gchar &letter) {
+    }
+
     ustring processKeyUTF8 (ustring text, char key, InputMethodT im,
                             guint BackspaceChar) {
         // Case: Backspace character
@@ -915,6 +921,21 @@ namespace BoGo {
             Accents accent = getAccentFromWord (lastWord);
             lastWord.replace (lastWord.size () - 1, 1, "");
             return firstPart + addAccentToWord (lastWord, accent);
+        }
+
+        TransformTypeT type;
+        TransformT transform;
+        gchar letter;
+
+        getTransform (im, key, type, transform, letter);
+
+        switch (type) {
+        case INVALID_TRANSFORM:
+            return addChar (text, _(key));
+        case TRANSFORM_MARK:
+            return addMarkToText (text, transform, letter);
+        case TRANSFORM_ACCENT:
+            return addAccentToText (text, transform);
         }
 
         return "";
