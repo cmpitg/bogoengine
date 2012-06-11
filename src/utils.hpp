@@ -22,8 +22,8 @@
 #include <glibmm/ustring.h>
 #include <string>
 #include <vector>
-#include <map>
 #include <cstdarg>
+#include "charset.hpp"
 
 namespace BoGo {
 
@@ -36,18 +36,12 @@ namespace BoGo {
     typedef guint Marks;
     typedef guint TransformTypeT;
     typedef guint TransformT;
-    typedef guint CharSetT;
     typedef ustringArrayT InputMethodT;
     typedef ustring TransformFuncT (ustring, ustring);
 
     const guint INVALID_TRANSFORM = -1,
         TRANSFORM_MARK = 0,
         TRANSFORM_ACCENT = 1;
-
-    const guint NUMBER_OF_CHARSETS = 3;
-    const CharSetT CHARSET_UTF8 = 0,
-        CHARSET_TCVN3 = 1,
-        CHARSET_VNI = 2;
 
     const guint NUMBER_OF_IMS = 4;
     const guint IM_SIMPLETELEX = 0,
@@ -312,4 +306,3 @@ namespace BoGo {
                      InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
                      CharSetT charset = CHARSET_UTF8);
 }
-

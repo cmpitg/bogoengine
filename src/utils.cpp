@@ -850,8 +850,10 @@ namespace BoGo {
 
             if (maybeSpecial1 == "au" || maybeSpecial1 == "ao" ||
                 maybeSpecial2 == "au" || maybeSpecial2 == "ao" ||
-                ((maybeSpecial1 == "ua" || maybeSpecial2 == "ua") && mark != HORN) ||
-                ((maybeSpecial1 == "oa" || maybeSpecial2 == "oa") && mark != BREVE))
+                ((maybeSpecial1 == "ua" || maybeSpecial2 == "ua") &&
+                 mark != HORN) ||
+                ((maybeSpecial1 == "oa" || maybeSpecial2 == "oa") &&
+                 mark != BREVE))
                 return word;
         }
 
