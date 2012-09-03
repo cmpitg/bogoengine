@@ -93,7 +93,7 @@ namespace BoGo {
 
     const guint NUMBER_OF_VALID_ENDING_CONSONANTS = 8;
     const ustring ValidEndingConsonants[] =
-    { "c", "m", "n", "p", "t", "ng", "ch" "nh" };
+    { "c", "m", "n", "p", "t", "ng", "ch", "nh" };
 
     const ustring SpecialVowels = "ăâơê";
     // const ustring AllVowels = "a e e i o u y ao oa eo oe ie eu"

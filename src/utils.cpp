@@ -759,6 +759,10 @@ namespace BoGo {
         ustring firstPart = text.substr (0, pos);
         ustring lastWord = text.substr (pos);
 
+        // cerr << " >> " << __(firstPart) << " ++ " << __(lastWord) << endl
+        //      << hasValidEndingConsonantsP (lastWord) << endl
+        //      << __(addAccentToWord (lastWord, accent)) << endl;
+
         if (hasValidEndingConsonantsP (lastWord))
             return firstPart + addAccentToWord (lastWord, accent);
         else
@@ -915,31 +919,6 @@ namespace BoGo {
     ustring addChar (ustring str, ustring ch) {
         return str + ch;
     }
-
-    // TransformFuncT *getTransformResultFunc (ustring key_transf) {
-    //     ustring transf = getTransformResult (key_transf);
-
-    //     if (containsP (MarkTransforms, transf))
-    //         return &addMarkToText;
-
-    //     if (containsP (AccentTransforms, transf))
-    //         return &addAccentToText;
-
-    //     return &addChar;
-    // }
-
-    // Transform getTransformType (ustring key_trans) {
-    //     // Determine the type of: add mark, add accent, or just char
-    //     ustring trans = getTransformResult (key_trans);
-
-    //     if (containsP (MarkTransforms, trans))
-    //         return ADD_MARK;
-
-    //     if (containsP (AccentTransforms, trans))
-    //         return ADD_ACCENT;
-
-    //     return ADD_CHAR;
-    // }
 
     Accents getAccentFromWord (ustring word) {
         for (_size_t_ i = 0; i < word.size (); i++) {
