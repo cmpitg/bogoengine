@@ -70,18 +70,18 @@ TEST (TextManipulation, AddMarkToText) {
 }
 
 TEST (TextManipulation, AddAccentToText) {
-    // EXPECT_STREQ ("lntmèo", __(addAccentToText ("lntmeo", GRAVE)));
-    // EXPECT_STREQ ("TmèO", __(addAccentToText ("TmeO", GRAVE)));
-    // EXPECT_STREQ ("KĐẹo", __(addAccentToText ("KĐeo", DOT)));
-    // EXPECT_STREQ ("rUỏi", __(addAccentToText ("rUoi", HOOK)));
-    // EXPECT_STREQ ("mỮT", __(addAccentToText ("mƯT", TILDE)));
-    // EXPECT_STREQ ("muw", __(addAccentToText ("muw", DOT)));
-    // EXPECT_STREQ ("trgiận", __(addAccentToText ("trgiân", DOT)));
-    // EXPECT_STREQ ("trquán", __(addAccentToText ("trquan", ACUTE)));
-    // EXPECT_STREQ ("chuyêk", __(addAccentToText ("chuyêk", ACUTE)));
-    // EXPECT_STREQ ("chuyêk", __(addAccentToText ("chuyêk", DOT)));
-    // EXPECT_STREQ ("nokckf", __(addAccentToText ("nokckf", TILDE)));
-    // EXPECT_STREQ ("gôu", __(addAccentToText ("gốu", NO_ACCENT)));
+    EXPECT_STREQ ("lntmèo", __(addAccentToText ("lntmeo", GRAVE)));
+    EXPECT_STREQ ("TmèO", __(addAccentToText ("TmeO", GRAVE)));
+    EXPECT_STREQ ("KĐẹo", __(addAccentToText ("KĐeo", DOT)));
+    EXPECT_STREQ ("rUỏi", __(addAccentToText ("rUoi", HOOK)));
+    EXPECT_STREQ ("mỮT", __(addAccentToText ("mƯT", TILDE)));
+    EXPECT_STREQ ("muw", __(addAccentToText ("muw", DOT)));
+    EXPECT_STREQ ("trgiận", __(addAccentToText ("trgiân", DOT)));
+    EXPECT_STREQ ("trquán", __(addAccentToText ("trquan", ACUTE)));
+    EXPECT_STREQ ("chuyêk", __(addAccentToText ("chuyêk", ACUTE)));
+    EXPECT_STREQ ("chuyêk", __(addAccentToText ("chuyêk", DOT)));
+    EXPECT_STREQ ("nokckf", __(addAccentToText ("nokckf", TILDE)));
+    EXPECT_STREQ ("gôu", __(addAccentToText ("gốu", NO_ACCENT)));
     EXPECT_STREQ ("sách", __(addAccentToText ("sach", ACUTE)));
 }
 

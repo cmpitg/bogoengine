@@ -892,11 +892,6 @@ namespace BoGo {
         return canAddMarkToLetterP (_(letter), mark);
     }
 
-    // This function has glitches when dealing with non-ascii character
-    // bool canAddMarkToLetterP (const gchar letter, Marks mark) {
-    //     return canAddMarkToLetterP (_(letter), mark);
-    // }
-
     ustring getTransformResult (ustring key_trans) {
         ustring trans = key_trans.erase (0, 1);
         while (trans[0] == ' ' ) {
