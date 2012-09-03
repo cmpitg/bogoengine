@@ -19,6 +19,9 @@
 
 */
 
+#ifndef ENGINE_HPP
+#define ENGINE_HPP
+
 #include <iostream>
 #include <glibmm/ustring.h>
 #include "utils.hpp"
@@ -30,3 +33,5 @@ namespace BoGo {
     typedef ustring::size_type _size_t;
 
 }
+
+#endif

@@ -19,6 +19,9 @@
 
 */
 
+#ifndef UTILS_HPP
+#define UTILS_HPP
+
 #include <glibmm/ustring.h>
 #include <string>
 #include <vector>
@@ -306,3 +309,5 @@ namespace BoGo {
                      InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
                      CharSetT charset = CHARSET_UTF8);
 }
+
+#endif
