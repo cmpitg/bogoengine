@@ -21,7 +21,7 @@
 
 #include <gtest/gtest.h>
 #include <iostream>
-#include <utils.hpp>
+#include "utils.hpp"
 
 using namespace std;
 using namespace Glib;
@@ -145,37 +145,6 @@ TEST (WordHelpers, AddMarkToWord) {
     EXPECT_STREQ ("TrƯơng", __(addMarkToWord ("TrUong", HORN, 'u')));
     EXPECT_STREQ ("ưu", __(addMarkToWord ("uu", HORN)));
     EXPECT_STREQ ("mỬ", __(addMarkToWord ("mỦ", HORN)));
-}
-
-TEST (ProcessKey, ProcessKey) {
-    EXPECT_STREQ(__("mèo"), __(processKey ("mèov", BACKSPACE_CODE)));
-    EXPECT_STREQ(__("mèo"), __(processKey ("meo", 'f')));
-    EXPECT_STREQ(__("Đèo"), __(processKey ("Dèo", 'd')));
-    EXPECT_STREQ(__("đèo"), __(processKey ("dèo", 'D')));
-    EXPECT_STREQ(__("đEO"), __(processKey ("đÈO", 'z')));
-    EXPECT_STREQ(__("rƯơi"), __(processKey ("rUoi", 'w')));
-    EXPECT_STREQ(__("rUòi"), __(processKey ("rUoi", 'f')));
-    EXPECT_STREQ(__("ruoiw"), __(processKey ("rươi", 'w')));
-    EXPECT_STREQ(__("mỬ"), __(processKey ("mỦ", 'w')));
-    EXPECT_STREQ(__("mỦw"), __(processKey ("mỬ", 'w')));
-    EXPECT_STREQ(__("măn"), __(processKey ("man", 'w')));
-    EXPECT_STREQ(__("mũmmĩm"), __(processKey ("mũmmim", 'X')));
-    EXPECT_STREQ(__("quảđur"), __(processKey ("quảđủ", 'r')));
-    EXPECT_STREQ(__("mèokckf"), __(processKey ("mèokck", 'f'))); // FIXME: Need to discuss
-    EXPECT_STREQ(__("meO"), __(processKey ("me", 'O')));
-    EXPECT_STREQ (__("làmănz"), __(processKey ("làmăn", 'z')));
-    EXPECT_STREQ (__("chuyêkj"), __(processKey ("chuyêk", 'j'))); // FIXME: Need to discuss
-    EXPECT_STREQ (__("đèO"), __(processKey ("dèO", 'D')));
-    EXPECT_STREQ (__("geO"), __(processKey ("ge", 'O')));
-    EXPECT_STREQ (__("goa"), __(processKey ("go", 'a')));
-    EXPECT_STREQ (__("gô"), __(processKey ("go", 'o')));
-    EXPECT_STREQ (__("auw"), __(processKey ("au", 'w')));
-    EXPECT_STREQ(__("họa"), __(processKey ("hoạt", BACKSPACE_CODE)));
-    EXPECT_STREQ(__("mưA"), __(processKey ("muA", 'w')));
-    EXPECT_STREQ(__("sách"), __(processKey ("sach", 's')));
-    EXPECT_STREQ(__("tuấn"), __(processKey ("tuân", 's')));
-    EXPECT_STREQ(__("tuấn"), __(processKey ("tuán", 'a')));
-    EXPECT_STREQ(__("làmănz"), __(processKey ("làmăn", 'z'))); // Special case
 }
 
 TEST (MarkAndWord, RemoveAllMarks) {

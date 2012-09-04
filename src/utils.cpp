@@ -19,11 +19,10 @@
 
 */
 
+// The code needs to be extremely polished
+
 #include "utils.hpp"
 #include <iostream>
-
-// FIXME charset
-// FIXME Polish and clean up code
 
 namespace BoGo {
 
@@ -962,71 +961,6 @@ namespace BoGo {
         return INVALID_TRANSFORM;
     }
 
-    ustring processKeyUTF8 (ustring text, char key, InputMethodT im,
-                            guint BackspaceChar) {
-        // Case: Backspace character
-        if (key == BackspaceChar) {
-            _size_t_ pos = getLastPseudoWordPos (text);
-
-            // Case: no word inside text
-            if (pos == ustring::npos)
-                return text.substr (0, text.size () - 1);
-
-            ustring firstPart = text.substr (0, pos);
-            ustring lastWord = text.substr (pos);
-            Accents accent = getAccentFromWord (lastWord);
-            lastWord.replace (lastWord.size () - 1, 1, "");
-            return firstPart + addAccentToWord (lastWord, accent);
-        }
-
-        gchar lowCaseKey = _(key).lowercase ()[0];
-        ustringArrayT availTrans = findTransform (__(lowCaseKey), im);
-
-        // Case: `key` is not for transforming
-        if (availTrans.size () == 0)
-            return addChar (text, _(key));
-
-        TransformTypeT markOrAccent;
-        // cerr << "Text >> " << __(text) << " -> " << endl;
-        ustring res = "";
-
-        for (guint i = 0; i < availTrans.size (); i++) {
-            const gchar *trans = availTrans[i].c_str ();
-            TransformTypeT tmpMarkOrAccent = getTransformType (trans[2]);
-            TransformT tmpTrans = getTransform (trans[2]);
-            ustring tmpRes;
-
-            if (tmpMarkOrAccent == TRANSFORM_MARK)
-                tmpRes = addMarkToText (text, tmpTrans, trans[1]);
-            else
-                tmpRes = addAccentToText (text, tmpTrans);
-
-            // cerr << " >> " << trans << " -> "
-            //      << "mark? " << (tmpMarkOrAccent == TRANSFORM_MARK) << " -> "
-            //      << "trans: " << tmpTrans << " -> "
-            //      << __(tmpRes) << endl;
-
-            if (res == "" || (tmpRes != text && res != "")) {
-                res = tmpRes;
-                markOrAccent = tmpMarkOrAccent;
-            }
-        }
-
-        // Case: fallback to English
-        if (res.size () == 0 || res == text) {
-            if (markOrAccent == TRANSFORM_MARK)
-                res = addChar (removeMarksFromLastWord (text), _(key));
-            else
-                res = addChar (removeAccentFromLastWord (text), _(key));
-        }
-
-        return res;
-    }
-
-    ustring processKey (ustring text, char key, InputMethodT im,
-                        guint BackspaceChar) {
-        return processKeyUTF8 (text, key, im, BackspaceChar);
-    }
 
 #undef _
 #undef __

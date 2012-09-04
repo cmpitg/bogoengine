@@ -109,6 +109,7 @@ namespace BoGo {
         "aaaddeeooouu" "âââdđêêôôôuư" "aăâdđeêơơơưư"
         "ăăădđeêoôơuư" "aăâđđeêoôơuư";
 
+    TransformT getTransform (const gchar transChar);
     void getTransform (InputMethodT im, ustring &text, const gchar key,
                        TransformTypeT &type,
                        TransformT &transform,
@@ -257,11 +258,8 @@ namespace BoGo {
 
     ustring removeAccentFromLastWord (ustring str);
 
-    // ustring getTransform (ustring trans);
     ustringArrayT findTransform (ustring ch, InputMethodT im);
-    // TransformFuncT *getTransformFunc (ustring key_transf);
-    // ustring processKey (gchar key, ustring str, InputMethodT im);
-    // Transform getTransformType (ustring key_trans);
+    TransformTypeT getTransformType (const gchar transChar);
 
     ustring toRawText (ustring text);
     ustring toRawText (string text);
@@ -290,24 +288,8 @@ namespace BoGo {
 
     bool hasValidEndingConsonantsP (ustring word);
 
-
     ustring addChar (ustring str, ustring ch);
 
-    ustring processKeyUTF8 (ustring text,
-                            gchar key,
-                            InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
-                            guint BackspaceChar = BACKSPACE_CODE);
-
-    ustring processKey (ustring text,
-                        gchar key,
-                        InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
-                        guint BackspaceChar = BACKSPACE_CODE);
-
-    void processKey (const gchar *text,
-                     gchar key,
-                     const gchar *result,
-                     InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
-                     CharSetT charset = CHARSET_UTF8);
 }
 
 #endif

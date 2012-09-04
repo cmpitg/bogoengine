@@ -26,12 +26,25 @@
 #include <glibmm/ustring.h>
 #include "utils.hpp"
 
-using namespace Glib;
-
 namespace BoGo {
 
-    typedef ustring::size_type _size_t;
+    using namespace Glib;
+    
+    ustring processKeyUTF8 (ustring text,
+                            gchar key,
+                            InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
+                            guint BackspaceChar = BACKSPACE_CODE);
 
+    ustring processKey (ustring text,
+                        gchar key,
+                        InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
+                        guint BackspaceChar = BACKSPACE_CODE);
+
+    void processKey (const gchar *text,
+                     gchar key,
+                     const gchar *result,
+                     InputMethodT im = makeStandardIM (IM_SIMPLETELEX),
+                     CharSetT charset = CHARSET_UTF8);
 }
 
 #endif
