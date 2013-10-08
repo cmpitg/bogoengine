@@ -46,12 +46,12 @@ Một vài tài liệu hữu ích:
 
 ## Yêu cầu biên dịch
 
-* [Chicken Scheme](http://call-cc.org/) 4.7.0+ phục vụ nhu cầu biên dịch
+* [Chicken Scheme](http://call-cc.org/) 4.7.0+ phục vụ nhu cầu biên dịch.
 
 * [GCC](http://gcc.gnu.org) 4+ biên dịch các file nguồn C, sản phẩm của trình
-  biên dịch Chicken
+  biên dịch Chicken.
 
-* [Ruby](http://ruby-lang.org) 1.9+ chạy các script
+* [Ruby](http://ruby-lang.org) 1.9+ chạy các script.
 
 ## Chú ý
 
