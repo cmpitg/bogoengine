@@ -44,6 +44,15 @@ Một vài tài liệu hữu ích:
 
 * Đóng góp mã nguồn thông qua pull request.
 
+## Yêu cầu biên dịch
+
+* [Chicken Scheme](http://call-cc.org/) 4.7.0+ phục vụ nhu cầu biên dịch
+
+* [GCC](http://gcc.gnu.org) 4+ biên dịch các file nguồn C, sản phẩm của trình
+  biên dịch Chicken
+
+* [Ruby](http://ruby-lang.org) 1.9+ chạy các script
+
 ## Chú ý
 
 * Nhánh `Chicken` vừa là nhánh thử nghiệm *bogoengine* trên Scheme, vừa là
