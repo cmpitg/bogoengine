@@ -1,7 +1,7 @@
 # bogoengine
 
 Đây là nhánh phát triển thí nghiệm, sử dụng
-[Chicken Scheme](http://call-cc.org)
+[Chicken Scheme](http://call-cc.org).
 
 ## Giới thiệu
 
@@ -43,6 +43,14 @@ Một vài tài liệu hữu ích:
 * **Luôn** viết tài liệu trước khi viết code.
 
 * Đóng góp mã nguồn thông qua pull request.
+
+## Chú ý
+
+* Nhánh `Chicken` vừa là nhánh thử nghiệm *bogoengine* trên Scheme, vừa là
+  nhánh thử nghiệm
+  [literate programming](http://en.wikipedia.org/wiki/Literate_programming).
+
+* Tất cả mọi thay đổi và quy trình xử lý đều được mô tả thành tài liệu.
 
 ## Giấy phép xuất bản
 
