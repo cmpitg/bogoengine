@@ -71,3 +71,19 @@ tuyeern, tuyển
 tuyeenr, tuyển
 
 tuwrowng, tưởng
+
+# Undo
+aaa, aa
+aww, aw
+ass, as
+aff, af
+arr, ar
+axx, ax
+ajj, aj
+uww, uw
+oww, ow
+
+huww, huw
+hww, hw
+ww, w
+uww, uw
