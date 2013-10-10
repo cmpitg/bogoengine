@@ -1,5 +1,12 @@
 # bogoengine
 
+**Chú ý**: Nhánh phát triển sử dụng Chicken Scheme bị đình lại do tồn tại
+  [vấn đề chưa giải quyết được](https://github.com/kripken/emscripten) trong
+  quá trình hỗ trợ [Firefox OS](http://www.mozilla.org/en-US/firefox/os/).
+  Nhánh này có thể được quay lại trong tương lai khi
+  [Emscripten](https://github.com/kripken/emscripten) và quá trình sinh code
+  của Chicken Scheme tốt hơn.
+
 Đây là nhánh phát triển thí nghiệm, sử dụng
 [Chicken Scheme](http://call-cc.org).
 
@@ -52,6 +59,10 @@ Một vài tài liệu hữu ích:
   biên dịch Chicken.
 
 * [Ruby](http://ruby-lang.org) 1.9+ chạy các script.
+
+* Ruby gems:
+  - [Maruku](https://github.com/bhollis/maruku) 0.7+ để biên dịch Markdown
+  - erb để biên dịch template thành Markdown
 
 ## Chú ý
 
