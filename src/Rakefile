@@ -1,0 +1,63 @@
+require 'redcarpet'
+require 'pygments'
+
+class HTMLWithPygments < Redcarpet::Render::HTML
+  def block_code(code, language)
+    Pygments.highlight(code, :lexer => language)
+  end
+end
+
+html_render = HTMLWithPygments.new(:with_toc_data => true,
+                                   :prettify => true)
+
+renderer = Redcarpet::Markdown.new(html_render,
+                                   :autolink => true,
+                                   :space_after_headers => true,
+                                   :no_intra_emphasis => true,
+                                   :fenced_code_blocks => true,
+                                   :tables => true,
+                                   :highlight => true,
+                                   :footnotes => true)
+
+class String
+  def has_variable_path?
+    self.start_with? "---\n"
+  end
+
+  def strip_vars
+    return {}, self if !self.has_variable_path?
+
+    var_part = self[/^---\n(.*)^---\n/m][4..-5]
+    var_part = var_part[0..-3] if var_part.end_with?("\n\n")
+
+    # Remove the variable part
+    return var_part, self[(var_part.length + 8)..-1]
+  end
+end
+
+def read_file(path)
+  res = ""
+  File.open(path, 'r') { |file|
+    res = file.read
+  }
+  return res
+end
+
+def render_file(path, rd)
+  contents = read_file("#{path}.md")
+
+  # Strip and capture variable part
+  vars, contents = contents.strip_vars
+
+  File.open("#{path}.html", 'w') { |file|
+    file.write rd.render(contents)
+  }
+end
+
+task :try do
+  render_file("literate_programming", renderer)
+end
+
+task :clean do
+  sh 'rm -rf *.html'
+end
