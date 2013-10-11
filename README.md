@@ -13,9 +13,12 @@ với các chương trình cung cấp input method (như
 
 * Trang chủ: <http://reference-error.org/projects/bogoengine>
 
-* Mail group **phát triển** *bogoengine*:
+* Nhóm thư **phát triển** *bogoengine*:
   <bogoengine-dev@googlegroups.com>, subscribe tại giao diện web
   [Google Group](http://groups.google.com/group/bogoengine-dev/).
+
+* Nhóm thư **thông báo** *bogoengine*, dùng để thông báo phiên bản: tại
+  [Google Group](http://groups.google.com/group/bogoengine-announce/).
 
 ## Tài liệu
 
@@ -25,21 +28,9 @@ Github.
 
 Một vài tài liệu hữu ích:
 
-* [Hướng dẫn sử dụng](TODO)
+* [Hướng dẫn sử dụng](https://github.com/cmpitg/bogoengine/wiki#d%C3%A0nh-cho-ng%C6%B0%E1%BB%9Di-s%E1%BB%AD-d%E1%BB%A5ng-bogoengine)
 
-* [Hướng dẫn tham gia dự án](TODO)
-
-## Nguyên tắc phát triển
-
-* Các commit thử nghiệm, tính năng mới nằm trong nhánh *experimental*.
-
-* Chỉ commit vào nhánh *master* phiên bản chạy được.
-
-* Mỗi tính năng luôn có test.
-
-* **Luôn** viết tài liệu trước khi viết code.
-
-* Đóng góp mã nguồn thông qua pull request.
+* [Hướng dẫn tham gia dự án](https://github.com/cmpitg/bogoengine/wiki#d%C3%A0nh-cho-ng%C6%B0%E1%BB%9Di-ph%C3%A1t-tri%E1%BB%83n-bogoengine)
 
 ## Giấy phép xuất bản
 
