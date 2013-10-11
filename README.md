@@ -13,6 +13,8 @@ với các chương trình cung cấp input method (như
 
 * Trang chủ: <http://reference-error.org/projects/bogoengine>
 
+* Góp ý, thắc mắc, yêu cầu tính năng tại [form góp ý](http://goo.gl/Vcqn1n).
+
 * Nhóm thư **phát triển** *bogoengine*:
   <bogoengine-dev@googlegroups.com>, subscribe tại giao diện web
   [Google Group](http://groups.google.com/group/bogoengine-dev/).
@@ -28,9 +30,9 @@ Github.
 
 Một vài tài liệu hữu ích:
 
-* [Hướng dẫn sử dụng](https://github.com/cmpitg/bogoengine/wiki#d%C3%A0nh-cho-ng%C6%B0%E1%BB%9Di-s%E1%BB%AD-d%E1%BB%A5ng-bogoengine)
+* [Hướng dẫn sử dụng](https://github.com/cmpitg/bogoengine/wiki#d%C3%A0nh-cho-ng%C6%B0%E1%BB%9Di-s%E1%BB%AD-d%E1%BB%A5ng-bogoengine).
 
-* [Hướng dẫn tham gia dự án](https://github.com/cmpitg/bogoengine/wiki#d%C3%A0nh-cho-ng%C6%B0%E1%BB%9Di-ph%C3%A1t-tri%E1%BB%83n-bogoengine)
+* [Hướng dẫn tham gia dự án](https://github.com/cmpitg/bogoengine/wiki#d%C3%A0nh-cho-ng%C6%B0%E1%BB%9Di-ph%C3%A1t-tri%E1%BB%83n-bogoengine).
 
 ## Giấy phép xuất bản
 
