@@ -1,9 +1,10 @@
 # bogoengine
 
 **Chú ý**: Nhánh phát triển sử dụng Chicken Scheme bị đình lại do tồn tại
-  [vấn đề chưa giải quyết được](https://github.com/kripken/emscripten) trong
-  quá trình hỗ trợ [Firefox OS](http://www.mozilla.org/en-US/firefox/os/).
-  Nhánh này có thể được quay lại trong tương lai khi
+  [vấn đề chưa giải quyết được](https://github.com/cmpitg/bogoengine/issues/7)
+  trong quá trình hỗ trợ
+  [Firefox OS](http://www.mozilla.org/en-US/firefox/os/).  Nhánh này có thể
+  được quay lại trong tương lai khi
   [Emscripten](https://github.com/kripken/emscripten) và quá trình sinh code
   của Chicken Scheme tốt hơn.
 
