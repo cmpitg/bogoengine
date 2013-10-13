@@ -162,12 +162,12 @@ void assertStrI (const char *expected, const char *expr) {
     }
 
     char lowerExpected[_MAX_STRLEN];
-    char lowerexpr[_MAX_STRLEN];
+    char lowerExpr[_MAX_STRLEN];
 
     toStrLower (expected, lowerExpected);
-    toStrLower (expr, lowerexpr);
+    toStrLower (expr, lowerExpr);
 
-    _currentRes_ = (strcmp (lowerExpected, lowerexpr) == 0) ? 1 : 0;
+    _currentRes_ = (strcmp (lowerExpected, lowerExpr) == 0) ? 1 : 0;
     if (_currentRes_ == 0) {
         fprintf (stderr, "[failed] assertStrI\n\texpected: %s\n\tactual: %s\n",
                  expected, expr);
@@ -183,12 +183,12 @@ void assertStrIDescription (const char *expected,
     }
 
     char lowerExpected[_MAX_STRLEN];
-    char lowerexpr[_MAX_STRLEN];
+    char lowerExpr[_MAX_STRLEN];
 
     toStrLower (expected, lowerExpected);
-    toStrLower (expr, lowerexpr);
+    toStrLower (expr, lowerExpr);
 
-    _currentRes_ = (strcmp (lowerExpected, lowerexpr) == 0) ? 1 : 0;
+    _currentRes_ = (strcmp (lowerExpected, lowerExpr) == 0) ? 1 : 0;
     if (_currentRes_ == 0) {
         fprintf (stderr, "[failed] assertStrI: %s\n\texpected: %s\n\tactual: %s\n",
                  descr,
