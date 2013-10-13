@@ -25,11 +25,13 @@
 /* ----------------------------------------------------------------------- */
 /* Helpers */
 
-int getBit (int num, int n) {
+int getBit (int num,
+            int n) {
     return (n >> num) & 1;
 }
 
-void printBits (bgstr str, bglen_t byteNum) {
+void printBits (bgstr str,
+                bglen_t byteNum) {
     bglen_t i, j;
 
     for (i = 0; i < byteNum; i++) {
@@ -75,7 +77,9 @@ bglen_t bgStrLen (bgstr str) {
     return res;
 }
 
-void bgGetCharAt (bgstr str, bgstr target, bglen_t pos) {
+void bgGetCharAt (bgstr str,
+                  bgstr target,
+                  bglen_t pos) {
     /* Out-of-range guard */
     if (pos < 0 || bgStrLen (str) <= pos) {
         target[0] = 0;
