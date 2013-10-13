@@ -24,7 +24,8 @@
 /* ----------------------------------------------------------------------- */
 /* Helpers */
 
-void toStrLower (const char *source, char *output) {
+void toStrLower (const char *source,
+                 char *output) {
     int i, len;
     len = strlen (source);
     for(i = 0; i < len; i++) {
@@ -96,7 +97,8 @@ int finishTestCase (void) {
     return _currentRes_;
 }
 
-void assertInt (int expected, int expr) {
+void assertInt (int expected,
+                int expr) {
     /* Skip if there is a failed test already */
     if (_currentRes_ == 0) {
         return;
@@ -105,11 +107,14 @@ void assertInt (int expected, int expr) {
     _currentRes_ = (expected == expr) ? 1 : 0;
     if (_currentRes_ == 0) {
         fprintf (stderr, "[failed] assertInt\n\texpected: %i\n\tactual: %i\n",
-                 expected, expr);
+                 expected,
+                 expr);
     }
 }
 
-void assertIntDescription (int expected, int expr, const char *descr) {
+void assertIntDescription (int expected,
+                           int expr,
+                           const char *descr) {
     /* Skip if there is a failed test already */
     if (_currentRes_ == 0) {
         return;
@@ -125,7 +130,8 @@ void assertIntDescription (int expected, int expr, const char *descr) {
     }
 }
 
-void assertStr (const char *expected, const char *expr) {
+void assertStr (const char *expected,
+                const char *expr) {
     /* Skip if there is a failed test already */
     if (_currentRes_ == 0) {
         return;
@@ -138,8 +144,9 @@ void assertStr (const char *expected, const char *expr) {
     }
 }
 
-void assertStrDescription
-(const char *expected, const char *expr, const char *descr) {
+void assertStrDescription (const char *expected,
+                           const char *expr,
+                           const char *descr) {
     /* Skip if there is a failed test already */
     if (_currentRes_ == 0) {
         return;
@@ -155,7 +162,8 @@ void assertStrDescription
     }
 }
 
-void assertStrI (const char *expected, const char *expr) {
+void assertStrI (const char *expected,
+                 const char *expr) {
     /* Skip if there is a failed test already */
     if (_currentRes_ == 0) {
         return;
