@@ -190,7 +190,7 @@ void assertStrIDescription (const char *expected,
 
     _currentRes_ = (strcmp (lowerExpected, lowerexpr) == 0) ? 1 : 0;
     if (_currentRes_ == 0) {
-        fprintf (stderr, "[failed] assertInt\n\texpected: %s\n\tactual: %s\n",
+        fprintf (stderr, "[failed] assertStrI: %s\n\texpected: %s\n\tactual: %s\n",
                  descr,
                  expected,
                  expr);
