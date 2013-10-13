@@ -96,80 +96,80 @@ int finishTestCase (void) {
     return _currentRes_;
 }
 
-void assertInt (int expected, int expression) {
+void assertInt (int expected, int expr) {
     /* Skip if there is a failed test already */
     if (_currentRes_ == 0) {
         return;
     }
 
-    _currentRes_ = (expected == expression) ? 1 : 0;
+    _currentRes_ = (expected == expr) ? 1 : 0;
     if (_currentRes_ == 0) {
         fprintf (stderr, "[failed] assertInt\n\texpected: %i\n\tactual: %i\n",
-                 expected, expression);
+                 expected, expr);
     }
 }
 
-void assertIntDescription (int expected, int expression, const char *descr) {
+void assertIntDescription (int expected, int expr, const char *descr) {
     /* Skip if there is a failed test already */
     if (_currentRes_ == 0) {
         return;
     }
 
-    _currentRes_ = (expected == expression) ? 1 : 0;
+    _currentRes_ = (expected == expr) ? 1 : 0;
     if (_currentRes_ == 0) {
         fprintf (stderr,
                  "[failed] assertInt: %s\n\texpected: %i\n\tactual: %i\n",
                  descr,
                  expected,
-                 expression);
+                 expr);
     }
 }
 
-void assertStr (const char *expected, const char *expression) {
+void assertStr (const char *expected, const char *expr) {
     /* Skip if there is a failed test already */
     if (_currentRes_ == 0) {
         return;
     }
 
-    _currentRes_ = (strcmp (expected, expression) == 0) ? 1 : 0;
+    _currentRes_ = (strcmp (expected, expr) == 0) ? 1 : 0;
     if (_currentRes_ == 0) {
         fprintf (stderr, "[failed] assertInt\n\texpected: %s\n\tactual: %s\n",
-                 expected, expression);
+                 expected, expr);
     }
 }
 
 void assertStrDescription
-(const char *expected, const char *expression, const char *descr) {
+(const char *expected, const char *expr, const char *descr) {
     /* Skip if there is a failed test already */
     if (_currentRes_ == 0) {
         return;
     }
 
-    _currentRes_ = (strcmp (expected, expression) == 0) ? 1 : 0;
+    _currentRes_ = (strcmp (expected, expr) == 0) ? 1 : 0;
     if (_currentRes_ == 0) {
         fprintf (stderr,
                  "[failed] assertInt: %s\n\texpected: %s\n\tactual: %s\n",
                  descr,
                  expected,
-                 expression);
+                 expr);
     }
 }
 
-void assertStrI (const char *expected, const char *expression) {
+void assertStrI (const char *expected, const char *expr) {
     /* Skip if there is a failed test already */
     if (_currentRes_ == 0) {
         return;
     }
 
     char lowerExpected[_MAX_STRLEN];
-    char lowerExpression[_MAX_STRLEN];
+    char lowerexpr[_MAX_STRLEN];
 
     toStrLower (expected, lowerExpected);
-    toStrLower (expression, lowerExpression);
+    toStrLower (expr, lowerexpr);
 
-    _currentRes_ = (strcmp (lowerExpected, lowerExpression) == 0) ? 1 : 0;
+    _currentRes_ = (strcmp (lowerExpected, lowerexpr) == 0) ? 1 : 0;
     if (_currentRes_ == 0) {
         fprintf (stderr, "[failed] assertInt\n\texpected: %s\n\tactual: %s\n",
-                 expected, expression);
+                 expected, expr);
     }
 }
