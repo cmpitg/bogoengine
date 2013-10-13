@@ -148,7 +148,7 @@ void assertStrDescription
     _currentRes_ = (strcmp (expected, expr) == 0) ? 1 : 0;
     if (_currentRes_ == 0) {
         fprintf (stderr,
-                 "[failed] assertInt: %s\n\texpected: %s\n\tactual: %s\n",
+                 "[failed] assertStr: %s\n\texpected: %s\n\tactual: %s\n",
                  descr,
                  expected,
                  expr);
