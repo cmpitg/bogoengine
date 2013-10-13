@@ -112,3 +112,22 @@ Ví dụ:
 * "mecf" thành "mèc" hay "mecf"?
 * "mecfwee" thành "mecfê" hay "mecfwee"?
 
+### Types and constant notes
+
+```c
+/* Maximum number of tests */
+#define _MAX_NTEST 500
+
+/* Maximum number of chars in a string */
+#define _MAX_STRLEN 3000
+
+typedef int        testcase_t (void);
+
+#define BG_MAX_BUFFER 65536
+#define strlen_ strlen
+
+typedef uint8_t   bgchar;
+typedef uint8_t   bgstr[BG_MAX_BUFFER];
+typedef int32_t   bglen_t;
+typedef char      bgbool;
+```

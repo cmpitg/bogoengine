@@ -68,7 +68,7 @@ int testCharAccess (void) {
         assertStr (res[i], buff);
         // fprintf (stdout, "-> Char at %i: %s\n", i, buff);
     }
-    
+
     return finishTestCase ();
 }
 
