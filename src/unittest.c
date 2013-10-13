@@ -133,7 +133,7 @@ void assertStr (const char *expected, const char *expr) {
 
     _currentRes_ = (strcmp (expected, expr) == 0) ? 1 : 0;
     if (_currentRes_ == 0) {
-        fprintf (stderr, "[failed] assertInt\n\texpected: %s\n\tactual: %s\n",
+        fprintf (stderr, "[failed] assertStr\n\texpected: %s\n\tactual: %s\n",
                  expected, expr);
     }
 }
