@@ -173,3 +173,26 @@ void assertStrI (const char *expected, const char *expr) {
                  expected, expr);
     }
 }
+
+void assertStrIDescription (const char *expected,
+                            const char *expr,
+                            const char *descr) {
+    /* Skip if there is a failed test already */
+    if (_currentRes_ == 0) {
+        return;
+    }
+
+    char lowerExpected[_MAX_STRLEN];
+    char lowerexpr[_MAX_STRLEN];
+
+    toStrLower (expected, lowerExpected);
+    toStrLower (expr, lowerexpr);
+
+    _currentRes_ = (strcmp (lowerExpected, lowerexpr) == 0) ? 1 : 0;
+    if (_currentRes_ == 0) {
+        fprintf (stderr, "[failed] assertInt\n\texpected: %s\n\tactual: %s\n",
+                 descr,
+                 expected,
+                 expr);
+    }
+}
