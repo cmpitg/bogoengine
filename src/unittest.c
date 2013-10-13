@@ -169,7 +169,7 @@ void assertStrI (const char *expected, const char *expr) {
 
     _currentRes_ = (strcmp (lowerExpected, lowerexpr) == 0) ? 1 : 0;
     if (_currentRes_ == 0) {
-        fprintf (stderr, "[failed] assertInt\n\texpected: %s\n\tactual: %s\n",
+        fprintf (stderr, "[failed] assertStrI\n\texpected: %s\n\tactual: %s\n",
                  expected, expr);
     }
 }
