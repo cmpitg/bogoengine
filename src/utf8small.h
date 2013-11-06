@@ -43,6 +43,7 @@ void bgAppend        (bgstr str, bgstr target, bgstr str2);
 void bgPrepend       (bgstr str, bgstr target, bgstr str2);
 void bgSubStr        (bgstr str, bgstr target, bglen_t from, bglen_t count);
 int bgStrCmp         (bgstr str1, bgstr str2);
+int bgStrCmpI        (bgstr str1, bgstr str2);
 bgbool bgStartsWith  (bgstr str, bgstr pattern);
 bgbool bgEndsWith    (bgstr str, bgstr pattern);
 
