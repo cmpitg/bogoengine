@@ -26,16 +26,16 @@
 #include "utf8small.h"
 #include "unittest.h"
 
-bgstr s, buff;
+bgstr   mainString, buff;
 bglen_t i;
 void *tmp;
 
 int testLengthFunctions (void) {
     initTestCase ("bgCharLen | bgStrLen >> input: utf8_input.txt");
 
-    assertInt (22, strlen (s));
-    assertInt (1, bgCharLen (s));
-    assertInt (17, bgStrLen (s));
+    assertInt (22, strlen (mainString));
+    assertInt (1, bgCharLen (mainString));
+    assertInt (17, bgStrLen (mainString));
 
     return finishTestCase ();
 }
@@ -63,8 +63,8 @@ int testCharAccess (void) {
     strcpy (res[15], "ớ");
     strcpy (res[16], "i");
 
-    for (i = 0; i < bgStrLen (s); i++) {
-        bgGetCharAt (s, buff, i);
+    for (i = 0; i < bgStrLen (mainString); i++) {
+        bgGetCharAt (mainString, buff, i);
         assertStr (res[i], buff);
         // fprintf (stdout, "-> Char at %i: %s\n", i, buff);
     }
@@ -74,12 +74,13 @@ int testCharAccess (void) {
 
 void readInput (void) {
     /* This is supposed to read from `test_utf8_input.txt` */
-    tmp = fgets (s, BG_MAX_BUFFER, stdin);
-    s[strlen (s) - 1] = 0;
+    tmp = fgets (mainString, BG_MAX_BUFFER, stdin);
+    mainString[strlen (mainString) - 1] = 0;
 }
 
 int main (int argc, char *argv[]) {
     readInput ();
+    printf ("\n");
 
     addTest (testLengthFunctions);
     addTest (testCharAccess);
