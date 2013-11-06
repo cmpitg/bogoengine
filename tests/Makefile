@@ -6,19 +6,27 @@ UNITTEST_SRC = \
 	../src/unittest.c \
 	../src/unittest.h
 
-INCLUDE = ../src/
+SRC_FILES = $(UTF8_SRC) $(UNITTEST_SRC)
 
-TEST_UTF8_INPUT = test_utf8_input.txt
-TEST_UTF8_SRC = test_utf8.c
+INCLUDE          = ../src/
+TEST_DATA_DIR    = ../test_data
+BUILD_TEST_DIR   = ../build
+
+TEST_UTF8_INPUT  = $(TEST_DATA_DIR)/utf8_input.txt
+TEST_UTF8_SR8    = test_utf8.c
+TEST_UTF8_EXEC   = $(BUILD_TEST_DIR)/test_utf8
 
 test: test_utf
 
-test_utf: $(TEST_UTF8SRC)
-	$(CC) -o test_utf8 $(TEST_UTF8_SRC) $(UTF8_SRC) $(UNITTEST_SRC) -I$(INCLUDE)
-	./test_utf8 < $(TEST_UTF8_INPUT)
-	make clean
+test_utf: $(TEST_UTF8_SRC)
+	@mkdir -p $(BUILD_TEST_DIR)
+	@$(CC) -o $(TEST_UTF8_EXEC) \
+		-I$(INCLUDE) \
+		$(TEST_UTF8_SRC) \
+		$(SRC_FILES)
+	@$(TEST_UTF8_EXEC) < $(TEST_UTF8_INPUT)
 
 clean:
 	rm -rf \
-		test_utf8 \
+		$(BUILD_TEST_DIR) \
 		*.o *.i *.gch *.a
