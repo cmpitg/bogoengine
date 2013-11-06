@@ -13,7 +13,7 @@ TEST_DATA_DIR    = ../test_data
 BUILD_TEST_DIR   = ../build
 
 TEST_UTF8_INPUT  = $(TEST_DATA_DIR)/utf8_input.txt
-TEST_UTF8_SR8    = test_utf8.c
+TEST_UTF8_SRC    = test_utf8.c
 TEST_UTF8_EXEC   = $(BUILD_TEST_DIR)/test_utf8
 
 test: test_utf
