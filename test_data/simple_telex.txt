@@ -1,89 +1,89 @@
-v, v
-aw, ă
-w, w
-ow, ơ
-oo, ô
-Oo, Ô
-dd, đ
-muaf, mùa
-Doongd, Đông
-gif, gì
-loAnj, loẠn
-muongw, mương
-qur, qur
-Loorngr, Lôngr
-LOorngr, LÔngr
-DDoongd, Dôngd
-DDd, Dd
-DDuowngd, Dươngd
-Duowngw, Duongw
-Tosan, Toán
-tusnw, tứn
-dee, dê
-mowis, mới
-uwa, ưa
-uwo, ưo
-ddx, đx
-hoacw, hoăc
-cuooi, cuôi
+v         v
+aw        ă
+w         w
+ow        ơ
+oo        ô
+Oo        Ô
+dd        đ
+muaf      mùa
+Doongd    Đông
+gif       gì
+loAnj     loẠn
+muongw    mương
+qur       qur
+Loorngr   Lôngr
+LOorngr   LÔngr
+DDoongd   Dôngd
+DDd       Dd
+DDuowngd  Dươngd
+Duowngw   Duongw
+Tosan     Toán
+tusnw     tứn
+dee       dê
+mowis     mới
+uwa       ưa
+uwo       ưo
+ddx       đx
+hoacw     hoăc
+cuooi     cuôi
 
-tooi, tôi
-chuyeenr, chuyển
-ddoonjg, động
-nheechs, nhếch
+tooi      tôi
+chuyeenr  chuyển
+ddoonjg   động
+nheechs   nhếch
 
-# uơ related
-quowr, quở
-huow, huơ
-thuowr, thuở
-QUOWR, QUỞ
-HUOW, HUƠ
-THUOWR, THUỞ
+#         uơ related
+quowr     quở
+huow      huơ
+thuowr    thuở
+QUOWR     QUỞ
+HUOW      HUƠ
+THUOWR    THUỞ
 
-# English words
-case, cáe
-reset, rết
+#         English words
+case      cáe
+reset     rết
 
-nayf., này.
+nayf.     này.
 
-nguowif, người
-nguwowif, người
+nguowif   người
+nguwowif  người
 
-thuowr., thuở.
+thuowr.   thuở.
 
-[[, [
+[[        [
 
-ddiemer, điểm
-tuoufw, tườu
-huoswc, hước
-khoefo, khoèo
-uorw, uở
+ddiemer   điểm
+tuoufw    tườu
+huoswc    hước
+khoefo    khoèo
+uorw      uở
 
-toios, tối
-toois, tối
-toosi, tối
+toios     tối
+toois     tối
+toosi     tối
 
-tuyenre, tuyển
-tuyener, tuyển
-tuyeren, tuyển
-tuyerne, tuyển
-tuyeern, tuyển
-tuyeenr, tuyển
+tuyenre   tuyển
+tuyener   tuyển
+tuyeren   tuyển
+tuyerne   tuyển
+tuyeern   tuyển
+tuyeenr   tuyển
 
-tuwrowng, tưởng
+tuwrowng  tưởng
 
-# Undo
-aaa, aa
-aww, aw
-ass, as
-aff, af
-arr, ar
-axx, ax
-ajj, aj
-uww, uw
-oww, ow
+#         Undo
+aaa       aa
+aww       aw
+ass       as
+aff       af
+arr       ar
+axx       ax
+ajj       aj
+uww       uw
+oww       ow
 
-huww, huw
-hww, hw
-ww, w
-uww, uw
+huww      huw
+hww       hw
+ww        w
+uww       uw
