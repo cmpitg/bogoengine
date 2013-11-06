@@ -25,7 +25,7 @@
 #include <inttypes.h>
 #include <string.h>
 
-#define BG_MAX_BUFFER 65536
+#define BG_MAX_BUFFER 4096
 #define strlen_ strlen
 
 typedef uint8_t   bgchar;
