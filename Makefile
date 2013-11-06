@@ -5,19 +5,32 @@ CFLAGS = -O2 -std=c99 -pipe
 
 .PHONY: clean clean-src clean-test
 
-test:
-	cd tests; make test
+#
+# Cleaning
+#
 
 clean: clean-test clean-src
 
 clean-src:
-	cd src; make clean
+	@cd src; make clean
 
 clean-test:
-	cd tests; make clean
+	@cd tests; make clean
+
+#
+# Testing
+#
+
+test:
+	@cd tests; make test
+
+
+#
+# Trying out
+#
 
 tryout:
-	cd src; make tryout
+	@cd src; make tryout
 
 tryout_unittest:
-	cd src; make tryout_unittest
+	@cd src; make tryout_unittest
