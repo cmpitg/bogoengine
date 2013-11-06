@@ -72,9 +72,13 @@ int testCharAccess (void) {
     return finishTestCase ();
 }
 
+int testCharSet (void) {
+    
+}
+
 void readInput (void) {
     /* This is supposed to read from `test_utf8_input.txt` */
-    tmp = fgets (mainString, BG_MAX_BUFFER, stdin);
+    fgets (mainString, BG_MAX_BUFFER, stdin);
     mainString[strlen (mainString) - 1] = 0;
 }
 
