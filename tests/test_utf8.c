@@ -31,7 +31,7 @@ bglen_t i;
 void *tmp;
 
 int testLengthFunctions (void) {
-    initTestCase ("Test length functions, input is `test_utf8_input.txt`");
+    initTestCase ("bgCharLen | bgStrLen >> input: utf8_input.txt");
 
     assertInt (22, strlen (s));
     assertInt (1, bgCharLen (s));
@@ -41,7 +41,7 @@ int testLengthFunctions (void) {
 }
 
 int testCharAccess (void) {
-    initTestCase ("Test char access, input is `test_utf8_input.txt`");
+    initTestCase ("bgGetCharAt >> input: utf8_input.txt");
 
     char res[20][10];
 
