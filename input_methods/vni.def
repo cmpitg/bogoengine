@@ -1,0 +1,46 @@
+# Dau mu
+a 6 a^
+o 6 o^
+e 6 e^
+o 7 o+
+u 7 u+
+uo 7 u+o+
+a 8 a(
+d 9 -
+
+# Dau thanh
+## Huyen
+a 2 a`
+o 2 o`
+u 2 u`
+e 2 e`
+
+## Sac
+a 1 a'
+o 1 o'
+u 1 u'
+e 1 e'
+
+## Hoi
+a 3 a?
+o 3 o?
+u 3 u?
+e 3 e?
+
+## Nga
+a 4 a~
+o 4 o~
+u 4 u~
+e 4 e~
+
+## Nang
+a 5 a.
+o 5 o.
+u 5 u.
+e 5 e.
+
+## Xoa thanh
+a 0 a_
+o 0 o_
+u 0 u_
+e 0 e_
