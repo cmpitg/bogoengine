@@ -104,10 +104,28 @@ bglen_t bgstrCountBytes (const bgstr str) {
     return strlen_ (str);
 }
 
-void bgstrInsertCharAt  (bgstr str,
+void bgstrInsertCharAt  (bgstr source,
                          bgstr target,
                          bgstr ch,
                          bglen_t position) {
+    bglen_t length = bgstrLen (source);
+    bgstr substr1, substr2;
+
+    /* Guarding */
+    if (position < 0 || length < position) {
+        bgstrDup (source, target);
+        return;
+    }
+
+    bgstrSubStr (source, substr1, 0, position);
+    bgstrSubStr (source, substr2, position, -1);
+
+    bgstrAssign (target, "");
+    strcat (target, substr1);
+    strcat (target, ch);
+    strcat (target, substr2);
+
+    /* fprintf (stderr, "|%s|%s|%s|\n|%s|\n\n", substr1, ch, substr2, target); */
 }
 
 void bgstrAssign (bgstr target,
