@@ -29,17 +29,17 @@
 bgstr   mainString, buff;
 bglen_t i;
 
-int testPositionToNthByte (void) {
-    initTestCase ("bgPositionToNthByte");
+int testNthBgcharToNthByte (void) {
+    initTestCase ("bgNthBgcharToNthByte");
 
     const char ch3[6] = "ư";      /* 2 */
     const char ch4[6] = "ờ";      /* 3 */
     const char str[24] = "ường";  /* 7 */
 
-    assertInt (0, bgPositionToNthByte (str, 0));
-    assertInt (2, bgPositionToNthByte (str, 1));
-    assertInt (5, bgPositionToNthByte (str, 2));
-    assertInt (6, bgPositionToNthByte (str, 2));
+    assertInt (0, bgNthBgcharToNthByte (str, 0));
+    assertInt (2, bgNthBgcharToNthByte (str, 1));
+    assertInt (5, bgNthBgcharToNthByte (str, 2));
+    assertInt (6, bgNthBgcharToNthByte (str, 2));
 
     /* 0123456 */
     /* ||---ab */
@@ -189,7 +189,7 @@ int main (int argc, char *argv[]) {
     printf ("\n");
 
     addTest (testCountBytes);
-    addTest (testPositionToNthByte);
+    addTest (testNthBgcharToNthByte);
 
     addTest (testLengthFunctions);
     addTest (testCharAccess);

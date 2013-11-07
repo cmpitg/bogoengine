@@ -55,6 +55,9 @@ bglen_t bgcharLen  (const bgchar ch);
 bglen_t bgstrLen   (const bgstr str);
 void bgstrGetCharAt  (const bgstr str, bgstr target, bglen_t position);
 
+/* Convert n-th UTF8 char to its corresponding n-th byte */
+bglen_t bgNthBgcharToNthByte (const bgstr str, bglen_t position);
+
 void bgstrDup        (const bgstr source, bgstr target);
 void strToBgstr      (const char *source, bgstr target);
 void bgstrToStr      (const bgstr source, char *target);
