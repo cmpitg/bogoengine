@@ -60,12 +60,23 @@ void printStrNewline (const char *str) {
     fprintf (stdout, "\n");
 }
 
-void printBgStrNewline (const bgstr str) {
+void printBgstrNewline (const bgstr str) {
     printStrNewline (str);
 }
 
 /* ----------------------------------------------------------------------- */
 /* Main */
+
+bglen_t bgcharCountBytes (const bgchar ch) {
+    bgchar tmpChar;
+
+    bgstrGetCharAt (ch, tmpChar, 0);
+    return bgstrCountBytes (tmpChar);
+}
+
+bglen_t bgstrCountBytes (const bgstr str) {
+    return strlen_ (str);
+}
 
 void bgstrInsertCharAt  (bgstr str,
                          bgstr target,
@@ -100,7 +111,7 @@ void bgstrToStr (const bgstr source,
     bgstrDup (source, target);
 }
 
-bglen_t bgcharLen (bgchar ch) {
+bglen_t bgcharLen (const bgchar ch) {
     bglen_t mask = 0xfc;
     bglen_t maskShift = 4;
 
