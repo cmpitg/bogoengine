@@ -28,7 +28,6 @@
 
 bgstr   mainString, buff;
 bglen_t i;
-void *tmp;
 
 int testLengthFunctions (void) {
     initTestCase ("bgCharLen | bgStrLen >> input: utf8_input.txt");
