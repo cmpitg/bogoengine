@@ -125,7 +125,7 @@ int testStringConversion (void) {
     const char *aStr = "Xin chào thế giới!";
     char        sameStr[1024];
     bgstr       res;
-    
+
     strToBgstr (aStr, res);
     bgstrToStr (res, sameStr);
 
@@ -207,6 +207,24 @@ int testInsertChar (void) {
     return finishTestCase ();
 }
 
+int testAppendPrependString (void) {
+    initTestCase ("bgstrAppendStr | bgstrPrependStr");
+
+    bgstr source;
+    bgstr result;
+
+    strToBgstr ("", source);
+
+    bgstrAppendStr (source, result, "chào");
+    assertStr ("chào", result);
+
+    bgstrPrependStr (source, result, "Xin ");
+    assertStr ("Xin chào", result);
+
+    bgstrAppendStr (source, result, " thế giới!");
+    assertStr ("Xin chào thế giới!", result);
+}
+
 void readInput (void) {
     /* This is supposed to read from `test_utf8_input.txt` */
     fgets (mainString, BG_MAX_BUFFER, stdin);
@@ -226,6 +244,7 @@ int main (int argc, char *argv[]) {
     addTest (testStringDuplication);
     addTest (testStringCopy);
     addTest (testInsertChar);
+    addTest (testAppendPrependString);
 
     runAllTests ();
 
