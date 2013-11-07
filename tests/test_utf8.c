@@ -109,6 +109,13 @@ int testCharAccess (void) {
         // fprintf (stdout, "-> Char at %i: %s\n", i, buff);
     }
 
+    const char str[24] = "ường";
+
+    assertInt (2, bgstrGetCharLenAt (str, 0));
+    assertInt (3, bgstrGetCharLenAt (str, 1));
+    assertInt (1, bgstrGetCharLenAt (str, 2));
+    assertInt (1, bgstrGetCharLenAt (str, 3));
+
     return finishTestCase ();
 }
 
