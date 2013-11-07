@@ -46,6 +46,16 @@ void printBits (bgstr str,
 /* ----------------------------------------------------------------------- */
 /* Main */
 
+void strToBgStr (const char *source,
+                 bgstr target) {
+    strncpy (target, source, strlen_ (source));
+}
+
+void bgStrToStr (const bgstr source,
+                 char *target) {
+    strncpy (target, source, strlen_ (source));    
+}
+
 bglen_t bgCharLen (bgstr ch) {
     bglen_t mask = 0xfc;
     bglen_t maskShift = 4;
