@@ -55,6 +55,7 @@ bglen_t bgstrCountBytes  (const bgstr str); /* Number of bytes of a UTF8
 
 bglen_t bgcharLen          (const bgchar ch);
 bglen_t bgstrLen           (const bgstr str);
+bglen_t bgcharCountBytesAt (const bgstr str, bglen_t position);
 bglen_t bgstrGetCharLenAt  (const bgstr str, bglen_t position);
 void bgstrGetCharAt        (const bgstr str, bgstr target, bglen_t position);
 
