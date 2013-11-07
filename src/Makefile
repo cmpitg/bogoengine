@@ -24,21 +24,21 @@ clean:
 tryout: $(TRYOUT_MAIN_SRC)
 	@mkdir -p $(BUILD_DIR)
 
-	$(CC) -o $(TRYOUT_MAIN_EXEC) \
+	@$(CC) -o $(TRYOUT_MAIN_EXEC) \
 		-I$(INCLUDE) \
 		$(UTF8_SRC) \
 		$(TRYOUT_MAIN_SRC)
-	$(TRYOUT_MAIN_EXEC) <../tests/test_utf8_input.txt
+	$(TRYOUT_MAIN_EXEC) < ../tests/utf8_input.txt
 
 tryout_unittest:
 	@mkdir -p $(BUILD_DIR)
 
-	$(CC) -o $(TRYOUT_UNITTEST_PASS_EXEC) \
+	@$(CC) -o $(TRYOUT_UNITTEST_PASS_EXEC) \
 		-I$(INCLUDE) \
 		$(TRYOUT_UNITTEST_PASS_SRC) \
 		$(UNITTEST_SRC)
 
-	$(CC) -o $(TRYOUT_UNITTEST_FAIL_EXEC) \
+	@$(CC) -o $(TRYOUT_UNITTEST_FAIL_EXEC) \
 		-I$(INCLUDE) \
 		$(TRYOUT_UNITTEST_FAIL_SRC) \
 		$(UNITTEST_SRC)
