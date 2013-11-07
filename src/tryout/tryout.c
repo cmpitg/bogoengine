@@ -35,7 +35,7 @@ int main (int argc, char *argv[]) {
     printStrBits (s);
 
     fprintf (stdout, "-> Str Length: %i; Expected: 22\n", (int)strlen (s));
-    fprintf (stdout, "-> Char Length: %i; Expected: 1\n", (int)bgCharLen (s));
+    fprintf (stdout, "-> Char Length: %i; Expected: 1\n", (int)bgcharLen (s));
     fprintf (stdout, "-> Unicode Str Length: %i; Expected 17\n", (int)bgstrLen (s));
 
     for (i = 0; i < bgstrLen (s); i++) {

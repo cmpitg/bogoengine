@@ -30,10 +30,10 @@ bgstr   mainString, buff;
 bglen_t i;
 
 int testLengthFunctions (void) {
-    initTestCase ("bgCharLen | bgstrLen >> input: utf8_input.txt");
+    initTestCase ("bgcharLen | bgstrLen >> input: utf8_input.txt");
 
     assertInt (22, strlen (mainString));
-    assertInt (1, bgCharLen (mainString));
+    assertInt (1, bgcharLen (mainString));
     assertInt (17, bgstrLen (mainString));
 
     return finishTestCase ();

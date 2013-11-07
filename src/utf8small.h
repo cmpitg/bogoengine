@@ -28,8 +28,9 @@
 #define BG_MAX_BUFFER 4096
 #define strlen_ strlen
 
-typedef uint8_t   bgchar;
+typedef uint8_t   bgbyte;
 typedef uint8_t   bgstr[BG_MAX_BUFFER];
+typedef bgstr     bgchar;
 typedef int32_t   bglen_t;
 typedef char      bgbool;
 
@@ -47,7 +48,7 @@ void printBgStr      (const bgstr str); /* Alias of printStr, human-readable
 void printStrNewline    (const char *str);
 void printBgStrNewLine  (const bgstr str);
 
-bglen_t bgCharLen  (bgstr ch);
+bglen_t bgcharLen  (bgstr ch);
 bglen_t bgstrLen   (bgstr str);
 void bgGetCharAt   (bgstr str, bgstr target, bglen_t position);
 

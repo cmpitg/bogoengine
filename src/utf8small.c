@@ -82,11 +82,11 @@ void bgstrToStr (const bgstr source,
     bgstrDup (source, target);
 }
 
-bglen_t bgCharLen (bgstr ch) {
+bglen_t bgcharLen (bgstr ch) {
     bglen_t mask = 0xfc;
     bglen_t maskShift = 4;
 
-    bgchar  c = ch[0];
+    bgbyte  c = ch[0];
     bglen_t res;
 
     for (res = 6; res > 1; res--) {
@@ -107,7 +107,7 @@ bglen_t bgstrLen (bgstr str) {
 
     while (pos < byteNum) {
         res++;
-        pos += bgCharLen (str + pos);
+        pos += bgcharLen (str + pos);
     }
 
     return res;
@@ -126,11 +126,11 @@ void bgGetCharAt (bgstr str,
     bglen_t currentBytePos    = 0;
 
     while (currentUnicodePos < pos) {
-        currentBytePos += bgCharLen (str + currentBytePos);
+        currentBytePos += bgcharLen (str + currentBytePos);
         currentUnicodePos++;
     }
 
-    bglen_t charLength = bgCharLen (str + currentBytePos);
+    bglen_t charLength = bgcharLen (str + currentBytePos);
 
     memcpy (target, str + currentBytePos, charLength);
     target[charLength] = 0;
