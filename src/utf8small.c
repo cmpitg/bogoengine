@@ -51,7 +51,7 @@ void printStr (const char *str) {
     fprintf (stdout, "%s", str);
 }
 
-void printBgStr (const bgstr str) {
+void printBgstr (const bgstr str) {
     printStr (str);
 }
 
@@ -118,7 +118,7 @@ bglen_t bgcharLen (bgchar ch) {
     return res;
 }
 
-bglen_t bgstrLen (bgstr str) {
+bglen_t bgstrLen (const bgstr str) {
     bglen_t res = 0;
     bglen_t pos = 0;
     bglen_t byteNum = strlen (str);
@@ -131,9 +131,9 @@ bglen_t bgstrLen (bgstr str) {
     return res;
 }
 
-void bgGetCharAt (bgstr str,
-                  bgstr target,
-                  bglen_t pos) {
+void bgstrGetCharAt (const bgstr str,
+                     bgstr target,
+                     bglen_t pos) {
     /* Out-of-range guard */
     if (pos < 0 || bgstrLen (str) <= pos) {
         target[0] = 0;

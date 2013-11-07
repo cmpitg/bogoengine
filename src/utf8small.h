@@ -40,20 +40,20 @@ void printBits (const char *str, bglen_t byteNum);
 void printStrBits    (const char *str); /* No bgstr version, printing bits
                                            mean we don't care about multibyte */
 void printStr        (const char *str);
-void printBgStr      (const bgstr str); /* Alias of printStr, human-readable
+void printBgstr      (const bgstr str); /* Alias of printStr, human-readable
                                            forms should be exactly the same in
                                            all cases */
 
 /* Ha ha. Actually no kidding at all. Small but useful when debugging */
 void printStrNewline    (const char *str);
-void printBgStrNewLine  (const bgstr str);
+void printBgstrNewLine  (const bgstr str);
 
-bglen_t bgcharCountBytes (bgchar ch); /* Number of bytes of a UTF8 char */
-bglen_t bgstrCountBytes  (bgstr str); /* Number of bytes of a UTF8 string */
+bglen_t bgcharCountBytes (const bgchar ch); /* Number of bytes of a UTF8 char */
+bglen_t bgstrCountBytes  (const bgstr str); /* Number of bytes of a UTF8 string */
 
-bglen_t bgcharLen  (bgchar ch);
-bglen_t bgstrLen   (bgstr str);
-void bgGetCharAt   (bgstr str, bgstr target, bglen_t position);
+bglen_t bgcharLen  (const bgchar ch);
+bglen_t bgstrLen   (const bgstr str);
+void bgstrGetCharAt  (const bgstr str, bgstr target, bglen_t position);
 
 void bgstrDup        (const bgstr source, bgstr target);
 void strToBgstr      (const char *source, bgstr target);

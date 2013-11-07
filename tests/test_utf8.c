@@ -59,7 +59,7 @@ int testLengthFunctions (void) {
 }
 
 int testCharAccess (void) {
-    initTestCase ("bgGetCharAt >> input: utf8_input.txt");
+    initTestCase ("bgstrGetCharAt >> input: utf8_input.txt");
 
     char res[20][10];
 
@@ -82,7 +82,7 @@ int testCharAccess (void) {
     strcpy (res[16], "i");
 
     for (i = 0; i < bgstrLen (mainString); i++) {
-        bgGetCharAt (mainString, buff, i);
+        bgstrGetCharAt (mainString, buff, i);
         assertStr (res[i], buff);
         // fprintf (stdout, "-> Char at %i: %s\n", i, buff);
     }
