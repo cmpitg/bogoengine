@@ -1,7 +1,7 @@
 #CFLAGS=-O2 -Wall -std=c99 -save-temps -Wshadow -fmudflap
 
 CC = gcc
-CFLAGS = -O2 -std=c99 -pipe
+CFLAGS = -O2 -pipe
 
 .PHONY: clean clean-src clean-test
 
