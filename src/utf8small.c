@@ -47,6 +47,23 @@ void printStrBits (const char *str) {
     printBits(str, strlen_ (str));
 }
 
+void printStr (const char *str) {
+    fprintf (stdout, "%s", str);
+}
+
+void printBgStr (const bgstr str) {
+    printStr (str);
+}
+
+void printStrNewline (const char *str) {
+    printStr (str);
+    fprintf (stdout, "\n");
+}
+
+void printBgStrNewline (const bgstr str) {
+    printStrNewline (str);
+}
+
 /* ----------------------------------------------------------------------- */
 /* Main */
 

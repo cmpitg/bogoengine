@@ -43,6 +43,10 @@ void printBgStr      (const bgstr str); /* Alias of printStr, human-readable
                                            forms should be exactly the same in
                                            all cases */
 
+/* Ha ha. Actually no kidding at all. Small but useful when debugging */
+void printStrNewline    (const char *str);
+void printBgStrNewLine  (const bgstr str);
+
 bglen_t bgCharLen  (bgstr ch);
 bglen_t bgStrLen   (bgstr str);
 void bgGetCharAt   (bgstr str, bgstr target, bglen_t position);
