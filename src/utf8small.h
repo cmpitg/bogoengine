@@ -58,11 +58,11 @@ void bgstrToStr      (const bgstr source, char *target);
 void bgstrCopy       (bgstr source, bgstr target);
 void bgstrAssign     (bgstr target, bgstr source);
 
-void bgInsertCharAt  (bgstr str, bgstr target, bgstr ch, bglen_t position);
-void bgRemoveCharAt  (bgstr str, bgstr target, bglen_t position);
-void bgAppend        (bgstr str, bgstr target, bgstr str2);
-void bgPrepend       (bgstr str, bgstr target, bgstr str2);
-void bgSubStr        (bgstr str, bgstr target, bglen_t from, bglen_t count);
+void bgstrInsertCharAt  (bgstr str, bgstr target, bgstr ch, bglen_t position);
+void bgstrRemoveCharAt  (bgstr str, bgstr target, bglen_t position);
+void bgstrAppend        (bgstr str, bgstr target, bgstr str2);
+void bgstrPrepend       (bgstr str, bgstr target, bgstr str2);
+void bgSubStr           (bgstr str, bgstr target, bglen_t from, bglen_t count);
 
 void bgstrToLower    (bgstr source, bgstr target);
 void bgstrToUpper    (bgstr source, bgstr target);
