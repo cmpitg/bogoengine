@@ -122,6 +122,13 @@ bglen_t bgstrGetCharLenAt (const bgstr str,
     return bgcharLen (ch);
 }
 
+void bgstrSubStr (bgstr source,
+                  bgstr target,
+                  bglen_t from,
+                  bglen_t count) {
+    bgstrCopy (source, target, from, count);
+}
+
 void bgstrCopy (bgstr source,
                 bgstr target,
                 bglen_t from,
