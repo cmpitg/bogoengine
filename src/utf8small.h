@@ -78,6 +78,11 @@ void bgstrRemoveCharAt  (bgstr source, bgstr target, bglen_t position);
 void bgstrAppend        (bgstr source, bgstr target, bgstr str2);
 void bgstrPrepend       (bgstr source, bgstr target, bgstr str2);
 
+void bgstrInsertStrAt  (bgstr source,
+                        bgstr target,
+                        bgstr str,
+                        bglen_t position);
+
 void bgstrFirstChar     (bgstr source, bgstr target);
 void bgstrLastChar      (bgstr source, bgstr target);
 
