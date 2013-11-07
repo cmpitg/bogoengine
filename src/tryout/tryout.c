@@ -36,9 +36,9 @@ int main (int argc, char *argv[]) {
 
     fprintf (stdout, "-> Str Length: %i; Expected: 22\n", (int)strlen (s));
     fprintf (stdout, "-> Char Length: %i; Expected: 1\n", (int)bgCharLen (s));
-    fprintf (stdout, "-> Unicode Str Length: %i; Expected 17\n", (int)bgStrLen (s));
+    fprintf (stdout, "-> Unicode Str Length: %i; Expected 17\n", (int)bgstrLen (s));
 
-    for (i = 0; i < bgStrLen (s); i++) {
+    for (i = 0; i < bgstrLen (s); i++) {
         bgGetCharAt (s, buff, i);
         fprintf (stdout, "-> Char at %i: %s\n", i, buff);
     }

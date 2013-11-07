@@ -48,14 +48,14 @@ void printStrNewline    (const char *str);
 void printBgStrNewLine  (const bgstr str);
 
 bglen_t bgCharLen  (bgstr ch);
-bglen_t bgStrLen   (bgstr str);
+bglen_t bgstrLen   (bgstr str);
 void bgGetCharAt   (bgstr str, bgstr target, bglen_t position);
 
-void bgStrDup        (const bgstr source, bgstr target);
+void bgstrDup        (const bgstr source, bgstr target);
 void strToBgStr      (const char *source, bgstr target);
-void bgStrToStr      (const bgstr source, char *target);
-void bgStrCopy       (bgstr source, bgstr target);
-void bgStrAssign     (bgstr target, bgstr source);
+void bgstrToStr      (const bgstr source, char *target);
+void bgstrCopy       (bgstr source, bgstr target);
+void bgstrAssign     (bgstr target, bgstr source);
 
 void bgInsertCharAt  (bgstr str, bgstr target, bgstr ch, bglen_t position);
 void bgRemoveCharAt  (bgstr str, bgstr target, bglen_t position);
@@ -63,11 +63,11 @@ void bgAppend        (bgstr str, bgstr target, bgstr str2);
 void bgPrepend       (bgstr str, bgstr target, bgstr str2);
 void bgSubStr        (bgstr str, bgstr target, bglen_t from, bglen_t count);
 
-void bgStrToLower    (bgstr source, bgstr target);
-void bgStrToUpper    (bgstr source, bgstr target);
+void bgstrToLower    (bgstr source, bgstr target);
+void bgstrToUpper    (bgstr source, bgstr target);
 
-int bgStrCmp         (bgstr str1, bgstr str2);
-int bgStrCmpI        (bgstr str1, bgstr str2);
+int bgstrCmp         (bgstr str1, bgstr str2);
+int bgstrCmpI        (bgstr str1, bgstr str2);
 
 bgbool bgStartsWith  (bgstr str, bgstr pattern);
 bgbool bgEndsWith    (bgstr str, bgstr pattern);

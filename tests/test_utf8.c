@@ -30,11 +30,11 @@ bgstr   mainString, buff;
 bglen_t i;
 
 int testLengthFunctions (void) {
-    initTestCase ("bgCharLen | bgStrLen >> input: utf8_input.txt");
+    initTestCase ("bgCharLen | bgstrLen >> input: utf8_input.txt");
 
     assertInt (22, strlen (mainString));
     assertInt (1, bgCharLen (mainString));
-    assertInt (17, bgStrLen (mainString));
+    assertInt (17, bgstrLen (mainString));
 
     return finishTestCase ();
 }
@@ -62,7 +62,7 @@ int testCharAccess (void) {
     strcpy (res[15], "ớ");
     strcpy (res[16], "i");
 
-    for (i = 0; i < bgStrLen (mainString); i++) {
+    for (i = 0; i < bgstrLen (mainString); i++) {
         bgGetCharAt (mainString, buff, i);
         assertStr (res[i], buff);
         // fprintf (stdout, "-> Char at %i: %s\n", i, buff);
@@ -79,7 +79,7 @@ int testStringConversion (void) {
     bgstr       res;
     
     strToBgStr (aStr, res);
-    bgStrToStr (res, sameStr);
+    bgstrToStr (res, sameStr);
 
     assertStr (aStr, sameStr);
 
@@ -87,13 +87,13 @@ int testStringConversion (void) {
 }
 
 int testStringDuplication (void) {
-    initTestCase ("bgStrDup");
+    initTestCase ("bgstrDup");
 
     bgstr str1, str2;
     char pointerAddr1[20], pointerAddr2[20];
 
     strToBgStr ("Xin chào thế giới!", str1);
-    bgStrDup (str1, str2);
+    bgstrDup (str1, str2);
     sprintf (pointerAddr1, "%p", str1);
     sprintf (pointerAddr2, "%p", str2);
 

@@ -67,19 +67,19 @@ void printBgStrNewline (const bgstr str) {
 /* ----------------------------------------------------------------------- */
 /* Main */
 
-void bgStrDup (const bgstr source,
+void bgstrDup (const bgstr source,
                bgstr target) {
     strncpy (target, source, strlen_ (source));
 }
 
 void strToBgStr (const char *source,
                  bgstr target) {
-    bgStrDup (source, target);
+    bgstrDup (source, target);
 }
 
-void bgStrToStr (const bgstr source,
+void bgstrToStr (const bgstr source,
                  char *target) {
-    bgStrDup (source, target);
+    bgstrDup (source, target);
 }
 
 bglen_t bgCharLen (bgstr ch) {
@@ -100,7 +100,7 @@ bglen_t bgCharLen (bgstr ch) {
     return res;
 }
 
-bglen_t bgStrLen (bgstr str) {
+bglen_t bgstrLen (bgstr str) {
     bglen_t res = 0;
     bglen_t pos = 0;
     bglen_t byteNum = strlen (str);
@@ -117,7 +117,7 @@ void bgGetCharAt (bgstr str,
                   bgstr target,
                   bglen_t pos) {
     /* Out-of-range guard */
-    if (pos < 0 || bgStrLen (str) <= pos) {
+    if (pos < 0 || bgstrLen (str) <= pos) {
         target[0] = 0;
         return;
     }
