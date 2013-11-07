@@ -70,13 +70,16 @@ void bgstrAssign     (bgstr target, bgstr source);
 void bgstrCopy    (bgstr source, bgstr target, bglen_t from, bglen_t count);
 void bgstrSubStr  (bgstr source, bgstr target, bglen_t from, bglen_t count);
 
-void bgstrInsertCharAt  (bgstr str, bgstr target, bgstr ch, bglen_t position);
-void bgstrRemoveCharAt  (bgstr str, bgstr target, bglen_t position);
-void bgstrAppend        (bgstr str, bgstr target, bgstr str2);
-void bgstrPrepend       (bgstr str, bgstr target, bgstr str2);
+void bgstrInsertCharAt  (bgstr source,
+                         bgstr target,
+                         bgstr ch,
+                         bglen_t position);
+void bgstrRemoveCharAt  (bgstr source, bgstr target, bglen_t position);
+void bgstrAppend        (bgstr source, bgstr target, bgstr str2);
+void bgstrPrepend       (bgstr source, bgstr target, bgstr str2);
 
-void bgstrFirstChar     (bgstr str, bgstr output);
-void bgstrLastChar      (bgstr str, bgstr output);
+void bgstrFirstChar     (bgstr source, bgstr target);
+void bgstrLastChar      (bgstr source, bgstr target);
 
 void bgstrToLower    (bgstr source, bgstr target);
 void bgstrToUpper    (bgstr source, bgstr target);

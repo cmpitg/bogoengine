@@ -144,7 +144,7 @@ void bgstrCopy (bgstr source,
     }
 
     /* Guarding */
-    if (from < 0 || length <= from) {
+    if (from < 0 || length <= from || count == 0) {
         bgstrAssign (target, "");
         return;
     }
@@ -210,11 +210,11 @@ bglen_t bgstrLen (const bgstr str) {
     return res;
 }
 
-void bgstrGetCharAt (const bgstr str,
+void bgstrGetCharAt (const bgstr source,
                      bgstr target,
                      bglen_t pos) {
     /* Out-of-range guard */
-    if (pos < 0 || bgstrLen (str) <= pos) {
+    if (pos < 0 || bgstrLen (source) <= pos) {
         target[0] = 0;
         return;
     }
@@ -223,12 +223,12 @@ void bgstrGetCharAt (const bgstr str,
     bglen_t currentBytePos    = 0;
 
     while (currentUnicodePos < pos) {
-        currentBytePos += bgcharLen (str + currentBytePos);
+        currentBytePos += bgcharLen (source + currentBytePos);
         currentUnicodePos++;
     }
 
-    bglen_t charLength = bgcharLen (str + currentBytePos);
+    bglen_t charLength = bgcharLen (source + currentBytePos);
 
-    memcpy (target, str + currentBytePos, charLength);
+    memcpy (target, source + currentBytePos, charLength);
     target[charLength] = 0;
 }
