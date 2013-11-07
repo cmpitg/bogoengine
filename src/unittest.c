@@ -209,6 +209,24 @@ void assertStrDescription (const char *expected,
     }
 }
 
+void assertNotStrDescription (const char *expected,
+                              const char *expr,
+                              const char *descr) {
+    /* Skip if there is a failed test already */
+    if (_currentRes_ == 0) {
+        return;
+    }
+
+    _currentRes_ = (strcmp (expected, expr) != 0) ? 1 : 0;
+    if (_currentRes_ == 0) {
+        fprintf (stderr,
+                 "[failed] assertNotStr: %s\n\texpected: %s\n\tactual: %s\n",
+                 descr,
+                 expected,
+                 expr);
+    }
+}
+
 void assertStrI (const char *expected,
                  const char *expr) {
     /* Skip if there is a failed test already */
