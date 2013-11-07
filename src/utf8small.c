@@ -46,6 +46,11 @@ void printBits (bgstr str,
 /* ----------------------------------------------------------------------- */
 /* Main */
 
+void bgStrDup (const bgstr source,
+               bgstr target) {
+    strncpy (target, source, strlen_ (source));
+}
+
 void strToBgStr (const char *source,
                  bgstr target) {
     strncpy (target, source, strlen_ (source));
