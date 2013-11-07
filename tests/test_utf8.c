@@ -78,7 +78,7 @@ int testStringConversion (void) {
     char        sameStr[1024];
     bgstr       res;
     
-    strToBgStr (aStr, res);
+    strToBgstr (aStr, res);
     bgstrToStr (res, sameStr);
 
     assertStr (aStr, sameStr);
