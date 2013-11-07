@@ -151,7 +151,7 @@ int testStringCopy (void) {
     char pointerAddr3[20];
 
     strToBgstr ("Xin chào thế giới!", str1);
-    bgstrCopy (str1, str2);
+    bgstrCopy (str1, str2, 0, bgstrLen (str1));
     bgstrAssign (str3, str2);
     bgstrCopy (str1, str4, 0, 7);
     bgstrCopy (str1, str5, 6, 6);
