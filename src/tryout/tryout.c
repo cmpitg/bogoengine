@@ -30,9 +30,10 @@ int main (int argc, char *argv[]) {
 
     tmp = fgets (s, BG_MAX_BUFFER, stdin);
     s[strlen (s) - 1] = 0;
+
     fprintf (stdout, "-> Input string: %s\n", s);
-    /* printBits (s, strlen (s)); */
     printStrBits (s);
+
     fprintf (stdout, "-> Str Length: %i; Expected: 22\n", (int)strlen (s));
     fprintf (stdout, "-> Char Length: %i; Expected: 1\n", (int)bgCharLen (s));
     fprintf (stdout, "-> Unicode Str Length: %i; Expected 17\n", (int)bgStrLen (s));
