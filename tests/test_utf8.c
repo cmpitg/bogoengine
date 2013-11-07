@@ -119,6 +119,26 @@ int testStringCopy (void) {
     return finishTestCase ();
 }
 
+int testInsertChar (void) {
+    initTestCase ("bgstrInsertCharAt");
+
+    bgstr aString;
+    bgstr aChar;
+
+    strToBgstr ("Xin chào t", aString);
+
+    bgstrInsertCharAt (aString, aString, " ", 0);
+    assertStr (" Xin chào t", aString);
+
+    bgstrInsertCharAt (aString, aString, "h", 11);
+    assertStr (" Xin chào th", aString);
+
+    bgstrInsertCharAt (aString, aString, "ế", 12);
+    assertStr (" Xin chào thế", aString);
+
+    return finishTestCase ();
+}
+
 void readInput (void) {
     /* This is supposed to read from `test_utf8_input.txt` */
     fgets (mainString, BG_MAX_BUFFER, stdin);
@@ -134,6 +154,7 @@ int main (int argc, char *argv[]) {
     addTest (testStringConversion);
     addTest (testStringDuplication);
     addTest (testStringCopy);
+    addTest (testInsertChar);
 
     runAllTests ();
 
