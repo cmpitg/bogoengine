@@ -32,17 +32,11 @@ bglen_t i;
 int testCountBytes (void) {
     initTestCase ("bgcharCountBytes | bgstrCountBytes");
 
-    const char ch1[6] = "à";
-    const char ch2[6] = "ế";
-    const char ch3[6] = "ư";
-    const char ch4[6] = "ờ";
-    const char str[24] = "ường";
-
-    const int len1 = strlen_ (ch1);    /* 2 */
-    const int len2 = strlen_ (ch2);    /* 3 */
-    const int len3 = strlen_ (ch3);    /* 2 */
-    const int len4 = strlen_ (ch4);    /* 3 */
-    const int lenStr = strlen_ (str);  /* 7 */
+    const char ch1[6] = "à";      /* 2 */
+    const char ch2[6] = "ế";      /* 3 */
+    const char ch3[6] = "ư";      /* 2 */
+    const char ch4[6] = "ờ";      /* 3 */
+    const char str[24] = "ường";  /* 7 */
 
     assertInt (2, bgcharCountBytes (ch1));
     assertInt (3, bgcharCountBytes (ch2));
