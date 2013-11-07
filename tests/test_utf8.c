@@ -90,15 +90,31 @@ int testStringDuplication (void) {
     initTestCase ("bgstrDup");
 
     bgstr str1, str2;
-    char pointerAddr1[20], pointerAddr2[20];
+    char pointerAddr1[20];
+    char pointerAddr2[20];
 
     strToBgstr ("Xin chào thế giới!", str1);
     bgstrDup (str1, str2);
-    sprintf (pointerAddr1, "%p", str1);
-    sprintf (pointerAddr2, "%p", str2);
 
     assertStr (str1, str2);
-    assertNotStr (pointerAddr1, pointerAddr2);  /* Different pointers */
+
+    return finishTestCase ();
+}
+
+int testStringCopy (void) {
+    initTestCase ("bgstrCopy | bgstrAssign");
+
+    bgstr str1, str2, str3;
+    char pointerAddr1[20];
+    char pointerAddr2[20];
+    char pointerAddr3[20];
+
+    strToBgstr ("Xin chào thế giới!", str1);
+    bgstrCopy (str1, str2);
+    bgstrAssign (str3, str2);
+
+    assertStr (str1, str2);
+    assertStr (str1, str3);
 
     return finishTestCase ();
 }
@@ -117,6 +133,7 @@ int main (int argc, char *argv[]) {
     addTest (testCharAccess);
     addTest (testStringConversion);
     addTest (testStringDuplication);
+    addTest (testStringCopy);
 
     runAllTests ();
 
