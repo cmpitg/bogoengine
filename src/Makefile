@@ -1,6 +1,17 @@
 UTF8_SRC = utf8small.c utf8small.h
 UNITTEST_SRC = unittest.h unittest.c
 
+TRYOUT_MAIN_SRC           = tryout/tryout.c
+TRYOUT_UNITTEST_PASS_SRC  = tryout/tryout_unittest_pass.c
+TRYOUT_UNITTEST_FAIL_SRC  = tryout/tryout_unittest_fail.c
+
+SRC_FILES = $(UTF8_SRC) $(UNITTEST_SRC)
+BUILD_DIR = ../build
+
+TRYOUT_UNITTEST_PASS_EXEC  = $(BUILD_DIR)/tryout_unittest_pass
+TRYOUT_UNITTEST_FAIL_EXEC  = $(BUILD_DIR)/tryout_unittest_fail
+TRYOUT_MAIN_EXEC           = $(BUILD_DIR)/tryout_main
+
 INCLUDE = ./
 
 .PHONY: clean tryout
@@ -8,19 +19,29 @@ INCLUDE = ./
 clean:
 	rm -rf \
 		*.o *.i *.gch *.a \
-		tryout_unittest_pass \
-		tryout_unittest_fail \
-		tryout_exec
+		$(BUILD_DIR)
 
-tryout: tryout/tryout.c
-	$(CC) -o tryout_exec \
-		tryout/tryout.c $(UTF8_SRC) -I$(INCLUDE)
-	./tryout_exec <../tests/test_utf8_input.txt
+tryout: $(TRYOUT_MAIN_SRC)
+	@mkdir -p $(BUILD_DIR)
+
+	$(CC) -o $(TRYOUT_MAIN_EXEC) \
+		-I$(INCLUDE) \
+		$(UTF8_SRC) \
+		$(TRYOUT_MAIN_SRC)
+	$(TRYOUT_MAIN_EXEC) <../tests/test_utf8_input.txt
 
 tryout_unittest:
-	$(CC) -o tryout_unittest_pass \
-		tryout/tryout_unittest_pass.c $(UNITTEST_SRC) -I$(INCLUDE)
-	$(CC) -o tryout_unittest_fail \
-		tryout/tryout_unittest_fail.c $(UNITTEST_SRC) -I$(INCLUDE)
-	./tryout_unittest_pass
-	./tryout_unittest_fail
+	@mkdir -p $(BUILD_DIR)
+
+	$(CC) -o $(TRYOUT_UNITTEST_PASS_EXEC) \
+		-I$(INCLUDE) \
+		$(TRYOUT_UNITTEST_PASS_SRC) \
+		$(UNITTEST_SRC)
+
+	$(CC) -o $(TRYOUT_UNITTEST_FAIL_EXEC) \
+		-I$(INCLUDE) \
+		$(TRYOUT_UNITTEST_FAIL_SRC) \
+		$(UNITTEST_SRC)
+
+	$(TRYOUT_UNITTEST_PASS_EXEC)
+	$(TRYOUT_UNITTEST_FAIL_EXEC)
