@@ -67,6 +67,26 @@ void printBgstrNewline (const bgstr str) {
 /* ----------------------------------------------------------------------- */
 /* Main */
 
+bglen_t bgNthBgcharToNthByte (const bgstr str,
+                              bglen_t position) {
+    bglen_t i;
+    bglen_t nth;
+    bgchar tmpChar;
+
+    /* Guarding */
+    if (position < 0 || bgstrLen (str) <= position) {
+        return 0;
+    }
+
+    nth = 0;
+    for (i = 0; i < position; i++) {
+        bgstrGetCharAt (str, tmpChar, i);
+        nth += bgcharCountBytes (tmpChar);
+    }
+
+    return nth;
+}
+
 bglen_t bgcharCountBytes (const bgchar ch) {
     bgchar tmpChar;
 
