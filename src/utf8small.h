@@ -48,15 +48,18 @@ void printBgStr      (const bgstr str); /* Alias of printStr, human-readable
 void printStrNewline    (const char *str);
 void printBgStrNewLine  (const bgstr str);
 
-bglen_t bgcharLen  (bgstr ch);
+bglen_t bgcharCountBytes (bgchar ch); /* Number of bytes of a UTF8 char */
+bglen_t bgstrCountBytes  (bgstr str); /* Number of bytes of a UTF8 string */
+
+bglen_t bgcharLen  (bgchar ch);
 bglen_t bgstrLen   (bgstr str);
 void bgGetCharAt   (bgstr str, bgstr target, bglen_t position);
 
 void bgstrDup        (const bgstr source, bgstr target);
 void strToBgstr      (const char *source, bgstr target);
 void bgstrToStr      (const bgstr source, char *target);
-void bgstrCopy       (bgstr source, bgstr target);
 void bgstrAssign     (bgstr target, bgstr source);
+void bgstrCopy       (bgstr source, bgstr target, bglen_t from, bglen_t number);
 
 void bgstrInsertCharAt  (bgstr str, bgstr target, bgstr ch, bglen_t position);
 void bgstrRemoveCharAt  (bgstr str, bgstr target, bglen_t position);

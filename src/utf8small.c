@@ -67,14 +67,22 @@ void printBgStrNewline (const bgstr str) {
 /* ----------------------------------------------------------------------- */
 /* Main */
 
+void bgstrInsertCharAt  (bgstr str,
+                         bgstr target,
+                         bgstr ch,
+                         bglen_t position) {
+}
+
 void bgstrAssign (bgstr target,
                 bgstr source) {
     bgstrDup (source, target);
 }
 
 void bgstrCopy (bgstr source,
-                bgstr target) {
-    bgstrDup (source, target);
+                bgstr target,
+                bglen_t from,
+                bglen_t number
+                ) {
 }
 
 void bgstrDup (const bgstr source,
