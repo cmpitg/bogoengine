@@ -109,6 +109,13 @@ void bgstrAssign (bgstr target,
     bgstrDup (source, target);
 }
 
+bglen_t bgstrGetCharLenAt (const bgstr str,
+                           bglen_t position) {
+    bgchar ch;
+    bgstrGetCharAt (str, ch, position);
+    return bgcharLen (ch);
+}
+
 void bgstrCopy (bgstr source,
                 bgstr target,
                 bglen_t from,

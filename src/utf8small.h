@@ -48,12 +48,15 @@ void printBgstr      (const bgstr str); /* Alias of printStr, human-readable
 void printStrNewline    (const char *str);
 void printBgstrNewLine  (const bgstr str);
 
-bglen_t bgcharCountBytes (const bgchar ch); /* Number of bytes of a UTF8 char */
-bglen_t bgstrCountBytes  (const bgstr str); /* Number of bytes of a UTF8 string */
+bglen_t bgcharCountBytes (const bgchar ch); /* Number of bytes of a UTF8
+                                               char */
+bglen_t bgstrCountBytes  (const bgstr str); /* Number of bytes of a UTF8
+                                               string */
 
-bglen_t bgcharLen  (const bgchar ch);
-bglen_t bgstrLen   (const bgstr str);
-void bgstrGetCharAt  (const bgstr str, bgstr target, bglen_t position);
+bglen_t bgcharLen          (const bgchar ch);
+bglen_t bgstrLen           (const bgstr str);
+bglen_t bgstrGetCharLenAt  (const bgstr str, bglen_t position);
+void bgstrGetCharAt        (const bgstr str, bgstr target, bglen_t position);
 
 /* Convert n-th UTF8 char to its corresponding n-th byte */
 bglen_t bgNthBgcharToNthByte (const bgstr str, bglen_t position);
@@ -70,7 +73,6 @@ void bgstrInsertCharAt  (bgstr str, bgstr target, bgstr ch, bglen_t position);
 void bgstrRemoveCharAt  (bgstr str, bgstr target, bglen_t position);
 void bgstrAppend        (bgstr str, bgstr target, bgstr str2);
 void bgstrPrepend       (bgstr str, bgstr target, bgstr str2);
-
 
 void bgstrFirstChar     (bgstr str, bgstr output);
 void bgstrLastChar      (bgstr str, bgstr output);
