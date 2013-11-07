@@ -64,6 +64,9 @@ void bgstrAppend        (bgstr str, bgstr target, bgstr str2);
 void bgstrPrepend       (bgstr str, bgstr target, bgstr str2);
 void bgSubStr           (bgstr str, bgstr target, bglen_t from, bglen_t count);
 
+void bgstrFirstChar     (bgstr str, bgstr output);
+void bgstrLastChar      (bgstr str, bgstr output);
+
 void bgstrToLower    (bgstr source, bgstr target);
 void bgstrToUpper    (bgstr source, bgstr target);
 
