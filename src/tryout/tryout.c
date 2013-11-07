@@ -43,5 +43,8 @@ int main (int argc, char *argv[]) {
         fprintf (stdout, "-> Char at %i: %s\n", i, buff);
     }
 
+    fprintf (stdout, "-> Print string: ");
+    printStrNewline (s);
+
     return 0;
 }
