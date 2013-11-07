@@ -49,6 +49,7 @@ int testCountBytes (void) {
     assertInt (2, bgcharCountBytes (ch3));
     assertInt (3, bgcharCountBytes (ch4));
     assertInt (2, bgcharCountBytes (str));
+    assertInt (7, bgstrCountBytes (str));
 
     return finishTestCase ();
 }
