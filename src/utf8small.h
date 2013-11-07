@@ -68,7 +68,7 @@ void bgstrToStr      (const bgstr source, char *target);
 void bgstrAssign     (bgstr target, bgstr source);
 
 void bgstrCopy    (bgstr source, bgstr target, bglen_t from, bglen_t count);
-void bgstrSubStr  (bgstr str, bgstr target, bglen_t from, bglen_t count);
+void bgstrSubStr  (bgstr source, bgstr target, bglen_t from, bglen_t count);
 
 void bgstrInsertCharAt  (bgstr str, bgstr target, bgstr ch, bglen_t position);
 void bgstrRemoveCharAt  (bgstr str, bgstr target, bglen_t position);
