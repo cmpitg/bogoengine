@@ -72,7 +72,7 @@ void bgstrDup (const bgstr source,
     strncpy (target, source, strlen_ (source));
 }
 
-void strToBgStr (const char *source,
+void strToBgstr (const char *source,
                  bgstr target) {
     bgstrDup (source, target);
 }

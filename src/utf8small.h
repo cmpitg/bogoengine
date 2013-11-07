@@ -53,7 +53,7 @@ bglen_t bgstrLen   (bgstr str);
 void bgGetCharAt   (bgstr str, bgstr target, bglen_t position);
 
 void bgstrDup        (const bgstr source, bgstr target);
-void strToBgStr      (const char *source, bgstr target);
+void strToBgstr      (const char *source, bgstr target);
 void bgstrToStr      (const bgstr source, char *target);
 void bgstrCopy       (bgstr source, bgstr target);
 void bgstrAssign     (bgstr target, bgstr source);
