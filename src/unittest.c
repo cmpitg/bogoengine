@@ -145,6 +145,24 @@ void assertIntDescription (int expected,
     }
 }
 
+void assertNotIntDescription (int expected,
+                              int expr,
+                              const char *descr) {
+    /* Skip if there is a failed test already */
+    if (_currentRes_ == 0) {
+        return;
+    }
+
+    _currentRes_ = (expected != expr) ? 1 : 0;
+    if (_currentRes_ == 0) {
+        fprintf (stderr,
+                 "[failed] assertNotInt: %s\n\texpected: %i\n\tactual: %i\n",
+                 descr,
+                 expected,
+                 expr);
+    }
+}
+
 void assertStr (const char *expected,
                 const char *expr) {
     /* Skip if there is a failed test already */
