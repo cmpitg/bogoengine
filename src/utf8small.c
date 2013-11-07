@@ -67,6 +67,16 @@ void printBgStrNewline (const bgstr str) {
 /* ----------------------------------------------------------------------- */
 /* Main */
 
+void bgstrAssign (bgstr target,
+                bgstr source) {
+    bgstrDup (source, target);
+}
+
+void bgstrCopy (bgstr source,
+                bgstr target) {
+    bgstrDup (source, target);
+}
+
 void bgstrDup (const bgstr source,
                bgstr target) {
     strncpy (target, source, strlen_ (source));
