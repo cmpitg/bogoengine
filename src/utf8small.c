@@ -112,8 +112,32 @@ void bgstrAssign (bgstr target,
 void bgstrCopy (bgstr source,
                 bgstr target,
                 bglen_t from,
-                bglen_t number
-                ) {
+                bglen_t count) {
+    bglen_t length = bgstrLen (source);
+    bglen_t lastCharPosition;
+    bglen_t startFrom;
+    bglen_t nBytes;
+
+    bgchar lastChar;
+
+    /* By default, copy all character from `from` to the end */
+    if (count == -1 || length <= from + count)
+        count = length - from;
+
+    /* Guarding */
+    if (from < 0 || length <= from) {
+        bgstrAssign (target, "");
+        return;
+    }
+
+    lastCharPosition = from + count - 1;
+    bgstrGetCharAt (source, lastChar, lastCharPosition);
+
+    startFrom = bgNthBgcharToNthByte (source, from);
+    nBytes    = bgNthBgcharToNthByte (source, from + count - 1)
+        + bgcharLen (lastChar) - startFrom;
+
+    strncpy (target, source + startFrom, nBytes);
 }
 
 void bgstrDup (const bgstr source,
