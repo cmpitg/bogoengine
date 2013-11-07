@@ -28,7 +28,7 @@ tryout: $(TRYOUT_MAIN_SRC)
 		-I$(INCLUDE) \
 		$(UTF8_SRC) \
 		$(TRYOUT_MAIN_SRC)
-	$(TRYOUT_MAIN_EXEC) < ../tests/utf8_input.txt
+	$(TRYOUT_MAIN_EXEC) < ../test_data/utf8_input.txt
 
 tryout_unittest:
 	@mkdir -p $(BUILD_DIR)
