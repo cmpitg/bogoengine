@@ -39,7 +39,11 @@ int testNthBgcharToNthByte (void) {
     assertInt (0, bgNthBgcharToNthByte (str, 0));
     assertInt (2, bgNthBgcharToNthByte (str, 1));
     assertInt (5, bgNthBgcharToNthByte (str, 2));
-    assertInt (6, bgNthBgcharToNthByte (str, 2));
+    assertInt (6, bgNthBgcharToNthByte (str, 3));
+
+    /* Invalid */
+    assertInt (0, bgNthBgcharToNthByte (str, -1));
+    assertInt (0, bgNthBgcharToNthByte (str, 4));
 
     /* 0123456 */
     /* ||---ab */
