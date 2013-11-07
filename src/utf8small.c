@@ -132,8 +132,9 @@ void bgstrCopy (bgstr source,
     bglen_t nBytes;
 
     /* By default, copy all character from `from` to the end */
-    if (count == -1 || length <= from + count)
+    if (count == -1 || length <= from + count) {
         count = length - from;
+    }
 
     /* Guarding */
     if (from < 0 || length <= from) {
