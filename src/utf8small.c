@@ -92,7 +92,7 @@ void bgstrToStr (const bgstr source,
     bgstrDup (source, target);
 }
 
-bglen_t bgcharLen (bgstr ch) {
+bglen_t bgcharLen (bgchar ch) {
     bglen_t mask = 0xfc;
     bglen_t maskShift = 4;
 
