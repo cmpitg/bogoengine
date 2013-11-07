@@ -63,11 +63,17 @@ int finishTestCase   (void);
 void toStrLower (const char *, char *);
 
 /* Assertion */
-void assertInt             (int, int);
-void assertIntDescription  (int, int, const char *);
-void assertStr             (const char *, const char *);
-void assertStrDescription  (const char *, const char *, const char *);
-void assertStrI            (const char *, const char *);
-void assertStrIDescription (const char *, const char *, const char *);
+void assertInt                 (int, int);
+void assertNotInt              (int, int);
+void assertIntDescription      (int, int, const char *);
+void assertNotIntDescription   (int, int, const char *);
+void assertStr                 (const char *, const char *);
+void assertNotStr              (const char *, const char *);
+void assertStrDescription      (const char *, const char *, const char *);
+void assertNotStrDescription   (const char *, const char *, const char *);
+void assertStrI                (const char *, const char *);
+void assertNotStrI             (const char *, const char *);
+void assertStrIDescription     (const char *, const char *, const char *);
+void assertNotStrIDescription  (const char *, const char *, const char *);
 
 #endif
