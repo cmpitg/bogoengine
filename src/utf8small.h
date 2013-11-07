@@ -37,6 +37,10 @@ bglen_t bgCharLen  (bgstr ch);
 bglen_t bgStrLen   (bgstr str);
 void bgGetCharAt   (bgstr str, bgstr target, bglen_t position);
 
+void strToBgStr      (const char *source, bgstr target);
+void bgStrToStr      (const bgstr source, char *target);
+void bgStrCopy       (bgstr source, bgstr target);
+void bgStrAssign     (bgstr target, bgstr source);
 void bgInsertCharAt  (bgstr str, bgstr target, bgstr ch, bglen_t position);
 void bgRemoveCharAt  (bgstr str, bgstr target, bglen_t position);
 void bgAppend        (bgstr str, bgstr target, bgstr str2);
