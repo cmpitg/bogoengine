@@ -62,13 +62,15 @@ void bgstrDup        (const bgstr source, bgstr target);
 void strToBgstr      (const char *source, bgstr target);
 void bgstrToStr      (const bgstr source, char *target);
 void bgstrAssign     (bgstr target, bgstr source);
-void bgstrCopy       (bgstr source, bgstr target, bglen_t from, bglen_t number);
+
+void bgstrCopy    (bgstr source, bgstr target, bglen_t from, bglen_t count);
+void bgstrSubStr  (bgstr str, bgstr target, bglen_t from, bglen_t count);
 
 void bgstrInsertCharAt  (bgstr str, bgstr target, bgstr ch, bglen_t position);
 void bgstrRemoveCharAt  (bgstr str, bgstr target, bglen_t position);
 void bgstrAppend        (bgstr str, bgstr target, bgstr str2);
 void bgstrPrepend       (bgstr str, bgstr target, bgstr str2);
-void bgSubStr           (bgstr str, bgstr target, bglen_t from, bglen_t count);
+
 
 void bgstrFirstChar     (bgstr str, bgstr output);
 void bgstrLastChar      (bgstr str, bgstr output);
