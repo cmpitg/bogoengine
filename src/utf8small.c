@@ -43,8 +43,8 @@ void printBits (bgstr str,
     printf ("\n");
 }
 
-void printStrBits (bgstr str) {
-    printBits(str, bgStrLen (str));
+void printStrBits (const char *str) {
+    printBits(str, strlen_ (str));
 }
 
 /* ----------------------------------------------------------------------- */

@@ -33,9 +33,9 @@ typedef uint8_t   bgstr[BG_MAX_BUFFER];
 typedef int32_t   bglen_t;
 typedef char      bgbool;
 
-void printStrBits  (bgstr str);
-void printStr      (const char *str);
-void printBgStr    (const bgstr str);
+void printStrBits    (const char *str);
+void printStr        (const char *str);
+void printBgStr      (const bgstr str);
 
 bglen_t bgCharLen  (bgstr ch);
 bglen_t bgStrLen   (bgstr str);
