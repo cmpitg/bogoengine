@@ -118,6 +118,12 @@ void bgstrCopy (bgstr source,
 
 void bgstrDup (const bgstr source,
                bgstr target) {
+    /* Empty string */
+    if (strcmp ("", source) == 0) {
+        target[0] = 0;
+        return;
+    }
+
     strncpy (target, source, strlen_ (source));
 }
 
