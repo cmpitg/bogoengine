@@ -152,27 +152,37 @@ int testStringDuplication (void) {
 int testStringCopy (void) {
     initTestCase ("bgstrCopy | bgstrAssign");
 
-    bgstr str1, str2, str3, str4, str5, str6, str7, str8;
+    bgstr str;
+    bgstr fullCopyCase;
+    bgstr assignCase;
+    bgstr normalCase1;
+    bgstr normalCase2;
+    bgstr invalidFromCase;
+    bgstr fromExceedsLengthCase;
+    bgstr exceededCountCase;
+    bgstr zeroCharCase;
     char pointerAddr1[20];
     char pointerAddr2[20];
     char pointerAddr3[20];
 
-    strToBgstr ("Xin chào thế giới!", str1);
-    bgstrCopy (str1, str2, 0, bgstrLen (str1));
-    bgstrAssign (str3, str2);
-    bgstrCopy (str1, str4, 0, 7);
-    bgstrCopy (str1, str5, 6, 6);
-    bgstrCopy (str1, str6, -1, 3);
-    bgstrCopy (str1, str7, bgstrLen (str1), 3);
-    bgstrCopy (str1, str8, 1, bgstrLen (str1) + 3);
+    strToBgstr ("Xin chào thế giới!", str);
+    bgstrCopy (str, fullCopyCase, 0, bgstrLen (str));
+    bgstrAssign (assignCase, fullCopyCase);
+    bgstrCopy (str, normalCase1, 0, 7);
+    bgstrCopy (str, normalCase2, 6, 6);
+    bgstrCopy (str, invalidFromCase, -1, 3);
+    bgstrCopy (str, fromExceedsLengthCase, bgstrLen (str), 3);
+    bgstrCopy (str, exceededCountCase, 1, bgstrLen (str) + 3);
+    bgstrCopy (str, zeroCharCase, 0, 0);
 
-    assertStr (str1, str2);
-    assertStr (str1, str3);
-    assertStr ("Xin chà", str4);
-    assertStr ("ào thế", str5);
-    assertStr ("", str6);
-    assertStr ("", str7);
-    assertStr ("in chào thế giới!", str8);
+    assertStr (str, fullCopyCase);
+    assertStr (str, assignCase);
+    assertStr ("Xin chà", normalCase1);
+    assertStr ("ào thế", normalCase2);
+    assertStr ("", invalidFromCase);
+    assertStr ("", fromExceedsLengthCase);
+    assertStr ("in chào thế giới!", exceededCountCase);
+    assertStr ("", zeroCharCase);
 
     return finishTestCase ();
 }
