@@ -78,7 +78,7 @@ int runAllTests (void) {
         }
     }
 
-    printf ("> All passed!\n");
+    printf ("> All passed!\n\n");
     return allRes;
 }
 
@@ -96,6 +96,9 @@ int finishTestCase (void) {
     }
     return _currentRes_;
 }
+
+/* ----------------------------------------------------------------------- */
+/* Assertions */
 
 void assertInt (int expected,
                 int expr) {
