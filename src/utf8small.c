@@ -43,6 +43,10 @@ void printBits (bgstr str,
     printf ("\n");
 }
 
+void printStrBits (bgstr str) {
+    printBits(str, bgStrLen (str));
+}
+
 /* ----------------------------------------------------------------------- */
 /* Main */
 
