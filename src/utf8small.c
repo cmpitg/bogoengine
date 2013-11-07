@@ -123,19 +123,24 @@ void bgstrInsertStrAt  (bgstr source,
     bglen_t length = bgstrLen (source);
     bgstr substr1, substr2;
 
+    bgstr result;               /* Safe copying */
+    bgstrDup (source, result);
+
     /* Guarding */
     if (position < 0 || length < position) {
-        bgstrDup (source, target);
+        bgstrDup (result, target);
         return;
     }
 
     bgstrSubStr (source, substr1, 0, position);
     bgstrSubStr (source, substr2, position, -1);
 
-    bgstrAssign (target, "");
-    strcat (target, substr1);
-    strcat (target, ch);
-    strcat (target, substr2);
+    bgstrAssign (result, "");
+    strcat (result, substr1);
+    strcat (result, ch);
+    strcat (result, substr2);
+
+    bgstrAssign (target, result);
 
     /* fprintf (stderr, "|%s|%s|%s|\n|%s|\n\n", substr1, ch, substr2, target); */
 }
