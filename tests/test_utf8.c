@@ -71,8 +71,19 @@ int testCharAccess (void) {
     return finishTestCase ();
 }
 
-int testCharSet (void) {
+int testStringConversion (void) {
+    initTestCase ("toBgString");
+
+    const char *aStr = "Xin chào thế giới!";
+    char        sameStr[1024];
+    bgstr       res;
     
+    strToBgStr (aStr, res);
+    bgStrToStr (res, sameStr);
+
+    assertStr (aStr, sameStr);
+
+    return finishTestCase ();
 }
 
 void readInput (void) {
@@ -87,6 +98,8 @@ int main (int argc, char *argv[]) {
 
     addTest (testLengthFunctions);
     addTest (testCharAccess);
+    addTest (testStringConversion);
+
     runAllTests ();
 
     return 0;
