@@ -30,7 +30,7 @@ int getBit (int num,
     return (n >> num) & 1;
 }
 
-void printBits (bgstr str,
+void printBits (const char *str,
                 bglen_t byteNum) {
     bglen_t i, j;
 
