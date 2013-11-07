@@ -86,6 +86,23 @@ int testStringConversion (void) {
     return finishTestCase ();
 }
 
+int testStringDuplication (void) {
+    initTestCase ("bgStrDup");
+
+    bgstr str1, str2;
+    char pointerAddr1[20], pointerAddr2[20];
+
+    strToBgStr ("Xin chào thế giới!", str1);
+    bgStrDup (str1, str2);
+    sprintf (pointerAddr1, "%p", str1);
+    sprintf (pointerAddr2, "%p", str2);
+
+    assertStr (str1, str2);
+    assertNotStr (pointerAddr1, pointerAddr2);  /* Different pointers */
+
+    return finishTestCase ();
+}
+
 void readInput (void) {
     /* This is supposed to read from `test_utf8_input.txt` */
     fgets (mainString, BG_MAX_BUFFER, stdin);
@@ -99,6 +116,7 @@ int main (int argc, char *argv[]) {
     addTest (testLengthFunctions);
     addTest (testCharAccess);
     addTest (testStringConversion);
+    addTest (testStringDuplication);
 
     runAllTests ();
 
