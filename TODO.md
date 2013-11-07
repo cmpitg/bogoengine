@@ -1,3 +1,11 @@
+## Convention
+
+```c
+/* Function naming and calling convention */
+function (source, target);
+function (source, target, arg1, arg2, arg3, ...)
+```
+
 ## `ustring addMarkToWord (ustring, Marks)`
 
 ## `ustring addAccentToWord (ustring, Accents)`
