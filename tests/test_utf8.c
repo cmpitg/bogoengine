@@ -208,21 +208,20 @@ int testInsertChar (void) {
 }
 
 int testAppendPrependString (void) {
-    initTestCase ("bgstrAppendStr | bgstrPrependStr");
+    initTestCase ("bgstrAppend | bgstrPrepend");
 
-    bgstr source;
-    bgstr result;
+    bgstr str;
 
-    strToBgstr ("", source);
+    strToBgstr ("", str);
 
-    bgstrAppendStr (source, result, "chào");
-    assertStr ("chào", result);
+    bgstrAppend (str, str, "chào");
+    assertStr ("chào", str);
 
-    bgstrPrependStr (source, result, "Xin ");
-    assertStr ("Xin chào", result);
+    bgstrPrepend (str, str, "Xin ");
+    assertStr ("Xin chào", str);
 
-    bgstrAppendStr (source, result, " thế giới!");
-    assertStr ("Xin chào thế giới!", result);
+    bgstrAppend (str, str, " thế giới!");
+    assertStr ("Xin chào thế giới!", str);
 }
 
 void readInput (void) {

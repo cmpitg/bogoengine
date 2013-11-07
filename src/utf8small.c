@@ -67,6 +67,18 @@ void printBgstrNewline (const bgstr str) {
 /* ----------------------------------------------------------------------- */
 /* Main */
 
+void bgstrPrepend (bgstr source,
+                   bgstr target,
+                   bgstr str) {
+    bgstrInsertStrAt (source, target, str, 0);
+}
+
+void bgstrAppend (bgstr source,
+                  bgstr target,
+                  bgstr str) {
+    bgstrInsertStrAt (source, target, str, bgstrLen (source));
+}
+
 bglen_t bgcharCountBytesAt (const bgstr str,
                             bglen_t position) {
     bgchar ch;

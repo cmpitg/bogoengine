@@ -75,8 +75,8 @@ void bgstrInsertCharAt  (bgstr source,
                          bgstr ch,
                          bglen_t position);
 void bgstrRemoveCharAt  (bgstr source, bgstr target, bglen_t position);
-void bgstrAppend        (bgstr source, bgstr target, bgstr str2);
-void bgstrPrepend       (bgstr source, bgstr target, bgstr str2);
+void bgstrAppend        (bgstr source, bgstr target, bgstr str);
+void bgstrPrepend       (bgstr source, bgstr target, bgstr str);
 
 void bgstrInsertStrAt  (bgstr source,
                         bgstr target,
