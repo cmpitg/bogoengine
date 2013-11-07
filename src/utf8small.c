@@ -53,12 +53,12 @@ void bgStrDup (const bgstr source,
 
 void strToBgStr (const char *source,
                  bgstr target) {
-    strncpy (target, source, strlen_ (source));
+    bgStrDup (source, target);
 }
 
 void bgStrToStr (const bgstr source,
                  char *target) {
-    strncpy (target, source, strlen_ (source));    
+    bgStrDup (source, target);
 }
 
 bglen_t bgCharLen (bgstr ch) {
