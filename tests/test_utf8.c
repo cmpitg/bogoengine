@@ -92,7 +92,7 @@ int testStringDuplication (void) {
     bgstr str1, str2;
     char pointerAddr1[20], pointerAddr2[20];
 
-    strToBgStr ("Xin chào thế giới!", str1);
+    strToBgstr ("Xin chào thế giới!", str1);
     bgstrDup (str1, str2);
     sprintf (pointerAddr1, "%p", str1);
     sprintf (pointerAddr2, "%p", str2);
