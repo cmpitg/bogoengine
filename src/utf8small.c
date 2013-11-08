@@ -67,6 +67,16 @@ void printBgstrNewline (const bgstr str) {
 /* ----------------------------------------------------------------------- */
 /* Main */
 
+void bgstrFirstChar (const bgstr source,
+                     bgstr target) {
+    bgstrGetCharAt (source, target, 0);
+}
+
+void bgstrLastChar (const bgstr source,
+                    bgstr target) {
+    bgstrGetCharAt (source, target, bgstrLen (source) - 1);
+}
+
 void bgstrPrepend (bgstr source,
                    bgstr target,
                    bgstr str) {

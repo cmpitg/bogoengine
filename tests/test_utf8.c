@@ -120,7 +120,7 @@ int testCharAccess (void) {
     char tmpChar[6];
 
     bgstrFirstChar (toTestFirstLastChar, tmpChar);
-    assertStr ("ừ", tmpChar);
+    assertStr ("ư", tmpChar);
 
     bgstrLastChar (toTestFirstLastChar, tmpChar);
     assertStr ("ờ", tmpChar);
