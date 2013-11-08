@@ -171,6 +171,14 @@ void bgstrSubStr (bgstr source,
     bgstrCopy (source, target, from, count);
 }
 
+void strCopy (const char *source,
+              char *target,
+              bglen_t fromByte,
+              bglen_t count) {
+    memcpy (target, source + fromByte, count);
+    target[count] = 0;
+}
+
 void bgstrCopy (bgstr source,
                 bgstr target,
                 bglen_t from,

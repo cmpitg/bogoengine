@@ -34,6 +34,14 @@ typedef bgstr     bgchar;
 typedef int32_t   bglen_t;
 typedef char      bgbool;
 
+/* Helper */
+/* Copy string using memcpy instead of strncpy and make sure it's
+   NULL-terminated */
+void strCopy (const char *source,
+              char *target,
+              bglen_t fromByte,
+              bglen_t count);
+
 /* Useful when debugging */
 void printBits (const char *str, bglen_t byteNum);
 
