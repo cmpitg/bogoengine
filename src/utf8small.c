@@ -121,10 +121,11 @@ void bgstrInsertStrAt  (bgstr source,
                         bgstr ch,
                         bglen_t position) {
     bglen_t length = bgstrLen (source);
+    bglen_t newLength = 0;
     bgstr substr1, substr2;
 
-    bgstr result;               /* Safe copying */
-    bgstrDup (source, result);
+    bgstr result;               /* Safe copying, in case source == target */
+    bgstrAssign (result, "");   /* Make sure it's a completely empty string */
 
     /* Guarding */
     if (position < 0 || length < position) {
@@ -135,14 +136,13 @@ void bgstrInsertStrAt  (bgstr source,
     bgstrSubStr (source, substr1, 0, position);
     bgstrSubStr (source, substr2, position, -1);
 
-    bgstrAssign (result, "");
     strcat (result, substr1);
     strcat (result, ch);
     strcat (result, substr2);
+    newLength = bgstrCountBytes (source) + bgstrCountBytes (ch);
+    result[newLength + 1] = 0;      /* Make sure it's NULL-terminated */
 
     bgstrAssign (target, result);
-
-    /* fprintf (stderr, "|%s|%s|%s|\n|%s|\n\n", substr1, ch, substr2, target); */
 }
 
 void bgstrInsertCharAt  (bgstr source,
@@ -176,7 +176,7 @@ void strCopy (const char *source,
               bglen_t fromByte,
               bglen_t count) {
     memcpy (target, source + fromByte, count);
-    target[count] = 0;
+    target[count] = 0;          /* Make sure the string is properly ended */
 }
 
 void bgstrCopy (bgstr source,
@@ -187,6 +187,8 @@ void bgstrCopy (bgstr source,
     bglen_t lastCharPosition;
     bglen_t startFrom;
     bglen_t nBytes;
+
+    bgstr result;
 
     /* By default, copy all character from `from` to the end */
     if (count == -1 || length <= from + count) {
@@ -205,18 +207,20 @@ void bgstrCopy (bgstr source,
     nBytes    = bgNthBgcharToNthByte (source, from + count - 1)
         + bgstrGetCharLenAt (source, lastCharPosition) - startFrom;
 
-    strncpy (target, source + startFrom, nBytes);
+    strCopy (source, result, startFrom, nBytes);
+    bgstrAssign (target, result); /* Guard in case source == target */
 }
 
 void bgstrDup (const bgstr source,
                bgstr target) {
+    memset (target, 0, sizeof (target));
+
     /* Empty string */
     if (strcmp ("", source) == 0) {
-        target[0] = 0;
         return;
     }
 
-    strncpy (target, source, strlen_ (source));
+    strCopy (source, target, 0, strlen_ (source));
 }
 
 void strToBgstr (const char *source,

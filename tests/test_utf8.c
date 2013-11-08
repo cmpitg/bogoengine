@@ -232,7 +232,6 @@ void readInput (void) {
 
 int main (int argc, char *argv[]) {
     readInput ();
-    printf ("\n");
 
     addTest (testCountBytes);
     addTest (testNthBgcharToNthByte);
