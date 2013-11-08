@@ -93,13 +93,13 @@ void bgstrPrepend       (bgstr source, bgstr target, bgstr str);
 void bgstrFirstChar     (const bgstr source, bgstr target);
 void bgstrLastChar      (const bgstr source, bgstr target);
 
-void bgstrToLower    (bgstr source, bgstr target);
-void bgstrToUpper    (bgstr source, bgstr target);
+void bgstrToLower    (const bgstr source, bgstr target);
+void bgstrToUpper    (const bgstr source, bgstr target);
 
-int bgstrCmp         (bgstr str1, bgstr str2);
-int bgstrCmpI        (bgstr str1, bgstr str2);
+int bgstrCmp         (const bgstr str1, const bgstr str2);
+int bgstrCmpI        (const bgstr str1, const bgstr str2);
 
-bgbool bgStartsWith  (bgstr str, bgstr pattern);
-bgbool bgEndsWith    (bgstr str, bgstr pattern);
+bgbool bgStartsWith  (const bgstr str, bgstr pattern);
+bgbool bgEndsWith    (const bgstr str, bgstr pattern);
 
 #endif
