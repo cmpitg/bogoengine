@@ -81,7 +81,7 @@ int testLengthFunctions (void) {
 }
 
 int testCharAccess (void) {
-    initTestCase ("bgstrGetCharAt | bgstrFirstChar | bgstrLastChar>> input: utf8_input.txt");
+    initTestCase ("bgstrGetCharAt | bgstrFirstChar | bgstrLastChar >> input: utf8_input.txt");
 
     char res[20][10];
 
