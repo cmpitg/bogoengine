@@ -81,7 +81,7 @@ int testLengthFunctions (void) {
 }
 
 int testCharAccess (void) {
-    initTestCase ("bgstrGetCharAt >> input: utf8_input.txt");
+    initTestCase ("bgstrGetCharAt | bgstrFirstChar | bgstrLastChar>> input: utf8_input.txt");
 
     char res[20][10];
 
@@ -115,6 +115,21 @@ int testCharAccess (void) {
     assertInt (3, bgstrGetCharLenAt (str, 1));
     assertInt (1, bgstrGetCharLenAt (str, 2));
     assertInt (1, bgstrGetCharLenAt (str, 3));
+
+    const char toTestFirstLastChar[24] = "ườ";
+    char tmpChar[6];
+
+    bgstrFirstChar (toTestFirstLastChar, tmpChar);
+    assertStr ("ừ", tmpChar);
+
+    bgstrLastChar (toTestFirstLastChar, tmpChar);
+    assertStr ("ờ", tmpChar);
+
+    bgstrFirstChar ("", tmpChar);
+    assertStr ("", tmpChar);
+
+    bgstrLastChar ("", tmpChar);
+    assertStr ("", tmpChar);
 
     return finishTestCase ();
 }

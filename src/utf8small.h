@@ -90,8 +90,8 @@ void bgstrRemoveCharAt  (bgstr source, bgstr target, bglen_t position);
 void bgstrAppend        (bgstr source, bgstr target, bgstr str);
 void bgstrPrepend       (bgstr source, bgstr target, bgstr str);
 
-void bgstrFirstChar     (bgstr source, bgstr target);
-void bgstrLastChar      (bgstr source, bgstr target);
+void bgstrFirstChar     (const bgstr source, bgstr target);
+void bgstrLastChar      (const bgstr source, bgstr target);
 
 void bgstrToLower    (bgstr source, bgstr target);
 void bgstrToUpper    (bgstr source, bgstr target);
